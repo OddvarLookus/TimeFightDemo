@@ -251,6 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &26490833
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,6 +380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &146983193
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,6 +509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &190369562
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,6 +670,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &254259040
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,6 +799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &267423276
 GameObject:
   m_ObjectHideFlags: 0
@@ -1016,6 +1021,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &347744492
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,6 +1032,7 @@ GameObject:
   m_Component:
   - component: {fileID: 347744496}
   - component: {fileID: 347744498}
+  - component: {fileID: 347744499}
   - component: {fileID: 347744495}
   - component: {fileID: 347744494}
   - component: {fileID: 347744493}
@@ -1114,6 +1121,8 @@ Transform:
   m_Children:
   - {fileID: 1912868445}
   - {fileID: 1077766484}
+  - {fileID: 799205712}
+  - {fileID: 2073490846}
   m_Father: {fileID: 190369563}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1150,6 +1159,22 @@ MonoBehaviour:
   playerAcceleration: 10
   playerDeceleration: 5
   camController: {fileID: 1745202265}
+  attackCooldown: 0.6
+--- !u!114 &347744499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347744492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5431324f97325ca44a209d146a656414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackCollider: {fileID: 799205711}
+  attackAnimator: {fileID: 799205713}
+  pushForce: 3.12
 --- !u!1 &379221314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,6 +1389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &398930298
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,6 +1518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &403059757
 GameObject:
   m_ObjectHideFlags: 0
@@ -1620,6 +1647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &415765978
 GameObject:
   m_ObjectHideFlags: 0
@@ -1748,6 +1776,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &463574380
 GameObject:
   m_ObjectHideFlags: 0
@@ -1876,6 +1905,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &521846479
 GameObject:
   m_ObjectHideFlags: 0
@@ -2004,6 +2034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &550597716
 GameObject:
   m_ObjectHideFlags: 0
@@ -2132,6 +2163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &574672264
 GameObject:
   m_ObjectHideFlags: 0
@@ -2260,6 +2292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &603836988
 GameObject:
   m_ObjectHideFlags: 0
@@ -2388,6 +2421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &752085128
 GameObject:
   m_ObjectHideFlags: 0
@@ -2516,6 +2550,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &779555646
 GameObject:
   m_ObjectHideFlags: 0
@@ -2644,6 +2679,136 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
+--- !u!1 &799205711
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 799205712}
+  - component: {fileID: 799205717}
+  - component: {fileID: 799205716}
+  - component: {fileID: 799205715}
+  - component: {fileID: 799205714}
+  - component: {fileID: 799205713}
+  m_Layer: 0
+  m_Name: AttackHitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &799205712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799205711}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 347744496}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &799205713
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799205711}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3a58c08900f3901449aa208ce1e8cfec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!135 &799205714
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799205711}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &799205715
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799205711}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: efa11116e8b9ee34fae5a766808f35b2, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &799205716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799205711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 415b18202bfad7146b59185030a07954, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!33 &799205717
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799205711}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &824383583
 GameObject:
   m_ObjectHideFlags: 0
@@ -2772,6 +2937,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &864510982
 GameObject:
   m_ObjectHideFlags: 0
@@ -2900,6 +3066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &881009911
 GameObject:
   m_ObjectHideFlags: 0
@@ -3028,6 +3195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &892654590
 GameObject:
   m_ObjectHideFlags: 0
@@ -3156,6 +3324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &932227507
 GameObject:
   m_ObjectHideFlags: 0
@@ -3284,6 +3453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &956287678
 GameObject:
   m_ObjectHideFlags: 0
@@ -3412,6 +3582,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &967143396
 GameObject:
   m_ObjectHideFlags: 0
@@ -3540,6 +3711,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1000421286
 GameObject:
   m_ObjectHideFlags: 0
@@ -3668,6 +3840,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1034594150
 GameObject:
   m_ObjectHideFlags: 0
@@ -3796,6 +3969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1034598733
 GameObject:
   m_ObjectHideFlags: 0
@@ -3924,6 +4098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1055867166
 GameObject:
   m_ObjectHideFlags: 0
@@ -4052,6 +4227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1057728430
 GameObject:
   m_ObjectHideFlags: 0
@@ -4180,6 +4356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1077766483
 GameObject:
   m_ObjectHideFlags: 0
@@ -4456,6 +4633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1164882577
 GameObject:
   m_ObjectHideFlags: 0
@@ -4584,6 +4762,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1239292688
 GameObject:
   m_ObjectHideFlags: 0
@@ -4712,6 +4891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1242928669
 GameObject:
   m_ObjectHideFlags: 0
@@ -4840,6 +5020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1365962191
 GameObject:
   m_ObjectHideFlags: 0
@@ -4968,6 +5149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1439968850
 GameObject:
   m_ObjectHideFlags: 0
@@ -5096,6 +5278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1466537763
 GameObject:
   m_ObjectHideFlags: 0
@@ -5224,6 +5407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1471245033
 GameObject:
   m_ObjectHideFlags: 0
@@ -5352,6 +5536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1511262078
 GameObject:
   m_ObjectHideFlags: 0
@@ -5480,6 +5665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1519291547
 GameObject:
   m_ObjectHideFlags: 0
@@ -5608,6 +5794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1554752107
 GameObject:
   m_ObjectHideFlags: 0
@@ -5736,6 +5923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1565057802
 GameObject:
   m_ObjectHideFlags: 0
@@ -5864,6 +6052,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1578586358
 GameObject:
   m_ObjectHideFlags: 0
@@ -5992,6 +6181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1627750622
 GameObject:
   m_ObjectHideFlags: 0
@@ -6120,6 +6310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1632815515
 GameObject:
   m_ObjectHideFlags: 0
@@ -6248,6 +6439,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1703472436
 GameObject:
   m_ObjectHideFlags: 0
@@ -6376,6 +6568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1719223074
 GameObject:
   m_ObjectHideFlags: 0
@@ -6504,6 +6697,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1745202262
 GameObject:
   m_ObjectHideFlags: 0
@@ -6602,9 +6796,8 @@ MonoBehaviour:
   cameraRayHitOffset: 0.3
   invertX: 1
   invertY: 1
-  cameraSpeed: 3
-  enableSmoothing: 1
-  smoothingSpeed: 15.95
+  cameraSpeed: 2.33
+  smoothingSpeed: 0
 --- !u!1 &1758728052
 GameObject:
   m_ObjectHideFlags: 0
@@ -6733,6 +6926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1770598233
 GameObject:
   m_ObjectHideFlags: 0
@@ -6861,6 +7055,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1827497172
 GameObject:
   m_ObjectHideFlags: 0
@@ -6989,6 +7184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1840125560
 GameObject:
   m_ObjectHideFlags: 0
@@ -7117,6 +7313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1879118945
 GameObject:
   m_ObjectHideFlags: 0
@@ -7245,6 +7442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1881871601
 GameObject:
   m_ObjectHideFlags: 0
@@ -7373,6 +7571,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1912868444
 GameObject:
   m_ObjectHideFlags: 0
@@ -7531,6 +7730,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1951719615
 GameObject:
   m_ObjectHideFlags: 0
@@ -7659,6 +7859,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1966311884
 GameObject:
   m_ObjectHideFlags: 0
@@ -7787,6 +7988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
 --- !u!1 &1994881756
 GameObject:
   m_ObjectHideFlags: 0
@@ -7915,3 +8117,100 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
+  mass: 10
+--- !u!1 &2073490845
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2073490846}
+  - component: {fileID: 2073490849}
+  - component: {fileID: 2073490848}
+  - component: {fileID: 2073490847}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2073490846
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073490845}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.52, z: 0.45}
+  m_LocalScale: {x: 0.72, y: 0.32, z: 0.23}
+  m_Children: []
+  m_Father: {fileID: 347744496}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2073490847
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073490845}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &2073490848
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073490845}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 04cafcc8eb49b234cb9e589e1815aa7e, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &2073490849
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073490845}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}

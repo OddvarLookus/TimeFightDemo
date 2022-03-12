@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    //[Header("Input")]
-    //[SerializeField] InputManager inputManager;
+
 
     [Header("Camera movement configuration")]
     [SerializeField] Transform cameraTransform;
@@ -26,21 +25,38 @@ public class CameraController : MonoBehaviour
     [Header("Smoothing")]
     [Range(0.1f, 3f)]
     [SerializeField] float cameraSpeed;
-    [SerializeField] bool enableSmoothing;
     [SerializeField] float smoothingSpeed;
     float targetRot;
     float targetTilt;
 
     #region MONOBEHAVIOR
+    private void Awake()
+    {
+        targetCameraPos = transform.position;
+    }
     private void Update()
     {
         CameraLookBehavior();
+
+        CameraPositionBehavior();
+        KeepCameraDistance();
+        cameraTransform.LookAt(cameraLookTarget, cameraLookTarget.up);
     }
+
+    private void FixedUpdate()
+    {
+
+    }
+
+
     #endregion
     #region CAMERA ROTATION
+    Vector3 normalizedCameraPos;
     void CameraRotationBehavior()
     {
-        if (invertX == false)
+
+        //X ROTATION
+        if (!invertX == false)
         {
             targetRot += Input.GetAxisRaw("Mouse X") * cameraSpeed;
         }
@@ -49,26 +65,22 @@ public class CameraController : MonoBehaviour
             targetRot -= Input.GetAxisRaw("Mouse X") * cameraSpeed;
         }
 
-        //targetRot = ClampAngle(targetRot);
-
-        if (enableSmoothing)
+        float t;
+        if (smoothingSpeed <= 0f)
         {
-            cameraRot = Mathf.Lerp(cameraRot, targetRot, smoothingSpeed * Time.deltaTime);
-            //cameraRot = ClampAngle(cameraRot);
+            t = 1f;
         }
         else
         {
-            targetRot = ClampAngle(targetRot);
-            cameraRot = targetRot;
+            t = smoothingSpeed * Time.deltaTime;
         }
-        //cameraRot = ClampAngle(cameraRot);
-        //Vector3 playerToCam = cameraTransform.position - cameraLookTarget.position;
-        Vector3 newCamPos = (Quaternion.AngleAxis(cameraRot, -cameraLookTarget.up) * Vector3.forward) * maxCameraDist + cameraLookTarget.position;
-        cameraTransform.position = newCamPos;
+
+        cameraRot = Mathf.Lerp(cameraRot, targetRot, t);
+
     }
     void CameraTiltBehavior()
     {
-        Vector3 playerToCam = cameraTransform.position - cameraLookTarget.position;
+        //Vector3 playerToCam = cameraTransform.position - cameraLookTarget.position;
         if (invertY == false)
         {
             targetTilt += Input.GetAxisRaw("Mouse Y") * cameraSpeed;
@@ -80,20 +92,39 @@ public class CameraController : MonoBehaviour
 
         targetTilt = Mathf.Clamp(targetTilt, minCameraTilt, maxCameraTilt);
 
-        if (enableSmoothing)
+        float t;
+        if (smoothingSpeed <= 0f)
         {
-            cameraTilt = Mathf.Lerp(cameraTilt, targetTilt, smoothingSpeed * Time.deltaTime);
+            t = 1f;
         }
         else
         {
-            cameraTilt = targetTilt;
+            t = smoothingSpeed * Time.deltaTime;
         }
-        Vector3 perpendicular = Vector3.Cross(playerToCam, cameraLookTarget.up);
-        Vector3 newCamPos = (Quaternion.AngleAxis(cameraTilt, perpendicular) * playerToCam.normalized) * maxCameraDist + cameraLookTarget.position;// + cameraLookTarget.position;
-        //newCamPos = LimitTilt(newCamPos, perpendicular);
-        //newCamPos += cameraLookTarget.position;
-        cameraTransform.position = newCamPos;
-        //Debug.Log($"CameraTilt = {newCamPos}");
+        cameraTilt = Mathf.Lerp(cameraTilt, targetTilt, t);
+
+
+    }
+    Quaternion alignment = Quaternion.identity;
+    Vector3 targetCameraPos;
+    void CameraPositionBehavior()
+    {
+        alignment = Quaternion.FromToRotation(alignment * Vector3.up, Vector3.up) * alignment;
+
+        Quaternion finalRot = alignment * Quaternion.Euler(-cameraTilt, cameraRot, 0f);
+
+        targetCameraPos = finalRot * Vector3.forward * maxCameraDist + cameraLookTarget.position;
+
+        float t;
+        if (smoothingSpeed <= 0f)
+        {
+            t = 1f;
+        }
+        else
+        {
+            t = smoothingSpeed * Time.deltaTime;
+        }
+        cameraTransform.position = Vector3.Lerp(cameraTransform.position, targetCameraPos, t);
     }
 
     float ClampAngle(float _angle)
@@ -126,8 +157,7 @@ public class CameraController : MonoBehaviour
     {
         CameraRotationBehavior();
         CameraTiltBehavior();
-        KeepCameraDistance();
-        cameraTransform.LookAt(cameraLookTarget, cameraLookTarget.up);
+
     }
     #endregion
 

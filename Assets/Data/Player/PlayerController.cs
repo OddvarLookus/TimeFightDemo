@@ -10,15 +10,28 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float playerDeceleration;
     [SerializeField] CameraController camController;
     Rigidbody rb;
+    Attack attack;
+    [SerializeField] float attackCooldown;
+    float currentAttackTime = 0f;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        attack = GetComponent<Attack>();
     }
 
     private void Update()
     {
         Movement();
+        RotationBehavior();
+        AttackBehavior();
+        
+    }
+
+
+    private void FixedUpdate()
+    {
+
     }
 
     void Movement()
@@ -76,6 +89,31 @@ public class PlayerController : MonoBehaviour
         //{
         //    rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, playerDeceleration * Time.deltaTime);
         //}
+    }
+
+    void AttackBehavior()
+    {
+        bool pressingAttack = Input.GetMouseButtonDown(0);
+        
+        if (currentAttackTime < attackCooldown)//attack on cooldown
+        {
+            currentAttackTime += Time.deltaTime;
+        }
+        else//attack not on cooldown
+        {
+            if (pressingAttack)
+            {
+                attack.PerformAttack();
+                currentAttackTime = 0f;
+            }
+        }
+        //Debug.Log(currentAttackTime);
+
+    }
+
+    void RotationBehavior()
+    {
+        transform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(rb.velocity.normalized, Vector3.up), transform.up);
     }
 
 }
