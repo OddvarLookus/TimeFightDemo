@@ -5,11 +5,16 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
+
+
     [SerializeField] float minInitSpeed;
     [SerializeField] float maxInitSpeed;
     [SerializeField] float mass = 10f;
     [SerializeField] float maxHealth;
     float currentHealth;
+
+    [SerializeField] float dropsReleaseRadius;
+    [SerializeField] Drop[] drops;
 
     Rigidbody rb;
     void Start()
@@ -41,7 +46,44 @@ public class Asteroid : MonoBehaviour
 
     public void AsteroidDestroy()
     {
+
+
+        for (int i = 0; i < drops.Length; i++)
+        {
+            for (int n = 0; n < drops[i].dropsNum; n++)
+            {
+                GameObject nDrop = Instantiate(drops[i].dropPrefab);
+                nDrop.transform.SetParent(transform.parent, true);
+                nDrop.transform.position = GetSpawnPos();
+            }
+        }
+
+
         Destroy(this.gameObject);
     }
+    Vector3 GetSpawnPos()
+    {
+        Vector3 nPos = new Vector3(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        nPos = nPos.normalized;
+        nPos *= Random.Range(0f, dropsReleaseRadius);
+        return nPos;
+    }
 
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, dropsReleaseRadius);
+    }
+
+}
+
+[System.Serializable]
+public class Drop
+{
+    [SerializeField] public GameObject dropPrefab;
+    [SerializeField] public int dropsNum;
+
+    //[SerializeField] int numberOfRolls;
+    //[SerializeField] float dropProbability;
 }

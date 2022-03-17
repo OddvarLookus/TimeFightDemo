@@ -166,7 +166,6 @@ public class CameraController : MonoBehaviour
         float playerSpeed = Mathf.Clamp(playerController.GetVelocity().magnitude, 0f, maxPlayerSpeed);
         
         float speedT = playerSpeed / maxPlayerSpeed;
-        Debug.Log($"SPEED 0/1: {speedT}");
         float camDist = Mathf.Lerp(minSpeedCameraDist, maxSpeedCameraDist, speedT);
         maxCameraDist = camDist;
     }

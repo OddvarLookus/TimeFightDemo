@@ -6,20 +6,51 @@ public class Credit : MonoBehaviour
 {
     [SerializeField] int value;
     [SerializeField] float baseSpeed;
+    [SerializeField] float timeSpeedMultiplier;
+    Transform target;
+    bool isBeingSucked = false;
 
-    public void Attract(Vector3 _toPos)
+    float suckTime = 0f;
+
+    public void Attract(Transform _target)
     {
-        Vector3 vecToPos = _toPos - transform.position;
-        float distance = vecToPos.magnitude;
-        distance = Mathf.Clamp(distance, 0.1f, 10f);
-        float realSpeed = baseSpeed / distance;
-        transform.position += vecToPos.normalized * realSpeed * Time.deltaTime;
+        if (!isBeingSucked)
+        {
+            target = _target;
+
+            isBeingSucked = true;
+        }
+
     }
 
-    public void Delete()
+    private void Update()
     {
-        Destroy(this.gameObject);
+        CreditMovement();
+    }
+
+    void CreditMovement()
+    {
+        if (isBeingSucked)
+        {
+            suckTime += Time.deltaTime;
+
+            Vector3 vecToPos = target.position - transform.position;
+            //float distance = vecToPos.magnitude;
+            //distance = Mathf.Clamp(distance, 0.1f, 1000f);
+            //float realSpeed = baseSpeed / distance;
+            transform.position += vecToPos.normalized * timeSpeedMultiplier * suckTime * Time.deltaTime;
+        }
+
     }
 
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.TryGetComponent(out CreditsSucker creditsSucker))
+        {
+            creditsSucker.AddCredits(value);
+            Destroy(this.gameObject);
+        }
+    }
 }

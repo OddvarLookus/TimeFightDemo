@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CreditsSucker : MonoBehaviour
 {
+    int currentCredits = 0;
+
     [SerializeField] float suckRadius;
+
 
 
     // Update is called once per frame
@@ -23,10 +27,18 @@ public class CreditsSucker : MonoBehaviour
         {
             if (collHits[i].gameObject.TryGetComponent(out Credit credit))
             {
-                credit.Attract(transform.position);
+                credit.Attract(transform);
             }
         }
 
+    }
+
+    public void AddCredits(int _creditsToAdd)
+    {
+        currentCredits += _creditsToAdd;
+        currentCredits = Mathf.Clamp(currentCredits, 0, int.MaxValue);
+
+        GameUIManager.instance.SetCreditsLabel(currentCredits);
     }
 
     private void OnDrawGizmos()
