@@ -42,12 +42,12 @@ public class CameraController : MonoBehaviour
     private void Update()
     {
         CameraLookBehavior();
-
+        CameraDistanceBySpeed();
         CameraPositionBehavior();
         KeepCameraDistance();
         cameraTransform.LookAt(cameraLookTarget, cameraLookTarget.up);
 
-        CameraDistanceBySpeed();
+        
     }
 
     private void FixedUpdate()
@@ -164,7 +164,9 @@ public class CameraController : MonoBehaviour
     void CameraDistanceBySpeed()
     {
         float playerSpeed = Mathf.Clamp(playerController.GetVelocity().magnitude, 0f, maxPlayerSpeed);
-        float speedT = maxPlayerSpeed / playerSpeed;
+        
+        float speedT = playerSpeed / maxPlayerSpeed;
+        Debug.Log($"SPEED 0/1: {speedT}");
         float camDist = Mathf.Lerp(minSpeedCameraDist, maxSpeedCameraDist, speedT);
         maxCameraDist = camDist;
     }
