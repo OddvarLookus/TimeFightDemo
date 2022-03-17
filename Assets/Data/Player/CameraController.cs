@@ -153,7 +153,7 @@ public class CameraController : MonoBehaviour
         playerToCam = playerToCam.normalized * maxCameraDist;
 
         RaycastHit rhit;
-        if (Physics.Raycast(cameraLookTarget.position, playerToCam, out rhit, maxCameraDist, cameraRaycastLayers.value))
+        if (Physics.Raycast(cameraLookTarget.position, playerToCam, out rhit, maxCameraDist, cameraRaycastLayers.value, QueryTriggerInteraction.Ignore))
         {
             cameraTransform.position = rhit.point + (-playerToCam.normalized * cameraRayHitOffset);
             return;
