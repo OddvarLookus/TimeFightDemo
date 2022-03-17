@@ -8,10 +8,14 @@ public class Asteroid : MonoBehaviour
     [SerializeField] float minInitSpeed;
     [SerializeField] float maxInitSpeed;
     [SerializeField] float mass = 10f;
+    [SerializeField] float maxHealth;
+    float currentHealth;
 
     Rigidbody rb;
     void Start()
     {
+        currentHealth = maxHealth;
+
         rb = GetComponent<Rigidbody>();
         rb.mass = mass;
 
@@ -24,6 +28,20 @@ public class Asteroid : MonoBehaviour
     public void Push(Vector3 _pushForce)
     {
         rb.AddForce(_pushForce, ForceMode.Impulse);
+    }
+
+    public void TakeDamage(float _damage)
+    {
+        currentHealth -= _damage;
+        if (currentHealth <= 0f)
+        {
+            AsteroidDestroy();
+        }
+    }
+
+    public void AsteroidDestroy()
+    {
+        Destroy(this.gameObject);
     }
 
 }

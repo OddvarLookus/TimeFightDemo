@@ -29,6 +29,11 @@ public class CameraController : MonoBehaviour
     float targetRot;
     float targetTilt;
 
+    //DISTANCE OF CAMERA BASED ON PLAYER SPEED
+    [SerializeField] PlayerController playerController;
+    [SerializeField] float minSpeedCameraDist, maxSpeedCameraDist;
+    [SerializeField] float maxPlayerSpeed;
+
     #region MONOBEHAVIOR
     private void Awake()
     {
@@ -41,6 +46,8 @@ public class CameraController : MonoBehaviour
         CameraPositionBehavior();
         KeepCameraDistance();
         cameraTransform.LookAt(cameraLookTarget, cameraLookTarget.up);
+
+        CameraDistanceBySpeed();
     }
 
     private void FixedUpdate()
@@ -153,12 +160,23 @@ public class CameraController : MonoBehaviour
         }
         cameraTransform.position = cameraLookTarget.position + playerToCam;
     }
+
+    void CameraDistanceBySpeed()
+    {
+        float playerSpeed = Mathf.Clamp(playerController.GetVelocity().magnitude, 0f, maxPlayerSpeed);
+        float speedT = maxPlayerSpeed / playerSpeed;
+        float camDist = Mathf.Lerp(minSpeedCameraDist, maxSpeedCameraDist, speedT);
+        maxCameraDist = camDist;
+    }
+
     void CameraLookBehavior()
     {
         CameraRotationBehavior();
         CameraTiltBehavior();
 
     }
+
+
     #endregion
 
     public Vector3 GetCameraForwardXZ()

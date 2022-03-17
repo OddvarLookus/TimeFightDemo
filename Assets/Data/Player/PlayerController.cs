@@ -8,11 +8,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float playerDashMaxSpeed;
     [SerializeField] float playerAcceleration;
     [SerializeField] float playerDeceleration;
+    [SerializeField] float rotationSpeed;
     [SerializeField] CameraController camController;
     Rigidbody rb;
     Attack attack;
     [SerializeField] float attackCooldown;
     float currentAttackTime = 0f;
+
 
     private void Awake()
     {
@@ -34,6 +36,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    Vector3 relativeInput;
     void Movement()
     {
         Vector3 inputVec = Vector3.zero;
@@ -57,7 +60,8 @@ public class PlayerController : MonoBehaviour
 
 
         inputVec = inputVec.normalized;
-        Vector3 relativeInput = Quaternion.LookRotation(camController.GetCameraForward(), camController.GetCameraUp()) * inputVec;
+
+        relativeInput = Quaternion.LookRotation(camController.GetCameraForward(), camController.GetCameraUp()) * inputVec;
         relativeInput = relativeInput.normalized;
         //relativeInput = Vector3.ProjectOnPlane(relativeInput, Vector3.up).normalized;
 
@@ -111,9 +115,26 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    Vector3 prevRelativeInput = Vector3.zero;
     void RotationBehavior()
     {
-        transform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(rb.velocity.normalized, Vector3.up), transform.up);
+        if (relativeInput.sqrMagnitude > 0.3f)
+        {
+            Quaternion targetRot = Quaternion.LookRotation(Vector3.ProjectOnPlane(relativeInput.normalized, Vector3.up), transform.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
+            prevRelativeInput = relativeInput;
+        }
+        else
+        {
+            Quaternion targetRot = Quaternion.LookRotation(Vector3.ProjectOnPlane(prevRelativeInput.normalized, Vector3.up), transform.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
+        }
+        
+    }
+
+    public Vector3 GetVelocity()
+    {
+        return rb.velocity;
     }
 
 }

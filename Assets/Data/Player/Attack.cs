@@ -9,6 +9,7 @@ public class Attack : MonoBehaviour
     TriggerReporter attackTriggerReporter;
     [SerializeField] Animator attackAnimator;
     [SerializeField] float pushForce;
+    [SerializeField] float damage;
 
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class Attack : MonoBehaviour
             Vector3 pushVec = (_col.transform.position - transform.position).normalized;
             pushVec *= pushForce;
             asteroid.Push(pushVec);
+            asteroid.TakeDamage(damage);
         }
     }
 
