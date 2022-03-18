@@ -54,7 +54,7 @@ public class Asteroid : MonoBehaviour
             {
                 GameObject nDrop = Instantiate(drops[i].dropPrefab);
                 nDrop.transform.SetParent(transform.parent, true);
-                nDrop.transform.position = GetSpawnPos();
+                nDrop.transform.position = transform.position + GetSpawnPos();
             }
         }
 

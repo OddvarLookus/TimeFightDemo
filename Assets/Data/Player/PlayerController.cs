@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         attack = GetComponent<Attack>();
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
@@ -27,7 +29,11 @@ public class PlayerController : MonoBehaviour
         Movement();
         RotationBehavior();
         AttackBehavior();
-        
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 
 

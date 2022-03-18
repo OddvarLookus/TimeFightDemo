@@ -6,19 +6,29 @@ using UnityEngine.Events;
 public class CreditsSucker : MonoBehaviour
 {
     int currentCredits = 0;
+    [SerializeField] float minSuckRadius, maxSuckRadius;
+    [SerializeField] float maxPlayerSpeed;
 
-    [SerializeField] float suckRadius;
+    float suckRadius;
 
-
+    PlayerController playerController;
+    private void Awake()
+    {
+        playerController = GetComponent<PlayerController>();
+    }
 
     // Update is called once per frame
     void Update()
     {
-
+        UpdateSuckZone();
         SuckCredits();
 
     }
-
+    void UpdateSuckZone()
+    {
+        float t = playerController.GetVelocity().magnitude / maxPlayerSpeed;
+        suckRadius = Mathf.Lerp(minSuckRadius, maxSuckRadius, t);
+    }
     void SuckCredits()
     {
         Collider[] collHits;
@@ -41,10 +51,12 @@ public class CreditsSucker : MonoBehaviour
         GameUIManager.instance.SetCreditsLabel(currentCredits);
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, suckRadius);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, minSuckRadius);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, maxSuckRadius);
     }
 
 }

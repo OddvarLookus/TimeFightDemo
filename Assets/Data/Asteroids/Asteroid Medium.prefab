@@ -49,9 +49,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minInitSpeed: 0
   maxInitSpeed: 10
-  mass: 800
-  maxHealth: 3
-  drops: []
+  mass: 200
+  maxHealth: 10
+  dropsReleaseRadius: 29.11
+  drops:
+  - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
+    dropsNum: 3
+  - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
+    dropsNum: 50
 --- !u!33 &2149751876324552242
 MeshFilter:
   m_ObjectHideFlags: 0
