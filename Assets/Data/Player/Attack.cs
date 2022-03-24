@@ -32,6 +32,16 @@ public class Attack : MonoBehaviour
             asteroid.Push(pushVec);
             asteroid.TakeDamage(damage);
         }
+        if (_col.TryGetComponent(out Health health))
+        {
+            health.TakeDamage(damage);
+        }
+        if (_col.TryGetComponent(out Enemy enemy))
+        {
+            Vector3 pushVec = (_col.transform.position - transform.position).normalized;
+            pushVec *= pushForce;
+            enemy.Push(pushVec);
+        }
     }
 
     public void PerformAttack()
