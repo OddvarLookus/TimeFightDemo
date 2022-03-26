@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Ball : Enemy
 {
+    [SerializeField] float maxMoveTime;
+    [SerializeField]
+
     // Start is called before the first frame update
     void Start()
     {

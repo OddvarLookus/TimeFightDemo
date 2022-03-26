@@ -13,6 +13,9 @@ public class Asteroid : MonoBehaviour
     [SerializeField] float maxHealth;
     float currentHealth;
 
+    [SerializeField] AudioClip destroyAudioClip;
+    [SerializeField] GameObject destructionSoundPrefab;
+
     [SerializeField] float dropsReleaseRadius;
     [SerializeField] Drop[] drops;
 
@@ -46,6 +49,10 @@ public class Asteroid : MonoBehaviour
 
     public void AsteroidDestroy()
     {
+        GameObject destructionSound = Instantiate(destructionSoundPrefab);
+        destructionSound.transform.SetParent(null);
+        destructionSound.transform.position = transform.position;
+        destructionSound.GetComponent<SoundSelfDestroy>().Initialize(destroyAudioClip);
 
 
         for (int i = 0; i < drops.Length; i++)
