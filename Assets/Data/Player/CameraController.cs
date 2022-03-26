@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-
+    enum CameraMode {FREELOOK = 0, ENEMYLOCK = 1}
 
     [Header("Camera movement configuration")]
     [SerializeField] Transform cameraTransform;
