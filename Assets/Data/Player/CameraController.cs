@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     enum CameraMode {FREELOOK = 0, ENEMYLOCK = 1}
+    CameraMode cameraMode = CameraMode.FREELOOK;
 
     [Header("Camera movement configuration")]
     [SerializeField] Transform cameraTransform;
@@ -134,19 +135,7 @@ public class CameraController : MonoBehaviour
         cameraTransform.position = Vector3.Lerp(cameraTransform.position, targetCameraPos, t);
     }
 
-    float ClampAngle(float _angle)
-    {
-        float a = _angle;
-        if (a < 0f)
-        {
-            a += 360f;
-        }
-        else if(a > 360f)
-        {
-            a -= 360f;
-        }
-        return a;
-    }
+
     void KeepCameraDistance()
     {
         Vector3 playerToCam = cameraTransform.position - cameraLookTarget.position;
@@ -177,6 +166,18 @@ public class CameraController : MonoBehaviour
 
     }
 
+
+    #endregion
+    #region LOCKING
+
+    [Header("Locking")]
+    [SerializeField] float lockingDistance;
+
+
+    public void CheckTargetLocking()
+    {
+
+    }
 
     #endregion
 
