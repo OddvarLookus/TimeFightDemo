@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     protected Rigidbody rb;
     protected Health health;
 
+    public Renderer mainRenderer;
+
     private void OnEnable()
     {
         rb = GetComponent<Rigidbody>();

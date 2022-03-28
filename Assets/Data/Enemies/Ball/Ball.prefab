@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8607995779023853459}
   - component: {fileID: 544294489621434032}
   - component: {fileID: 5373698798074199616}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: mouth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6169148063215554280}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 4288418716861684186}
   - component: {fileID: 2412533359495565295}
   - component: {fileID: 438040689519562646}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: eye_l
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,7 +209,7 @@ GameObject:
   - component: {fileID: 6315261330237391010}
   - component: {fileID: 4813849286921033851}
   - component: {fileID: 885007231050243873}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 107109843671376553}
   - component: {fileID: 4323069082867988718}
   - component: {fileID: 4323069082867988717}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -355,6 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4207532863f7dd44a1293258f733993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxMoveTime: 0
 --- !u!54 &4323069082867988718
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -395,7 +396,7 @@ GameObject:
   - component: {fileID: 1951524937684513222}
   - component: {fileID: 3388270954515547895}
   - component: {fileID: 4323868373167332693}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: eye_r
   m_TagString: Untagged
   m_Icon: {fileID: 0}

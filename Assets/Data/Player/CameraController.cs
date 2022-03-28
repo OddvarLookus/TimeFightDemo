@@ -173,13 +173,42 @@ public class CameraController : MonoBehaviour
     [Header("Locking")]
     [SerializeField] float lockingDistance;
 
-
-    public void CheckTargetLocking()
+    Transform[] lockableEnemies;
+    Transform lockedEnemy;
+    //gets all the objects that are lockable by the camera
+    public void CheckLockableEnemies()
     {
+        //get the colliders inside the distance for the camera
+        Collider[] colliders;
+        colliders = Physics.OverlapSphere(transform.position, lockingDistance, 1<<6, QueryTriggerInteraction.Ignore);
+
+        //filter the colliders in front of the camera (max 90 degrees range)
+        List<Transform> enemiesInFront = new List<Transform>();
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            Vector3 vecToCol = colliders[i].transform.position - transform.position;
+            vecToCol = vecToCol.normalized;
+            if (Vector3.Dot(vecToCol, transform.forward) > 0f)
+            {
+                enemiesInFront.Add(colliders[i].transform);
+            }
+        }
+
+        //filter the colliders if they have a Enemy component
+
+
+        //filter the colliders inside the camera frustum
+
 
     }
 
     #endregion
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, lockingDistance);
+    }
 
     public Vector3 GetCameraForwardXZ()
     {
