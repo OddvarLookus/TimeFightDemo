@@ -144,6 +144,20 @@ public class CameraController : MonoBehaviour
         cameraTransform.position = Vector3.Lerp(cameraTransform.position, targetCameraPos, t);
     }
 
+    //used to recalculate camera position after removing lock
+    void ConvertCameraPosAfterLock()
+    {
+        alignment = Quaternion.FromToRotation(alignment * Vector3.up, Vector3.up) * alignment;
+
+        Vector3 camToEnemy = lockedEnemy.position - transform.position;
+        camToEnemy = new Vector3(camToEnemy.x, 0f, camToEnemy.z).normalized;
+        Debug.Log($"ANGLE: {ClampAngle(Vector3.SignedAngle(Vector3.forward, camToEnemy, Vector3.up))}");
+        cameraRot += ClampAngle(Vector3.SignedAngle(camToEnemy, Vector3.forward, Vector3.up));
+
+        Quaternion finalRot = alignment * Quaternion.Euler(-cameraTilt, cameraRot, 0f);
+        targetCameraPos = finalRot * Vector3.forward * maxCameraDist + cameraLookTarget.position;
+        transform.position = targetCameraPos;
+    }
 
     void KeepCameraDistance()
     {
@@ -203,9 +217,11 @@ public class CameraController : MonoBehaviour
             }
             else if (cameraMode == CameraMode.ENEMYLOCK)
             {
+                ConvertCameraPosAfterLock();
                 lockedEnemy = null;
                 isLocking = false;
                 cameraMode = CameraMode.FREELOOK;
+                
             }
 
         }
@@ -291,7 +307,10 @@ public class CameraController : MonoBehaviour
             }
             else
             {
+                ConvertCameraPosAfterLock();
+                lockedEnemy = null;
                 cameraMode = CameraMode.FREELOOK;
+                
                 return;
             }
         }
@@ -327,5 +346,19 @@ public class CameraController : MonoBehaviour
     public Vector3 GetCameraForward()
     {
         return cameraTransform.forward;
+    }
+
+    float ClampAngle(float _angle)
+    {
+        float a = _angle;
+        if (a < 0f)
+        {
+            a += 360f;
+        }
+        else if (a > 360f)
+        {
+            a -= 360f;
+        }
+        return a;
     }
 }

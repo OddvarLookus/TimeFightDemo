@@ -2640,8 +2640,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMaxSpeed: 50
-  playerDashMaxSpeed: 300
-  playerAcceleration: 10
+  playerDashMaxSpeed: 200
+  playerAcceleration: 6
   playerDeceleration: 5
   rotationSpeed: 35.65
   camController: {fileID: 1745202265}
@@ -2676,7 +2676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSuckRadius: 2.8
   maxSuckRadius: 30.25
-  maxPlayerSpeed: 300
+  maxPlayerSpeed: 200
 --- !u!4 &368372781 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2149751876324552238, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -10381,7 +10381,7 @@ MonoBehaviour:
   minSpeedCameraDist: 7
   maxSpeedCameraDist: 15
   maxPlayerSpeed: 300
-  lockingDistance: 29.46
+  lockingDistance: 187.57
   enemyLocker: {fileID: 266377254}
 --- !u!81 &1745202266
 AudioListener:
