@@ -42,12 +42,21 @@ public class CameraController : MonoBehaviour
     }
     private void Update()
     {
-        CameraLookBehavior();
-        CameraDistanceBySpeed();
-        CameraPositionBehavior();
-        KeepCameraDistance();
-        cameraTransform.LookAt(cameraLookTarget, cameraLookTarget.up);
+        LockInputCheck();
 
+        if (cameraMode == CameraMode.FREELOOK)
+        {
+            CameraLookBehavior();
+            CameraDistanceBySpeed();
+            CameraPositionBehavior();
+            KeepCameraDistance();
+            cameraTransform.LookAt(cameraLookTarget, cameraLookTarget.up);
+        }
+        else if (cameraMode == CameraMode.ENEMYLOCK)
+        {
+            CameraLockBehavior();
+            cameraTransform.LookAt(lockedEnemy, cameraLookTarget.up);
+        }
         
     }
 
@@ -172,9 +181,36 @@ public class CameraController : MonoBehaviour
 
     [Header("Locking")]
     [SerializeField] float lockingDistance;
+    [SerializeField] Transform enemyLocker;
 
-    Transform[] lockableEnemies;
+    List<Transform> lockableEnemies = new List<Transform>();
     Transform lockedEnemy;
+    bool isLocking = false;
+
+    //input check
+    public void LockInputCheck()
+    {
+        if (Input.GetMouseButtonDown(2))
+        {
+            if (cameraMode == CameraMode.FREELOOK)
+            {
+                CheckLockableEnemies();
+                isLocking = GetLockedEnemy();
+                if (isLocking)
+                {
+                    cameraMode = CameraMode.ENEMYLOCK;
+                }
+            }
+            else if (cameraMode == CameraMode.ENEMYLOCK)
+            {
+                lockedEnemy = null;
+                isLocking = false;
+                cameraMode = CameraMode.FREELOOK;
+            }
+
+        }
+    }
+
     //gets all the objects that are lockable by the camera
     public void CheckLockableEnemies()
     {
@@ -188,18 +224,85 @@ public class CameraController : MonoBehaviour
         {
             Vector3 vecToCol = colliders[i].transform.position - transform.position;
             vecToCol = vecToCol.normalized;
-            if (Vector3.Dot(vecToCol, transform.forward) > 0f)
+            if (Vector3.Dot(vecToCol, transform.forward) > 0.2f)
             {
                 enemiesInFront.Add(colliders[i].transform);
             }
         }
 
         //filter the colliders if they have a Enemy component
-
+        for (int i = enemiesInFront.Count - 1; i >= 0; i--)
+        {
+            if (!enemiesInFront[i].TryGetComponent(out Enemy enemyComp))
+            {
+                enemiesInFront.RemoveAt(i);
+            }
+        }
 
         //filter the colliders inside the camera frustum
+        for (int i = enemiesInFront.Count - 1; i >= 0; i--)
+        {
+            if (!enemiesInFront[i].GetComponent<Enemy>().GetRenderer().isVisible)
+            {
+                enemiesInFront.RemoveAt(i);
+            }
+        }
 
+        lockableEnemies.Clear();
+        lockableEnemies = enemiesInFront;
+    }
 
+    public bool GetLockedEnemy()
+    {
+        if (lockableEnemies.Count > 0)
+        {
+            float distanceFactor = float.MinValue;
+            int idx = int.MaxValue;
+
+            for (int i = 0; i < lockableEnemies.Count; i++)
+            {
+                Vector3 vecCamToEnemy = lockableEnemies[i].position - transform.position;
+                Vector3 vecPlayerToEnemy = lockableEnemies[i].position - playerController.transform.position;
+                float dist = vecPlayerToEnemy.magnitude;
+                float dot = Vector3.Dot(vecCamToEnemy.normalized, transform.forward);
+                float dFactor = (dot * 1.8f) + (1f - (dist / lockingDistance));
+                if (dFactor > distanceFactor)
+                {
+                    distanceFactor = dFactor;
+                    idx = i;
+                }
+            }
+
+            lockedEnemy = lockableEnemies[idx];
+            return true;
+        }
+        return false;
+    }
+
+    void CameraLockBehavior()
+    {
+        if (lockedEnemy == null) 
+        {
+            CheckLockableEnemies();
+            isLocking = GetLockedEnemy();
+            if (isLocking)
+            {
+                cameraMode = CameraMode.ENEMYLOCK;
+            }
+            else
+            {
+                cameraMode = CameraMode.FREELOOK;
+                return;
+            }
+        }
+
+        Vector3 vecToLockedEnemy = lockedEnemy.position - playerController.transform.position;
+        Vector3 negative = playerController.transform.position + ((-vecToLockedEnemy).normalized * 8f);
+
+        negative += new Vector3(0f, 2f, 0f);
+
+        cameraTransform.position = negative;
+        enemyLocker.position = lockedEnemy.position + new Vector3(0f, 1f, 0f);
     }
 
     #endregion

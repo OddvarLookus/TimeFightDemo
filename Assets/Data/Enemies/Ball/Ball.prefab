@@ -355,6 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4207532863f7dd44a1293258f733993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainRenderer: {fileID: 885007231050243873}
   maxMoveTime: 0
 --- !u!54 &4323069082867988718
 Rigidbody:

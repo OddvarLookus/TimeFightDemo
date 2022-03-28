@@ -8,7 +8,12 @@ public class Enemy : MonoBehaviour
     protected Rigidbody rb;
     protected Health health;
 
-    public Renderer mainRenderer;
+    [SerializeField] protected Renderer mainRenderer;
+
+    public Renderer GetRenderer()
+    {
+        return mainRenderer;
+    }
 
     private void OnEnable()
     {
