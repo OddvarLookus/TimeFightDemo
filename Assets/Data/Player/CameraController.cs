@@ -147,16 +147,16 @@ public class CameraController : MonoBehaviour
     //used to recalculate camera position after removing lock
     void ConvertCameraPosAfterLock()
     {
-        //alignment = Quaternion.FromToRotation(alignment * Vector3.up, Vector3.up) * alignment;
-
-        Vector3 camToEnemy = lockedEnemy.position - transform.position;
-        camToEnemy = new Vector3(camToEnemy.x, 0f, camToEnemy.z).normalized;
-        Debug.Log($"ANGLE: {ClampAngle(Vector3.SignedAngle(Vector3.forward, camToEnemy, Vector3.up))}");
-        targetRot -= ClampAngle(Vector3.SignedAngle(camToEnemy, Vector3.forward, Vector3.up));
-
-        Quaternion finalRot = alignment * Quaternion.Euler(-cameraTilt, targetRot, 0f);
-        targetCameraPos = finalRot * Vector3.forward * maxCameraDist + cameraLookTarget.position;
-        transform.position = targetCameraPos;
+        if (transform.eulerAngles.x >= 270f)
+        {
+            targetRot = transform.eulerAngles.y + 180f;
+            targetTilt = transform.eulerAngles.x - 360f;
+        }
+        else
+        {
+            targetRot = transform.eulerAngles.y + 180f;
+            targetTilt = transform.eulerAngles.x;
+        }
     }
 
     void KeepCameraDistance()
