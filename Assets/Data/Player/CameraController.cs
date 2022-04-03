@@ -34,6 +34,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] PlayerController playerController;
     [SerializeField] float minSpeedCameraDist, maxSpeedCameraDist;
     [SerializeField] float maxPlayerSpeed;
+    //unlock the camera when fast next to the locked enemy
+    [SerializeField] float cameraFastUnlockDistance;
 
     #region MONOBEHAVIOR
     private void Awake()
@@ -297,7 +299,7 @@ public class CameraController : MonoBehaviour
 
     void CameraLockBehavior()
     {
-        if (lockedEnemy == null) 
+        if (lockedEnemy == null)
         {
             CheckLockableEnemies();
             isLocking = GetLockedEnemy();
@@ -316,6 +318,16 @@ public class CameraController : MonoBehaviour
         }
 
         Vector3 vecToLockedEnemy = lockedEnemy.position - playerController.transform.position;
+        //unlock the camera when player is very fast and near to the locked enemy
+        if (playerController.GetVelocity().magnitude > 100f && vecToLockedEnemy.magnitude <= cameraFastUnlockDistance)
+        {
+            ConvertCameraPosAfterLock();
+            lockedEnemy = null;
+            cameraMode = CameraMode.FREELOOK;
+            return;
+        }
+
+
         Vector3 negative = playerController.transform.position + ((-vecToLockedEnemy).normalized * 8f);
 
         negative += new Vector3(0f, 2f, 0f);
@@ -330,6 +342,9 @@ public class CameraController : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, lockingDistance);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(playerController.transform.position, cameraFastUnlockDistance);
     }
 
     public Vector3 GetCameraForwardXZ()

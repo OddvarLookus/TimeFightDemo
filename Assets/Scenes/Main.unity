@@ -10381,6 +10381,7 @@ MonoBehaviour:
   minSpeedCameraDist: 7
   maxSpeedCameraDist: 15
   maxPlayerSpeed: 300
+  cameraFastUnlockDistance: 4.94
   lockingDistance: 187.57
   enemyLocker: {fileID: 266377254}
 --- !u!81 &1745202266
