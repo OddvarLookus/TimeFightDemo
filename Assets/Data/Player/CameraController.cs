@@ -215,6 +215,7 @@ public class CameraController : MonoBehaviour
                 if (isLocking)
                 {
                     cameraMode = CameraMode.ENEMYLOCK;
+                    enemyLocker.gameObject.SetActive(true);
                 }
             }
             else if (cameraMode == CameraMode.ENEMYLOCK)
@@ -223,6 +224,7 @@ public class CameraController : MonoBehaviour
                 lockedEnemy = null;
                 isLocking = false;
                 cameraMode = CameraMode.FREELOOK;
+                enemyLocker.gameObject.SetActive(false);
                 
             }
 
@@ -306,12 +308,14 @@ public class CameraController : MonoBehaviour
             if (isLocking)
             {
                 cameraMode = CameraMode.ENEMYLOCK;
+                enemyLocker.gameObject.SetActive(true);
             }
             else
             {
                 ConvertCameraPosAfterLock();
                 lockedEnemy = null;
                 cameraMode = CameraMode.FREELOOK;
+                enemyLocker.gameObject.SetActive(false);
                 
                 return;
             }

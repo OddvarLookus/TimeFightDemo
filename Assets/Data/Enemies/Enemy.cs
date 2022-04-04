@@ -6,6 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     protected Rigidbody rb;
+
     protected Health health;
 
     [SerializeField] protected Renderer mainRenderer;
@@ -19,7 +20,7 @@ public class Enemy : MonoBehaviour
         return mainRenderer;
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
         health = GetComponent<Health>();
@@ -40,7 +41,7 @@ public class Enemy : MonoBehaviour
         rb.AddForce(_pushForce, ForceMode.Impulse);
     }
 
-
+    
     //GIZMOS
     void OnDrawGizmosSelected()
     {

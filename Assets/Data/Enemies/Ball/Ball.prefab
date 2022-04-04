@@ -329,7 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minMaxHealth: 1
   maxMaxHealth: 4
-  maxHealth: 4
+  maxHealth: 1
   OnDeath:
     m_PersistentCalls:
       m_Calls:
@@ -360,7 +360,11 @@ MonoBehaviour:
   mainRenderer: {fileID: 885007231050243873}
   minSize: 0.4
   maxSize: 3.03
-  maxMoveTime: 0
+  minMoveTime: 4.6
+  maxMoveTime: 10.83
+  minMoveForce: 32.9
+  maxMoveForce: 88.8
+  rotationSpeed: 0.4
 --- !u!54 &4323069082867988718
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -369,9 +373,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8488491456709531852}
   serializedVersion: 2
-  m_Mass: 3
-  m_Drag: 0
-  m_AngularDrag: 0.08
+  m_Mass: 10
+  m_Drag: 2
+  m_AngularDrag: 0.39
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
