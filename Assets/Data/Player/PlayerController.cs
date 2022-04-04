@@ -117,7 +117,6 @@ public class PlayerController : MonoBehaviour
                 currentAttackTime = 0f;
             }
         }
-        //Debug.Log(currentAttackTime);
 
     }
 

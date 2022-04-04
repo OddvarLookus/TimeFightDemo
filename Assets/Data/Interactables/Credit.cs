@@ -7,6 +7,7 @@ public class Credit : MonoBehaviour
     [SerializeField] int value;
     [SerializeField] float baseSpeed;
     [SerializeField] float timeSpeedMultiplier;
+    [SerializeField] float maxSpeed;
     Transform target;
     bool isBeingSucked = false;
 
@@ -23,7 +24,7 @@ public class Credit : MonoBehaviour
 
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         CreditMovement();
     }
@@ -38,7 +39,9 @@ public class Credit : MonoBehaviour
             //float distance = vecToPos.magnitude;
             //distance = Mathf.Clamp(distance, 0.1f, 1000f);
             //float realSpeed = baseSpeed / distance;
-            transform.position += vecToPos.normalized * timeSpeedMultiplier * suckTime * Time.deltaTime;
+            Vector3 vel = vecToPos.normalized * timeSpeedMultiplier * suckTime;
+            vel = Vector3.ClampMagnitude(vel, maxSpeed);
+            transform.position += vel * Time.deltaTime;
         }
 
     }

@@ -143,3 +143,4 @@ MonoBehaviour:
   value: 1
   baseSpeed: 20
   timeSpeedMultiplier: 1000
+  maxSpeed: 230

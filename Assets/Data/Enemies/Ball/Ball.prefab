@@ -327,6 +327,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6447e0f185397e242a4aab74e53c78b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minMaxHealth: 1
+  maxMaxHealth: 4
   maxHealth: 4
   OnDeath:
     m_PersistentCalls:
@@ -356,6 +358,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainRenderer: {fileID: 885007231050243873}
+  minSize: 0.4
+  maxSize: 3.03
   maxMoveTime: 0
 --- !u!54 &4323069082867988718
 Rigidbody:

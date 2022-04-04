@@ -50,7 +50,7 @@ MonoBehaviour:
   minInitSpeed: 0
   maxInitSpeed: 10
   mass: 200
-  maxHealth: 10
+  maxHealth: 5
   destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
   destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11

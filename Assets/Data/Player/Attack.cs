@@ -14,6 +14,7 @@ public class Attack : MonoBehaviour
     private void Awake()
     {
         col = attackCollider.GetComponent<Collider>();
+        col.enabled = true;
         attackTriggerReporter = attackCollider.GetComponent<TriggerReporter>();
         attackTriggerReporter.OnTriggerEnterAction += AttackCollisionEnter;
     }

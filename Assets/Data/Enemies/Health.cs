@@ -5,11 +5,14 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] float minMaxHealth;
+    [SerializeField] float maxMaxHealth;
     [SerializeField] float maxHealth;
     float currentHealth;
     [SerializeField] UnityEvent OnDeath;
-    public void Initialize()
+    public void Initialize(float _factor)
     {
+        maxHealth = Mathf.Lerp(minMaxHealth, maxMaxHealth, _factor);
         currentHealth = maxHealth;
     }
 
