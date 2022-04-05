@@ -13,6 +13,7 @@ public class GameUIManager : MonoBehaviour
         {
             instance = this;
             SetCreditsLabel(0);//start credits label at 0
+            timeBarImage = timeBar.GetComponent<Image>();
             DontDestroyOnLoad(this);
         }
         else
@@ -30,11 +31,15 @@ public class GameUIManager : MonoBehaviour
     
 	[SerializeField] TextMeshProUGUI timeLabel;
 	[SerializeField] RectTransform timeBar;
+    Image timeBarImage;
+    [SerializeField] Color timeBarFullColor;
+    [SerializeField] Color timeBarEmptyColor;
 	public void SetStageTime(float _currentTime, float _stageTime)
 	{
 		float timeFactor = 1f - _currentTime/_stageTime;
         timeFactor = Mathf.Clamp(timeFactor, 0f, 1f);
         timeBar.localScale = new Vector3(timeFactor, 1f, 1f);
+        timeBarImage.color = Color.Lerp(timeBarEmptyColor, timeBarFullColor, timeFactor);
 
         float timeSeconds = _stageTime - _currentTime;
         int secondsInt = Mathf.FloorToInt(timeSeconds);

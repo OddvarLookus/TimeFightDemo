@@ -11974,6 +11974,8 @@ MonoBehaviour:
   creditsLabel: {fileID: 1399099939}
   timeLabel: {fileID: 138896181}
   timeBar: {fileID: 1306259238}
+  timeBarFullColor: {r: 0.15635458, g: 0.6792453, b: 0.17195264, a: 1}
+  timeBarEmptyColor: {r: 0.6792453, g: 0.16276252, b: 0.16276252, a: 1}
 --- !u!1001 &1703712269
 PrefabInstance:
   m_ObjectHideFlags: 0
