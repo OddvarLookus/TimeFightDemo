@@ -5,6 +5,11 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
+    [SerializeField] Affiliation affiliation;
+    public Affiliation GetAffiliation()
+    {
+        return affiliation;
+    }
     [SerializeField] float minMaxHealth;
     [SerializeField] float maxMaxHealth;
     [SerializeField] float maxHealth;
@@ -35,3 +40,5 @@ public class Health : MonoBehaviour
         Destroy(this.gameObject);
     }
 }
+
+public enum Affiliation {PLAYER = 0, ENEMY = 1}

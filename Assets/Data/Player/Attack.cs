@@ -35,7 +35,10 @@ public class Attack : MonoBehaviour
         }
         if (_col.TryGetComponent(out Health health))
         {
-            health.TakeDamage(damage);
+            if(health.GetAffiliation() == Affiliation.ENEMY)
+            {
+                health.TakeDamage(damage);
+            }
         }
         if (_col.TryGetComponent(out Enemy enemy))
         {

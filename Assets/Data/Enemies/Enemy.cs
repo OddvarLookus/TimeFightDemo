@@ -8,6 +8,10 @@ public class Enemy : MonoBehaviour
     protected Rigidbody rb;
 
     protected Health health;
+    public Affiliation GetHealthAffiliation()
+    {
+        return health.GetAffiliation();
+    }
 
     [SerializeField] protected Renderer mainRenderer;
 
