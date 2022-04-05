@@ -40,7 +40,15 @@ public class GameUIManager : MonoBehaviour
         int secondsInt = Mathf.FloorToInt(timeSeconds);
         int minutesInt = secondsInt / 60;
         secondsInt -= minutesInt * 60;
-        timeLabel.text = $"{minutesInt} : {secondsInt}";
+        
+        string secondsStr = secondsInt.ToString();
+        if(secondsInt < 10)
+        {
+            secondsStr = $"0{secondsStr}";
+        }
+        
+        timeLabel.text = $"{minutesInt} : {secondsStr}";
+
 	}
 
 }

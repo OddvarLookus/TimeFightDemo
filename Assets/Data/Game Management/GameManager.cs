@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 	void LevelTimeBehavior()
 	{
 		currentLevelTime += Time.deltaTime;
+		currentLevelTime = Mathf.Clamp(currentLevelTime, 0f, levelTime);
+
 		GameUIManager.instance.SetStageTime(currentLevelTime, levelTime);
 		
 	}
