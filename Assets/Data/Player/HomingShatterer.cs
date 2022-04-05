@@ -40,15 +40,15 @@ public class HomingShatterer : MonoBehaviour
 
     void MovementBehavior()
     {
-        if(target != null)
+        if(target != null)//target is not null
         {
             Vector3 vecToTarget = target.position - transform.position;
             rb.velocity = Vector3.Lerp(rb.velocity, vecToTarget.normalized * rb.velocity.magnitude, lateralSpeedConservation * Time.deltaTime);
             rb.velocity += vecToTarget.normalized * acceleration * Time.fixedDeltaTime;
         }
-        else
+        else//target is null
         {
-
+            Destroy(this.gameObject, 0.5f);
         }
 
     }
