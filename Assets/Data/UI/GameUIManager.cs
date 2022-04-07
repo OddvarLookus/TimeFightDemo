@@ -63,5 +63,20 @@ public class GameUIManager : MonoBehaviour
 	{
 		gameOverPanel.gameObject.SetActive(_active);
 	}
-
+	
+	//GAME WON
+	[SerializeField] RectTransform gameWonPanel;
+	public void SetGameWonScreen(bool _active)
+	{
+		gameWonPanel.gameObject.SetActive(_active);
+	}
+	
+	//GAME START
+	[SerializeField] Animator gameStartPanelAnimator;
+	public void StartUISequence()
+	{
+		gameStartPanelAnimator.Play("GameStartUIEnter", -1, 0f);
+	}
+	
+	
 }

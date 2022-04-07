@@ -14,10 +14,12 @@ public class GameManager : MonoBehaviour
 	[SerializeField] UnityEvent onLevelTimeEnd;
 	bool isTimeFinished = false;
 	
-	protected void OnEnable()
+	protected void Start()
 	{
 		UnpauseGame();
 		SetGameOverScreen(false);
+		SetGameWonScreen(false);
+		GameUIManager.instance.StartUISequence();
 		gameState = GameState.GAME;
 	}
 	
@@ -52,12 +54,24 @@ public class GameManager : MonoBehaviour
 				ReloadLevel();
 			}
 		}
+		if(gameState == GameState.GAME_WON)
+		{
+			if(Input.anyKey)
+			{
+				ReloadLevel();
+			}
+		}
 	}
 	
 	
 	public void SetGameOverScreen(bool _active)
 	{
 		GameUIManager.instance.SetGameOverScreen(_active);
+	}
+	
+	public void SetGameWonScreen(bool _active)
+	{
+		GameUIManager.instance.SetGameWonScreen(_active);
 	}
 	
 	public void PauseGame()
@@ -68,13 +82,21 @@ public class GameManager : MonoBehaviour
 	{
 		Time.timeScale = 1f;
 	}
+	public void SetGameWon()
+	{
+		gameState = GameState.GAME_WON;
+		SetGameWonScreen(true);
+	}
+	
 	
 	public void ReloadLevel()
 	{
 		SceneManager.LoadScene(0);
 	}
 	
+	
+	
 }
 
-public enum GameState {GAME = 0, GAME_OVER = 1}
+public enum GameState {GAME = 0, GAME_OVER = 1, GAME_WON = 2}
 
