@@ -22,13 +22,14 @@ public class GameUIManager : MonoBehaviour
         }
     }
 
-
+	//CREDITS
     [SerializeField] TextMeshProUGUI creditsLabel;
     public void SetCreditsLabel(int _credits)
     {
         creditsLabel.text = _credits.ToString();
     }
     
+	//TIME LABEL AND BAR
 	[SerializeField] TextMeshProUGUI timeLabel;
 	[SerializeField] RectTransform timeBar;
     Image timeBarImage;
@@ -54,6 +55,13 @@ public class GameUIManager : MonoBehaviour
         
         timeLabel.text = $"{minutesInt} : {secondsStr}";
 
+	}
+	
+	//GAME OVER
+	[SerializeField] RectTransform gameOverPanel;
+	public void SetGameOverScreen(bool _active)
+	{
+		gameOverPanel.gameObject.SetActive(_active);
 	}
 
 }
