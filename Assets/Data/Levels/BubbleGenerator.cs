@@ -6,6 +6,7 @@ using Sirenix.OdinInspector;
 public class BubbleGenerator : MonoBehaviour
 {
 	//EDITOR
+	[TitleGroup("Bubble Size")] [MinValue(0f)] [SerializeField] float radiusStep;
 	[TitleGroup("Bubble Size")] [MinValue(0f)] [SerializeField] float radius;
 	[TitleGroup("Bubble Size")] [MinValue(0f)] [SerializeField] float freeAreaRadius;
 	
@@ -33,18 +34,17 @@ public class BubbleGenerator : MonoBehaviour
 		PurgeLevel();
 	}
 	
-	
+	[TitleGroup("Generation")] [SerializeField] Transform worldLimitTr;
 	//MONOBEHAVIOR
+	// This function is called when the object becomes enabled and active.
+	protected void OnEnable()
+	{
+		if(worldLimitTr == null)
+		{
+			worldLimitTr = GameObject.Find("world limit").transform;
+		}
+	}
 	
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
     
 	public void GenerateLevel()
 	{
@@ -66,12 +66,15 @@ public class BubbleGenerator : MonoBehaviour
 			nEnemy.transform.position = GetRandomPointInSphere();
 		}
 		
+		//WORLD LIMIT
+		worldLimitTr.localScale = new Vector3(radius, radius, radius);
+		
 	}
 	
 	public Vector3 GetRandomPointInSphere()
 	{
 		Vector3 nPoint = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
-		nPoint *= Random.Range(freeAreaRadius, radius);
+		nPoint *= Random.Range(freeAreaRadius, radius - radiusStep);
 		return nPoint;
 	}
     
@@ -120,6 +123,8 @@ public class BubbleGenerator : MonoBehaviour
 	{
 		Gizmos.color = Color.green;
 		Gizmos.DrawWireSphere(Vector3.zero, radius);
+		Gizmos.color = Color.yellow;
+		Gizmos.DrawWireSphere(Vector3.zero, radius - radiusStep);
 		Gizmos.color = Color.cyan;
 		Gizmos.DrawWireSphere(Vector3.zero, freeAreaRadius);
 	}
