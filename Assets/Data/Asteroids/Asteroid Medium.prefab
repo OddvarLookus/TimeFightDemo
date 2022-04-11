@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 2149751876324552242}
   - component: {fileID: 2149751876324552237}
   - component: {fileID: 2149751876324552236}
-  - component: {fileID: 2149751876324552239}
+  - component: {fileID: 2480684502927095053}
+  - component: {fileID: 8105088166572445620}
   m_Layer: 0
   m_Name: Asteroid Medium
   m_TagString: Untagged
@@ -125,7 +126,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &2149751876324552239
+--- !u!114 &2480684502927095053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2149751876324552233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86df15996814cff45aed711a3ccf2a0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paintingData: {fileID: 11400000, guid: b87394aadf8ee1448bef32806e007d2a, type: 2}
+  hullData: {fileID: 11400000, guid: aba42c27ee78bc84d85f24d69920ea17, type: 2}
+--- !u!64 &8105088166572445620
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,4 +153,4 @@ MeshCollider:
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 289301614986012343, guid: ff315eef1de6bc04d96e5440267a67ee, type: 3}
+  m_Mesh: {fileID: 3938511104426018676, guid: aba42c27ee78bc84d85f24d69920ea17, type: 2}
