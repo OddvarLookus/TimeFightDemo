@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,7 +32,7 @@ public class Ball : Enemy
             Hop();
             InitializeTime();
         }
-        RotateTowardsMovement();
+	    base.RotateTowardsMovement(rotationSpeed);
     }
 
     void InitializeTime()
@@ -46,17 +46,6 @@ public class Ball : Enemy
         Vector3 force = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
         force *= Mathf.Lerp(minMoveForce, maxMoveForce, Random.Range(0f, 1f));
         rb.AddForce(force, ForceMode.Impulse);
-    }
-
-    void RotateTowardsMovement()
-    {
-        if(rb.velocity.sqrMagnitude >= 0.1f)
-        {
-            Vector3 newForward = transform.forward;
-            newForward = Vector3.Lerp(newForward.normalized, rb.velocity.normalized, rotationSpeed * Time.fixedDeltaTime).normalized;
-            transform.forward = newForward;
-        }
-
     }
 
 
