@@ -14,8 +14,11 @@ public class GameManager : MonoBehaviour
 	[SerializeField] UnityEvent onLevelTimeEnd;
 	bool isTimeFinished = false;
 	
+	public static GameManager instance;
+	
 	protected void Start()
 	{
+		instance = this;
 		UnpauseGame();
 		SetGameOverScreen(false);
 		SetGameWonScreen(false);
@@ -82,12 +85,22 @@ public class GameManager : MonoBehaviour
 	{
 		Time.timeScale = 1f;
 	}
+	
+	public void SetGameLost()
+	{
+		gameState = GameState.GAME_OVER;
+		SetGameOverScreen(true);
+	}
 	public void SetGameWon()
 	{
 		gameState = GameState.GAME_WON;
 		SetGameWonScreen(true);
 	}
 	
+	public void SetGameState(GameState newGameState)
+	{
+		gameState = newGameState;
+	}
 	
 	public void ReloadLevel()
 	{

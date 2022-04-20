@@ -6,6 +6,7 @@ using Sirenix.OdinInspector;
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyBullet : MonoBehaviour
 {
+	[MinValue(0)] [SerializeField] int damage;
 	[SerializeField] float speed;
 	[SerializeField] float deleteTime;
 	Vector3 prevSpeed = Vector3.zero;
@@ -68,6 +69,10 @@ public class EnemyBullet : MonoBehaviour
 		if(collisionInfo.gameObject.layer == 7)
 		{
 			collisionInfo.gameObject.GetComponent<Rigidbody>().AddForce(prevSpeed.normalized * knockback);
+			if(collisionInfo.gameObject.TryGetComponent(out PlayerShield playerShield))
+			{
+				playerShield.TakeDamage(damage);
+			}
 		}
 		
 		GetComponent<Collider>().enabled = false;
