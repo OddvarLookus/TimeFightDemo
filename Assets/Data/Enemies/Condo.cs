@@ -34,6 +34,15 @@ public class Condo : Enemy
 	[SerializeField] float desiredDistanceAggro;
 	[MinValue(0f)] [SerializeField] float moveRandomnessAggro;
 	
+	[Header("Shooting")]
+	[MinValue(1)] [SerializeField] int minShotFrequency;
+	[MinValue(1)] [SerializeField] int maxShotFrequency;
+	int shotFrequency = 0;
+	int currentShotStep = 0;
+	
+	[AssetsOnly] [SerializeField] GameObject bullet;
+	[SceneObjectsOnly] [SerializeField] Transform bulletSpawnPos;
+	
 	protected override void OnEnable()
 	{
 		base.OnEnable();
@@ -129,6 +138,9 @@ public class Condo : Enemy
 		
 		newMoveDir *= Random.Range(minMoveForceAggro, maxMoveForceAggro) + distToTarget * moveForceAggroDistanceMultiplier;
 		base.rb.AddForce(newMoveDir, ForceMode.Impulse);
+		
+		
+		ComputeShotFrequency(1);
 	}
 	
 	void InitializeTimeAggro()
@@ -137,6 +149,23 @@ public class Condo : Enemy
 		curMoveTime = 0f;
 	}
 	
+	void ComputeShotFrequency(int addValue)
+	{
+		currentShotStep += addValue;
+		if(currentShotStep >= shotFrequency)
+		{
+			shotFrequency = Random.Range(minShotFrequency, maxShotFrequency);
+			currentShotStep = 0;
+			//Shooting code
+			
+			GameObject b = Instantiate(bullet);
+			b.transform.SetParent(null);
+			b.transform.position = bulletSpawnPos.position;
+			
+			Vector3 shootDir = aggroTarget.position - bulletSpawnPos.position;
+			b.GetComponent<EnemyBullet>().Shoot(shootDir, aggroTarget);
+		}
+	}
 	
 	protected void OnDrawGizmosSelected()
 	{

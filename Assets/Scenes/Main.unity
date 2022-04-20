@@ -27687,6 +27687,10 @@ MonoBehaviour:
   moveForceAggroDistanceMultiplier: 2
   desiredDistanceAggro: 34.1
   moveRandomnessAggro: 38
+  minShotFrequency: 1
+  maxShotFrequency: 1
+  bullet: {fileID: 7183555598376989203, guid: ce075138d905bbd478979b02ab15b036, type: 3}
+  bulletSpawnPos: {fileID: 8931925202404600367}
 --- !u!54 &2711975837295793555
 Rigidbody:
   m_ObjectHideFlags: 0
