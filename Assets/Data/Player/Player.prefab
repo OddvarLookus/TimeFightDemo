@@ -92,6 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4999143093157021288}
   - component: {fileID: 4999143093157021290}
+  - component: {fileID: 2031705995051091110}
   - component: {fileID: 7572849852003629945}
   - component: {fileID: 4999143093157021291}
   - component: {fileID: 3988428310733051541}
@@ -145,6 +146,21 @@ MonoBehaviour:
   rotationSpeed: 35.65
   camController: {fileID: 0}
   attackCooldown: 0.4
+--- !u!114 &2031705995051091110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4999143093157021300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de47f7e59892f540890a53c4d8dbf03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionRadius: 2.55
+  interactionDistance: 2.3
+  interactionHeight: 0
 --- !u!114 &7572849852003629945
 MonoBehaviour:
   m_ObjectHideFlags: 0
