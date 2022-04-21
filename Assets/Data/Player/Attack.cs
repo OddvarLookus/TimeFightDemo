@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +9,12 @@ public class Attack : MonoBehaviour
     TriggerReporter attackTriggerReporter;
     [SerializeField] Animator attackAnimator;
     [SerializeField] float pushForce;
-    [SerializeField] float damage;
+	public float baseDamage;
+	float damage;
+	public void SetDamage(float newDamage)
+	{
+		damage = newDamage;
+	}
 
     private void Awake()
     {

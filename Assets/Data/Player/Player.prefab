@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 4999143093157021291}
   - component: {fileID: 3988428310733051541}
   - component: {fileID: 4999143093157021292}
+  - component: {fileID: 507034137754007591}
   - component: {fileID: 4999143093157021303}
   - component: {fileID: 4999143093157021302}
   - component: {fileID: 4999143093157021301}
@@ -192,7 +193,7 @@ MonoBehaviour:
   attackCollider: {fileID: 4999143093339949015}
   attackAnimator: {fileID: 4999143093339949001}
   pushForce: 98.28
-  damage: 1
+  baseDamage: 1
 --- !u!114 &3988428310733051541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +225,18 @@ MonoBehaviour:
   minSuckRadius: 2.8
   maxSuckRadius: 30.25
   maxPlayerSpeed: 200
+--- !u!114 &507034137754007591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4999143093157021300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f37692e0e582546894d1af28265598, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &4999143093157021303
 MeshFilter:
   m_ObjectHideFlags: 0

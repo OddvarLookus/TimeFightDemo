@@ -27,7 +27,8 @@ public class Interactor : MonoBehaviour
 	{
 		Collider[] cols = new Collider[5];
 		Vector3 castPos = transform.position + (transform.forward * interactionDistance) + new Vector3(0f, interactionHeight, 0f);
-		int colsNum = Physics.OverlapSphereNonAlloc(castPos, interactionRadius, cols, 10, QueryTriggerInteraction.Collide);
+		int colsNum = Physics.OverlapSphereNonAlloc(castPos, interactionRadius, cols, 1<<10, QueryTriggerInteraction.Collide);
+		
 		
 		//iterate the colliders that are interactable, and check the nearest one to the player
 		float smallestDist = float.MaxValue;
@@ -59,7 +60,7 @@ public class Interactor : MonoBehaviour
 		{
 			if(currentInteractable != null)
 			{
-				currentInteractable.Interact();
+				currentInteractable.Interact(GetComponent<PlayerController>());
 			}
 		}
 	}

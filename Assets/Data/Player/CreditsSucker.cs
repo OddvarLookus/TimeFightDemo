@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,7 +14,8 @@ public class CreditsSucker : MonoBehaviour
     PlayerController playerController;
     private void Awake()
     {
-        playerController = GetComponent<PlayerController>();
+	    playerController = GetComponent<PlayerController>();
+	    GameUIManager.instance.SetCreditsLabel(currentCredits);
     }
 
     // Update is called once per frame
@@ -50,7 +51,20 @@ public class CreditsSucker : MonoBehaviour
 
         GameUIManager.instance.SetCreditsLabel(currentCredits);
     }
-
+	
+	public bool TryBuy(int cost)
+	{
+		if(cost <= currentCredits)//i can afford
+		{
+			currentCredits -= cost;
+			return true;
+		}
+		else//2 poor
+		{
+			return false;
+		}
+	}
+	
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
