@@ -29934,6 +29934,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7572849852003629945, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: maxShieldCharge
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
 --- !u!1001 &6124866705781470259

@@ -1,25 +1,29 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Credit : MonoBehaviour
 {
     [SerializeField] int value;
-    [SerializeField] float baseSpeed;
-    [SerializeField] float timeSpeedMultiplier;
-    [SerializeField] float maxSpeed;
+	[SerializeField] float timeToUnit;
+	float totalTime;
     Transform target;
-    bool isBeingSucked = false;
+	bool isBeingSucked = false;
+	CreditsSucker creditsSucker;
 
     float suckTime = 0f;
 
-    public void Attract(Transform _target)
+	public void Attract(Transform _target, CreditsSucker _creditSucker)
     {
         if (!isBeingSucked)
         {
             target = _target;
 
-            isBeingSucked = true;
+	        isBeingSucked = true;
+	        creditsSucker = _creditSucker;
+	        
+	        float dist = (target.position - transform.position).magnitude;
+	        totalTime = dist * timeToUnit;
         }
 
     }
@@ -33,27 +37,26 @@ public class Credit : MonoBehaviour
     {
         if (isBeingSucked)
         {
-            suckTime += Time.deltaTime;
+        	float t = suckTime / totalTime;
+        	
+        	transform.position = Vector3.Lerp( transform.position, target.position, t * t);
+        	
+        	if(suckTime < totalTime)
+        	{
+        		suckTime += Time.fixedDeltaTime;
+        	}
+        	else if(suckTime >= totalTime)
+        	{
+        		creditsSucker.AddCredits(value);
+        		Destroy(this.gameObject);
+	        	
+        	}
+            
 
-            Vector3 vecToPos = target.position - transform.position;
-            //float distance = vecToPos.magnitude;
-            //distance = Mathf.Clamp(distance, 0.1f, 1000f);
-            //float realSpeed = baseSpeed / distance;
-            Vector3 vel = vecToPos.normalized * timeSpeedMultiplier * suckTime;
-            vel = Vector3.ClampMagnitude(vel, maxSpeed);
-            transform.position += vel * Time.deltaTime;
+
         }
 
     }
 
 
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.TryGetComponent(out CreditsSucker creditsSucker))
-        {
-            creditsSucker.AddCredits(value);
-            Destroy(this.gameObject);
-        }
-    }
 }

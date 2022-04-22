@@ -141,6 +141,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 1
-  baseSpeed: 20
-  timeSpeedMultiplier: 1000
-  maxSpeed: 230
+  timeToUnit: 0.03

@@ -15,8 +15,13 @@ public class CreditsSucker : MonoBehaviour
     private void Awake()
     {
 	    playerController = GetComponent<PlayerController>();
-	    GameUIManager.instance.SetCreditsLabel(currentCredits);
+	    
     }
+
+	protected void Start()
+	{
+		GameUIManager.instance.SetCreditsLabel(currentCredits);
+	}
 
     // Update is called once per frame
     void Update()
@@ -38,7 +43,7 @@ public class CreditsSucker : MonoBehaviour
         {
             if (collHits[i].gameObject.TryGetComponent(out Credit credit))
             {
-                credit.Attract(transform);
+	            credit.Attract(transform, this);
             }
         }
 
@@ -57,6 +62,7 @@ public class CreditsSucker : MonoBehaviour
 		if(cost <= currentCredits)//i can afford
 		{
 			currentCredits -= cost;
+			GameUIManager.instance.SetCreditsLabel(currentCredits);
 			return true;
 		}
 		else//2 poor
