@@ -1,6 +1,7 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float playerDashMaxSpeed;
     [SerializeField] float playerAcceleration;
     [SerializeField] float playerDeceleration;
-    [SerializeField] float rotationSpeed;
+	[SerializeField] float rotationSpeed;
+	[SerializeField] float rotationForwardMultiplier;
     [SerializeField] CameraController camController;
     Rigidbody rb;
     Attack attack;
@@ -87,18 +89,6 @@ public class PlayerController : MonoBehaviour
             rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * playerMaxSpeed, playerDeceleration * Time.deltaTime);
         }
         
-
-        //rb.AddForce(relativeInput * playerAcceleration, ForceMode.Acceleration);
-        //Vector3 hVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        //if (hVel.magnitude > playerMaxSpeed)
-        //{
-        //    hVel = Vector3.ClampMagnitude(hVel, playerMaxSpeed);
-        //    rb.velocity = new Vector3(hVel.x, rb.velocity.y, hVel.z);
-        //}
-        //if (inputVec == Vector3.zero)
-        //{
-        //    rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, playerDeceleration * Time.deltaTime);
-        //}
     }
 
     void AttackBehavior()
@@ -122,25 +112,40 @@ public class PlayerController : MonoBehaviour
 
     Vector3 prevRelativeInput = Vector3.zero;
     void RotationBehavior()
-    {
+	{
+		float addRot = rb.velocity.magnitude * rotationForwardMultiplier;
+		addRot = Mathf.Clamp(addRot, 0f, 45f);
+		Quaternion addQuat = Quaternion.Euler(addRot, 0f, 0f);
+		
+    	
         if (relativeInput.sqrMagnitude > 0.3f)
         {
-            Quaternion targetRot = Quaternion.LookRotation(Vector3.ProjectOnPlane(relativeInput.normalized, Vector3.up), transform.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
+	        Quaternion targetRot = Quaternion.LookRotation(Vector3.ProjectOnPlane(relativeInput.normalized, Vector3.up), Vector3.up) * addQuat;
+	        transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
+            
             prevRelativeInput = relativeInput;
         }
         else
         {
-            Quaternion targetRot = Quaternion.LookRotation(Vector3.ProjectOnPlane(prevRelativeInput.normalized, Vector3.up), transform.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
+	        Quaternion targetRot = Quaternion.LookRotation(Vector3.ProjectOnPlane(prevRelativeInput.normalized, Vector3.up), Vector3.up) * addQuat;
+	        transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
         }
         
+		
+		
     }
 
     public Vector3 GetVelocity()
     {
         return rb.velocity;
     }
+    
+	// Implement this OnDrawGizmosSelected if you want to draw gizmos only if the object is selected.
+	protected void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.black;
+		Gizmos.DrawRay(transform.position, new Vector3(0f, 2f, 0f));
+	}
 
 
 }

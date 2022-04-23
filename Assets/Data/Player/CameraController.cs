@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -52,12 +52,12 @@ public class CameraController : MonoBehaviour
             CameraDistanceBySpeed();
             CameraPositionBehavior();
             KeepCameraDistance();
-            cameraTransform.LookAt(cameraLookTarget, cameraLookTarget.up);
+	        cameraTransform.LookAt(cameraLookTarget, Vector3.up);
         }
         else if (cameraMode == CameraMode.ENEMYLOCK)
         {
             CameraLockBehavior();
-            cameraTransform.LookAt(lockedEnemy, cameraLookTarget.up);
+            cameraTransform.LookAt(lockedEnemy, Vector3.up);
         }
         
     }
