@@ -366,18 +366,17 @@ public class CameraController : MonoBehaviour
     {
         return cameraTransform.forward;
     }
+    
+	public float GetCurrentTilt()
+	{
+		Vector3 fw = GetCameraForward();
+		Vector3 perp = Vector3.Cross(fw, Vector3.up).normalized;
+		Vector3 hfw = new Vector3(fw.x, 0f, fw.z).normalized;
+		
+		float tilt = Vector3.SignedAngle(hfw, fw, perp);
+		return tilt;
+	}
+	
 
-    float ClampAngle(float _angle)
-    {
-        float a = _angle;
-        if (a < 0f)
-        {
-            a += 360f;
-        }
-        else if (a > 360f)
-        {
-            a -= 360f;
-        }
-        return a;
-    }
+    
 }

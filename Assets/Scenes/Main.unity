@@ -29946,6 +29946,10 @@ PrefabInstance:
       propertyPath: attackDistance
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4999143093157021291, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: cameraController
+      value: 
+      objectReference: {fileID: 1745202265}
     - target: {fileID: 4999143093157021300, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
       propertyPath: m_Name
       value: Player

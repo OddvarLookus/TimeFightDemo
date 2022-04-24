@@ -6,10 +6,12 @@ public class Attack : MonoBehaviour
 {
     [SerializeField] GameObject attackCollider;
     Collider col;
-    TriggerReporter attackTriggerReporter;
+	TriggerReporter attackTriggerReporter;
+	[SerializeField] CameraController cameraController;
     [SerializeField] float pushForce;
 	public float baseDamage;
 	float damage;
+	
 	
 	[Header("Attack Dynamics")]
 	[SerializeField] float attackDistance;
@@ -85,7 +87,7 @@ public class Attack : MonoBehaviour
 			if(!attacking)
 			{
 				attacking = true;
-				attackCollider.SetActive(false);
+				attackCollider.SetActive(true);
 				col.enabled = true;
 				
 			}
@@ -124,6 +126,9 @@ public class Attack : MonoBehaviour
 	Vector3 GetFrontAttackPosition()
 	{
 		Vector3 hForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
+		Vector3 perpendicular = Vector3.Cross(hForward, Vector3.up).normalized;
+		hForward = Quaternion.AngleAxis(cameraController.GetCurrentTilt(), perpendicular) * hForward;
+		
 		hForward *= attackDistance;
 		hForward += transform.position;
 		
