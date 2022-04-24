@@ -13,15 +13,12 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] float rotationForwardMultiplier;
     [SerializeField] CameraController camController;
     Rigidbody rb;
-    Attack attack;
-    [SerializeField] float attackCooldown;
-    float currentAttackTime = 0f;
+    
 
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        attack = GetComponent<Attack>();
 
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -30,7 +27,6 @@ public class PlayerController : MonoBehaviour
     {
         Movement();
         RotationBehavior();
-        AttackBehavior();
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -91,24 +87,6 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    void AttackBehavior()
-    {
-        bool pressingAttack = Input.GetMouseButtonDown(0);
-        
-        if (currentAttackTime < attackCooldown)//attack on cooldown
-        {
-            currentAttackTime += Time.deltaTime;
-        }
-        else//attack not on cooldown
-        {
-            if (pressingAttack)
-            {
-                attack.PerformAttack();
-                currentAttackTime = 0f;
-            }
-        }
-
-    }
 
     Vector3 prevRelativeInput = Vector3.zero;
     void RotationBehavior()
