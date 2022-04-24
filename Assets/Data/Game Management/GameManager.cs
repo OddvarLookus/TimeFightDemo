@@ -14,6 +14,13 @@ public class GameManager : MonoBehaviour
 	[SerializeField] UnityEvent onLevelTimeEnd;
 	bool isTimeFinished = false;
 	
+	bool isGamePaused = false;
+	public bool IsGamePaused(){return isGamePaused;}
+	
+	[SerializeField] float finishedGameTime;
+	bool canReloadLevel = false;
+	
+	
 	public static GameManager instance;
 	
 	protected void Start()
@@ -29,7 +36,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 	    LevelTimeBehavior();
-	    
+	    PauseBehavior();
 	    GameOverBehavior();
     }
     
@@ -40,12 +47,30 @@ public class GameManager : MonoBehaviour
 		if(currentLevelTime >= levelTime && !isTimeFinished)
 		{
 			isTimeFinished = true;
-			gameState = GameState.GAME_OVER;
-			onLevelTimeEnd?.Invoke();
+			SetGameLost();
 		}
 
 		GameUIManager.instance.SetStageTime(currentLevelTime, levelTime);
 		
+	}
+	
+	void PauseBehavior()
+	{
+		if(gameState == GameState.GAME)
+		{
+			if(Input.GetKeyDown(KeyCode.Escape))
+			{
+				if(isGamePaused)
+				{
+					UnpauseGame();
+				}
+				else
+				{
+					PauseGame();
+				}
+			}
+		}
+
 	}
 	
 	void GameOverBehavior()
@@ -80,22 +105,37 @@ public class GameManager : MonoBehaviour
 	public void PauseGame()
 	{
 		Time.timeScale = 0f;
+		isGamePaused = true;
+		GameUIManager.instance.SetPausePanel(true);
 	}
 	public void UnpauseGame()
 	{
 		Time.timeScale = 1f;
+		isGamePaused = false;
+		GameUIManager.instance.SetPausePanel(false);
 	}
 	
 	public void SetGameLost()
 	{
 		gameState = GameState.GAME_OVER;
 		SetGameOverScreen(true);
+		StartCoroutine(FinishedGameCoroutine());
+		PauseGame();
 	}
 	public void SetGameWon()
 	{
 		gameState = GameState.GAME_WON;
 		SetGameWonScreen(true);
+		StartCoroutine(FinishedGameCoroutine());
+		PauseGame();
 	}
+	
+	IEnumerator FinishedGameCoroutine()
+	{
+		yield return new WaitForSecondsRealtime(finishedGameTime);
+		canReloadLevel = true;
+	}
+	
 	
 	public void SetGameState(GameState newGameState)
 	{
@@ -104,7 +144,11 @@ public class GameManager : MonoBehaviour
 	
 	public void ReloadLevel()
 	{
-		SceneManager.LoadScene(0);
+		if(canReloadLevel)
+		{
+			SceneManager.LoadScene(0);
+		}
+		
 	}
 	
 	

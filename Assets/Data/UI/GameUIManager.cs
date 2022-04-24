@@ -78,5 +78,12 @@ public class GameUIManager : MonoBehaviour
 		gameStartPanelAnimator.Play("GameStartUIEnter", -1, 0f);
 	}
 	
+	//PAUSE
+	[SerializeField] RectTransform pausePanel;
+	public void SetPausePanel(bool active)
+	{
+		pausePanel.gameObject.SetActive(active);
+	}
+	
 	
 }

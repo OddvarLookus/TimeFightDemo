@@ -11,14 +11,23 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float playerDeceleration;
 	[SerializeField] float rotationSpeed;
 	[SerializeField] float rotationForwardMultiplier;
-    [SerializeField] CameraController camController;
-    Rigidbody rb;
+	[SerializeField] CameraController camController;
+	Rigidbody rb;
+	[SerializeField] Attack punchAttack;
+	[SerializeField] float speedWhileAttackingMultiplier;
     
+	bool speedDashing = false;
+	public bool IsSpeedDashing(){return speedDashing;}
 
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+	    rb = GetComponent<Rigidbody>();
+	    
+	    if(punchAttack == null)
+	    {
+	    	punchAttack = GetComponent<Attack>();
+	    }
 
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -67,24 +76,35 @@ public class PlayerController : MonoBehaviour
 
         relativeInput = Quaternion.LookRotation(camController.GetCameraForward(), camController.GetCameraUp()) * inputVec;
         relativeInput = relativeInput.normalized;
-        //relativeInput = Vector3.ProjectOnPlane(relativeInput, Vector3.up).normalized;
 
         if (inputVec != Vector3.zero)
         {
-            if (!dashPressed)
+	        if (!dashPressed || dashPressed && punchAttack.IsAttacking())//MOVEMENT WITHOUT DASH
             {
-                rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * playerMaxSpeed, playerAcceleration * Time.deltaTime);
+            	float realMaxSpeed = playerMaxSpeed;
+		        if(punchAttack.IsAttacking())/* && !punchAttack.IsChargedAttack()*/
+            	{
+            		realMaxSpeed *= speedWhileAttackingMultiplier;
+            	}
+		        //else if(punchAttack.IsAttacking() && punchAttack.IsChargedAttack() && punchAttack.IsChargedAttackFinished())
+		        //{
+		        //	realMaxSpeed *= speedWhileAttackingMultiplier;
+		        //}
+            	
+	            rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * realMaxSpeed, playerAcceleration * Time.deltaTime);
             }
-            else if (dashPressed)
+	        else if (dashPressed && !punchAttack.IsAttacking())//MOVEMENT WITH DASH
             {
                 rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * playerDashMaxSpeed, playerAcceleration * Time.deltaTime);
             }
         }
         else
         {
-            rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * playerMaxSpeed, playerDeceleration * Time.deltaTime);
+	        rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, playerDeceleration * Time.deltaTime);
         }
         
+        
+	    speedDashing = rb.velocity.magnitude > 150f;
     }
 
 
@@ -94,7 +114,6 @@ public class PlayerController : MonoBehaviour
 		float addRot = rb.velocity.magnitude * rotationForwardMultiplier;
 		addRot = Mathf.Clamp(addRot, 0f, 45f);
 		Quaternion addQuat = Quaternion.Euler(addRot, 0f, 0f);
-		
     	
         if (relativeInput.sqrMagnitude > 0.3f)
         {

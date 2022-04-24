@@ -46,19 +46,22 @@ public class CameraController : MonoBehaviour
     {
         LockInputCheck();
 
-        if (cameraMode == CameraMode.FREELOOK)
-        {
-            CameraLookBehavior();
-            CameraDistanceBySpeed();
-            CameraPositionBehavior();
-            KeepCameraDistance();
-	        cameraTransform.LookAt(cameraLookTarget, Vector3.up);
-        }
-        else if (cameraMode == CameraMode.ENEMYLOCK)
-        {
-            CameraLockBehavior();
-            cameraTransform.LookAt(lockedEnemy, Vector3.up);
-        }
+	    if(!GameManager.instance.IsGamePaused())
+	    {
+		    if (cameraMode == CameraMode.FREELOOK)
+		    {
+			    CameraLookBehavior();
+			    CameraDistanceBySpeed();
+			    CameraPositionBehavior();
+			    KeepCameraDistance();
+			    cameraTransform.LookAt(cameraLookTarget, Vector3.up);
+		    }
+		    else if (cameraMode == CameraMode.ENEMYLOCK)
+		    {
+			    CameraLockBehavior();
+			    cameraTransform.LookAt(lockedEnemy, Vector3.up);
+		    }
+	    }
         
     }
 

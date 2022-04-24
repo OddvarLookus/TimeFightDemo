@@ -8,6 +8,7 @@ public class Attack : MonoBehaviour
     Collider col;
 	TriggerReporter attackTriggerReporter;
 	[SerializeField] CameraController cameraController;
+	[SerializeField] PlayerController playerController;
     [SerializeField] float pushForce;
 	public float baseDamage;
 	float damage;
@@ -19,9 +20,22 @@ public class Attack : MonoBehaviour
 	float attackTime;
 	float currentAttackTime = 0f;
 	bool attacking = false;
+	public bool IsAttacking(){return attacking;}
+	bool isChargedAttack = false;
+	public bool IsChargedAttack(){return isChargedAttack;}
+	bool isChargedAttackFinished = false;
+	public bool IsChargedAttackFinished(){return isChargedAttackFinished;}
 	
-	[SerializeField] float attackSize;
 	
+	[SerializeField] float initialAttackSize;
+	[SerializeField] float finalAttackSize;
+	
+	[Header("Charged Attack Dynamics")]
+	[SerializeField] float chargedAttackDistance;
+	[SerializeField] float chargedAttackTime;
+	[SerializeField] float chargedAttackFinishedTime;
+	[SerializeField] float initialChargedAttackSize;
+	[SerializeField] float finalChargedAttackSize;
 	
 	public void SetDamage(float newDamage)
 	{
@@ -86,40 +100,93 @@ public class Attack : MonoBehaviour
 		{
 			if(!attacking)
 			{
-				attacking = true;
-				attackCollider.SetActive(true);
-				col.enabled = true;
-				
+				if(true)
+				{
+					attacking = true;
+					isChargedAttack = false;
+					attackCollider.SetActive(true);
+					col.enabled = true;
+				}
+				//else if(playerController.IsSpeedDashing())
+				//{
+				//	//EXECUTE CHARGED ATTACK
+				//	attacking = true;
+				//	isChargedAttack = true;
+				//	attackCollider.SetActive(true);
+				//	col.enabled = true;
+				//}
 			}
 		}
 		
 		if(attacking == true)
 		{
-			if(currentAttackTime < attackTime)
+			if(true)//NORMAL ATTACK
 			{
-				currentAttackTime += Time.deltaTime;
-			}
+				if(currentAttackTime < attackTime)
+				{
+					currentAttackTime += Time.deltaTime;
+				}
+				Vector3 initSize = new Vector3(initialAttackSize, initialAttackSize, initialAttackSize);
+				Vector3 finalSize = new Vector3(finalAttackSize, finalAttackSize, finalAttackSize);
 			
+				if(currentAttackTime <= attackTime / 2f)//first part
+				{
+					float t = currentAttackTime / (attackTime / 2f);
+					attackCollider.transform.position = Vector3.Lerp(transform.position, GetFrontAttackPosition(), 1f- ( 1f - t * t));
+					attackCollider.transform.localScale = Vector3.Lerp(initSize, finalSize, 1f- ( 1f - t * t));
+				}
+				else if(currentAttackTime > attackTime / 2f && currentAttackTime < attackTime)//second part
+				{
+					float t = (currentAttackTime - (attackTime / 2f)) / (attackTime / 2f);
+					attackCollider.transform.position = Vector3.Lerp(GetFrontAttackPosition(), transform.position, t * t);
+					attackCollider.transform.localScale = Vector3.Lerp(finalSize, initSize, t * t);
+				}
+				else//attack finished
+				{
+					currentAttackTime = 0f;
+					attacking = false;
+					isChargedAttack = false;
+					col.enabled = false;
+					attackCollider.SetActive(false);
+				}
+			}
+			//else if(isChargedAttack == true)//CHARGED ATTACK
+			//{
+			//	if(currentAttackTime < chargedAttackTime)
+			//	{
+			//		if(currentAttackTime >= chargedAttackFinishedTime)
+			//		{
+			//			isChargedAttackFinished = true;
+			//		}
+					
+			//		currentAttackTime += Time.deltaTime;
+			//	}
+			//	Vector3 initSize = new Vector3(initialChargedAttackSize, initialChargedAttackSize, initialChargedAttackSize);
+			//	Vector3 finalSize = new Vector3(finalChargedAttackSize, finalChargedAttackSize, finalChargedAttackSize);
 			
-			if(currentAttackTime <= attackTime / 2f)//first part
-			{
-				float t = currentAttackTime / (attackTime / 2f);
-				attackCollider.transform.position = Vector3.Lerp(transform.position, GetFrontAttackPosition(), 1f- ( 1f - t * t));
-				attackCollider.transform.localScale = Vector3.Lerp(Vector3.zero, new Vector3(attackSize, attackSize, attackSize), 1f- ( 1f - t * t));
-			}
-			else if(currentAttackTime > attackTime / 2f && currentAttackTime < attackTime)//second part
-			{
-				float t = (currentAttackTime - (attackTime / 2f)) / (attackTime / 2f);
-				attackCollider.transform.position = Vector3.Lerp(GetFrontAttackPosition(), transform.position, t * t);
-				attackCollider.transform.localScale = Vector3.Lerp(new Vector3(attackSize, attackSize, attackSize), Vector3.zero, t * t);
-			}
-			else//attack finished
-			{
-				currentAttackTime = 0f;
-				attacking = false;
-				col.enabled = false;
-				attackCollider.SetActive(false);
-			}
+			//	if(currentAttackTime <= chargedAttackTime / 2f)//first part
+			//	{
+			//		float t = currentAttackTime / (chargedAttackTime / 2f);
+			//		attackCollider.transform.position = Vector3.Lerp(transform.position, GetFrontAttackPosition(), 1f- ( 1f - t * t));
+			//		attackCollider.transform.localScale = Vector3.Lerp(initSize, finalSize, 1f- ( 1f - t * t));
+			//	}
+			//	else if(currentAttackTime > chargedAttackTime / 2f && currentAttackTime < chargedAttackTime)//second part
+			//	{
+			//		float t = (currentAttackTime - (chargedAttackTime / 2f)) / (chargedAttackTime / 2f);
+			//		attackCollider.transform.position = Vector3.Lerp(GetFrontAttackPosition(), transform.position, t * t);
+			//		attackCollider.transform.localScale = Vector3.Lerp(finalSize, initSize, t * t);
+			//	}
+			//	else//attack finished
+			//	{
+			//		currentAttackTime = 0f;
+			//		attacking = false;
+			//		isChargedAttack = false;
+			//		isChargedAttackFinished = false;
+			//		col.enabled = false;
+			//		attackCollider.SetActive(false);
+			//	}
+			//}
+
 		}
 	}
 	
@@ -129,7 +196,15 @@ public class Attack : MonoBehaviour
 		Vector3 perpendicular = Vector3.Cross(hForward, Vector3.up).normalized;
 		hForward = Quaternion.AngleAxis(cameraController.GetCurrentTilt(), perpendicular) * hForward;
 		
-		hForward *= attackDistance;
+		if(!isChargedAttack)
+		{
+			hForward *= attackDistance;
+		}
+		else if(isChargedAttack)
+		{
+			hForward *= chargedAttackDistance;
+		}
+		
 		hForward += transform.position;
 		
 		return hForward;
