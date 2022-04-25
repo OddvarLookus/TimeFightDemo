@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
+using TMPro;
 
 public class Interactor : MonoBehaviour
 {
@@ -9,7 +10,15 @@ public class Interactor : MonoBehaviour
 	[MinValue(0f)] [SerializeField] float interactionRadius;
 	[SerializeField] float interactionDistance;
 	[SerializeField] float interactionHeight;
-    
+	
+	//INTERACTION DISPLAY
+	[SerializeField] Transform interactionCanvas;
+	TextMeshProUGUI interactionLabel;
+	
+	protected void Start()
+	{
+		interactionLabel = interactionCanvas.GetChild(0).GetComponent<TextMeshProUGUI>();
+	}
     
 	protected void Update()
 	{
@@ -19,10 +28,13 @@ public class Interactor : MonoBehaviour
 	protected void FixedUpdate()
 	{
 		CheckInteractables();
+		CheckInteractablesChanged();
+		prevInteractable = currentInteractable;
 	}
 	
 	//INTERACTOR LOGIC
 	IInteractable currentInteractable;
+	IInteractable prevInteractable;
 	void CheckInteractables()
 	{
 		Collider[] cols = new Collider[5];
@@ -51,6 +63,11 @@ public class Interactor : MonoBehaviour
 		{
 			currentInteractable = null;
 		}
+		
+	}
+	
+	void CheckInteractablesChanged()
+	{
 		
 	}
 	
