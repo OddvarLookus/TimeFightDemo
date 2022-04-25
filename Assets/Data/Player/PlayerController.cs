@@ -92,16 +92,16 @@ public class PlayerController : MonoBehaviour
 		        //	realMaxSpeed *= speedWhileAttackingMultiplier;
 		        //}
             	
-	            rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * realMaxSpeed, playerAcceleration * Time.deltaTime);
+	            rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * realMaxSpeed, playerAcceleration * Time.fixedDeltaTime);
             }
 	        else if (dashPressed && !punchAttack.IsAttacking())//MOVEMENT WITH DASH
             {
-                rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * playerDashMaxSpeed, playerAcceleration * Time.deltaTime);
+                rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * playerDashMaxSpeed, playerAcceleration * Time.fixedDeltaTime);
             }
         }
         else
         {
-	        rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, playerDeceleration * Time.deltaTime);
+	        rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, playerDeceleration * Time.fixedDeltaTime);
         }
         
         

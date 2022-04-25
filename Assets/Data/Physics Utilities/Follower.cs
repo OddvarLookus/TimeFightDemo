@@ -8,13 +8,21 @@ public class Follower : MonoBehaviour
 	
 	[SceneObjectsOnly] [SerializeField] Transform transformToFollow;
 	[SerializeField] Vector3 offset;
-	enum FollowType{UPDATE = 0, FIXED_UPDATE = 1}
+	enum FollowType{UPDATE = 0, FIXED_UPDATE = 1, LATE_UPDATE = 2}
 	[SerializeField] FollowType followType;
 	
 	
 	protected void Update()
 	{
 		if(followType == FollowType.UPDATE)
+		{
+			Follow();
+		}
+	}
+	
+	protected void LateUpdate()
+	{
+		if(followType == FollowType.LATE_UPDATE)
 		{
 			Follow();
 		}

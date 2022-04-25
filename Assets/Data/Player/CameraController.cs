@@ -60,8 +60,10 @@ public class CameraController : MonoBehaviour
 		    }
 		    else if (cameraMode == CameraMode.ENEMYLOCK)
 		    {
-			    CameraLockBehavior();
+			    //CameraLockBehavior();
+			    EnemyLockerBehavior();
 			    CameraPositionBehavior();
+			    
 			    //cameraTransform.LookAt(lockedEnemy, Vector3.up);
 		    }
 	    }
@@ -77,7 +79,7 @@ public class CameraController : MonoBehaviour
 		}
 		else if(cameraMode == CameraMode.ENEMYLOCK)
 		{
-			EnemyLockerBehavior();
+			CameraLockBehavior();
 			cameraTransform.LookAt(enemyLocker/*lockedEnemy*/, Vector3.up);
 		}
 		
@@ -151,7 +153,6 @@ public class CameraController : MonoBehaviour
             t = smoothingSpeed * Time.deltaTime;
         }
         cameraTilt = Mathf.Lerp(cameraTilt, targetTilt, t);
-
 
     }
     Quaternion alignment = Quaternion.identity;
@@ -375,7 +376,11 @@ public class CameraController : MonoBehaviour
     
 	void EnemyLockerBehavior()
 	{
-		enemyLocker.position = Vector3.Lerp(enemyLocker.position, lockedEnemy.position + new Vector3(0f, 1f, 0f), enemyLockerSpeed * Time.deltaTime);
+		if(enemyLocker != null)
+		{
+			enemyLocker.position = Vector3.Lerp(enemyLocker.position, lockedEnemy.position + new Vector3(0f, 1f, 0f), enemyLockerSpeed * Time.deltaTime);
+		}
+		
 	}
 
     #endregion
