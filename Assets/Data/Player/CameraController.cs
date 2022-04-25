@@ -35,7 +35,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] float minSpeedCameraDist, maxSpeedCameraDist;
     [SerializeField] float maxPlayerSpeed;
     //unlock the camera when fast next to the locked enemy
-    [SerializeField] float cameraFastUnlockDistance;
+	[SerializeField] float cameraFastUnlockDistance;
+	[SerializeField] float enemyLockerSpeed;
 
     #region MONOBEHAVIOR
     private void Awake()
@@ -46,6 +47,7 @@ public class CameraController : MonoBehaviour
     {
         LockInputCheck();
 
+	    
 	    if(!GameManager.instance.IsGamePaused())
 	    {
 		    if (cameraMode == CameraMode.FREELOOK)
@@ -53,23 +55,46 @@ public class CameraController : MonoBehaviour
 			    CameraLookBehavior();
 			    CameraDistanceBySpeed();
 			    CameraPositionBehavior();
-			    KeepCameraDistance();
-			    cameraTransform.LookAt(cameraLookTarget, Vector3.up);
+			    
+			    //cameraTransform.LookAt(cameraLookTarget, Vector3.up);
 		    }
 		    else if (cameraMode == CameraMode.ENEMYLOCK)
 		    {
 			    CameraLockBehavior();
 			    CameraPositionBehavior();
-			    cameraTransform.LookAt(lockedEnemy, Vector3.up);
+			    //cameraTransform.LookAt(lockedEnemy, Vector3.up);
 		    }
 	    }
-        
 	    
     }
-
+	
+	protected void LateUpdate()
+	{
+		if(cameraMode == CameraMode.FREELOOK)
+		{
+			KeepCameraDistance();
+			cameraTransform.LookAt(cameraLookTarget, Vector3.up);
+		}
+		else if(cameraMode == CameraMode.ENEMYLOCK)
+		{
+			EnemyLockerBehavior();
+			cameraTransform.LookAt(enemyLocker/*lockedEnemy*/, Vector3.up);
+		}
+		
+	}
+	
     private void FixedUpdate()
     {
-
+		
+	    if(cameraMode == CameraMode.FREELOOK)
+	    {
+		    //cameraTransform.LookAt(cameraLookTarget, Vector3.up);
+	    }
+	    else if(cameraMode == CameraMode.ENEMYLOCK)
+	    {
+		    //cameraTransform.LookAt(lockedEnemy, Vector3.up);
+	    }
+		
     }
 
 
@@ -345,8 +370,13 @@ public class CameraController : MonoBehaviour
         negative += new Vector3(0f, 2f, 0f);
 	    targetCameraPos = negative;
 	    //cameraTransform.position = negative;
-        enemyLocker.position = lockedEnemy.position + new Vector3(0f, 1f, 0f);
+        
     }
+    
+	void EnemyLockerBehavior()
+	{
+		enemyLocker.position = Vector3.Lerp(enemyLocker.position, lockedEnemy.position + new Vector3(0f, 1f, 0f), enemyLockerSpeed * Time.deltaTime);
+	}
 
     #endregion
 

@@ -34,8 +34,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Movement();
         
+	    
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -45,8 +45,9 @@ public class PlayerController : MonoBehaviour
 
 
     private void FixedUpdate()
-    {
-	    RotationBehavior();
+	{
+		Movement();
+		RotationBehavior();
     }
 
     Vector3 relativeInput;

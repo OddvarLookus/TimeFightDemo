@@ -30200,17 +30200,25 @@ PrefabInstance:
       value: Camera
       objectReference: {fileID: 0}
     - target: {fileID: 6124866704305363050, guid: b3e6983bc55d7934b9c82aa436df06f8, type: 3}
+      propertyPath: cameraSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6124866704305363050, guid: b3e6983bc55d7934b9c82aa436df06f8, type: 3}
       propertyPath: enemyLocker
       value: 
       objectReference: {fileID: 266377254}
     - target: {fileID: 6124866704305363050, guid: b3e6983bc55d7934b9c82aa436df06f8, type: 3}
       propertyPath: smoothingSpeed
-      value: 18.23
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6124866704305363050, guid: b3e6983bc55d7934b9c82aa436df06f8, type: 3}
       propertyPath: cameraLookTarget
       value: 
       objectReference: {fileID: 1842426552}
+    - target: {fileID: 6124866704305363050, guid: b3e6983bc55d7934b9c82aa436df06f8, type: 3}
+      propertyPath: enemyLockerSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6124866704305363050, guid: b3e6983bc55d7934b9c82aa436df06f8, type: 3}
       propertyPath: playerController
       value: 
