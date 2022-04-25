@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Movement();
-        RotationBehavior();
+        
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
+	    RotationBehavior();
     }
 
     Vector3 relativeInput;
@@ -118,14 +118,14 @@ public class PlayerController : MonoBehaviour
         if (relativeInput.sqrMagnitude > 0.3f)
         {
 	        Quaternion targetRot = Quaternion.LookRotation(Vector3.ProjectOnPlane(relativeInput.normalized, Vector3.up), Vector3.up) * addQuat;
-	        transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
+	        rb.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime);
             
             prevRelativeInput = relativeInput;
         }
         else
         {
 	        Quaternion targetRot = Quaternion.LookRotation(Vector3.ProjectOnPlane(prevRelativeInput.normalized, Vector3.up), Vector3.up) * addQuat;
-	        transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
+	        rb.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime);
         }
         
 		

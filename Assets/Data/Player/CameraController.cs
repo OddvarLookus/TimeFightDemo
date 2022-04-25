@@ -59,10 +59,12 @@ public class CameraController : MonoBehaviour
 		    else if (cameraMode == CameraMode.ENEMYLOCK)
 		    {
 			    CameraLockBehavior();
+			    CameraPositionBehavior();
 			    cameraTransform.LookAt(lockedEnemy, Vector3.up);
 		    }
 	    }
         
+	    
     }
 
     private void FixedUpdate()
@@ -135,7 +137,10 @@ public class CameraController : MonoBehaviour
 
         Quaternion finalRot = alignment * Quaternion.Euler(-cameraTilt, cameraRot, 0f);
 
-        targetCameraPos = finalRot * Vector3.forward * maxCameraDist + cameraLookTarget.position;
+	    if(cameraMode == CameraMode.FREELOOK)
+	    {
+	    	targetCameraPos = finalRot * Vector3.forward * maxCameraDist + cameraLookTarget.position;
+	    }
 
         float t;
         if (smoothingSpeed <= 0f)
@@ -338,8 +343,8 @@ public class CameraController : MonoBehaviour
         Vector3 negative = playerController.transform.position + ((-vecToLockedEnemy).normalized * 8f);
 
         negative += new Vector3(0f, 2f, 0f);
-
-        cameraTransform.position = negative;
+	    targetCameraPos = negative;
+	    //cameraTransform.position = negative;
         enemyLocker.position = lockedEnemy.position + new Vector3(0f, 1f, 0f);
     }
 
