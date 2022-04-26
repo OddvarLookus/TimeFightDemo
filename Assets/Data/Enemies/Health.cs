@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -14,7 +14,9 @@ public class Health : MonoBehaviour
     [SerializeField] float maxMaxHealth;
     [SerializeField] float maxHealth;
     float currentHealth;
-    [SerializeField] UnityEvent OnDeath;
+	[SerializeField] UnityEvent OnDeath;
+	[SerializeField] GameObject deathPrefab;
+    
     public void Initialize(float _factor)
     {
         maxHealth = Mathf.Lerp(minMaxHealth, maxMaxHealth, _factor);
@@ -26,9 +28,21 @@ public class Health : MonoBehaviour
         currentHealth -= _damage;
         if (currentHealth <= 0f)
         {
-            OnDeath?.Invoke();
+        	Die();
+	        OnDeath?.Invoke();
         }
     }
+    
+	void Die()
+	{
+		if(deathPrefab != null)
+		{
+			GameObject g = Instantiate(deathPrefab);
+			Transform t = g.transform;
+			t.parent = null;
+			t.position = transform.position;
+		}
+	}
 
     private void Update()
     {

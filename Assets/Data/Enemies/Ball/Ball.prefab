@@ -346,6 +346,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  deathPrefab: {fileID: 2706213420626243347, guid: 5a331cdc6a6f06546b2a99ee52fe6e44, type: 3}
 --- !u!114 &107109843671376553
 MonoBehaviour:
   m_ObjectHideFlags: 0
