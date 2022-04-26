@@ -30599,6 +30599,10 @@ PrefabInstance:
       value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4999143093157021291, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: punchVFX
+      value: 
+      objectReference: {fileID: 2395806566040195163, guid: 9d74a53039b057344a0bb1332d7d23f9, type: 3}
+    - target: {fileID: 4999143093157021291, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
       propertyPath: attackSize
       value: 3
       objectReference: {fileID: 0}

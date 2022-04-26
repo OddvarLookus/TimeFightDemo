@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class Attack : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class Attack : MonoBehaviour
     [SerializeField] float pushForce;
 	public float baseDamage;
 	float damage;
-	
+	[AssetsOnly] [SerializeField] GameObject punchVFX;
 	
 	[Header("Attack Dynamics")]
 	[SerializeField] float attackDistance;
@@ -76,13 +77,15 @@ public class Attack : MonoBehaviour
             Vector3 pushVec = (_col.transform.position - transform.position).normalized;
             pushVec *= pushForce;
             asteroid.Push(pushVec);
-            asteroid.TakeDamage(damage);
+	        asteroid.TakeDamage(damage);
+	        CheckAndSpawnPunchVFX();
         }
         if (_col.TryGetComponent(out Health health))
         {
             if(health.GetAffiliation() == Affiliation.ENEMY)
             {
-                health.TakeDamage(damage);
+	            health.TakeDamage(damage);
+	            CheckAndSpawnPunchVFX();
             }
         }
         if (_col.TryGetComponent(out Enemy enemy))
@@ -92,6 +95,27 @@ public class Attack : MonoBehaviour
             enemy.Push(pushVec);
         }
     }
+    
+	void CheckAndSpawnPunchVFX()
+	{
+		Vector3 pos0 = transform.position;
+		float dist = (attackCollider.transform.position - transform.position).magnitude + attackCollider.transform.localScale.x + 20f;
+		Vector3 dir = (attackCollider.transform.position - transform.position).normalized;
+		Debug.DrawRay(pos0, dir * dist, Color.white, 0.5f);
+		RaycastHit rhit;
+		bool hit = Physics.Raycast(pos0, dir, out rhit, dist, ~0, QueryTriggerInteraction.Ignore);
+		if(hit)
+		{
+			Debug.DrawLine(pos0, rhit.point, Color.green, 0.5f);
+			GameObject vfx = Instantiate(punchVFX);
+			Transform vfxTr = vfx.transform;
+			vfxTr.parent = null;
+			vfxTr.position = rhit.point;
+		}
+	}
+    
+	
+	
     
 	void AttackBehavior()
 	{

@@ -87,6 +87,7 @@ Material:
         m_Texture: {fileID: 2800000, guid: 48da24d771916524899d36e4bfe7f762, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - _Alpha: 1
     - _AlphaBrightness: 0
@@ -130,8 +131,8 @@ Material:
     - _FishEyeUvAmount: 0.35
     - _Glow: 0
     - _GlowGlobal: 2.5
-    - _HandDrawnAmount: 10
-    - _HandDrawnSpeed: 5
+    - _HandDrawnAmount: 12.7
+    - _HandDrawnSpeed: 7.5
     - _HsvBright: 1
     - _HsvSaturation: 1
     - _HsvShift: 180
@@ -141,7 +142,7 @@ Material:
     - _OffsetSh2: 1
     - _OffsetSh3: 1
     - _PinchUvAmount: 0.35
-    - _PixelateSize: 32
+    - _PixelateSize: 136
     - _PosterizeGamma: 0.75
     - _PosterizeNumColors: 8
     - _RandomSh1Mult: 1
@@ -166,7 +167,7 @@ Material:
     - _ShadowAmount: 0.4
     - _ShadowStepMax: 1
     - _ShadowStepMin: 0
-    - _ShakeUvSpeed: 2.5
+    - _ShakeUvSpeed: 10.2
     - _ShakeUvX: 1.5
     - _ShakeUvY: 1
     - _Shape1MaskPow: 1
@@ -240,3 +241,4 @@ Material:
     - _Shape2Color: {r: 1, g: 1, b: 1, a: 1}
     - _Shape3Color: {r: 1, g: 1, b: 1, a: 1}
     - _ShapeColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
