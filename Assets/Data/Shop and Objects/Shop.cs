@@ -25,6 +25,7 @@ public class Shop : MonoBehaviour, IInteractable
 		
 	}
 	
+	
 	void ThrowObjects()
 	{
 		InstantiateBuyableObjectAtPos(pos0.position);
@@ -39,6 +40,11 @@ public class Shop : MonoBehaviour, IInteractable
 		tr.SetParent(null);
 		tr.position = pos;
 		tr.GetComponent<BuyableObject>().SetObjectInfos(objectInfos[0]);
+	}
+	
+	public string GetInteractionDescription()
+	{
+		return "E - Shop";
 	}
 	
 }

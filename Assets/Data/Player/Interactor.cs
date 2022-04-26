@@ -29,12 +29,12 @@ public class Interactor : MonoBehaviour
 	{
 		CheckInteractables();
 		CheckInteractablesChanged();
-		prevInteractable = currentInteractable;
 	}
 	
 	//INTERACTOR LOGIC
 	IInteractable currentInteractable;
 	IInteractable prevInteractable;
+	Transform currentInteractableTr;
 	void CheckInteractables()
 	{
 		Collider[] cols = new Collider[5];
@@ -57,7 +57,8 @@ public class Interactor : MonoBehaviour
 		
 		if(smallestDistIdx != int.MaxValue)//interactables found
 		{
-			currentInteractable = cols[smallestDistIdx].gameObject.GetComponent<IInteractable>();
+			currentInteractableTr = cols[smallestDistIdx].transform;
+			currentInteractable = currentInteractableTr.GetComponent<IInteractable>();
 		}
 		else//interactables not found
 		{
@@ -68,7 +69,26 @@ public class Interactor : MonoBehaviour
 	
 	void CheckInteractablesChanged()
 	{
+		if(currentInteractable == null && prevInteractable != null)
+		{
+			interactionLabel.text = "";
+			interactionCanvas.gameObject.SetActive(false);
+		}
+		if(currentInteractable != null && prevInteractable == null)
+		{
+			interactionCanvas.gameObject.SetActive(true);
+			interactionLabel.text = currentInteractable.GetInteractionDescription();
+		}
 		
+		if(currentInteractable != null && prevInteractable != null)
+		{
+			if(currentInteractable != prevInteractable)
+			{
+				interactionLabel.text = currentInteractable.GetInteractionDescription();
+			}
+		}
+		
+		prevInteractable = currentInteractable;
 	}
 	
 	void Interact()

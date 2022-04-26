@@ -6,5 +6,9 @@ public interface IInteractable
 {
     
 	public void Interact(PlayerController pc);
+	
+	public string GetInteractionDescription();
+	
+	
     
 }

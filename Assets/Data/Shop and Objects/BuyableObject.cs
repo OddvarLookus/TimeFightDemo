@@ -40,12 +40,19 @@ public class BuyableObject : MonoBehaviour, IInteractable
 		}
 	}
     
+	public string GetInteractionDescription()
+	{
+		return $"Buy {objectInfos.objectName} - {objectInfos.cost} CRUPS";
+	}
     
 }
 
 [System.Serializable]
 public class BuyableObjectInfos
 {
+	[Header("NAME")]
+	public string objectName;
+	
 	[Header("COST")]
 	public int cost;
 	
