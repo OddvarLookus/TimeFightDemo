@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bffbbd79ccc1e344aa62850290c19c72, type: 2}
+  - {fileID: 2100000, guid: 15a5ff3267b8b1846946c10c67e55890, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7215149647694174102}
   - component: {fileID: 7215149647694174185}
   m_Layer: 10
-  m_Name: Damage UP
+  m_Name: AttackSpeed UP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,7 +143,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b41a019e55ff2b24cb6a8a1acadab0ea, type: 2}
+  - {fileID: 2100000, guid: 34ef3db69b0c6e64b99b6f3f745baba5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

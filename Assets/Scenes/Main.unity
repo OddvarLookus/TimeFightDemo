@@ -7190,8 +7190,20 @@ MonoBehaviour:
     cost: 2
     damageBonus: 40
     attackSpeedBonus: 0
-    projectilesNumBonus: 0
+    projectilesPerTargetBonus: 0
     graphicsPrefab: {fileID: 7215149647694174187, guid: 2152e9a32c14b7344bd34163ba2e7dc2, type: 3}
+  - objectName: ATTACK SPEED
+    cost: 6
+    damageBonus: 0
+    attackSpeedBonus: 2
+    projectilesPerTargetBonus: 0
+    graphicsPrefab: {fileID: 7215149647694174187, guid: fdca78f6f6e24f14eafc0a0b24f9a695, type: 3}
+  - objectName: SHOOT UP
+    cost: 10
+    damageBonus: 0
+    attackSpeedBonus: 0
+    projectilesPerTargetBonus: 2
+    graphicsPrefab: {fileID: 7215149647694174187, guid: eb7c1a7b796487d4c86110a173ab6d3e, type: 3}
   buyableObjectPrefab: {fileID: 1981706807112002061, guid: c2a55803650b57c43902c22da040a212, type: 3}
   pos0: {fileID: 698349797}
   pos1: {fileID: 107889438}
@@ -30522,6 +30534,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 3.2
       objectReference: {fileID: 0}
+    - target: {fileID: 3988428310733051541, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: bulletsPerTarget
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3988428310733051541, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: betweenBulletTime
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 4999143093157021288, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -30613,6 +30633,10 @@ PrefabInstance:
     - target: {fileID: 4999143093157021291, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
       propertyPath: attackDistance
       value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999143093157021291, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: baseAttackSpeed
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4999143093157021291, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
       propertyPath: finalAttackSize

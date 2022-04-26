@@ -50,19 +50,19 @@ public class Shop : MonoBehaviour, IInteractable
 			pos2.localPosition = new Vector3(localPos2.x, localPos2.y, -localPos2.z);
 		}
 		
-		InstantiateBuyableObjectAtPos(pos0.position);
-		InstantiateBuyableObjectAtPos(pos1.position);
-		InstantiateBuyableObjectAtPos(pos2.position);
+		InstantiateBuyableObjectAtPos(pos0.position, 0);
+		InstantiateBuyableObjectAtPos(pos1.position, 1);
+		InstantiateBuyableObjectAtPos(pos2.position, 2);
 
 	}
 	
-	void InstantiateBuyableObjectAtPos(Vector3 pos)
+	void InstantiateBuyableObjectAtPos(Vector3 pos, int idx)
 	{
 		GameObject g = Instantiate(buyableObjectPrefab);
 		Transform tr = g.transform;
 		tr.SetParent(null);
 		tr.position = pos;
-		tr.GetComponent<BuyableObject>().SetObjectInfos(objectInfos[0]);
+		tr.GetComponent<BuyableObject>().SetObjectInfos(objectInfos[idx]);
 	}
 	
 	public string GetInteractionDescription()

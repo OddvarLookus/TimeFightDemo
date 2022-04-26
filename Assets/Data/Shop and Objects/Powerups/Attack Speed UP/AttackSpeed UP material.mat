@@ -54,7 +54,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: damage UP material
+  m_Name: AttackSpeed UP material
   m_Shader: {fileID: 4800000, guid: 6eb86e4931b506a408fd1477edec61ea, type: 3}
   m_ShaderKeywords: COLORRAMPGRAD_ON GLOWTEX_ON GLOW_ON RIM_ON TEXTURESCROLL_ON _EMISSION
   m_LightmapFlags: 2
@@ -212,7 +212,7 @@ Material:
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Glow: 0.97
-    - _GlowGlobal: 0.97
+    - _GlowGlobal: 1.12
     - _HandDrawnAmount: 10
     - _HandDrawnSpeed: 5
     - _HsvBright: 1
@@ -314,7 +314,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BackFaceTint: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-    - _Color: {r: 1, g: 0.1441677, b: 0, a: 1}
+    - _Color: {r: 0.016121149, g: 1, b: 0, a: 1}
     - _ColorGradingDark: {r: 1, g: 1, b: 1, a: 1}
     - _ColorGradingLight: {r: 1, g: 1, b: 1, a: 1}
     - _ColorGradingMiddle: {r: 1, g: 1, b: 1, a: 1}
@@ -322,7 +322,7 @@ Material:
     - _EmissionColor: {r: 4.237095, g: 0.46585858, b: 0.46585858, a: 1}
     - _FadeBurnColor: {r: 1, g: 1, b: 0, a: 1}
     - _FrontFaceTint: {r: 1, g: 1, b: 1, a: 1}
-    - _GlowColor: {r: 0.7830189, g: 0.17992243, b: 0.0915984, a: 1}
+    - _GlowColor: {r: 0.14249802, g: 0.5660378, b: 0.11427554, a: 1}
     - _LightColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimColor: {r: 1, g: 0.8416089, b: 0.78679246, a: 1}
     - _Shape2Color: {r: 1, g: 1, b: 1, a: 1}

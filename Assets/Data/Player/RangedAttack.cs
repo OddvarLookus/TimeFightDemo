@@ -10,7 +10,20 @@ public class RangedAttack : MonoBehaviour
 	[MinValue(0f)] [SerializeField] float cooldown;
 	float currentCooldown;
 
-    [SerializeField] GameObject rangedProjectilePrefab;
+	[SerializeField] GameObject rangedProjectilePrefab;
+    
+	public int baseBulletsPerTarget = 1;
+	int bulletsPerTarget;
+	public void SetBulletsPerTarget(int newBulPerTarg)
+	{
+		bulletsPerTarget = newBulPerTarg;
+	}
+	
+	int bulletsShot = 0;
+	[SerializeField] float betweenBulletTime = 0.1f;
+	float currentBetweenShotTime = 0f;
+	
+	
 
 	
 	protected void OnEnable()
@@ -28,36 +41,45 @@ public class RangedAttack : MonoBehaviour
     {
         AttackInput();
     }
-
+	
+	Collider[] enemies = new Collider[1];
     void AttackInput()
 	{
 		if(currentCooldown >= cooldown)
 		{
 			if(Input.GetMouseButtonDown(1))
 			{
-				Collider[] enemies = Physics.OverlapSphere(transform.position, maxRange, 1<<6, QueryTriggerInteraction.Ignore);
-				if(enemies.Length <= maxTargetsNum && enemies.Length > 0)//enemies in range are equal or less to the max number of targets
+				enemies = Physics.OverlapSphere(transform.position, maxRange, 1<<6, QueryTriggerInteraction.Ignore);
+				
+				currentCooldown = 0f;
+				for(int i = 0; i < Mathf.Min(maxTargetsNum, enemies.Length); i++)
 				{
-					currentCooldown = 0f;
-					for(int i = 0; i < enemies.Length; i++)
-					{
-						ShootProjectile(enemies[i].transform);
-					}
+					ShootProjectile(enemies[i].transform);
 				}
-				else if(enemies.Length > maxTargetsNum && enemies.Length > 0)//enemies in range are more than max number of targets
-				{
-					currentCooldown = 0f;
-					for(int i = 0; i < maxTargetsNum; i++)
-					{
-						ShootProjectile(enemies[i].transform);
-					}
-
-				}
+				bulletsShot = 1;
+				currentBetweenShotTime = 0f;
+				
 			}
 		}
 		else
 		{
 			currentCooldown += Time.deltaTime;
+			
+			currentBetweenShotTime += Time.deltaTime;
+			if(bulletsShot < bulletsPerTarget && currentBetweenShotTime > betweenBulletTime)
+			{
+				for(int i = 0; i < Mathf.Min(maxTargetsNum, enemies.Length); i++)
+				{
+					if(enemies[i] != null)
+					{
+						ShootProjectile(enemies[i].transform);
+					}
+					
+				}
+				currentBetweenShotTime = 0f;
+				bulletsShot += 1;
+			}
+			
 		}
 
     }

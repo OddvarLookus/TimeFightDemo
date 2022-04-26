@@ -59,7 +59,7 @@ public class BuyableObjectInfos
 	[Header("BONUSES")]
 	public float damageBonus;
 	public float attackSpeedBonus;
-	public int projectilesNumBonus;
+	public int projectilesPerTargetBonus;
 	
 	[Header("GRAPHICS")]
 	public GameObject graphicsPrefab;

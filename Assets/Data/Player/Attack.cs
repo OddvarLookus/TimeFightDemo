@@ -17,7 +17,8 @@ public class Attack : MonoBehaviour
 	
 	[Header("Attack Dynamics")]
 	[SerializeField] float attackDistance;
-	[SerializeField] float attackSpeed;
+	public float baseAttackSpeed;
+	float attackSpeed;
 	float attackTime;
 	float currentAttackTime = 0f;
 	bool attacking = false;
@@ -57,7 +58,7 @@ public class Attack : MonoBehaviour
 	    attackTriggerReporter.OnTriggerEnterAction += AttackCollisionEnter;
 	    attackCollider.SetActive(false);
         
-	    attackTime = 1f / attackSpeed;
+	    
     }
 	
 	protected void Update()

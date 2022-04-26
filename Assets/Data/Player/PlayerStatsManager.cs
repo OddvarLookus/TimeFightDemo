@@ -6,10 +6,11 @@ public class PlayerStatsManager : MonoBehaviour
 {
 	//REFERENCES
 	Attack attack;
-    
+	RangedAttack rangedAttack;
 	protected void Awake()
 	{
 		attack = GetComponent<Attack>();
+		rangedAttack = GetComponent<RangedAttack>();
 		RecalculateStats();
 	}
 	
@@ -27,6 +28,7 @@ public class PlayerStatsManager : MonoBehaviour
     
 	void RecalculateStats()
 	{
+		//DAMAGE RECALCULATION
 		float dmg = attack.baseDamage;
 		
 		for(int i = 0; i < items.Count; i++)
@@ -35,8 +37,29 @@ public class PlayerStatsManager : MonoBehaviour
 			dmg = dmg + items[i].damageBonus;
 			
 		}
-		
 		attack.SetDamage(dmg);
+		
+		//ATTACK SPEED RECALCULATION
+		float atkSpeed = attack.baseAttackSpeed;
+		
+		for(int i = 0; i < items.Count; i++)
+		{
+			
+			atkSpeed = atkSpeed + items[i].attackSpeedBonus;
+			
+		}
+		attack.SetAttackSpeed(atkSpeed);
+		
+		//RANGED ATTACK BULLETS PER TARGET RECALCULATION
+		int bulletsPerTarget = rangedAttack.baseBulletsPerTarget;
+		
+		for(int i = 0; i < items.Count; i++)
+		{
+			
+			bulletsPerTarget = bulletsPerTarget + items[i].projectilesPerTargetBonus;
+			
+		}
+		rangedAttack.SetBulletsPerTarget(bulletsPerTarget);
 	}
     
 }
