@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e6f25e1cb0f6d5479e1a0de07beff0b, type: 3}
+  m_Name: Level 1
+  m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 8488491456709531852, guid: 5b0e9f0bf0d93b8418232dfdb59b16a2, type: 3}
+    - {fileID: 5113938375352459004, guid: 0164d3bf1eeed5a4f809e01141e53cf2, type: 3}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: enemies
+      Entry: 7
+      Data: 0|System.Collections.Generic.List`1[[EnemyRoller, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 1|EnemyRoller, Assembly-CSharp
+    - Name: enemyPrefab
+      Entry: 10
+      Data: 0
+    - Name: probability
+      Entry: 4
+      Data: 0.65
+    - Name: sizesRollers
+      Entry: 7
+      Data: 2|EnemySizeRoller[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 3|EnemySizeRoller, Assembly-CSharp
+    - Name: size
+      Entry: 3
+      Data: 0
+    - Name: probability
+      Entry: 4
+      Data: 0.65
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 4|EnemySizeRoller, Assembly-CSharp
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: probability
+      Entry: 4
+      Data: 0.350000024
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 5|EnemyRoller, Assembly-CSharp
+    - Name: enemyPrefab
+      Entry: 10
+      Data: 1
+    - Name: probability
+      Entry: 4
+      Data: 0.350000024
+    - Name: sizesRollers
+      Entry: 7
+      Data: 6|EnemySizeRoller[], Assembly-CSharp
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 7|EnemySizeRoller, Assembly-CSharp
+    - Name: size
+      Entry: 3
+      Data: 0
+    - Name: probability
+      Entry: 4
+      Data: 0.8
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 8|EnemySizeRoller, Assembly-CSharp
+    - Name: size
+      Entry: 3
+      Data: 1
+    - Name: probability
+      Entry: 4
+      Data: 0.2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+  difficultyValue: 50

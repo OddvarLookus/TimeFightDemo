@@ -10,16 +10,15 @@ public class Health : MonoBehaviour
     {
         return affiliation;
     }
-    [SerializeField] float minMaxHealth;
-    [SerializeField] float maxMaxHealth;
+    
     [SerializeField] float maxHealth;
     float currentHealth;
 	[SerializeField] UnityEvent OnDeath;
 	[SerializeField] GameObject deathPrefab;
     
-    public void Initialize(float _factor)
+	public void Initialize(float nMaxHealth)
     {
-        maxHealth = Mathf.Lerp(minMaxHealth, maxMaxHealth, _factor);
+	    maxHealth = nMaxHealth;
         currentHealth = maxHealth;
     }
 

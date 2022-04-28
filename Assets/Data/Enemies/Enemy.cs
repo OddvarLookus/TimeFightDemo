@@ -16,9 +16,9 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] protected Renderer mainRenderer;
 
-    [Header("Size")]
-    [SerializeField] float minSize;
-	[SerializeField] float maxSize;
+	[Header("Stats")]
+	[SerializeField] EnemyStatsSet statsSet;
+	[SerializeField] EnemySize currentSize;
     
 	protected EnemyAggroState aggroState = EnemyAggroState.NEUTRAL;
 
@@ -37,10 +37,11 @@ public class Enemy : MonoBehaviour
 
     void InitializeEnemy()
     {
-        float factor = Random.Range(0f, 1f);
-        health.Initialize(factor);
-        float size = Mathf.Lerp(minSize, maxSize, factor);
-        transform.localScale = new Vector3(size, size, size);
+	    float mHealth = statsSet.enemyStats[currentSize].maxHealth;
+	    health.Initialize(mHealth);
+	    
+	    float nScale = statsSet.enemyStats[currentSize].scale;
+	    transform.localScale = new Vector3(nScale, nScale, nScale);
     }
 	
 	protected virtual void RotateTowardsMovement(float rotationSpeed, bool onlyZ = false)
@@ -74,15 +75,11 @@ public class Enemy : MonoBehaviour
 
 
     
-    //GIZMOS
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, minSize);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, maxSize);
-    }
+
 }
 
 public enum EnemyAggroState {NEUTRAL = 0, AGGRO = 1}
+
+
+
 

@@ -328,8 +328,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   affiliation: 1
-  minMaxHealth: 1
-  maxMaxHealth: 4
   maxHealth: 1
   OnDeath:
     m_PersistentCalls:
@@ -360,8 +358,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainRenderer: {fileID: 885007231050243873}
-  minSize: 0.4
-  maxSize: 3.03
+  statsSet: {fileID: 11400000, guid: 5dfc613bcdd08414799bfb3218acbcda, type: 2}
+  currentSize: 0
   minMoveTime: 4.6
   maxMoveTime: 10.83
   minMoveForce: 32.9
