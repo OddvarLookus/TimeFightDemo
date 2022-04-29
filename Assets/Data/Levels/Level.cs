@@ -12,7 +12,6 @@ public class Level : SerializedScriptableObject
 	[OnInspectorGUI("RecalculateProbabilities")]public List<EnemyRoller> enemies = new List<EnemyRoller>();
 	void RecalculateProbabilities()
 	{
-		Debug.Log("VALUE CHANGED");
 		//ITERATE THE ENEMIES
 		float currentEnemyRollerProb = 0f;
 		for(int i = 0; i < enemies.Count; i++)

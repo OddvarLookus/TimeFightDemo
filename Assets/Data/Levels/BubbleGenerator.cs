@@ -76,7 +76,8 @@ public class BubbleGenerator : MonoBehaviour
 	void GenerateEnemies()
 	{
 		int currentDifficulty = currentLevel.difficultyValue;
-		List<EnemyRoller> enemiesGenList = currentLevel.enemies;
+		Level thisLevel = Instantiate(currentLevel);
+		List<EnemyRoller> enemiesGenList = thisLevel.enemies;
 		
 		while(currentDifficulty > 0)
 		{
@@ -92,6 +93,7 @@ public class BubbleGenerator : MonoBehaviour
 				if(randEnemy <= totProb)
 				{
 					enemyIdx = i;
+					break;
 				}
 			}
 			
@@ -102,6 +104,7 @@ public class BubbleGenerator : MonoBehaviour
 				if(randVariant <= totVariantProb)
 				{
 					variantIdx = i;
+					break;
 				}
 			}
 			
@@ -114,6 +117,9 @@ public class BubbleGenerator : MonoBehaviour
 			EnemySize desiredSize = enemiesGenList[enemyIdx].sizesRollers[variantIdx].size;
 			nEnemyEnemy.SetEnemySize(desiredSize);
 			
+			//Debug.Log($"SPAWNED: {nEnemy.name}");
+			//Debug.Log($"DIFFICULTY: {currentDifficulty} -> {currentDifficulty - nEnemyEnemy.GetStatsSet().enemyStats[desiredSize].difficultyValue}");
+			
 			int diffToLower = nEnemyEnemy.GetStatsSet().enemyStats[desiredSize].difficultyValue;
 			
 			//AFTER SPAWNING THE ENTITY, CHECK PROBABILITIES
@@ -125,7 +131,7 @@ public class BubbleGenerator : MonoBehaviour
 	List<EnemyRoller> RemoveTooDifficult(List<EnemyRoller> rollers, int diff)
 	{
 		List<EnemyRoller> nRollers = rollers;
-		for(int i = nRollers.Count; i >= 0; i--)
+		for(int i = nRollers.Count - 1; i >= 0; i--)
 		{
 			for(int e = nRollers[i].sizesRollers.Count - 1; e >= 0; e--)
 			{
@@ -133,12 +139,14 @@ public class BubbleGenerator : MonoBehaviour
 				if(diff < enemyDiff)
 				{
 					nRollers[i].sizesRollers.RemoveAt(e);
+					
 				}
 			}
 			
 			if(nRollers[i].sizesRollers.Count <= 0)
 			{
 				nRollers.RemoveAt(i);
+				
 			}
 		}
 		nRollers = InflateProbabilities(nRollers);
@@ -156,8 +164,10 @@ public class BubbleGenerator : MonoBehaviour
 			return new List<EnemyRoller>();
 		}
 		
-		for(int i = nRollers.Count; i >= 0; i--)
+		for(int i = nRollers.Count - 1; i >= 0; i--)
 		{
+			
+			
 			totalEnemyRollersProb += nRollers[i].probability;
 			
 			//SIZES ROLLERS.

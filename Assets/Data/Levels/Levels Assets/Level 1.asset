@@ -17,7 +17,9 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 8488491456709531852, guid: 5b0e9f0bf0d93b8418232dfdb59b16a2, type: 3}
+    - {fileID: 107109843671376553, guid: 5b0e9f0bf0d93b8418232dfdb59b16a2, type: 3}
     - {fileID: 5113938375352459004, guid: 0164d3bf1eeed5a4f809e01141e53cf2, type: 3}
+    - {fileID: 5113938375352458977, guid: 0164d3bf1eeed5a4f809e01141e53cf2, type: 3}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -37,8 +39,8 @@ MonoBehaviour:
       Entry: 10
       Data: 0
     - Name: enemy
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 1
     - Name: probability
       Entry: 4
       Data: 0.65
@@ -57,7 +59,7 @@ MonoBehaviour:
       Data: 0
     - Name: probability
       Entry: 4
-      Data: 0.6
+      Data: 0.65
     - Name: 
       Entry: 8
       Data: 
@@ -69,7 +71,7 @@ MonoBehaviour:
       Data: 1
     - Name: probability
       Entry: 4
-      Data: 0.4
+      Data: 0.35
     - Name: 
       Entry: 8
       Data: 
@@ -87,13 +89,13 @@ MonoBehaviour:
       Data: 5|EnemyRoller, Assembly-CSharp
     - Name: enemyPrefab
       Entry: 10
-      Data: 1
+      Data: 2
     - Name: enemy
-      Entry: 6
-      Data: 
+      Entry: 10
+      Data: 3
     - Name: probability
       Entry: 4
-      Data: 0.350000024
+      Data: 0.35
     - Name: sizesRollers
       Entry: 7
       Data: 6|System.Collections.Generic.List`1[[EnemySizeRoller, Assembly-CSharp]],
@@ -121,7 +123,7 @@ MonoBehaviour:
       Data: 1
     - Name: probability
       Entry: 4
-      Data: 0.199999988
+      Data: 0.2
     - Name: 
       Entry: 8
       Data: 
