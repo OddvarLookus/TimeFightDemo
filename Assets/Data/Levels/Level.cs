@@ -31,7 +31,7 @@ public class Level : SerializedScriptableObject
 			
 			//ITERATE THE SIZE ROLLERS
 			float currentSizeRollerProb = 0f;
-			for(int e = 0; e < enemies[i].sizesRollers.Length; e++)
+			for(int e = 0; e < enemies[i].sizesRollers.Count; e++)
 			{
 				float nProb = currentSizeRollerProb + enemies[i].sizesRollers[e].probability;
 				if(nProb > 1f)
@@ -46,6 +46,8 @@ public class Level : SerializedScriptableObject
 			}
 		}
 	}
+	
+	
     
 }
 
@@ -57,7 +59,18 @@ public class EnemySizeRoller
 
 public class EnemyRoller
 {
-	public GameObject enemyPrefab;
+	[OnValueChanged("GetEnemyFromPrefab")] public GameObject enemyPrefab;
+	[HideInInspector] public Enemy enemy;
+	void GetEnemyFromPrefab()
+	{
+		if(enemyPrefab != null)
+		{
+			enemy = enemyPrefab.GetComponent<Enemy>();
+		}
+	}
+	
 	[Range(0f, 1f)] public float probability;
-	public EnemySizeRoller[] sizesRollers;
+	public List<EnemySizeRoller> sizesRollers;
+	
+	
 }

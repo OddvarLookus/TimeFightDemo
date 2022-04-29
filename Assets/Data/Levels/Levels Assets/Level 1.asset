@@ -36,12 +36,16 @@ MonoBehaviour:
     - Name: enemyPrefab
       Entry: 10
       Data: 0
+    - Name: enemy
+      Entry: 6
+      Data: 
     - Name: probability
       Entry: 4
       Data: 0.65
     - Name: sizesRollers
       Entry: 7
-      Data: 2|EnemySizeRoller[], Assembly-CSharp
+      Data: 2|System.Collections.Generic.List`1[[EnemySizeRoller, Assembly-CSharp]],
+        mscorlib
     - Name: 
       Entry: 12
       Data: 2
@@ -53,7 +57,7 @@ MonoBehaviour:
       Data: 0
     - Name: probability
       Entry: 4
-      Data: 0.65
+      Data: 0.6
     - Name: 
       Entry: 8
       Data: 
@@ -65,7 +69,7 @@ MonoBehaviour:
       Data: 1
     - Name: probability
       Entry: 4
-      Data: 0.350000024
+      Data: 0.4
     - Name: 
       Entry: 8
       Data: 
@@ -84,12 +88,16 @@ MonoBehaviour:
     - Name: enemyPrefab
       Entry: 10
       Data: 1
+    - Name: enemy
+      Entry: 6
+      Data: 
     - Name: probability
       Entry: 4
       Data: 0.350000024
     - Name: sizesRollers
       Entry: 7
-      Data: 6|EnemySizeRoller[], Assembly-CSharp
+      Data: 6|System.Collections.Generic.List`1[[EnemySizeRoller, Assembly-CSharp]],
+        mscorlib
     - Name: 
       Entry: 12
       Data: 2
@@ -113,7 +121,7 @@ MonoBehaviour:
       Data: 1
     - Name: probability
       Entry: 4
-      Data: 0.2
+      Data: 0.199999988
     - Name: 
       Entry: 8
       Data: 

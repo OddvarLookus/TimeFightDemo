@@ -18,7 +18,16 @@ public class Enemy : MonoBehaviour
 
 	[Header("Stats")]
 	[SerializeField] EnemyStatsSet statsSet;
+	public EnemyStatsSet GetStatsSet(){return statsSet;}
 	[SerializeField] EnemySize currentSize;
+	public void SetEnemySize(EnemySize nSize)
+	{
+		currentSize = nSize;
+	}
+	public EnemySize GetEnemySize()
+	{
+		return currentSize;
+	}
     
 	protected EnemyAggroState aggroState = EnemyAggroState.NEUTRAL;
 

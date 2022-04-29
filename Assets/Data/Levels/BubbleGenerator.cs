@@ -18,8 +18,7 @@ public class BubbleGenerator : MonoBehaviour
 	[TitleGroup("Generation/Asteroids")] [SerializeField] int numberOfAsteroids;
 	[TitleGroup("Generation/Asteroids")] [SerializeField] [AssetsOnly] GameObject[] asteroidsPrefabs;
 	
-	[TitleGroup("Generation/Enemies")] [SerializeField] int numberOfEnemies;
-	[TitleGroup("Generation/Enemies")] [SerializeField] [AssetsOnly] GameObject[] enemiesPrefabs;
+	[TitleGroup("Generation/Enemies")] [SerializeField] [AssetsOnly] Level currentLevel;
 	
 	[TitleGroup("Generation")]
 	[Button("GENERATE LEVEL")]
@@ -58,18 +57,142 @@ public class BubbleGenerator : MonoBehaviour
 		}
 		
 		//INSTANTIATE ENEMIES
-		for(int i = 0; i < numberOfEnemies; i++)
-		{
-			int rIndex = Random.Range(0, enemiesPrefabs.Length);
-			GameObject nEnemy = Instantiate(enemiesPrefabs[rIndex]);
-			nEnemy.transform.SetParent(enemiesParent, false);
-			nEnemy.transform.position = GetRandomPointInSphere();
-		}
+		GenerateEnemies();
+		
+		//for(int i = 0; i < numberOfEnemies; i++)
+		//{
+		//	int rIndex = Random.Range(0, enemiesPrefabs.Length);
+		//	GameObject nEnemy = Instantiate(enemiesPrefabs[rIndex]);
+		//	nEnemy.transform.SetParent(enemiesParent, false);
+		//	nEnemy.transform.position = GetRandomPointInSphere();
+		//}
 		
 		//WORLD LIMIT
 		worldLimitTr.localScale = new Vector3(radius, radius, radius);
 		
 	}
+	
+	#region ENEMY_GENERATION
+	void GenerateEnemies()
+	{
+		int currentDifficulty = currentLevel.difficultyValue;
+		List<EnemyRoller> enemiesGenList = currentLevel.enemies;
+		
+		while(currentDifficulty > 0)
+		{
+			float randEnemy = Random.Range(0f, 1f);
+			float randVariant = Random.Range(0f, 1f);
+			int enemyIdx = 0;
+			int variantIdx = 0;
+			
+			float totProb = 0f;
+			for(int i = 0; i < enemiesGenList.Count; i++)
+			{
+				totProb += enemiesGenList[i].probability;
+				if(randEnemy <= totProb)
+				{
+					enemyIdx = i;
+				}
+			}
+			
+			float totVariantProb = 0f;
+			for(int i = 0; i < enemiesGenList[enemyIdx].sizesRollers.Count; i++)
+			{
+				totVariantProb += enemiesGenList[enemyIdx].sizesRollers[i].probability;
+				if(randVariant <= totVariantProb)
+				{
+					variantIdx = i;
+				}
+			}
+			
+			//SPAWN THE ENTITY
+			GameObject nEnemy = Instantiate(enemiesGenList[enemyIdx].enemyPrefab);
+			Transform nEnemyTr = nEnemy.transform;
+			nEnemyTr.SetParent(enemiesParent);
+			nEnemyTr.position = GetRandomPointInSphere();
+			Enemy nEnemyEnemy = nEnemy.GetComponent<Enemy>();
+			EnemySize desiredSize = enemiesGenList[enemyIdx].sizesRollers[variantIdx].size;
+			nEnemyEnemy.SetEnemySize(desiredSize);
+			
+			int diffToLower = nEnemyEnemy.GetStatsSet().enemyStats[desiredSize].difficultyValue;
+			
+			//AFTER SPAWNING THE ENTITY, CHECK PROBABILITIES
+			currentDifficulty -= diffToLower;
+			enemiesGenList = RemoveTooDifficult(enemiesGenList, currentDifficulty);
+		}
+	}
+	
+	List<EnemyRoller> RemoveTooDifficult(List<EnemyRoller> rollers, int diff)
+	{
+		List<EnemyRoller> nRollers = rollers;
+		for(int i = nRollers.Count; i >= 0; i--)
+		{
+			for(int e = nRollers[i].sizesRollers.Count - 1; e >= 0; e--)
+			{
+				int enemyDiff = nRollers[i].enemy.GetStatsSet().enemyStats[nRollers[i].sizesRollers[e].size].difficultyValue;
+				if(diff < enemyDiff)
+				{
+					nRollers[i].sizesRollers.RemoveAt(e);
+				}
+			}
+			
+			if(nRollers[i].sizesRollers.Count <= 0)
+			{
+				nRollers.RemoveAt(i);
+			}
+		}
+		nRollers = InflateProbabilities(nRollers);
+		return nRollers;
+	}
+	
+	List<EnemyRoller> InflateProbabilities(List<EnemyRoller> rollers)
+	{
+		List<EnemyRoller> nRollers = rollers;
+		//ENEMY ROLLERS
+		float totalEnemyRollersProb = 0f;
+		int enemiesRollersCount = nRollers.Count;
+		if(enemiesRollersCount <= 0)
+		{
+			return new List<EnemyRoller>();
+		}
+		
+		for(int i = nRollers.Count; i >= 0; i--)
+		{
+			totalEnemyRollersProb += nRollers[i].probability;
+			
+			//SIZES ROLLERS.
+			float totalSizesRollersProb = 0f;
+			int rollersCount = nRollers[i].sizesRollers.Count;
+			if(rollersCount == 0)
+			{
+				continue;
+			}
+			
+			for(int e = nRollers[i].sizesRollers.Count - 1; e >= 0; e--)
+			{
+				totalSizesRollersProb += nRollers[i].sizesRollers[e].probability;
+			}
+			float remainingProbability = 1f - totalSizesRollersProb;
+			float probabilityToAdd = remainingProbability / (float)rollersCount;
+			for(int e = nRollers[i].sizesRollers.Count - 1; e >= 0; e--)
+			{
+				nRollers[i].sizesRollers[e].probability += probabilityToAdd;
+			}
+		}
+		
+		float remainingEnemiesProbability = 1f - totalEnemyRollersProb;
+		float enemiesProbabilityToAdd = remainingEnemiesProbability / (float)enemiesRollersCount;
+		//ADD REMAINING PROBABILITIES TO THE ENEMY ROLLERS
+		for(int i = 0; i < nRollers.Count; i++)
+		{
+			nRollers[i].probability += enemiesProbabilityToAdd;
+		}
+		
+		return nRollers;
+	}
+	
+	#endregion
+
 	
 	public Vector3 GetRandomPointInSphere()
 	{
