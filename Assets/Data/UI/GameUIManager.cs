@@ -85,5 +85,20 @@ public class GameUIManager : MonoBehaviour
 		pausePanel.gameObject.SetActive(active);
 	}
 	
+	//ENEMIES REMAINING
+	[SerializeField] TextMeshProUGUI enemiesRemainingLabel;
+	public void SetEnemiesRemaining(int nRemaining)
+	{
+		if(nRemaining == -1)
+		{
+			enemiesRemainingLabel.text = "";
+			return;
+		}
+		else
+		{
+			enemiesRemainingLabel.text = $"{nRemaining}\nREMAINING";
+		}
+		
+	}
 	
 }

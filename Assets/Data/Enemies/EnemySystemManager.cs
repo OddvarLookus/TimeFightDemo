@@ -7,7 +7,7 @@ public class EnemySystemManager : MonoBehaviour
 {
 	int currentEnemies = 0;
 	int prevEnemies = 0;
-	
+	[SerializeField] int maxEnemiesToNotify;
 	
 	[SerializeField] UnityEvent onAllEnemiesKilled;
 	bool allEnemiesKilledCalled = false;
@@ -32,6 +32,15 @@ public class EnemySystemManager : MonoBehaviour
 		{
 			onAllEnemiesKilled?.Invoke();
 			allEnemiesKilledCalled = true;
+		}
+		
+		if(currentEnemies <= maxEnemiesToNotify)
+		{
+			GameUIManager.instance.SetEnemiesRemaining(currentEnemies);
+		}
+		else
+		{
+			GameUIManager.instance.SetEnemiesRemaining(-1);
 		}
 		
 		prevEnemies = currentEnemies;
