@@ -13,10 +13,13 @@ public class PlayerShield : MonoBehaviour
 	float currentShieldCharge = 0f;
 	[SerializeField] float shieldChargeSpeed;
 	
-	
 	[SceneObjectsOnly] [SerializeField] Transform shieldGraphicsTr;
 	[AssetsOnly] [SerializeField] GameObject playerExplosionPrefab;
 	[SceneObjectsOnly] [SerializeField] Transform playerGraphics; 
+	
+	[SerializeField] SoundsPack shieldChargedSound;
+	[SerializeField] SoundsPack shieldDepletedSound;
+	
 	
 	protected void Awake()
 	{
@@ -40,6 +43,7 @@ public class PlayerShield : MonoBehaviour
 			else//shield is loaded
 			{
 				currentShield += 1;
+				StaticAudioStarter.instance.StartAudioEmitter(transform.position, shieldChargedSound.GetRandomSound());
 				RefreshShieldGraphics();
 			}
 		}
@@ -63,6 +67,11 @@ public class PlayerShield : MonoBehaviour
 		{
 			Die();
 		}
+		else
+		{
+			StaticAudioStarter.instance.StartAudioEmitter(transform.position, shieldDepletedSound.GetRandomSound());
+		}
+		
 	}
     
 	void Die()

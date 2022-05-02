@@ -45,8 +45,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         
-	    
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Cursor.lockState = CursorLockMode.None;
@@ -97,14 +95,11 @@ public class PlayerController : MonoBehaviour
 	        if (!dashPressed || dashPressed && punchAttack.IsAttacking())//MOVEMENT WITHOUT DASH
             {
             	float realMaxSpeed = playerMaxSpeed;
-		        if(punchAttack.IsAttacking())/* && !punchAttack.IsChargedAttack()*/
+		        if(punchAttack.IsAttacking())
             	{
             		realMaxSpeed *= speedWhileAttackingMultiplier;
             	}
-		        //else if(punchAttack.IsAttacking() && punchAttack.IsChargedAttack() && punchAttack.IsChargedAttackFinished())
-		        //{
-		        //	realMaxSpeed *= speedWhileAttackingMultiplier;
-		        //}
+		        
             	
 	            rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * realMaxSpeed, playerAcceleration * Time.fixedDeltaTime);
             }

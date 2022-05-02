@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,10 +6,11 @@ using UnityEngine;
 public class SoundSelfDestroy : MonoBehaviour
 {
     AudioSource audioSorcio;
-    public void Initialize(AudioClip _clip)
+	public void Initialize(AudioClip _clip, float nPitch = 1f)
     {
         audioSorcio = GetComponent<AudioSource>();
-        audioSorcio.clip = _clip;
+	    audioSorcio.clip = _clip;
+	    audioSorcio.pitch = nPitch;
         float duration = _clip.length;
         audioSorcio.Play();
         StartCoroutine(SourceDestroyCoroutine(duration));

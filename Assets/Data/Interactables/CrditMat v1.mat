@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CrditMat
+  m_Name: CrditMat v1
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 2
@@ -74,6 +74,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.96697927, g: 1, b: 0.361, a: 1}
-    - _EmissionColor: {r: 4.9097223, g: 4.3280835, b: 0.8059353, a: 1}
+    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 4.813872, g: 4.2592783, b: 0.84298223, a: 1}
   m_BuildTextureStacks: []

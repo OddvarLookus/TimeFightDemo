@@ -44,6 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 495e7831e671bce45b53a17ac4bccb0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buySound:
+    possibleSounds:
+    - {fileID: 8300000, guid: 5fadbcace55966947b82a0782bcc14e3, type: 3}
+    minPitch: 1
+    maxPitch: 1
 --- !u!65 &3874771983605701177
 BoxCollider:
   m_ObjectHideFlags: 0

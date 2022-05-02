@@ -1,20 +1,16 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 public class Asteroid : MonoBehaviour
 {
-
-
+	
     [SerializeField] float minInitSpeed;
     [SerializeField] float maxInitSpeed;
     [SerializeField] float mass = 10f;
     [SerializeField] float maxHealth;
     float currentHealth;
-
-    [SerializeField] AudioClip destroyAudioClip;
-    [SerializeField] GameObject destructionSoundPrefab;
 
     [SerializeField] float dropsReleaseRadius;
     [SerializeField] Drop[] drops;
@@ -48,13 +44,8 @@ public class Asteroid : MonoBehaviour
     }
 
     public void AsteroidDestroy()
-    {
-        GameObject destructionSound = Instantiate(destructionSoundPrefab);
-        destructionSound.transform.SetParent(null);
-        destructionSound.transform.position = transform.position;
-        destructionSound.GetComponent<SoundSelfDestroy>().Initialize(destroyAudioClip);
-
-
+	{
+    	
         for (int i = 0; i < drops.Length; i++)
         {
             for (int n = 0; n < drops[i].dropsNum; n++)

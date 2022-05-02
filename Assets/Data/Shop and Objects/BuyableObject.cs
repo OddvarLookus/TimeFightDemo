@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BuyableObject : MonoBehaviour, IInteractable
 {
+	[SerializeField] SoundsPack buySound;
+	
 	BuyableObjectInfos objectInfos;
 	public void SetObjectInfos(BuyableObjectInfos newObjectInfos)
 	{
@@ -32,6 +34,8 @@ public class BuyableObject : MonoBehaviour, IInteractable
 		if(bought)
 		{
 			pc.GetComponent<PlayerStatsManager>().AddItem(objectInfos);
+			
+			StaticAudioStarter.instance.StartAudioEmitter(transform.position, buySound.GetRandomSound());
 			Destroy(this.gameObject);
 		}
 		else
