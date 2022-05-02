@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] Attack punchAttack;
 	[SerializeField] float speedWhileAttackingMultiplier;
     
+	bool dashing = false;
+	public bool IsDashing(){return dashing;}
+	bool prevDashing = false;
+	
 	bool speedDashing = false;
 	public bool IsSpeedDashing(){return speedDashing;}
 
@@ -84,8 +88,9 @@ public class PlayerController : MonoBehaviour
         }
         bool dashPressed = Input.GetKey(KeyCode.LeftShift);
 
-
-        inputVec = inputVec.normalized;
+	    inputVec = inputVec.normalized;
+        
+	    dashing = dashPressed && inputVec.magnitude > 0.1f;
 
         relativeInput = Quaternion.LookRotation(camController.GetCameraForward(), camController.GetCameraUp()) * inputVec;
         relativeInput = relativeInput.normalized;
@@ -113,7 +118,8 @@ public class PlayerController : MonoBehaviour
 	        rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, playerDeceleration * Time.fixedDeltaTime);
         }
         
-        
+	    ManageDashSounds();
+	    prevDashing = dashing;
 	    speedDashing = rb.velocity.magnitude > 150f;
     }
 
@@ -138,10 +144,31 @@ public class PlayerController : MonoBehaviour
 	        rb.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime);
         }
         
-		
-		
     }
-
+	
+	[Header("DASH SOUNDS")]
+	[SerializeField] AudioSource dashStartAudio;
+	[SerializeField] AudioSource dashLoopAudio;
+	[SerializeField] AudioSource dashStopAudio;
+	
+	void ManageDashSounds()
+	{
+		if(dashing && !prevDashing)
+		{
+			dashStartAudio.Play();
+		}
+		else if(!dashing && prevDashing == true)
+		{
+			dashLoopAudio.Stop();
+			dashStopAudio.Play();
+		}
+		
+		if(dashing && !dashLoopAudio.isPlaying)
+		{
+			dashLoopAudio.Play();
+		}
+	}
+	
     public Vector3 GetVelocity()
     {
         return rb.velocity;

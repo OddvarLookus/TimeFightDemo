@@ -33,6 +33,8 @@ public class Shop : MonoBehaviour, IInteractable
 		localPos0 = pos0.localPosition;
 		localPos1 = pos1.localPosition;
 		localPos2 = pos2.localPosition;
+		
+		StartShopSoundTimer();
 	}
 	
 	void ThrowObjects(bool front)
@@ -68,6 +70,22 @@ public class Shop : MonoBehaviour, IInteractable
 	public string GetInteractionDescription()
 	{
 		return "E - Shop";
+	}
+	
+	//SOUNDS
+	[Header("SOUNDS")]
+	[SerializeField] SoundsPack shopSound;
+	[SerializeField] float shopSoundTime;
+	void StartShopSoundTimer()
+	{
+		StaticAudioStarter.instance.StartAudioEmitter(transform.position, shopSound.GetRandomSound(), shopSound.GetRandomPitch());
+		StartCoroutine(ShopSoundCoroutine(shopSoundTime));
+	}
+	
+	IEnumerator ShopSoundCoroutine(float time)
+	{
+		yield return new WaitForSeconds(time);
+		StartShopSoundTimer();
 	}
 	
 }

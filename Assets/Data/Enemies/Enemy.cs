@@ -43,6 +43,16 @@ public class Enemy : MonoBehaviour
 
         InitializeEnemy();
     }
+    
+	protected virtual void Start()
+	{
+		StartSoundTimer();
+	}
+    
+	protected virtual void Update()
+	{
+		
+	}
 
     void InitializeEnemy()
     {
@@ -76,6 +86,24 @@ public class Enemy : MonoBehaviour
 		}
 
 	}
+	
+	[Header("VOICE")]
+	[AssetsOnly] [SerializeField] SoundsPack enemyVoice;
+	[SerializeField] float minVoiceTime;
+	[SerializeField] float maxVoiceTime;
+	float voiceTime = 0f;
+	void StartSoundTimer()
+	{
+		voiceTime = Random.Range(minVoiceTime, maxVoiceTime);
+		StartCoroutine(SoundTimerCoroutine());
+	}
+	IEnumerator SoundTimerCoroutine()
+	{
+		yield return new WaitForSeconds(voiceTime);
+		StaticAudioStarter.instance.StartAudioEmitter(transform.position, enemyVoice.GetRandomSound(), enemyVoice.GetRandomPitch());
+		StartSoundTimer();
+	}
+	
 	
     public void Push(Vector3 _pushForce)
     {

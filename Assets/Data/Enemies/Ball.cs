@@ -19,7 +19,11 @@ public class Ball : Enemy
         base.OnEnable();
         InitializeTime();
     }
-
+	
+	protected override void Start()
+	{
+		base.Start();
+	}
 
     void FixedUpdate()
     {

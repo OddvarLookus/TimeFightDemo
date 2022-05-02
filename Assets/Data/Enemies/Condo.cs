@@ -50,6 +50,10 @@ public class Condo : Enemy
 		InitializeTimeNeutral();
 	}
 	
+	protected override void Start()
+	{
+		base.Start();
+	}
 	
 	// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
 	protected void FixedUpdate()

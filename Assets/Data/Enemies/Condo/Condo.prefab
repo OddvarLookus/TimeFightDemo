@@ -428,6 +428,15 @@ MonoBehaviour:
   mainRenderer: {fileID: 2658602246475258807}
   statsSet: {fileID: 11400000, guid: c7e18c6793781754a82c142f6663234d, type: 2}
   currentSize: 0
+  enemyVoice:
+    possibleSounds:
+    - {fileID: 8300000, guid: f652e646c96f2bc4e8916754624a0ec2, type: 3}
+    - {fileID: 8300000, guid: eaf3b54020cd401419c27a001b062461, type: 3}
+    - {fileID: 8300000, guid: 213853c8e028bf545abe699ca4194764, type: 3}
+    minPitch: 0.8
+    maxPitch: 1.2
+  minVoiceTime: 0.3
+  maxVoiceTime: 0.9
   minMoveTime: 0.7
   maxMoveTime: 1.4
   moveDistanceRadius: 9.03
