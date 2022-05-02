@@ -55,6 +55,7 @@ public class CameraController : MonoBehaviour
 			    CameraLookBehavior();
 			    CameraDistanceBySpeed();
 			    CameraPositionBehavior();
+			    EnemyLockerBehavior();
 			    
 			    //cameraTransform.LookAt(cameraLookTarget, Vector3.up);
 		    }
@@ -249,7 +250,6 @@ public class CameraController : MonoBehaviour
                 if (isLocking)
                 {
                     cameraMode = CameraMode.ENEMYLOCK;
-                    enemyLocker.gameObject.SetActive(true);
                 }
             }
             else if (cameraMode == CameraMode.ENEMYLOCK)
@@ -258,7 +258,6 @@ public class CameraController : MonoBehaviour
                 lockedEnemy = null;
                 isLocking = false;
                 cameraMode = CameraMode.FREELOOK;
-                enemyLocker.gameObject.SetActive(false);
                 
             }
 
@@ -342,20 +341,18 @@ public class CameraController : MonoBehaviour
             if (isLocking)
             {
                 cameraMode = CameraMode.ENEMYLOCK;
-                enemyLocker.gameObject.SetActive(true);
             }
             else
             {
                 ConvertCameraPosAfterLock();
                 lockedEnemy = null;
                 cameraMode = CameraMode.FREELOOK;
-                enemyLocker.gameObject.SetActive(false);
                 
                 return;
             }
         }
 
-        Vector3 vecToLockedEnemy = lockedEnemy.position - playerController.transform.position;
+	    Vector3 vecToLockedEnemy = /*lockedEnemy.position*/enemyLocker.position - playerController.transform.position;
         //unlock the camera when player is very fast and near to the locked enemy
         if (playerController.GetVelocity().magnitude > 100f && vecToLockedEnemy.magnitude <= cameraFastUnlockDistance)
         {
@@ -378,7 +375,15 @@ public class CameraController : MonoBehaviour
 	{
 		if(enemyLocker != null)
 		{
-			enemyLocker.position = Vector3.Lerp(enemyLocker.position, lockedEnemy.position + new Vector3(0f, 1f, 0f), enemyLockerSpeed * Time.deltaTime);
+			if(cameraMode == CameraMode.ENEMYLOCK)
+			{
+				enemyLocker.position = Vector3.Lerp(enemyLocker.position, lockedEnemy.position + new Vector3(0f, 1f, 0f), enemyLockerSpeed * Time.deltaTime);
+			}
+			else if(cameraMode == CameraMode.FREELOOK)
+			{
+				enemyLocker.position = Vector3.Lerp(enemyLocker.position, playerController.transform.position + new Vector3(0f, 1f, 0f), enemyLockerSpeed * Time.deltaTime);
+			}
+			
 		}
 		
 	}
