@@ -269,8 +269,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -589,8 +587,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -745,8 +741,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -983,8 +977,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -1421,8 +1413,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -1573,8 +1563,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -1866,8 +1854,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -2018,8 +2004,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -2698,8 +2682,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -2850,8 +2832,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -3256,8 +3236,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -3850,8 +3828,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -4002,8 +3978,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -4158,8 +4132,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -4972,8 +4944,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -5206,8 +5176,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -5360,8 +5328,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -5514,8 +5480,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -6015,8 +5979,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -6479,8 +6441,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -6631,8 +6591,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -6873,8 +6831,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -7109,8 +7065,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -7265,8 +7219,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -7421,8 +7373,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -7659,8 +7609,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -8116,8 +8064,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -8354,8 +8300,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -8590,8 +8534,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -8940,8 +8882,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -9174,8 +9114,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -9690,8 +9628,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -10361,8 +10297,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -10517,8 +10451,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -10669,8 +10601,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -11129,8 +11059,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -11283,8 +11211,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -11439,8 +11365,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -11593,8 +11517,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -11945,8 +11867,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -12375,8 +12295,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -12663,8 +12581,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -12825,6 +12741,133 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 886790823}
   m_Mesh: {fileID: -8494899210231237054, guid: d59eddfcb7c07c34e971b50b254be378, type: 3}
+--- !u!1 &892812017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 892812019}
+  - component: {fileID: 892812018}
+  m_Layer: 0
+  m_Name: Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &892812018
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892812017}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: b71d136fdc7b50244a1783dcd2eb70f4, type: 2}
+  m_audioClip: {fileID: 8300000, guid: f2cad198b7bde7c4a9a034c8cc7edfb4, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &892812019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 892812017}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &897227009
 GameObject:
   m_ObjectHideFlags: 0
@@ -13059,8 +13102,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -13315,8 +13356,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -13469,8 +13508,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -13659,8 +13696,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -13979,8 +14014,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -14257,8 +14290,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -14493,8 +14524,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -16035,8 +16064,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -16283,8 +16310,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -16439,8 +16464,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -16703,8 +16726,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -17027,8 +17048,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -17618,8 +17637,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -17772,8 +17789,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -17926,8 +17941,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -18078,8 +18091,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -18232,8 +18243,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -18580,8 +18589,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -18822,8 +18829,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -18976,8 +18981,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -19324,8 +19327,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -20004,8 +20005,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -20156,8 +20155,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -20583,8 +20580,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -20737,8 +20732,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -21470,8 +21463,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -21656,8 +21647,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -22145,8 +22134,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -22381,8 +22368,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -22619,8 +22604,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -23099,8 +23082,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -23356,8 +23337,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -23512,8 +23491,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -23664,8 +23641,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -23820,14 +23795,56 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
     dropsNum: 3
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
     dropsNum: 50
+--- !u!1 &1504324623
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1504324625}
+  - component: {fileID: 1504324624}
+  m_Layer: 0
+  m_Name: Static Audio Starter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1504324624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504324623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c08e52f69be2bb42b99ba4bc93786df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioEmitterPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
+--- !u!4 &1504324625
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504324623}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1512607101
 GameObject:
   m_ObjectHideFlags: 0
@@ -23974,8 +23991,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -24212,8 +24227,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -24564,8 +24577,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -24718,8 +24729,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -25752,8 +25761,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -26106,8 +26113,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -26768,8 +26773,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -27002,8 +27005,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -27368,8 +27369,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -27612,8 +27611,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -27768,8 +27765,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -28268,8 +28263,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -28796,8 +28789,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -28996,8 +28987,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -29230,8 +29219,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -30232,8 +30219,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -30470,8 +30455,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -30622,8 +30605,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -31110,8 +31091,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 50
   maxHealth: 2.5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 12.1
   drops:
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
@@ -31641,8 +31620,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -31877,8 +31854,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -32031,8 +32006,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -32299,8 +32272,6 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
@@ -32749,6 +32720,14 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4999143093157021291, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: punchSounds.maxPitch
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999143093157021291, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: punchSounds.minPitch
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999143093157021291, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
       propertyPath: chargedAttackDistance
       value: 6
       objectReference: {fileID: 0}
@@ -32764,6 +32743,22 @@ PrefabInstance:
       propertyPath: chargedAttackFinishedTime
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 4999143093157021291, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: punchSounds.possibleSounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999143093157021291, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: punchSounds.possibleSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: aefaf7767efe24146a6552ffa5bf9e08, type: 3}
+    - target: {fileID: 4999143093157021291, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: punchSounds.possibleSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: fd5cdb5ded2e8cd429a8bb4c7265867d, type: 3}
+    - target: {fileID: 4999143093157021291, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: punchSounds.possibleSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1108994b772f88b42b352e4594965c68, type: 3}
     - target: {fileID: 4999143093157021300, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
       propertyPath: m_Name
       value: Player
@@ -32784,6 +32779,38 @@ PrefabInstance:
       propertyPath: playerExplosionPrefab
       value: 
       objectReference: {fileID: 6271241949191652176, guid: 8158dcc065790134d9ef9c7ea6141059, type: 3}
+    - target: {fileID: 7572849852003629945, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: shieldChargedSound.maxPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572849852003629945, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: shieldChargedSound.minPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572849852003629945, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: shieldDepletedSound.maxPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572849852003629945, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: shieldDepletedSound.minPitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572849852003629945, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: shieldChargedSound.possibleSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572849852003629945, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: shieldDepletedSound.possibleSounds.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7572849852003629945, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: shieldChargedSound.possibleSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: b6f1b03abbc9ac741b65f69f113a05d2, type: 3}
+    - target: {fileID: 7572849852003629945, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: shieldDepletedSound.possibleSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 19229e75b22dea445a9ba474efd70ea0, type: 3}
     - target: {fileID: 8806223471705348637, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
       propertyPath: m_text
       value: 

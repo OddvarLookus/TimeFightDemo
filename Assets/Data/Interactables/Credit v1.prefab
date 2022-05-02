@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3031193280246476900}
   - component: {fileID: 3031193280246476907}
   m_Layer: 0
-  m_Name: Credit
+  m_Name: Credit v1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,3 +142,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 1
   timeToUnit: 0.03
+  gatherSound:
+    possibleSounds:
+    - {fileID: 8300000, guid: f652e646c96f2bc4e8916754624a0ec2, type: 3}
+    - {fileID: 8300000, guid: eaf3b54020cd401419c27a001b062461, type: 3}
+    - {fileID: 8300000, guid: 213853c8e028bf545abe699ca4194764, type: 3}
+    minPitch: 0.8
+    maxPitch: 1.2

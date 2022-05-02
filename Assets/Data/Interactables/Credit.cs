@@ -11,7 +11,9 @@ public class Credit : MonoBehaviour
 	bool isBeingSucked = false;
 	CreditsSucker creditsSucker;
 
-    float suckTime = 0f;
+	float suckTime = 0f;
+    
+	[SerializeField] SoundsPack gatherSound;
 
 	public void Attract(Transform _target, CreditsSucker _creditSucker)
     {
@@ -48,6 +50,7 @@ public class Credit : MonoBehaviour
         	else if(suckTime >= totalTime)
         	{
         		creditsSucker.AddCredits(value);
+        		StaticAudioStarter.instance.StartAudioEmitter(transform.position, gatherSound.GetRandomSound(), gatherSound.GetRandomPitch());
         		Destroy(this.gameObject);
 	        	
         	}
