@@ -233,20 +233,23 @@ public class BubbleGenerator : MonoBehaviour
 		}
 		else if(!Application.isPlaying)
 		{
+			int count = enemiesParent.childCount;
 			//PURGE ENEMIES
-			for(int i = 0; i < enemiesParent.childCount; i++)
+			for(int i = 0; i < count; i++)
 			{
-				DestroyImmediate(enemiesParent.GetChild(i).gameObject);
+				DestroyImmediate(enemiesParent.GetChild(0).gameObject);
 			}
+			count = asteroidsParent.childCount;
 			//PURGE ASTEROIDS
-			for(int i = 0; i < asteroidsParent.childCount; i++)
+			for(int i = 0; i < count; i++)
 			{
-				DestroyImmediate(asteroidsParent.GetChild(i).gameObject);
+				DestroyImmediate(asteroidsParent.GetChild(0).gameObject);
 			}
+			count = interactablesParent.childCount;
 			//PURGE INTERACTABLES
-			for(int i = 0; i < interactablesParent.childCount; i++)
+			for(int i = 0; i < count; i++)
 			{
-				DestroyImmediate(interactablesParent.GetChild(i).gameObject);
+				DestroyImmediate(interactablesParent.GetChild(0).gameObject);
 			}
 		}
 
