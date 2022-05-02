@@ -6212,6 +6212,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 340446796}
   m_Mesh: {fileID: -6398115159242162608, guid: d59eddfcb7c07c34e971b50b254be378, type: 3}
+--- !u!4 &341214364 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6968684021975825787, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+  m_PrefabInstance: {fileID: 4999143092943777432}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &347744496 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4999143093157021288, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
@@ -23257,7 +23262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c1787821c8d742479bdb455e94cb39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxEnemiesToNotify: 20
+  maxEnemiesToNotify: 5
   onAllEnemiesKilled:
     m_PersistentCalls:
       m_Calls:
@@ -37071,6 +37076,10 @@ PrefabInstance:
       propertyPath: maxShieldCharge
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 7572849852003629945, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: shieldGraphicsTr
+      value: 
+      objectReference: {fileID: 341214364}
     - target: {fileID: 8806223471705348637, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
       propertyPath: m_text
       value: 

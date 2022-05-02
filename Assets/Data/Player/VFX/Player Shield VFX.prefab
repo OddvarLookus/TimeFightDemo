@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6947341972985645718}
   - component: {fileID: 938837693424398144}
   - component: {fileID: 6727691665784771307}
+  - component: {fileID: 8006126932698250314}
   m_Layer: 0
   m_Name: IntersectOrb
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2512114976112399857}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 6.060906, y: 6.060906, z: 6.060906}
   m_Children:
   - {fileID: 2221765363499166895}
@@ -63,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2a03e511fab0f964495d7b0dfaad5a56, type: 2}
+  - {fileID: 2100000, guid: a7600b69a0d2e994c9a485c2e04c9d9b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,6 +107,20 @@ MonoBehaviour:
   stopAtValue: 0
   stopValue: 0
   mat: {fileID: 0}
+--- !u!114 &8006126932698250314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2512114976112399857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bd88a19d70c8154c9e65150d4040f36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetOffset: {x: 0, y: 4, z: 0}
+  speed: 2
 --- !u!1 &6609432727645769690
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +197,7 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 249ee48a789c77a418fae2fa7e99e232, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9833,7 +9849,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8357530487574917735}
   m_Layer: 0
-  m_Name: SciFi Shield
+  m_Name: Player Shield VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
