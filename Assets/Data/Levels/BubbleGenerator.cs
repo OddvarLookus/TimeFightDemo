@@ -15,10 +15,8 @@ public class BubbleGenerator : MonoBehaviour
 	[TitleGroup("References")] [SerializeField] [SceneObjectsOnly] Transform interactablesParent;
 	
 	
-	[TitleGroup("Generation/Asteroids")] [SerializeField] int numberOfAsteroids;
-	[TitleGroup("Generation/Asteroids")] [SerializeField] [AssetsOnly] GameObject[] asteroidsPrefabs;
 	
-	[TitleGroup("Generation/Enemies")] [SerializeField] [AssetsOnly] Level currentLevel;
+	[TitleGroup("Generation")] [SerializeField] [AssetsOnly] Level currentLevel;
 	
 	[TitleGroup("Generation")]
 	[Button("GENERATE LEVEL")]
@@ -48,13 +46,8 @@ public class BubbleGenerator : MonoBehaviour
 	public void GenerateLevel()
 	{
 		//INSTANTIATE ASTEROIDS
-		for(int i = 0; i < numberOfAsteroids; i++)
-		{
-			int rIndex = Random.Range(0, asteroidsPrefabs.Length);
-			GameObject nAsteroid = Instantiate(asteroidsPrefabs[rIndex]);
-			nAsteroid.transform.SetParent(asteroidsParent, false);
-			nAsteroid.transform.position = GetRandomPointInSphere();
-		}
+		GenerateAsteroids();
+
 		
 		//INSTANTIATE ENEMIES
 		GenerateEnemies();
@@ -71,7 +64,29 @@ public class BubbleGenerator : MonoBehaviour
 		worldLimitTr.localScale = new Vector3(radius, radius, radius);
 		
 	}
+	#region ASTEROIDS_GENERATION
+	void GenerateAsteroids()
+	{
+		for(int i = 0; i < currentLevel.asteroidsCount; i++)
+		{
+			float randNum = Random.Range(0f, 1f);
+			float currentProb = 0f;
+			for(int e = 0; e < currentLevel.asteroids.Count; e++)
+			{
+				currentProb += currentLevel.asteroids[e].probability;
+				if(randNum <= currentProb)
+				{
+					GameObject nAsteroid = Instantiate(currentLevel.asteroids[e].asteroidPrefab);
+					nAsteroid.transform.SetParent(asteroidsParent, false);
+					nAsteroid.transform.position = GetRandomPointInSphere();
+					break;
+				}
+			}
+			
+		}
+	}
 	
+	#endregion
 	#region ENEMY_GENERATION
 	void GenerateEnemies()
 	{
@@ -167,7 +182,6 @@ public class BubbleGenerator : MonoBehaviour
 		for(int i = nRollers.Count - 1; i >= 0; i--)
 		{
 			
-			
 			totalEnemyRollersProb += nRollers[i].probability;
 			
 			//SIZES ROLLERS.
@@ -202,7 +216,8 @@ public class BubbleGenerator : MonoBehaviour
 	}
 	
 	#endregion
-
+	
+	
 	
 	public Vector3 GetRandomPointInSphere()
 	{

@@ -19,6 +19,7 @@ public class PlayerShield : MonoBehaviour
 	
 	[SerializeField] SoundsPack shieldChargedSound;
 	[SerializeField] SoundsPack shieldDepletedSound;
+	[SerializeField] SoundsPack playerDeadSound;
 	
 	
 	protected void Awake()
@@ -79,6 +80,7 @@ public class PlayerShield : MonoBehaviour
 		GetComponent<PlayerController>().SetMovementEnabled(false);
 		GetComponent<Attack>().SetAttackEnabled(false);
 		GetComponent<RangedAttack>().SetAttackEnabled(false);
+		GetComponent<CapsuleCollider>().enabled = false;
 		
 		playerGraphics.gameObject.SetActive(false);
 		Explode();
@@ -97,6 +99,7 @@ public class PlayerShield : MonoBehaviour
 		Transform bombTr = bomb.transform;
 		bombTr.parent = null;
 		bombTr.position = transform.position;
+		StaticAudioStarter.instance.StartAudioEmitter(transform.position, playerDeadSound.GetRandomSound());
 		
 	}
 	

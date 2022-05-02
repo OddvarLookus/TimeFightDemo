@@ -7,6 +7,7 @@ using Sirenix.OdinInspector;
 [CreateAssetMenu(menuName = "LEVEL")]
 public class Level : SerializedScriptableObject
 {
+	//ENEMIES
 	public int difficultyValue;
     
 	[OnInspectorGUI("RecalculateProbabilities")]public List<EnemyRoller> enemies = new List<EnemyRoller>();
@@ -47,9 +48,32 @@ public class Level : SerializedScriptableObject
 	}
 	
 	
-    
+	//ASTEROIDS
+	public int asteroidsCount;
+	[OnInspectorGUI("RecalculateAsteroidsProbabilities")]public List<AsteroidRoller> asteroids = new List<AsteroidRoller>();
+	void RecalculateAsteroidsProbabilities()
+	{
+		float currentAsteroidProb = 0f;
+		for(int i = 0; i < asteroids.Count; i++)
+		{
+			float nAsteroidProb = currentAsteroidProb + asteroids[i].probability;
+			if(nAsteroidProb >= 1f)
+			{
+				asteroids[i].probability = 1f - currentAsteroidProb;
+				currentAsteroidProb = 1f;
+			}
+			else
+			{
+				currentAsteroidProb = nAsteroidProb;
+			}
+			
+		}
+		
+	}
+	
 }
 
+//ENEMIES
 public class EnemySizeRoller
 {
 	public EnemySize size;
@@ -71,5 +95,11 @@ public class EnemyRoller
 	[Range(0f, 1f)] public float probability;
 	public List<EnemySizeRoller> sizesRollers;
 	
-	
+}
+
+//ASTEROIDS
+public class AsteroidRoller
+{
+	public GameObject asteroidPrefab;
+	[Range(0f, 1f)] public float probability;
 }
