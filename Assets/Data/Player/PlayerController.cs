@@ -19,6 +19,16 @@ public class PlayerController : MonoBehaviour
 	bool speedDashing = false;
 	public bool IsSpeedDashing(){return speedDashing;}
 
+	bool movementEnabled = true;
+	public bool GetMovementEnabled(){return movementEnabled;}
+	public void SetMovementEnabled(bool nEnabled)
+	{
+		movementEnabled = nEnabled;
+		if(nEnabled == false)
+		{
+			rb.isKinematic = true;
+		}
+	}
 
     private void Awake()
     {
@@ -46,8 +56,12 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
 	{
-		Movement();
-		RotationBehavior();
+		if(movementEnabled)
+		{
+			Movement();
+			RotationBehavior();
+		}
+
     }
 
     Vector3 relativeInput;

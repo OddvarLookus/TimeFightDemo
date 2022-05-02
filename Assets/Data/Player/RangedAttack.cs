@@ -10,6 +10,10 @@ public class RangedAttack : MonoBehaviour
 	[MinValue(0f)] [SerializeField] float cooldown;
 	float currentCooldown;
 
+	bool attackEnabled = true;
+	public bool GetAttackEnabled(){return attackEnabled;}
+	public void SetAttackEnabled(bool nEnabled){attackEnabled = nEnabled;}
+
 	[SerializeField] GameObject rangedProjectilePrefab;
     
 	public int baseBulletsPerTarget = 1;
@@ -38,8 +42,12 @@ public class RangedAttack : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        AttackInput();
+	{
+		if(attackEnabled)
+		{
+			AttackInput();
+		}
+        
     }
 	
 	Collider[] enemies = new Collider[1];

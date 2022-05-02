@@ -15,6 +15,23 @@ public class Attack : MonoBehaviour
 	float damage;
 	[AssetsOnly] [SerializeField] GameObject punchVFX;
 	
+	//ATTACK STARTING AND STOPPING
+	bool attackEnabled = true;
+	public bool GetAttackEnabled(){return attackEnabled;}
+	public void SetAttackEnabled(bool nEnabled)
+	{
+		attackEnabled = nEnabled;
+		if(nEnabled == false)
+		{
+			currentAttackTime = 0f;
+			attacking = false;
+			isChargedAttack = false;
+			col.enabled = false;
+			attackCollider.SetActive(false);
+		}
+	}
+	
+	
 	[Header("Attack Dynamics")]
 	[SerializeField] float attackDistance;
 	public float baseAttackSpeed;
@@ -63,7 +80,11 @@ public class Attack : MonoBehaviour
 	
 	protected void Update()
 	{
-		AttackBehavior();
+		if(attackEnabled)
+		{
+			AttackBehavior();
+		}
+		
 	}
 	
     private void OnDisable()
@@ -236,11 +257,6 @@ public class Attack : MonoBehaviour
 	}
 
     
-
-    IEnumerator DisableCoroutine(float _time)
-    {
-	    yield return new WaitForSeconds(1f);
-    }
 
     
 }

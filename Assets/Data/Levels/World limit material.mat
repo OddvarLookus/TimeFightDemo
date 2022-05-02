@@ -107,7 +107,7 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _ClipDir: {r: 0, g: 0, b: 1, a: 1}
-    - _Color: {r: 0.2057257, g: 0.41145125, b: 0.56700003, a: 1}
+    - _Color: {r: 0.15619436, g: 0.49548838, b: 0.7075472, a: 0.7607843}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FogAreaData: {r: 0, g: 0, b: 0, a: 1}
     - _FogAreaPosition: {r: 0, g: 0, b: 0, a: 1}

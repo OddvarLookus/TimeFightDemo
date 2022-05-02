@@ -7,12 +7,16 @@ public class PlayerShield : MonoBehaviour
 {
 	[MinValue(0)] [SerializeField] int maxShield;
 	int currentShield = 0;
+	[HideInInspector] public bool isDead = false;
 	
 	[SerializeField] float maxShieldCharge = 100f;
 	float currentShieldCharge = 0f;
 	[SerializeField] float shieldChargeSpeed;
 	
+	
 	[SceneObjectsOnly] [SerializeField] Transform shieldGraphicsTr;
+	[AssetsOnly] [SerializeField] GameObject playerExplosionPrefab;
+	[SceneObjectsOnly] [SerializeField] Transform playerGraphics; 
 	
 	protected void Awake()
 	{
@@ -63,7 +67,28 @@ public class PlayerShield : MonoBehaviour
     
 	void Die()
 	{
+		GetComponent<PlayerController>().SetMovementEnabled(false);
+		GetComponent<Attack>().SetAttackEnabled(false);
+		GetComponent<RangedAttack>().SetAttackEnabled(false);
+		
+		playerGraphics.gameObject.SetActive(false);
+		Explode();
+		StartCoroutine(PlayerDeadCoroutine());
+	}
+	
+	IEnumerator PlayerDeadCoroutine()
+	{
+		yield return new WaitForSeconds(0.5f);
 		GameManager.instance.SetGameLost();
+	}
+	
+	void Explode()
+	{
+		GameObject bomb = Instantiate(playerExplosionPrefab);
+		Transform bombTr = bomb.transform;
+		bombTr.parent = null;
+		bombTr.position = transform.position;
+		
 	}
 	
 	//GRAPHICS
