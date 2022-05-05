@@ -12,7 +12,12 @@ public class Health : MonoBehaviour
     }
     
     [SerializeField] float maxHealth;
-    float currentHealth;
+	float currentHealth;
+	public float GetCurrentHealth()
+	{
+		return currentHealth;
+	}
+    
 	[SerializeField] UnityEvent OnDeath;
 	[SerializeField] GameObject deathPrefab;
     

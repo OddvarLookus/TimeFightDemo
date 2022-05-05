@@ -354,13 +354,13 @@ public class CameraController : MonoBehaviour
 
 	    Vector3 vecToLockedEnemy = /*lockedEnemy.position*/enemyLocker.position - playerController.transform.position;
         //unlock the camera when player is very fast and near to the locked enemy
-        if (playerController.GetVelocity().magnitude > 100f && vecToLockedEnemy.magnitude <= cameraFastUnlockDistance)
-        {
-            ConvertCameraPosAfterLock();
-            lockedEnemy = null;
-            cameraMode = CameraMode.FREELOOK;
-            return;
-        }
+        //if (playerController.GetVelocity().magnitude > 100f && vecToLockedEnemy.magnitude <= cameraFastUnlockDistance)
+        //{
+        //    ConvertCameraPosAfterLock();
+        //    lockedEnemy = null;
+        //    cameraMode = CameraMode.FREELOOK;
+        //    return;
+        //}
 
 
         Vector3 negative = playerController.transform.position + ((-vecToLockedEnemy).normalized * 8f);
