@@ -15,197 +15,37 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects:
-    - {fileID: 8488491456709531852, guid: 5b0e9f0bf0d93b8418232dfdb59b16a2, type: 3}
-    - {fileID: 107109843671376553, guid: 5b0e9f0bf0d93b8418232dfdb59b16a2, type: 3}
-    - {fileID: 5113938375352459004, guid: 0164d3bf1eeed5a4f809e01141e53cf2, type: 3}
-    - {fileID: 5113938375352458977, guid: 0164d3bf1eeed5a4f809e01141e53cf2, type: 3}
-    - {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
-    - {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
-    - {fileID: 3090257454235086977, guid: 92dac34bb17353142b6d576a9dfc093d, type: 3}
-    - {fileID: 8590379153516075496, guid: ad0038023f9cf0c4793d62951d2d814e, type: 3}
+    ReferencedUnityObjects: []
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: enemies
-      Entry: 7
-      Data: 0|System.Collections.Generic.List`1[[EnemyRoller, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 1|EnemyRoller, Assembly-CSharp
-    - Name: enemyPrefab
-      Entry: 10
-      Data: 0
-    - Name: enemy
-      Entry: 10
-      Data: 1
-    - Name: probability
-      Entry: 4
-      Data: 0.65
-    - Name: sizesRollers
-      Entry: 7
-      Data: 2|System.Collections.Generic.List`1[[EnemySizeRoller, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 3|EnemySizeRoller, Assembly-CSharp
-    - Name: size
-      Entry: 3
-      Data: 0
-    - Name: probability
-      Entry: 4
-      Data: 0.65
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 4|EnemySizeRoller, Assembly-CSharp
-    - Name: size
-      Entry: 3
-      Data: 1
-    - Name: probability
-      Entry: 4
-      Data: 0.35
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 5|EnemyRoller, Assembly-CSharp
-    - Name: enemyPrefab
-      Entry: 10
-      Data: 2
-    - Name: enemy
-      Entry: 10
-      Data: 3
-    - Name: probability
-      Entry: 4
-      Data: 0.35
-    - Name: sizesRollers
-      Entry: 7
-      Data: 6|System.Collections.Generic.List`1[[EnemySizeRoller, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 2
-    - Name: 
-      Entry: 7
-      Data: 7|EnemySizeRoller, Assembly-CSharp
-    - Name: size
-      Entry: 3
-      Data: 0
-    - Name: probability
-      Entry: 4
-      Data: 0.8
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 8|EnemySizeRoller, Assembly-CSharp
-    - Name: size
-      Entry: 3
-      Data: 1
-    - Name: probability
-      Entry: 4
-      Data: 0.2
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: asteroids
-      Entry: 7
-      Data: 9|System.Collections.Generic.List`1[[AsteroidRoller, Assembly-CSharp]],
-        mscorlib
-    - Name: 
-      Entry: 12
-      Data: 4
-    - Name: 
-      Entry: 7
-      Data: 10|AsteroidRoller, Assembly-CSharp
-    - Name: asteroidPrefab
-      Entry: 10
-      Data: 4
-    - Name: probability
-      Entry: 4
-      Data: 0.436
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 11|AsteroidRoller, Assembly-CSharp
-    - Name: asteroidPrefab
-      Entry: 10
-      Data: 5
-    - Name: probability
-      Entry: 4
-      Data: 0.336
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 12|AsteroidRoller, Assembly-CSharp
-    - Name: asteroidPrefab
-      Entry: 10
-      Data: 6
-    - Name: probability
-      Entry: 4
-      Data: 0.214
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 7
-      Data: 13|AsteroidRoller, Assembly-CSharp
-    - Name: asteroidPrefab
-      Entry: 10
-      Data: 7
-    - Name: probability
-      Entry: 4
-      Data: 0.0140000582
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
-      Entry: 13
-      Data: 
-    - Name: 
-      Entry: 8
-      Data: 
+    SerializationNodes: []
   difficultyValue: 50
+  enemies:
+  - enemyPrefab: {fileID: 8488491456709531852, guid: 5b0e9f0bf0d93b8418232dfdb59b16a2, type: 3}
+    enemy: {fileID: 107109843671376553, guid: 5b0e9f0bf0d93b8418232dfdb59b16a2, type: 3}
+    probability: 0.65
+    sizesRollers:
+    - size: 0
+      probability: 0.65
+    - size: 1
+      probability: 0.35000002
+  - enemyPrefab: {fileID: 5113938375352459004, guid: 0164d3bf1eeed5a4f809e01141e53cf2, type: 3}
+    enemy: {fileID: 5113938375352458977, guid: 0164d3bf1eeed5a4f809e01141e53cf2, type: 3}
+    probability: 0.35
+    sizesRollers:
+    - size: 0
+      probability: 0.8
+    - size: 1
+      probability: 0.2
   asteroidsCount: 100
+  asteroids:
+  - asteroidPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
+    probability: 0.436
+  - asteroidPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
+    probability: 0.336
+  - asteroidPrefab: {fileID: 3090257454235086977, guid: 92dac34bb17353142b6d576a9dfc093d, type: 3}
+    probability: 0.214
+  - asteroidPrefab: {fileID: 8590379153516075496, guid: ad0038023f9cf0c4793d62951d2d814e, type: 3}
+    probability: 0.014000058

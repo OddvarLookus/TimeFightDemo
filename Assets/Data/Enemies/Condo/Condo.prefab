@@ -425,8 +425,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5acdc4ad91604145a9d5a3eefbb7604, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
   mainRenderer: {fileID: 2658602246475258807}
-  statsSet: {fileID: 11400000, guid: c7e18c6793781754a82c142f6663234d, type: 2}
+  statsSet: {fileID: 11400000, guid: b4aa0be938defe84a8afb9008a7e00a6, type: 2}
   currentSize: 0
   enemyVoice:
     possibleSounds:

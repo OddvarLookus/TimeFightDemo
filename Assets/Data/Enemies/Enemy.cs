@@ -4,7 +4,7 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 
 //ENEMY HAS THE GENERIC THINGS FOR ALL ENEMIES. 
-public class Enemy : MonoBehaviour
+public class Enemy : SerializedMonoBehaviour
 {
     protected Rigidbody rb;
 

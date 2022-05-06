@@ -74,12 +74,14 @@ public class Level : SerializedScriptableObject
 }
 
 //ENEMIES
+[System.Serializable]
 public class EnemySizeRoller
 {
 	public EnemySize size;
 	[Range(0f, 1f)] public float probability;
 }
 
+[System.Serializable]
 public class EnemyRoller
 {
 	[OnValueChanged("GetEnemyFromPrefab")] public GameObject enemyPrefab;
@@ -98,6 +100,7 @@ public class EnemyRoller
 }
 
 //ASTEROIDS
+[System.Serializable]
 public class AsteroidRoller
 {
 	public GameObject asteroidPrefab;

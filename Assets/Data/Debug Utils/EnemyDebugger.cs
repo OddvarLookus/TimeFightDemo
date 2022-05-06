@@ -21,6 +21,10 @@ public class EnemyDebugger : MonoBehaviour
 	protected void Update()
 	{
 		healthText.text = health.GetCurrentHealth().ToString();
+		healthText.text += "\n" + enemyToDebug.GetStatsSet().enemyStats[EnemySize.MEDIUM].maxHealth.ToString();
+		healthText.text += "\n" + enemyToDebug.GetStatsSet().enemyStats[EnemySize.LARGE].maxHealth.ToString();
+		
+		
 	}
     
 }
