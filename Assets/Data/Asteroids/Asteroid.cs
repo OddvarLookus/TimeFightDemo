@@ -5,16 +5,21 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-	
+	[Header("Initialization")]
     [SerializeField] float minInitSpeed;
     [SerializeField] float maxInitSpeed;
     [SerializeField] float mass = 10f;
     [SerializeField] float maxHealth;
     float currentHealth;
-
+	
+	[Header("Drops")]
+	[SerializeField] float dropsReleaseSpeed = 25f;
+	[SerializeField] float dropsReleaseSpeedRandom = 13f;
     [SerializeField] float dropsReleaseRadius;
     [SerializeField] Drop[] drops;
-
+	
+	
+	
     Rigidbody rb;
     void Start()
     {
@@ -34,8 +39,9 @@ public class Asteroid : MonoBehaviour
         rb.AddForce(_pushForce, ForceMode.Impulse);
     }
 
-    public void TakeDamage(float _damage)
-    {
+	public void TakeDamage(float _damage)
+	{
+		//deplete health and die
         currentHealth -= _damage;
         if (currentHealth <= 0f)
         {
@@ -45,14 +51,19 @@ public class Asteroid : MonoBehaviour
 
     public void AsteroidDestroy()
 	{
-    	
         for (int i = 0; i < drops.Length; i++)
         {
             for (int n = 0; n < drops[i].dropsNum; n++)
             {
                 GameObject nDrop = Instantiate(drops[i].dropPrefab);
-                nDrop.transform.SetParent(transform.parent, true);
-                nDrop.transform.position = transform.position + GetSpawnPos();
+	            nDrop.transform.SetParent(transform.parent, true);
+	            Vector3 relativeSpawnPos = GetSpawnPos();
+	            nDrop.transform.position = transform.position + relativeSpawnPos;
+	            //if(nDrop.TryGetComponent(out Credit crdt))
+	            //{
+	            //	Vector3 crdtVelocity = relativeSpawnPos.normalized * (dropsReleaseSpeed * Random.Range(-dropsReleaseSpeedRandom, dropsReleaseSpeedRandom));
+	            //	crdt.SetVelocity(crdtVelocity);
+	            //}
             }
         }
 

@@ -10,6 +10,14 @@ public class Credit : MonoBehaviour
     Transform target;
 	bool isBeingSucked = false;
 	CreditsSucker creditsSucker;
+	
+	Vector3 velocity;
+	public void SetVelocity(Vector3 nVel)
+	{
+		velocity = nVel;
+	}
+	
+	[SerializeField] float friction;
 
 	float suckTime = 0f;
     
@@ -54,9 +62,21 @@ public class Credit : MonoBehaviour
         		Destroy(this.gameObject);
 	        	
         	}
-            
-
-
+        }
+        else//Not risucchiato
+        {
+        	if(velocity != Vector3.zero)
+        	{
+	        	transform.position += velocity * Time.fixedDeltaTime;
+	        	if(velocity.sqrMagnitude >= 0.4f)
+	        	{
+		        	velocity = Vector3.Lerp(velocity, Vector3.zero, friction * Time.fixedDeltaTime);
+	        	}
+	        	else
+	        	{
+		        	velocity = Vector3.zero;
+	        	}
+        	}
         }
 
     }

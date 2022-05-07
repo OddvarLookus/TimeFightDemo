@@ -142,6 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   value: 1
   timeToUnit: 0.03
+  friction: 7
   gatherSound:
     possibleSounds:
     - {fileID: 8300000, guid: f652e646c96f2bc4e8916754624a0ec2, type: 3}

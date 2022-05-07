@@ -94,7 +94,8 @@ public class Attack : MonoBehaviour
         {
             Vector3 pushVec = (_col.transform.position - transform.position).normalized;
             pushVec *= pushForce;
-            asteroid.Push(pushVec);
+	        asteroid.Push(pushVec);
+	        
 	        asteroid.TakeDamage(damage);
 	        CheckAndSpawnPunchVFX();
         }
@@ -131,6 +132,7 @@ public class Attack : MonoBehaviour
 			vfxTr.position = rhit.point;
 			
 			StaticAudioStarter.instance.StartAudioEmitter(rhit.point, punchSounds.GetRandomSound(), punchSounds.GetRandomPitch());
+			
 		}
 	}
     

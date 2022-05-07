@@ -52,8 +52,8 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 800
   maxHealth: 10
-  destroyAudioClip: {fileID: 8300000, guid: 0573e32e7c6d1024197c83451affd99d, type: 3}
-  destructionSoundPrefab: {fileID: 2954698248621750272, guid: 52ed63cf3a4992b4f88c0137d038eb0b, type: 3}
+  dropsReleaseSpeed: 0
+  dropsReleaseRandom: 0
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
@@ -62,6 +62,11 @@ MonoBehaviour:
     dropsNum: 5
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
     dropsNum: 130
+  gambleDrop:
+    dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
+    dropsNum: 1
+  gambleDropProbability: 1
+  gambleDropSpeed: 28
 --- !u!33 &3090257454235086981
 MeshFilter:
   m_ObjectHideFlags: 0

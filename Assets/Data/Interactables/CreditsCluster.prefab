@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8601a9d50e0bdd4590a0c3d00d3eab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minArea: 8
-  maxArea: 14
-  creditsDensity: 6
+  minDistance: 2
+  maxDistance: 8
+  creditsNum: 20
+  enableDebugLines: 0
   creditPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
