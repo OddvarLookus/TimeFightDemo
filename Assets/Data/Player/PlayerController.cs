@@ -7,7 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] float playerMaxSpeed;
     [SerializeField] float playerDashMaxSpeed;
-    [SerializeField] float playerAcceleration;
+	[SerializeField] float playerAcceleration;
+	[SerializeField] float playerDashAcceleration;
     [SerializeField] float playerDeceleration;
 	[SerializeField] float rotationSpeed;
 	[SerializeField] float rotationForwardMultiplier;
@@ -16,6 +17,10 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] Attack punchAttack;
 	[SerializeField] float speedWhileAttackingMultiplier;
     
+	bool canDash = true;
+	public bool CanDash(){return canDash;}
+	public void SetCanDash(bool nCanDash){canDash = nCanDash;}
+	
 	bool dashing = false;
 	public bool IsDashing(){return dashing;}
 	bool prevDashing = false;
@@ -97,7 +102,7 @@ public class PlayerController : MonoBehaviour
 
         if (inputVec != Vector3.zero)
         {
-	        if (!dashPressed || dashPressed && punchAttack.IsAttacking())//MOVEMENT WITHOUT DASH
+	        if (!canDash || !dashPressed || dashPressed && punchAttack.IsAttacking())//MOVEMENT WITHOUT DASH
             {
             	float realMaxSpeed = playerMaxSpeed;
 		        if(punchAttack.IsAttacking())
@@ -108,9 +113,9 @@ public class PlayerController : MonoBehaviour
             	
 	            rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * realMaxSpeed, playerAcceleration * Time.fixedDeltaTime);
             }
-	        else if (dashPressed && !punchAttack.IsAttacking())//MOVEMENT WITH DASH
+	        else if (canDash && dashPressed && !punchAttack.IsAttacking())//MOVEMENT WITH DASH
             {
-                rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * playerDashMaxSpeed, playerAcceleration * Time.fixedDeltaTime);
+		        rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * playerDashMaxSpeed, playerDashAcceleration * Time.fixedDeltaTime);
             }
         }
         else

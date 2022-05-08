@@ -41,11 +41,12 @@ public class Enemy : SerializedMonoBehaviour
         rb = GetComponent<Rigidbody>();
         health = GetComponent<Health>();
 
-        InitializeEnemy();
+        
     }
     
 	protected virtual void Start()
 	{
+		InitializeEnemy();
 		StartSoundTimer();
 	}
     

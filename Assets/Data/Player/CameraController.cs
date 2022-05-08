@@ -34,9 +34,12 @@ public class CameraController : MonoBehaviour
     [SerializeField] PlayerController playerController;
     [SerializeField] float minSpeedCameraDist, maxSpeedCameraDist;
     [SerializeField] float maxPlayerSpeed;
-    //unlock the camera when fast next to the locked enemy
-	[SerializeField] float cameraFastUnlockDistance;
+	//disable dash when fast next to the locked enemy
+	[SerializeField] float cameraDashMinDistance;
 	[SerializeField] float enemyLockerSpeed;
+	//garpa size
+	[SerializeField] float garpaSizeAddition;
+	
 
     #region MONOBEHAVIOR
     private void Awake()
@@ -81,7 +84,7 @@ public class CameraController : MonoBehaviour
 		else if(cameraMode == CameraMode.ENEMYLOCK)
 		{
 			CameraLockBehavior();
-			cameraTransform.LookAt(enemyLocker/*lockedEnemy*/, Vector3.up);
+			cameraTransform.LookAt(/*enemyLocker*/lockedEnemy, Vector3.up);
 		}
 		
 	}
@@ -257,7 +260,8 @@ public class CameraController : MonoBehaviour
                 ConvertCameraPosAfterLock();
                 lockedEnemy = null;
                 isLocking = false;
-                cameraMode = CameraMode.FREELOOK;
+	            cameraMode = CameraMode.FREELOOK;
+	            playerController.SetCanDash(true);
                 
             }
 
@@ -336,6 +340,7 @@ public class CameraController : MonoBehaviour
     {
         if (lockedEnemy == null)
         {
+        	playerController.SetCanDash(true);
             CheckLockableEnemies();
             isLocking = GetLockedEnemy();
             if (isLocking)
@@ -348,19 +353,20 @@ public class CameraController : MonoBehaviour
                 lockedEnemy = null;
                 cameraMode = CameraMode.FREELOOK;
                 
-                return;
+	            return;
             }
         }
 
-	    Vector3 vecToLockedEnemy = /*lockedEnemy.position*/enemyLocker.position - playerController.transform.position;
-        //unlock the camera when player is very fast and near to the locked enemy
-        //if (playerController.GetVelocity().magnitude > 100f && vecToLockedEnemy.magnitude <= cameraFastUnlockDistance)
-        //{
-        //    ConvertCameraPosAfterLock();
-        //    lockedEnemy = null;
-        //    cameraMode = CameraMode.FREELOOK;
-        //    return;
-        //}
+	    Vector3 vecToLockedEnemy = lockedEnemy.position/*enemyLocker.position*/ - playerController.transform.position;
+	    //when player is very fast and near to the locked enemy disable dash
+        if (vecToLockedEnemy.magnitude <= cameraDashMinDistance)
+        {
+	        playerController.SetCanDash(false);
+        }
+        else
+        {
+        	playerController.SetCanDash(true);
+        }
 
 
         Vector3 negative = playerController.transform.position + ((-vecToLockedEnemy).normalized * 8f);
@@ -377,7 +383,19 @@ public class CameraController : MonoBehaviour
 		{
 			if(cameraMode == CameraMode.ENEMYLOCK)
 			{
-				enemyLocker.position = Vector3.Lerp(enemyLocker.position, lockedEnemy.position + new Vector3(0f, 1f, 0f), enemyLockerSpeed * Time.deltaTime);
+				if((enemyLocker.position - lockedEnemy.position).magnitude < 5f)
+				{
+					float garpaMadArea = lockedEnemy.localScale.x + garpaSizeAddition;
+					Vector3 randGarpaPos = new Vector3(Random.Range(-garpaMadArea, garpaMadArea), Random.Range(-garpaMadArea, garpaMadArea), Random.Range(-garpaMadArea, garpaMadArea));
+					randGarpaPos = Vector3.ClampMagnitude(randGarpaPos, garpaMadArea);
+					
+					enemyLocker.position = lockedEnemy.position + randGarpaPos;
+				}
+				else
+				{
+					enemyLocker.position = Vector3.Lerp(enemyLocker.position, lockedEnemy.position, enemyLockerSpeed * Time.deltaTime);
+				}
+				
 			}
 			else if(cameraMode == CameraMode.FREELOOK)
 			{
@@ -396,7 +414,7 @@ public class CameraController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, lockingDistance);
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(playerController.transform.position, cameraFastUnlockDistance);
+        Gizmos.DrawWireSphere(playerController.transform.position, cameraDashMinDistance);
     }
 
     public Vector3 GetCameraForwardXZ()

@@ -46,13 +46,14 @@ public class Condo : Enemy
 	protected override void OnEnable()
 	{
 		base.OnEnable();
-		initialPos = transform.position;
-		InitializeTimeNeutral();
+		
 	}
 	
 	protected override void Start()
 	{
 		base.Start();
+		InitializeTimeNeutral();
+		initialPos = transform.position;
 	}
 	
 	// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.

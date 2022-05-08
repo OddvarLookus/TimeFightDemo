@@ -44,7 +44,7 @@ public class BubbleGenerator : MonoBehaviour
 	
 	protected void Start()
 	{
-		//GenerateLevel();
+		GenerateLevel();
 	}
     
 	public void GenerateLevel()
