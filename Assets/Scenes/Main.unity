@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.059763238, g: 0.2594986, b: 0.5821267, a: 1}
+  m_IndirectSpecularColor: {r: 0.059768967, g: 0.2585531, b: 0.58128226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -31570,6 +31570,67 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2139648098}
   m_Mesh: {fileID: -17066332101101725, guid: 9e932a634b539404087318ea0905e3b5, type: 3}
+--- !u!1001 &904340357906164593
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4354544655706948530, guid: 7596b84ab751f844bba3cf8ee5a15d59, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354544655706948530, guid: 7596b84ab751f844bba3cf8ee5a15d59, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 31.299133
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354544655706948530, guid: 7596b84ab751f844bba3cf8ee5a15d59, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -154.73357
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354544655706948530, guid: 7596b84ab751f844bba3cf8ee5a15d59, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 63.642117
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354544655706948530, guid: 7596b84ab751f844bba3cf8ee5a15d59, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354544655706948530, guid: 7596b84ab751f844bba3cf8ee5a15d59, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354544655706948530, guid: 7596b84ab751f844bba3cf8ee5a15d59, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354544655706948530, guid: 7596b84ab751f844bba3cf8ee5a15d59, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354544655706948530, guid: 7596b84ab751f844bba3cf8ee5a15d59, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354544655706948530, guid: 7596b84ab751f844bba3cf8ee5a15d59, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4354544655706948530, guid: 7596b84ab751f844bba3cf8ee5a15d59, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6388234951734857725, guid: 7596b84ab751f844bba3cf8ee5a15d59, type: 3}
+      propertyPath: m_Name
+      value: SkyboxRotator
+      objectReference: {fileID: 0}
+    - target: {fileID: 7327360389855081439, guid: 7596b84ab751f844bba3cf8ee5a15d59, type: 3}
+      propertyPath: rotationSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7596b84ab751f844bba3cf8ee5a15d59, type: 3}
 --- !u!33 &1401174483713881336
 MeshFilter:
   m_ObjectHideFlags: 0

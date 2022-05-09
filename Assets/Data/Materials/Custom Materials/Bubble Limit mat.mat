@@ -61,7 +61,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaMultiplier: 0.599
+    - _AlphaMultiplier: 1
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -72,31 +72,31 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _NoiseScale: 0.006
-    - _NoiseScale1: 0.022
+    - _NoiseScale1: 0.018
     - _NoiseScale2: 1
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _TextureWeight: 1
-    - _TextureWeight1: 0.157
+    - _TextureWeight: 0.61
+    - _TextureWeight1: 0.279
     - _TextureWeight2: 0
     - _TimeMultiplier: 0.74
-    - _TimeMultiplierX: 30
-    - _TimeMultiplierX1: 10.18
+    - _TimeMultiplierX: 21.63
+    - _TimeMultiplierX1: -10
     - _TimeMultiplierX2: 0
-    - _TimeMultiplierY: -7
-    - _TimeMultiplierY1: 16.9
+    - _TimeMultiplierY: -11.5
+    - _TimeMultiplierY1: 15.17
     - _TimeMultiplierY2: 0
-    - _TimeMultiplierZ: 26
-    - _TimeMultiplierZ1: -12.89
+    - _TimeMultiplierZ: 17
+    - _TimeMultiplierZ1: -16.7
     - _TimeMultiplierZ2: 0
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - _BaseColor: {r: 0, g: 0.9805918, b: 1, a: 1}
+    - _BaseColor: {r: 0.83137256, g: 0.2862745, b: 0.81035596, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
