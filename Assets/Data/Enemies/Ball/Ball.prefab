@@ -345,6 +345,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   deathPrefab: {fileID: 2706213420626243347, guid: 5a331cdc6a6f06546b2a99ee52fe6e44, type: 3}
+  deathSound:
+    possibleSounds:
+    - {fileID: 8300000, guid: c387da62cdf6f954e95603439246d514, type: 3}
+    minPitch: 0.9
+    maxPitch: 1.1
 --- !u!114 &107109843671376553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,6 +379,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 3e63663f0ac8c68409fe969e23778321, type: 3}
     - {fileID: 8300000, guid: ffbd5bf9360017648a5e934e6d834d9e, type: 3}
     - {fileID: 8300000, guid: e98208d57d2c3cf47b61a53ca60d2aca, type: 3}
+    - {fileID: 8300000, guid: 55c742251e22f34428322edc745d97e4, type: 3}
     minPitch: 0.8
     maxPitch: 1.2
   minVoiceTime: 1

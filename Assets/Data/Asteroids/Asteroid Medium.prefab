@@ -52,19 +52,22 @@ MonoBehaviour:
   maxInitSpeed: 10
   mass: 200
   maxHealth: 5
+  asteroidsDestructionSounds:
+    possibleSounds:
+    - {fileID: 8300000, guid: d716da480381fe947baf5aafa2b5a8ab, type: 3}
+    - {fileID: 8300000, guid: ed8d4bea91075614583223a203fa0f32, type: 3}
+    - {fileID: 8300000, guid: 717681ab8a7da6247bf9ebeb1288e82a, type: 3}
+    - {fileID: 8300000, guid: 7a9280bded2fea8479746925e2b49040, type: 3}
+    minPitch: 0.9
+    maxPitch: 1.3
   dropsReleaseSpeed: 0
-  dropsReleaseRandom: 0
+  dropsReleaseSpeedRandom: 13
   dropsReleaseRadius: 29.11
   drops:
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
     dropsNum: 3
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
     dropsNum: 50
-  gambleDrop:
-    dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
-    dropsNum: 1
-  gambleDropProbability: 1
-  gambleDropSpeed: 28
 --- !u!33 &2149751876324552242
 MeshFilter:
   m_ObjectHideFlags: 0

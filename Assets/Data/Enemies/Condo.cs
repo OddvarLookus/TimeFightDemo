@@ -42,6 +42,7 @@ public class Condo : Enemy
 	
 	[AssetsOnly] [SerializeField] GameObject bullet;
 	[SceneObjectsOnly] [SerializeField] Transform bulletSpawnPos;
+	[SerializeField] SoundsPack shootSound;
 	
 	protected override void OnEnable()
 	{
@@ -169,6 +170,8 @@ public class Condo : Enemy
 			
 			Vector3 shootDir = aggroTarget.position - bulletSpawnPos.position;
 			b.GetComponent<EnemyBullet>().Shoot(shootDir, aggroTarget);
+			
+			StaticAudioStarter.instance.StartAudioEmitter(transform.position, shootSound.GetRandomSound(), shootSound.GetRandomPitch());
 		}
 	}
 	

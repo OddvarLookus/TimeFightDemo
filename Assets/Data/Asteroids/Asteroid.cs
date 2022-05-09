@@ -12,6 +12,9 @@ public class Asteroid : MonoBehaviour
     [SerializeField] float maxHealth;
     float currentHealth;
 	
+	[Header("Sound")]
+	[SerializeField] SoundsPack asteroidsDestructionSounds;
+	
 	[Header("Drops")]
 	[SerializeField] float dropsReleaseSpeed = 25f;
 	[SerializeField] float dropsReleaseSpeedRandom = 13f;
@@ -51,6 +54,7 @@ public class Asteroid : MonoBehaviour
 
     public void AsteroidDestroy()
 	{
+		
         for (int i = 0; i < drops.Length; i++)
         {
             for (int n = 0; n < drops[i].dropsNum; n++)
@@ -59,6 +63,9 @@ public class Asteroid : MonoBehaviour
 	            nDrop.transform.SetParent(transform.parent, true);
 	            Vector3 relativeSpawnPos = GetSpawnPos();
 	            nDrop.transform.position = transform.position + relativeSpawnPos;
+	            
+	            StaticAudioStarter.instance.StartAudioEmitter(transform.position, asteroidsDestructionSounds.GetRandomSound(), asteroidsDestructionSounds.GetRandomPitch());
+
 	            //if(nDrop.TryGetComponent(out Credit crdt))
 	            //{
 	            //	Vector3 crdtVelocity = relativeSpawnPos.normalized * (dropsReleaseSpeed * Random.Range(-dropsReleaseSpeedRandom, dropsReleaseSpeedRandom));
@@ -66,7 +73,6 @@ public class Asteroid : MonoBehaviour
 	            //}
             }
         }
-
 
         Destroy(this.gameObject);
     }

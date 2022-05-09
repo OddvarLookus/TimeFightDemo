@@ -413,6 +413,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   deathPrefab: {fileID: 2706213420626243347, guid: 5a331cdc6a6f06546b2a99ee52fe6e44, type: 3}
+  deathSound:
+    possibleSounds:
+    - {fileID: 8300000, guid: c387da62cdf6f954e95603439246d514, type: 3}
+    minPitch: 0.9
+    maxPitch: 1.1
 --- !u!114 &5113938375352458977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,9 +444,10 @@ MonoBehaviour:
   currentSize: 0
   enemyVoice:
     possibleSounds:
-    - {fileID: 8300000, guid: f652e646c96f2bc4e8916754624a0ec2, type: 3}
-    - {fileID: 8300000, guid: eaf3b54020cd401419c27a001b062461, type: 3}
-    - {fileID: 8300000, guid: 213853c8e028bf545abe699ca4194764, type: 3}
+    - {fileID: 8300000, guid: 61683a3798bb243468ffaa50e420a6bc, type: 3}
+    - {fileID: 8300000, guid: bd4e0b74fa9e9b64b85d8145f5b6ecab, type: 3}
+    - {fileID: 8300000, guid: 9f1b116e65fd2834c86cf1091950f845, type: 3}
+    - {fileID: 8300000, guid: f1ebf08d01317544192dfae1692c5f5c, type: 3}
     minPitch: 0.8
     maxPitch: 1.2
   minVoiceTime: 0.3
@@ -464,6 +470,11 @@ MonoBehaviour:
   maxShotFrequency: 1
   bullet: {fileID: 7183555598376989203, guid: ce075138d905bbd478979b02ab15b036, type: 3}
   bulletSpawnPos: {fileID: 1216192211612290709}
+  shootSound:
+    possibleSounds:
+    - {fileID: 8300000, guid: 5fa997ed9cfa0fb458b9924f81f6e91a, type: 3}
+    minPitch: 0.8
+    maxPitch: 1.2
 --- !u!54 &5113938375352458976
 Rigidbody:
   m_ObjectHideFlags: 0

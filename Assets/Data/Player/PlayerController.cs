@@ -152,20 +152,14 @@ public class PlayerController : MonoBehaviour
     }
 	
 	[Header("DASH SOUNDS")]
-	[SerializeField] AudioSource dashStartAudio;
 	[SerializeField] AudioSource dashLoopAudio;
-	[SerializeField] AudioSource dashStopAudio;
 	
 	void ManageDashSounds()
 	{
-		if(dashing && !prevDashing)
-		{
-			dashStartAudio.Play();
-		}
-		else if(!dashing && prevDashing == true)
+		
+		if(!dashing && prevDashing == true)
 		{
 			dashLoopAudio.Stop();
-			dashStopAudio.Play();
 		}
 		
 		if(dashing && !dashLoopAudio.isPlaying)
@@ -173,6 +167,7 @@ public class PlayerController : MonoBehaviour
 			dashLoopAudio.Play();
 		}
 	}
+	
 	
     public Vector3 GetVelocity()
     {

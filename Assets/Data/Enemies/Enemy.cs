@@ -106,6 +106,9 @@ public class Enemy : SerializedMonoBehaviour
 	}
 	
 	
+	
+	
+	
     public void Push(Vector3 _pushForce)
     {
         rb.AddForce(_pushForce, ForceMode.Impulse);

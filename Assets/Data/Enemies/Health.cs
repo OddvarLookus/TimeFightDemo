@@ -20,6 +20,7 @@ public class Health : MonoBehaviour
     
 	[SerializeField] UnityEvent OnDeath;
 	[SerializeField] GameObject deathPrefab;
+	[SerializeField] SoundsPack deathSound;
     
 	public void Initialize(float nMaxHealth)
     {
@@ -45,6 +46,10 @@ public class Health : MonoBehaviour
 			Transform t = g.transform;
 			t.parent = null;
 			t.position = transform.position;
+		}
+		if(deathSound != null)
+		{
+			StaticAudioStarter.instance.StartAudioEmitter(transform.position, deathSound.GetRandomSound(), deathSound.GetRandomPitch());
 		}
 	}
 
