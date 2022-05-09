@@ -144,7 +144,7 @@ Material:
     - _OffsetSh2: 1
     - _OffsetSh3: 1
     - _PinchUvAmount: 0.35
-    - _PixelateSize: 234
+    - _PixelateSize: 210
     - _PosterizeGamma: 0.75
     - _PosterizeNumColors: 8
     - _RandomSh1Mult: 1
@@ -157,8 +157,8 @@ Material:
     - _RimIntensity: 7.1
     - _RimPower: 2.4
     - _RimScale: 0.2
-    - _RoundWaveSpeed: 2
-    - _RoundWaveStrength: 0.7
+    - _RoundWaveSpeed: 0.7
+    - _RoundWaveStrength: 0.441
     - _ScreenUvSh1DistScale: 0
     - _ScreenUvSh2DistScale: 1
     - _ScreenUvSh3DistScale: 1
@@ -196,7 +196,7 @@ Material:
     - _Shape3XSpeed: 0
     - _Shape3YSpeed: 0
     - _ShapeAlphaWeight: 1
-    - _ShapeBrightness: -0.08
+    - _ShapeBrightness: 0.28
     - _ShapeColorWeight: 1
     - _ShapeContrast: 2.43
     - _ShapeDistortAmount: 0.25
@@ -211,11 +211,11 @@ Material:
     - _TextureScrollXSpeed: 1
     - _TextureScrollYSpeed: 0
     - _TimingSeed: 0
-    - _TrailWidthPower: 1
-    - _TwistUvAmount: 1
-    - _TwistUvPosX: 0.5
+    - _TrailWidthPower: 1.72
+    - _TwistUvAmount: 0.85
+    - _TwistUvPosX: 0.577
     - _TwistUvPosY: 0.5
-    - _TwistUvRadius: 0.75
+    - _TwistUvRadius: 0.86
     - _VertOffsetAmount: 0.086
     - _VertOffsetPower: 1
     - _VertOffsetTexXSpeed: 0.1
