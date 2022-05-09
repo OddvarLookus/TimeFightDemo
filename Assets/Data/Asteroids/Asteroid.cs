@@ -64,7 +64,6 @@ public class Asteroid : MonoBehaviour
 	            Vector3 relativeSpawnPos = GetSpawnPos();
 	            nDrop.transform.position = transform.position + relativeSpawnPos;
 	            
-	            StaticAudioStarter.instance.StartAudioEmitter(transform.position, asteroidsDestructionSounds.GetRandomSound(), asteroidsDestructionSounds.GetRandomPitch());
 
 	            //if(nDrop.TryGetComponent(out Credit crdt))
 	            //{
@@ -73,6 +72,8 @@ public class Asteroid : MonoBehaviour
 	            //}
             }
         }
+		StaticAudioStarter.instance.StartAudioEmitter(transform.position, asteroidsDestructionSounds.GetRandomSound(), asteroidsDestructionSounds.GetRandomPitch());
+
 
         Destroy(this.gameObject);
     }
