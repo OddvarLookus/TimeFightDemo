@@ -113,11 +113,11 @@ public class CameraController : MonoBehaviour
         //X ROTATION
         if (!invertX == false)
         {
-            targetRot += Input.GetAxisRaw("Mouse X") * cameraSpeed;
+	        targetRot += (Input.GetAxisRaw("Mouse X") + Input.GetAxis("Horizontal")) * cameraSpeed;
         }
         else
         {
-            targetRot -= Input.GetAxisRaw("Mouse X") * cameraSpeed;
+	        targetRot -= (Input.GetAxisRaw("Mouse X") + Input.GetAxis("Horizontal")) * cameraSpeed;
         }
 
         float t;
@@ -138,11 +138,11 @@ public class CameraController : MonoBehaviour
         //Vector3 playerToCam = cameraTransform.position - cameraLookTarget.position;
         if (invertY == false)
         {
-            targetTilt += Input.GetAxisRaw("Mouse Y") * cameraSpeed;
+	        targetTilt += (Input.GetAxisRaw("Mouse Y") + Input.GetAxis("Vertical")) * cameraSpeed;
         }
         else
         {
-            targetTilt -= Input.GetAxisRaw("Mouse Y") * cameraSpeed;
+	        targetTilt -= (Input.GetAxisRaw("Mouse Y") + Input.GetAxis("Vertical")) * cameraSpeed;
         }
 
         targetTilt = Mathf.Clamp(targetTilt, minCameraTilt, maxCameraTilt);
@@ -244,7 +244,7 @@ public class CameraController : MonoBehaviour
     //input check
     public void LockInputCheck()
     {
-        if (Input.GetMouseButtonDown(2))
+	    if (Input.GetMouseButtonDown(2) || Input.GetButtonDown("Lock"))
         {
             if (cameraMode == CameraMode.FREELOOK)
             {

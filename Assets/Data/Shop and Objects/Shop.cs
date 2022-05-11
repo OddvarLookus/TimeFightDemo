@@ -69,7 +69,7 @@ public class Shop : MonoBehaviour, IInteractable
 	
 	public string GetInteractionDescription()
 	{
-		return "E - Shop";
+		return "A - Shop";
 	}
 	
 	//SOUNDS

@@ -91,7 +91,12 @@ public class PlayerController : MonoBehaviour
         {
             inputVec.x += 1f;
         }
-        bool dashPressed = Input.GetKey(KeyCode.LeftShift);
+        
+	    inputVec.x += Input.GetAxis("MoveHorizontal");
+	    inputVec.z += Input.GetAxis("MoveVertical");
+        
+	    bool dashPressed = Input.GetKey(KeyCode.LeftShift) || Input.GetAxis("Dash") > 0f;
+        
 
 	    inputVec = inputVec.normalized;
         

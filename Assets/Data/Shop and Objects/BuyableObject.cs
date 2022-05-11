@@ -36,7 +36,7 @@ public class BuyableObject : MonoBehaviour, IInteractable
 			pc.GetComponent<PlayerStatsManager>().AddItem(objectInfos);
 			
 			StaticAudioStarter.instance.StartAudioEmitter(transform.position, buySound.GetRandomSound());
-			Destroy(this.gameObject);
+			Destroy(this.gameObject, 0.1f);
 		}
 		else
 		{
