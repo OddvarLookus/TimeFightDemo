@@ -141,7 +141,9 @@ public class Attack : MonoBehaviour
     
 	void AttackBehavior()
 	{
-		bool attackPressed = Input.GetMouseButton(0);
+		//bool attackPressed = Input.GetMouseButton(0);
+		bool attackPressed = Input.GetButton("Punch");
+		
 		if(attackPressed)
 		{
 			if(!attacking)

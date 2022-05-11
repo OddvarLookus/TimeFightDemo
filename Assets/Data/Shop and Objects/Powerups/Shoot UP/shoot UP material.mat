@@ -211,8 +211,8 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Glow: 0.97
-    - _GlowGlobal: 0.97
+    - _Glow: 1
+    - _GlowGlobal: 1
     - _HandDrawnAmount: 10
     - _HandDrawnSpeed: 5
     - _HsvBright: 1
@@ -237,8 +237,8 @@ Material:
     - _RimBias: 0.035
     - _RimErodesAlpha: 0
     - _RimIntensity: 1
-    - _RimPower: 3.1
-    - _RimScale: 1.9
+    - _RimPower: 3
+    - _RimScale: 2.5
     - _RoundWaveSpeed: 2
     - _RoundWaveStrength: 0.7
     - _ScreenUvSh2DistScale: 1

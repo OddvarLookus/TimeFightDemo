@@ -55,7 +55,7 @@ public class RangedAttack : MonoBehaviour
 	{
 		if(currentCooldown >= cooldown)
 		{
-			if(Input.GetMouseButtonDown(1))
+			if(Input.GetMouseButtonDown(1) || Input.GetButtonDown("RangedAttack"))
 			{
 				enemies = Physics.OverlapSphere(transform.position, maxRange, 1<<6, QueryTriggerInteraction.Ignore);
 				

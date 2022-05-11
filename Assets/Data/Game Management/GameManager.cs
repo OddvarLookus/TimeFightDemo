@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
 	{
 		if(gameState == GameState.GAME)
 		{
-			if(Input.GetKeyDown(KeyCode.Escape))
+			if(Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
 			{
 				if(isGamePaused)
 				{
