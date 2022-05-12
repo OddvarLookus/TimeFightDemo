@@ -41,6 +41,7 @@ public class Condo : Enemy
 	int currentShotStep = 0;
 	
 	[AssetsOnly] [SerializeField] GameObject bullet;
+	[AssetsOnly] [SerializeField] GameObject shootVFXPrefab;
 	[SceneObjectsOnly] [SerializeField] Transform bulletSpawnPos;
 	[SerializeField] SoundsPack shootSound;
 	
@@ -167,6 +168,10 @@ public class Condo : Enemy
 			GameObject b = Instantiate(bullet);
 			b.transform.SetParent(null);
 			b.transform.position = bulletSpawnPos.position;
+			
+			GameObject bVfx = Instantiate(shootVFXPrefab);
+			bVfx.transform.SetParent(this.transform);
+			bVfx.transform.position = bulletSpawnPos.position;
 			
 			Vector3 shootDir = aggroTarget.position - bulletSpawnPos.position;
 			b.GetComponent<EnemyBullet>().Shoot(shootDir, aggroTarget);

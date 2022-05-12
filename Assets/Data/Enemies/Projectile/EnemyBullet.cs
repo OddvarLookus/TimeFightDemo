@@ -15,6 +15,8 @@ public class EnemyBullet : MonoBehaviour
 	[SerializeField] ForceMode magnetismForceMode;
 	[MinValue(0f)] [SerializeField] float magnetism;
 	
+	[AssetsOnly] [SerializeField] GameObject bulletHitVfx;
+	
 	
 	Transform target;
 	Rigidbody rb;
@@ -48,7 +50,7 @@ public class EnemyBullet : MonoBehaviour
 		Destroy(this.gameObject);
 	}
 	
-	public void Shoot(Vector3 dir, Transform newTarget)
+	public void Shoot(Vector3 dir, Transform newTarget = null)
 	{
 		target = newTarget;
 		rb.AddForce(dir * speed, ForceMode.Impulse);
@@ -74,6 +76,11 @@ public class EnemyBullet : MonoBehaviour
 				playerShield.TakeDamage(damage);
 			}
 		}
+		
+		Vector3 collisionPos = collisionInfo.contacts[0].point;
+		GameObject hitVfx = Instantiate(bulletHitVfx);
+		hitVfx.transform.SetParent(null);
+		hitVfx.transform.position = collisionPos;
 		
 		GetComponent<Collider>().enabled = false;
 		StopAllCoroutines();
