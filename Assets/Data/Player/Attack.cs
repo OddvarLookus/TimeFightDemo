@@ -5,9 +5,12 @@ using Sirenix.OdinInspector;
 
 public class Attack : MonoBehaviour
 {
-    [SerializeField] GameObject attackCollider;
-    Collider col;
-	TriggerReporter attackTriggerReporter;
+	[SceneObjectsOnly] [SerializeField] GameObject[] punchesGameObjects;
+	[SceneObjectsOnly] [SerializeField] Transform[] punchesStartPositions;
+	Collider[] punchesColliders;
+	TriggerReporter[] punchesTriggerReporters;
+	
+	int attackIdx = 0;
 	[SerializeField] CameraController cameraController;
 	[SerializeField] PlayerController playerController;
     [SerializeField] float pushForce;
@@ -26,9 +29,10 @@ public class Attack : MonoBehaviour
 		{
 			currentAttackTime = 0f;
 			attacking = false;
-			isChargedAttack = false;
-			col.enabled = false;
-			attackCollider.SetActive(false);
+			foreach(GameObject punchObj in punchesGameObjects)
+			{
+				punchObj.SetActive(false);
+			}
 		}
 	}
 	
@@ -39,12 +43,15 @@ public class Attack : MonoBehaviour
 	float attackSpeed;
 	float attackTime;
 	float currentAttackTime = 0f;
+	
+	[MinValue(0.1f)] [MaxValue(1f)] [SerializeField] float attackAnimationTimeMultiplier;
+	float attackAnimationTime;
+	float currentAttackAnimationTime = 0f;
+	
+	
 	bool attacking = false;
 	public bool IsAttacking(){return attacking;}
-	bool isChargedAttack = false;
-	public bool IsChargedAttack(){return isChargedAttack;}
-	bool isChargedAttackFinished = false;
-	public bool IsChargedAttackFinished(){return isChargedAttackFinished;}
+
 	
 	
 	[SerializeField] float initialAttackSize;
@@ -61,16 +68,22 @@ public class Attack : MonoBehaviour
 	{
 		attackSpeed = newAttackSpeed;
 		attackTime = 1f / attackSpeed;
+		
+		attackAnimationTime = attackTime * attackAnimationTimeMultiplier;
 	}
 
     private void Awake()
-    {
-        col = attackCollider.GetComponent<Collider>();
-	    col.enabled = false;
-        attackTriggerReporter = attackCollider.GetComponent<TriggerReporter>();
-	    attackTriggerReporter.OnTriggerEnterAction += AttackCollisionEnter;
-	    attackCollider.SetActive(false);
-        
+	{
+		punchesColliders = new Collider[2];
+		punchesTriggerReporters = new TriggerReporter[2];
+		for(int i = 0; i < punchesGameObjects.Length; i++)
+		{
+			punchesColliders[i] = punchesGameObjects[i].GetComponent<Collider>();
+			punchesTriggerReporters[i] = punchesGameObjects[i].GetComponent<TriggerReporter>();
+			punchesTriggerReporters[i].OnTriggerEnterAction += AttackCollisionEnter;
+			
+			punchesColliders[i].enabled = false;
+		}
 	    
     }
 	
@@ -84,8 +97,11 @@ public class Attack : MonoBehaviour
 	}
 	
     private void OnDisable()
-    {
-        attackTriggerReporter.OnTriggerEnterAction -= AttackCollisionEnter;
+	{
+		foreach(TriggerReporter tr in punchesTriggerReporters)
+		{
+			tr.OnTriggerEnterAction -= AttackCollisionEnter;
+		}
     }
 
     void AttackCollisionEnter(Collider _col)
@@ -97,14 +113,14 @@ public class Attack : MonoBehaviour
 	        asteroid.Push(pushVec);
 	        
 	        asteroid.TakeDamage(damage);
-	        CheckAndSpawnPunchVFX();
+	        CheckAndSpawnPunchVFX(_col);
         }
         if (_col.TryGetComponent(out Health health))
         {
             if(health.GetAffiliation() == Affiliation.ENEMY)
             {
 	            health.TakeDamage(damage);
-	            CheckAndSpawnPunchVFX();
+	            CheckAndSpawnPunchVFX(_col);
             }
         }
         if (_col.TryGetComponent(out Enemy enemy))
@@ -115,11 +131,11 @@ public class Attack : MonoBehaviour
         }
     }
     
-	void CheckAndSpawnPunchVFX()
+	void CheckAndSpawnPunchVFX(Collider hittingCollider)
 	{
 		Vector3 pos0 = transform.position;
-		float dist = (attackCollider.transform.position - transform.position).magnitude + attackCollider.transform.localScale.x + 20f;
-		Vector3 dir = (attackCollider.transform.position - transform.position).normalized;
+		float dist = (hittingCollider.transform.position - transform.position).magnitude + hittingCollider.transform.localScale.x + 20f;
+		Vector3 dir = (hittingCollider.transform.position - transform.position).normalized;
 		Debug.DrawRay(pos0, dir * dist, Color.white, 0.5f);
 		RaycastHit rhit;
 		bool hit = Physics.Raycast(pos0, dir, out rhit, dist, ~0, QueryTriggerInteraction.Ignore);
@@ -151,9 +167,8 @@ public class Attack : MonoBehaviour
 				if(true)
 				{
 					attacking = true;
-					isChargedAttack = false;
-					attackCollider.SetActive(true);
-					col.enabled = true;
+					
+					punchesColliders[attackIdx].enabled = true;
 				}
 			}
 		}
@@ -162,33 +177,56 @@ public class Attack : MonoBehaviour
 		{
 			if(true)//NORMAL ATTACK
 			{
+				
+				
+				//ATTACK ANIMATION
+				if(currentAttackAnimationTime < attackAnimationTime)
+				{
+					currentAttackAnimationTime += Time.deltaTime;
+				}
+				
+				Vector3 initSize = new Vector3(initialAttackSize, initialAttackSize, initialAttackSize);
+				Vector3 finalSize = new Vector3(finalAttackSize, finalAttackSize, finalAttackSize);
+				
+				if(currentAttackAnimationTime <= attackAnimationTime / 2f)//first part
+				{
+					float t = currentAttackAnimationTime / (attackAnimationTime / 2f);
+					punchesGameObjects[attackIdx].transform.position = Vector3.Lerp(punchesStartPositions[attackIdx].position, GetFrontAttackPosition(), 1f- ( 1f - t * t));
+					punchesGameObjects[attackIdx].transform.localScale = Vector3.Lerp(initSize, finalSize, 1f- ( 1f - t * t));
+				}
+				else if(currentAttackAnimationTime > attackAnimationTime / 2f && currentAttackAnimationTime < attackAnimationTime)//second part
+				{
+					float t = (currentAttackAnimationTime - (attackAnimationTime / 2f)) / (attackAnimationTime / 2f);
+					punchesGameObjects[attackIdx].transform.position = Vector3.Lerp(GetFrontAttackPosition(), punchesStartPositions[attackIdx].position, t * t);
+					punchesGameObjects[attackIdx].transform.localScale = Vector3.Lerp(finalSize, initSize, t * t);
+				}
+				else//attack animation finished
+				{
+					punchesColliders[attackIdx].enabled = false;
+					punchesColliders[attackIdx].transform.position = punchesStartPositions[attackIdx].position;
+					punchesColliders[attackIdx].transform.rotation = punchesStartPositions[attackIdx].rotation;
+					
+				}
+				
+				//ATTACK LOGIC
 				if(currentAttackTime < attackTime)
 				{
 					currentAttackTime += Time.deltaTime;
 				}
-				Vector3 initSize = new Vector3(initialAttackSize, initialAttackSize, initialAttackSize);
-				Vector3 finalSize = new Vector3(finalAttackSize, finalAttackSize, finalAttackSize);
-			
-				if(currentAttackTime <= attackTime / 2f)//first part
-				{
-					float t = currentAttackTime / (attackTime / 2f);
-					attackCollider.transform.position = Vector3.Lerp(transform.position, GetFrontAttackPosition(), 1f- ( 1f - t * t));
-					attackCollider.transform.localScale = Vector3.Lerp(initSize, finalSize, 1f- ( 1f - t * t));
-				}
-				else if(currentAttackTime > attackTime / 2f && currentAttackTime < attackTime)//second part
-				{
-					float t = (currentAttackTime - (attackTime / 2f)) / (attackTime / 2f);
-					attackCollider.transform.position = Vector3.Lerp(GetFrontAttackPosition(), transform.position, t * t);
-					attackCollider.transform.localScale = Vector3.Lerp(finalSize, initSize, t * t);
-				}
-				else//attack finished
+				else
 				{
 					currentAttackTime = 0f;
+					currentAttackAnimationTime = 0f;
 					attacking = false;
-					isChargedAttack = false;
-					col.enabled = false;
-					attackCollider.SetActive(false);
+					
+					
+					attackIdx += 1;
+					if(attackIdx >= 2)
+					{
+						attackIdx = 0;
+					}
 				}
+				
 			}
 
 
@@ -199,12 +237,16 @@ public class Attack : MonoBehaviour
 	{
 		Vector3 hForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
 		Vector3 perpendicular = Vector3.Cross(hForward, Vector3.up).normalized;
-		hForward = Quaternion.AngleAxis(cameraController.GetCurrentTilt(), perpendicular) * hForward;
 		
+		Quaternion punchRotation = Quaternion.AngleAxis(cameraController.GetCurrentTilt(), perpendicular);
+		hForward = punchRotation * hForward;
 		
 		hForward *= attackDistance;
 		
 		hForward += transform.position;
+		
+		
+		punchesGameObjects[attackIdx].transform.rotation = punchRotation * punchesStartPositions[attackIdx].rotation;
 		
 		return hForward;
 	}

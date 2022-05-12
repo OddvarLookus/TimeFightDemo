@@ -17,6 +17,7 @@ public class Credit : MonoBehaviour
 		velocity = nVel;
 	}
 	
+	
 	[SerializeField] float friction;
 
 	float suckTime = 0f;
@@ -58,9 +59,10 @@ public class Credit : MonoBehaviour
         	else if(suckTime >= totalTime)
         	{
         		creditsSucker.AddCredits(value);
-        		StaticAudioStarter.instance.StartAudioEmitter(transform.position, gatherSound.GetRandomSound(), gatherSound.GetRandomPitch());
+        		
+        		StaticAudioStarter.instance.PlayCrupsSound(transform.position, gatherSound.GetRandomSound(), gatherSound.GetRandomPitch());
+        		
         		Destroy(this.gameObject);
-	        	
         	}
         }
         else//Not risucchiato
