@@ -27,6 +27,7 @@ public class RangedAttack : MonoBehaviour
 	[SerializeField] float betweenBulletTime = 0.1f;
 	float currentBetweenShotTime = 0f;
 	
+	[SceneObjectsOnly] [SerializeField] AudioSource r1Sound; 
 	
 
 	
@@ -98,7 +99,10 @@ public class RangedAttack : MonoBehaviour
         GameObject proj = Instantiate(rangedProjectilePrefab);
         proj.transform.SetParent(null, true);
         proj.transform.position = transform.position;
-        proj.GetComponent<HomingShatterer>().Shoot(_target);
+	    proj.GetComponent<HomingShatterer>().Shoot(_target);
+        
+	    r1Sound.pitch = Random.Range(0.7f, 0.75f);
+	    r1Sound.Play();
     }
     void OnDrawGizmosSelected()
     {

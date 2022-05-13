@@ -21,7 +21,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  difficultyValue: 50
+  difficultyValue: 25
   enemies:
   - enemyPrefab: {fileID: 8488491456709531852, guid: 5b0e9f0bf0d93b8418232dfdb59b16a2, type: 3}
     enemy: {fileID: 107109843671376553, guid: 5b0e9f0bf0d93b8418232dfdb59b16a2, type: 3}

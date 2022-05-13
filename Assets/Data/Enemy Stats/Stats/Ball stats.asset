@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8923f2b899f3ec04cac9262747668a1a, type: 3}
-  m_Name: Condo Stats
+  m_Name: Ball stats
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -55,10 +55,10 @@ MonoBehaviour:
       Data: 1
     - Name: maxHealth
       Entry: 4
-      Data: 3
+      Data: 2
     - Name: difficultyValue
       Entry: 3
-      Data: 3
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -76,13 +76,13 @@ MonoBehaviour:
       Data: 3|EnemyStatsScaler, Assembly-CSharp
     - Name: scale
       Entry: 4
-      Data: 4
+      Data: 3
     - Name: maxHealth
       Entry: 4
-      Data: 8
+      Data: 7
     - Name: difficultyValue
       Entry: 3
-      Data: 5
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
