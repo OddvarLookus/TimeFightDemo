@@ -12,6 +12,8 @@ public class EnemySystemManager : MonoBehaviour
 	[SerializeField] UnityEvent onAllEnemiesKilled;
 	bool allEnemiesKilledCalled = false;
 	
+	[SerializeField] AudioSource enemiesToNotifySound;
+	bool enemiesToNotifySoundPlayed = false;
 	
 	protected void Awake()
 	{
@@ -36,6 +38,12 @@ public class EnemySystemManager : MonoBehaviour
 		
 		if(currentEnemies <= maxEnemiesToNotify)
 		{
+			if(enemiesToNotifySoundPlayed == false)
+			{
+				enemiesToNotifySound.Play();
+				enemiesToNotifySoundPlayed = true;
+			}
+			
 			GameUIManager.instance.SetEnemiesRemaining(currentEnemies);
 		}
 		else

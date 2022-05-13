@@ -44,12 +44,12 @@ public class CameraController : MonoBehaviour
     #region MONOBEHAVIOR
     private void Awake()
     {
-        targetCameraPos = transform.position;
+	    targetCameraPos = transform.position;
+	    StartCoroutine(LateFixedUpdate());
     }
     private void Update()
     {
         LockInputCheck();
-
 	    
 	    if(!GameManager.instance.IsGamePaused())
 	    {
@@ -64,44 +64,73 @@ public class CameraController : MonoBehaviour
 		    }
 		    else if (cameraMode == CameraMode.ENEMYLOCK)
 		    {
-			    //CameraLockBehavior();
+			    CameraLockBehavior();
 			    EnemyLockerBehavior();
 			    CameraPositionBehavior();
 			    
 			    //cameraTransform.LookAt(lockedEnemy, Vector3.up);
 		    }
+		    
+		    
 	    }
 	    
     }
 	
 	protected void LateUpdate()
 	{
-		if(cameraMode == CameraMode.FREELOOK)
-		{
-			KeepCameraDistance();
-			cameraTransform.LookAt(cameraLookTarget, Vector3.up);
-		}
-		else if(cameraMode == CameraMode.ENEMYLOCK)
-		{
-			CameraLockBehavior();
-			cameraTransform.LookAt(/*enemyLocker*/lockedEnemy, Vector3.up);
-		}
+		LookAtTarget();
 		
 	}
 	
     private void FixedUpdate()
     {
-		
-	    if(cameraMode == CameraMode.FREELOOK)
-	    {
-		    //cameraTransform.LookAt(cameraLookTarget, Vector3.up);
-	    }
-	    else if(cameraMode == CameraMode.ENEMYLOCK)
-	    {
-		    //cameraTransform.LookAt(lockedEnemy, Vector3.up);
-	    }
-		
+
+	    
     }
+    
+	IEnumerator LateFixedUpdate()
+	{
+		yield return new WaitForFixedUpdate();
+		
+		
+		
+		StartCoroutine(LateFixedUpdate());
+	}
+	
+	protected void OnDisable()
+	{
+		StopAllCoroutines();
+	}
+    
+	void LookAtTarget()
+	{
+		Quaternion rot = transform.rotation;
+		Quaternion desiredRot = Quaternion.identity;
+		
+		if(cameraMode == CameraMode.FREELOOK)
+		{
+			//Vector3 vecToTarget = (cameraLookTarget.position - cameraTransform.position).normalized;
+			//Vector3 perpendicular = Vector3.Cross(vecToTarget, Vector3.up);
+			//Vector3 upPerpendicular = Vector3.Cross(vecToTarget, perpendicular);
+			//desiredRot = Quaternion.LookRotation(vecToTarget, upPerpendicular);
+			
+			cameraTransform.LookAt(cameraLookTarget, Vector3.up);
+			//cameraTransform.LookAt(cameraLookTarget, Vector3.up);
+		}
+		else if(cameraMode == CameraMode.ENEMYLOCK)
+		{
+			//Vector3 vecToTarget = (cameraLookTarget.position - lockedEnemy.position).normalized;
+			//Vector3 perpendicular = Vector3.Cross(vecToTarget, Vector3.up);
+			//Vector3 upPerpendicular = Vector3.Cross(vecToTarget, perpendicular);
+			//desiredRot = Quaternion.LookRotation(vecToTarget, upPerpendicular);
+			
+			
+			cameraTransform.LookAt(/*enemyLocker*/lockedEnemy, Vector3.up);
+		}
+		
+		
+		//cameraTransform.rotation = Quaternion.Lerp(rot, cameraTransform.rotation, 100f * Time.fixedDeltaTime);
+	}
 
 
     #endregion

@@ -79,7 +79,7 @@ MonoBehaviour:
       Data: 3
     - Name: maxHealth
       Entry: 4
-      Data: 7
+      Data: 6
     - Name: difficultyValue
       Entry: 3
       Data: 2

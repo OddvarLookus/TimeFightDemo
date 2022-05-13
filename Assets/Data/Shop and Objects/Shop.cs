@@ -18,13 +18,13 @@ public class Shop : MonoBehaviour, IInteractable
 	bool hasInteracted = false;
 	public void Interact(PlayerController pc)
 	{
-		if(!hasInteracted)
-		{
-			bool fromFront = Vector3.Dot((pc.transform.position - transform.position).normalized, transform.forward) >= 0f;
+		//if(!hasInteracted)
+		//{
+		//	bool fromFront = Vector3.Dot((pc.transform.position - transform.position).normalized, transform.forward) >= 0f;
 			
-			ThrowObjects(fromFront);
-			hasInteracted = true;
-		}
+		//	ThrowObjects(fromFront);
+		//	hasInteracted = true;
+		//}
 		
 	}
 	
@@ -35,22 +35,15 @@ public class Shop : MonoBehaviour, IInteractable
 		localPos2 = pos2.localPosition;
 		
 		StartShopSoundTimer();
+		ThrowObjects();
 	}
 	
-	void ThrowObjects(bool front)
+	void ThrowObjects()
 	{
-		if(front)
-		{
-			pos0.localPosition = localPos0;
-			pos1.localPosition = localPos1;
-			pos2.localPosition = localPos2;
-		}
-		else
-		{
-			pos0.localPosition = new Vector3(localPos0.x, localPos0.y, -localPos0.z);
-			pos1.localPosition = new Vector3(localPos1.x, localPos1.y, -localPos1.z);
-			pos2.localPosition = new Vector3(localPos2.x, localPos2.y, -localPos2.z);
-		}
+		
+		pos0.localPosition = localPos0;
+		pos1.localPosition = localPos1;
+		pos2.localPosition = localPos2;
 		
 		InstantiateBuyableObjectAtPos(pos0.position, 0);
 		InstantiateBuyableObjectAtPos(pos1.position, 1);
@@ -69,7 +62,7 @@ public class Shop : MonoBehaviour, IInteractable
 	
 	public string GetInteractionDescription()
 	{
-		return "A - Shop";
+		return "";
 	}
 	
 	//SOUNDS

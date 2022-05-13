@@ -58,6 +58,8 @@ public class PlayerController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
         }
+        
+	    
     }
 
 
@@ -69,7 +71,8 @@ public class PlayerController : MonoBehaviour
 			RotationBehavior();
 		}
 
-    }
+	}
+    
 
     Vector3 relativeInput;
     void Movement()
@@ -116,7 +119,7 @@ public class PlayerController : MonoBehaviour
             	}
 		        
             	
-	            rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * realMaxSpeed, playerAcceleration * Time.fixedDeltaTime);
+		        rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * realMaxSpeed, playerAcceleration * Time.fixedDeltaTime);
             }
 	        else if (canDash && dashPressed && !punchAttack.IsAttacking())//MOVEMENT WITH DASH
             {

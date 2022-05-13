@@ -199,7 +199,7 @@ Material:
     - _DistortionScrollXSpeed: 0
     - _DistortionScrollYSpeed: 0
     - _DstBlend: 0
-    - _DstMode: 3
+    - _DstMode: 0
     - _EditorDrawers: 61
     - _FadeAmount: -0.1
     - _FadeBurnGlow: 5
@@ -232,13 +232,13 @@ Material:
     - _RandomSh1Mult: 1
     - _RandomSh2Mult: 1
     - _RandomSh3Mult: 1
-    - _RenderingMode: 5
-    - _RimAddAmount: 1
+    - _RenderingMode: 4
+    - _RimAddAmount: 0.6
     - _RimBias: 0.035
     - _RimErodesAlpha: 0
-    - _RimIntensity: 0.8
+    - _RimIntensity: 2
     - _RimPower: 3
-    - _RimScale: 1.9
+    - _RimScale: 2.5
     - _RoundWaveSpeed: 2
     - _RoundWaveStrength: 0.7
     - _ScreenUvSh2DistScale: 1
@@ -291,7 +291,7 @@ Material:
     - _SoftFactor: 0.5
     - _SpecularHighlights: 1
     - _SrcBlend: 1
-    - _SrcMode: 3
+    - _SrcMode: 1
     - _TextureScrollXSpeed: 0.01
     - _TextureScrollYSpeed: 0
     - _TimingSeed: 0
