@@ -10,7 +10,8 @@ public class Asteroid : MonoBehaviour
     [SerializeField] float maxInitSpeed;
     [SerializeField] float mass = 10f;
     [SerializeField] float maxHealth;
-    float currentHealth;
+	float currentHealth;
+	Material asteroidMat;
 	
 	[Header("Sound")]
 	[SerializeField] SoundsPack asteroidsDestructionSounds;
@@ -27,7 +28,10 @@ public class Asteroid : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-
+		
+	    asteroidMat = GetComponent<Renderer>().materials[0];
+	    RefreshBreakTexture();
+		
         rb = GetComponent<Rigidbody>();
         rb.mass = mass;
 
@@ -45,12 +49,23 @@ public class Asteroid : MonoBehaviour
 	public void TakeDamage(float _damage)
 	{
 		//deplete health and die
-        currentHealth -= _damage;
+		currentHealth -= _damage;
+		
         if (currentHealth <= 0f)
         {
             AsteroidDestroy();
         }
+        else
+        {
+        	RefreshBreakTexture();
+        }
     }
+
+	void RefreshBreakTexture()
+	{
+		float breakVal = 1f - (currentHealth / maxHealth);
+		asteroidMat.SetFloat("_breakValue", breakVal);
+	}
 
     public void AsteroidDestroy()
 	{
