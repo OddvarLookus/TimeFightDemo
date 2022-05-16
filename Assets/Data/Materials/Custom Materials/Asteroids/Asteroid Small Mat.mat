@@ -96,17 +96,18 @@ Material:
     - _magicNumber3: 0
     - _magicNumber4: 0.283
     - _magicNumber5: 0.07
-    - _maxBrokenValue: 0.577
+    - _maxBrokenValue: 0.718
     - _noiseMultiplier: 1
     - _noisePower: 1
     - _noiseScale: 117.5
+    - _normalStrength: 4.2
     - _positionNormalBlending: 0
     - _sampleLerp: 0.76
     - _triplanarBlending: 0
     - _voronoiAngle: 23.8
-    - _voronoiMultiplier: 3.8
+    - _voronoiMultiplier: 5.94
     - _voronoiPow: 0.62
-    - _voronoiScale: 913
+    - _voronoiScale: 316.52
     m_Colors:
     - _Color: {r: 0.83800006, g: 0.82442445, b: 0.023464048, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}

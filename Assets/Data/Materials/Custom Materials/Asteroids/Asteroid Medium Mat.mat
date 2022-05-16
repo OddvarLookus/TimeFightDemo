@@ -90,25 +90,26 @@ Material:
     - _dotMagicNumber0: 1
     - _dotMagicNumber1: 1
     - _dotMagicNumber2: 1
-    - _magicNumber0: 0.526
-    - _magicNumber1: 0.411
+    - _magicNumber0: -0.008
+    - _magicNumber1: 0.385
     - _magicNumber2: 0
     - _magicNumber3: 0
     - _magicNumber4: 0.283
     - _magicNumber5: 0.07
-    - _maxBrokenValue: 0.577
+    - _maxBrokenValue: 0.718
     - _noiseMultiplier: 1
     - _noisePower: 1
     - _noiseScale: 117.5
+    - _normalStrength: 4.2
     - _positionNormalBlending: 0
     - _sampleLerp: 0.76
     - _triplanarBlending: 0
-    - _voronoiAngle: 23.8
-    - _voronoiMultiplier: 3.8
-    - _voronoiPow: 0.62
-    - _voronoiScale: 913
+    - _voronoiAngle: 30.6
+    - _voronoiMultiplier: 6.76
+    - _voronoiPow: 0.64
+    - _voronoiScale: 506.7
     m_Colors:
-    - _Color: {r: 0.035324927, g: 0.65882355, b: 0, a: 1}
+    - _Color: {r: 0.10474335, g: 0.677, b: 0.112999946, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _cracksColor: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
     - _magicNumber0: {r: 0, g: 0, b: 0, a: 0}
