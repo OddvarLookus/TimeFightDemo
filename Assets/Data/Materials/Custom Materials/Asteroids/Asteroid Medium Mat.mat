@@ -87,19 +87,32 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     - _breakValue: 1
-    - _maxBrokenValue: 0.541
+    - _dotMagicNumber0: 1
+    - _dotMagicNumber1: 1
+    - _dotMagicNumber2: 1
+    - _magicNumber0: 0.526
+    - _magicNumber1: 0.411
+    - _magicNumber2: 0
+    - _magicNumber3: 0
+    - _magicNumber4: 0.283
+    - _magicNumber5: 0.07
+    - _maxBrokenValue: 0.577
     - _noiseMultiplier: 1
     - _noisePower: 1
-    - _noiseScale: 133.3
+    - _noiseScale: 117.5
     - _positionNormalBlending: 0
-    - _triplanarBlending: 100
-    - _voronoiAngle: 25
-    - _voronoiMultiplier: 20.2
-    - _voronoiPow: 1
-    - _voronoiScale: 358
+    - _sampleLerp: 0.76
+    - _triplanarBlending: 0
+    - _voronoiAngle: 23.8
+    - _voronoiMultiplier: 3.8
+    - _voronoiPow: 0.62
+    - _voronoiScale: 913
     m_Colors:
-    - _Color: {r: 0, g: 0.6603774, b: 0.087546565, a: 1}
+    - _Color: {r: 0.035324927, g: 0.65882355, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _cracksColor: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
+    - _magicNumber0: {r: 0, g: 0, b: 0, a: 0}
+    - _magicNumber1: {r: 0, g: 0, b: 0, a: 0}
+    - _magicNumber2: {r: 0, g: 0, b: 0, a: 0}
     - _voronoiOffset: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
