@@ -87,14 +87,16 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     - _breakValue: 1
-    - _maxBrokenValue: 0.585
+    - _maxBrokenValue: 0.541
     - _noiseMultiplier: 1
     - _noisePower: 1
-    - _noiseScale: 218.64
-    - _voronoiAngle: 2.1
-    - _voronoiMultiplier: 11.22
+    - _noiseScale: 133.3
+    - _positionNormalBlending: 0
+    - _triplanarBlending: 100
+    - _voronoiAngle: 25
+    - _voronoiMultiplier: 20.2
     - _voronoiPow: 1
-    - _voronoiScale: 725.88
+    - _voronoiScale: 358
     m_Colors:
     - _Color: {r: 0, g: 0.6603774, b: 0.087546565, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
