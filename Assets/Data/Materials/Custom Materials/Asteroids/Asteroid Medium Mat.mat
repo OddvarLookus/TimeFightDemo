@@ -86,6 +86,8 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
+    - _ambientOcclusionMultiplier: 0
+    - _ambientOcclusionThreshold: 0.338
     - _breakValue: 1
     - _dotMagicNumber0: 1
     - _dotMagicNumber1: 1
