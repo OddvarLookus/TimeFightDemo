@@ -40,6 +40,7 @@ public class CameraController : MonoBehaviour
 	//garpa size
 	[SerializeField] float garpaSizeAddition;
 	[SerializeField] float minGarpaDistance;
+	[SerializeField] float garpaRotSpeed = 100f;
 	
 
     #region MONOBEHAVIOR
@@ -407,6 +408,8 @@ public class CameraController : MonoBehaviour
         
     }
     
+	Vector3 targetGarpaPos = Vector3.zero;
+	bool garpaNextToPlayer = false;
 	void EnemyLockerBehavior()
 	{
 		if(enemyLocker != null)
@@ -433,6 +436,26 @@ public class CameraController : MonoBehaviour
 				Vector3 nearestPos = (enemyLocker.position - playerController.transform.position).normalized;
 				nearestPos *= minGarpaDistance;
 				nearestPos += playerController.transform.position;
+				
+				//when garpa is next to the player, rotate around the player
+				float distGarpaToPlayer = (enemyLocker.position - playerController.transform.position).magnitude;
+				if(distGarpaToPlayer <= minGarpaDistance + 0.5f)
+				{
+					if(garpaNextToPlayer == false)
+					{
+						targetGarpaPos = enemyLocker.position - playerController.transform.position;
+						garpaNextToPlayer = true;
+					}
+					
+					targetGarpaPos = targetGarpaPos.normalized * minGarpaDistance;
+					targetGarpaPos = Quaternion.AngleAxis(garpaRotSpeed * Time.deltaTime, Vector3.up) * targetGarpaPos;
+					nearestPos = targetGarpaPos + playerController.transform.position;
+					
+				}
+				else
+				{
+					garpaNextToPlayer = false;
+				}
 				
 				enemyLocker.position = Vector3.Lerp(enemyLocker.position, nearestPos, enemyLockerSpeed * Time.deltaTime);
 			}

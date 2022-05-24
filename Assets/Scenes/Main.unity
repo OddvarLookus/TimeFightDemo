@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.05976037, g: 0.2581444, b: 0.58125776, a: 1}
+  m_IndirectSpecularColor: {r: 0.059734285, g: 0.25835428, b: 0.5810703, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3523,6 +3523,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 266377254}
     - target: {fileID: 6124866704305363050, guid: b3e6983bc55d7934b9c82aa436df06f8, type: 3}
+      propertyPath: garpaRotSpeed
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6124866704305363050, guid: b3e6983bc55d7934b9c82aa436df06f8, type: 3}
       propertyPath: smoothingSpeed
       value: 60
       objectReference: {fileID: 0}
@@ -3536,7 +3540,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6124866704305363050, guid: b3e6983bc55d7934b9c82aa436df06f8, type: 3}
       propertyPath: minGarpaDistance
-      value: 10
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 6124866704305363050, guid: b3e6983bc55d7934b9c82aa436df06f8, type: 3}
       propertyPath: playerController
