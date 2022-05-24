@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     {
 	    LevelTimeBehavior();
 	    PauseBehavior();
+	    RestartGameBehavior();
 	    GameOverBehavior();
     }
     
@@ -71,6 +72,18 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
+	}
+	
+	void RestartGameBehavior()
+	{
+		if(Input.GetKeyDown(KeyCode.R))
+		{
+			if(!isGamePaused)
+			{
+				canReloadLevel = true;
+				ReloadLevel();
+			}
+		}
 	}
 	
 	void GameOverBehavior()
