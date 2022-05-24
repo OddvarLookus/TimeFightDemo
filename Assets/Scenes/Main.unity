@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.05974984, g: 0.25844416, b: 0.5809638, a: 1}
+  m_IndirectSpecularColor: {r: 0.05976037, g: 0.2581444, b: 0.58125776, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -718,7 +718,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 266377253}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.647}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children: []
   m_Father: {fileID: 190369563}
@@ -3532,6 +3532,10 @@ PrefabInstance:
       objectReference: {fileID: 1842426552}
     - target: {fileID: 6124866704305363050, guid: b3e6983bc55d7934b9c82aa436df06f8, type: 3}
       propertyPath: enemyLockerSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6124866704305363050, guid: b3e6983bc55d7934b9c82aa436df06f8, type: 3}
+      propertyPath: minGarpaDistance
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6124866704305363050, guid: b3e6983bc55d7934b9c82aa436df06f8, type: 3}

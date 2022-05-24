@@ -39,6 +39,7 @@ public class CameraController : MonoBehaviour
 	[SerializeField] float enemyLockerSpeed;
 	//garpa size
 	[SerializeField] float garpaSizeAddition;
+	[SerializeField] float minGarpaDistance;
 	
 
     #region MONOBEHAVIOR
@@ -428,7 +429,12 @@ public class CameraController : MonoBehaviour
 			}
 			else if(cameraMode == CameraMode.FREELOOK)
 			{
-				enemyLocker.position = Vector3.Lerp(enemyLocker.position, playerController.transform.position + new Vector3(0f, 1f, 0f), enemyLockerSpeed * Time.deltaTime);
+				//get nearest position in a radius around the player to position the garpa
+				Vector3 nearestPos = (enemyLocker.position - playerController.transform.position).normalized;
+				nearestPos *= minGarpaDistance;
+				nearestPos += playerController.transform.position;
+				
+				enemyLocker.position = Vector3.Lerp(enemyLocker.position, nearestPos, enemyLockerSpeed * Time.deltaTime);
 			}
 			
 		}
