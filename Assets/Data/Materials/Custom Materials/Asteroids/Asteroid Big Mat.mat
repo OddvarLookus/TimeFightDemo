@@ -86,8 +86,8 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     - __dirty: 0
-    - _ambientOcclusionMultiplier: 0
-    - _ambientOcclusionThreshold: 0.338
+    - _ambientOcclusionMultiplier: 15
+    - _ambientOcclusionThreshold: 0.447
     - _breakValue: 1
     - _dotMagicNumber0: 1
     - _dotMagicNumber1: 1
@@ -107,7 +107,7 @@ Material:
     - _sampleLerp: 0.76
     - _triplanarBlending: 0
     - _voronoiAngle: 30.5
-    - _voronoiMultiplier: 5.93
+    - _voronoiMultiplier: 4.91
     - _voronoiPow: 0.62
     - _voronoiScale: 557.46
     m_Colors:
