@@ -87,8 +87,9 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     - _ambientOcclusionMultiplier: 15
-    - _ambientOcclusionThreshold: 0.423
+    - _ambientOcclusionThreshold: 0.7
     - _breakValue: 1
+    - _colorMultiplier: 6.5
     - _dotMagicNumber0: 1
     - _dotMagicNumber1: 1
     - _dotMagicNumber2: 1
@@ -113,7 +114,7 @@ Material:
     m_Colors:
     - _Color: {r: 0.83800006, g: 0.82442445, b: 0.023464048, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _cracksColor: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
+    - _cracksColor: {r: 0.23529412, g: 0.8862745, b: 0.90588236, a: 1}
     - _magicNumber0: {r: 0, g: 0, b: 0, a: 0}
     - _magicNumber1: {r: 0, g: 0, b: 0, a: 0}
     - _magicNumber2: {r: 0, g: 0, b: 0, a: 0}

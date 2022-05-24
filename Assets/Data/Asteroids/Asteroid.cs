@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
 public class Asteroid : MonoBehaviour
 {
 	[Header("Initialization")]
@@ -15,6 +16,9 @@ public class Asteroid : MonoBehaviour
 	
 	[Header("Sound")]
 	[SerializeField] SoundsPack asteroidsDestructionSounds;
+	
+	[Header("Feedback")]
+	[SerializeField] float damageScaleChange;
 	
 	[Header("Drops")]
 	[SerializeField] float dropsReleaseSpeed = 25f;
@@ -58,6 +62,15 @@ public class Asteroid : MonoBehaviour
         else
         {
         	RefreshBreakTexture();
+        	if(_damage > 0f)
+        	{
+        		Vector3 baseScale = transform.localScale;
+        		Vector3 nwScale = new Vector3(transform.localScale.x - damageScaleChange, transform.localScale.y - damageScaleChange, transform.localScale.z - damageScaleChange);
+        		LTDescr tw = LeanTween.scale(this.gameObject, nwScale, 0.03f).setEase(LeanTweenType.easeOutQuad).setOnComplete(() => 
+        		{
+        			LeanTween.scale(this.gameObject, baseScale, 0.05f).setEase(LeanTweenType.easeInQuad);
+        		});
+        	}
         }
     }
 
