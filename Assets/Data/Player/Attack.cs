@@ -112,14 +112,14 @@ public class Attack : MonoBehaviour
             pushVec *= pushForce;
 	        asteroid.Push(pushVec);
 	        
-	        asteroid.TakeDamage(damage);
+	        asteroid.TakeDamage(damage, punchesGameObjects[attackIdx].transform.position);
 	        CheckAndSpawnPunchVFX(_col);
         }
         if (_col.TryGetComponent(out Health health))
         {
             if(health.GetAffiliation() == Affiliation.ENEMY)
             {
-	            health.TakeDamage(damage);
+	            health.TakeDamage(damage, punchesGameObjects[attackIdx].transform.position);
 	            CheckAndSpawnPunchVFX(_col);
             }
         }

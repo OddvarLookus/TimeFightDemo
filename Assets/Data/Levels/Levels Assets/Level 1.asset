@@ -28,17 +28,13 @@ MonoBehaviour:
     probability: 0.65
     sizesRollers:
     - size: 0
-      probability: 0.65
-    - size: 1
-      probability: 0.35000002
+      probability: 1
   - enemyPrefab: {fileID: 5113938375352459004, guid: 0164d3bf1eeed5a4f809e01141e53cf2, type: 3}
     enemy: {fileID: 5113938375352458977, guid: 0164d3bf1eeed5a4f809e01141e53cf2, type: 3}
     probability: 0.35
     sizesRollers:
     - size: 0
-      probability: 0.8
-    - size: 1
-      probability: 0.2
+      probability: 1
   asteroidsCount: 100
   asteroids:
   - asteroidPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}

@@ -50,10 +50,12 @@ public class Asteroid : MonoBehaviour
         rb.AddForce(_pushForce, ForceMode.Impulse);
     }
 
-	public void TakeDamage(float _damage)
+	public void TakeDamage(float _damage, Vector3 damagePoint)
 	{
 		//deplete health and die
 		currentHealth -= _damage;
+		
+		DamageNumbersManager.instance.SpawnDamageNumber(_damage, damagePoint);
 		
         if (currentHealth <= 0f)
         {

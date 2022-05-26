@@ -28,9 +28,12 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(float _damage)
+	public void TakeDamage(float _damage, Vector3 damagePoint)
     {
-        currentHealth -= _damage;
+	    currentHealth -= _damage;
+        
+	    DamageNumbersManager.instance.SpawnDamageNumber(_damage, damagePoint);
+        
         if (currentHealth <= 0f)
         {
         	Die();
