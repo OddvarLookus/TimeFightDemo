@@ -87,18 +87,18 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     - _ambientOcclusionMultiplier: 15
-    - _ambientOcclusionThreshold: 0.7
+    - _ambientOcclusionThreshold: 0.718
     - _breakValue: 1
-    - _colorMultiplier: 6.5
+    - _colorMultiplier: 11.9
     - _dotMagicNumber0: 1
     - _dotMagicNumber1: 1
     - _dotMagicNumber2: 1
     - _magicNumber0: -0.401
-    - _magicNumber1: 0.09
-    - _magicNumber2: -0.073
-    - _magicNumber3: -0.16
-    - _magicNumber4: 0.03
-    - _magicNumber5: 0.07
+    - _magicNumber1: 0.045
+    - _magicNumber2: 0.302
+    - _magicNumber3: -0.088
+    - _magicNumber4: 0.022
+    - _magicNumber5: 0.017
     - _maxBrokenValue: 0.639
     - _noiseMultiplier: 1
     - _noisePower: 1

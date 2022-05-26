@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float playerDashMaxSpeed;
 	[SerializeField] float playerAcceleration;
 	[SerializeField] float playerDashAcceleration;
-    [SerializeField] float playerDeceleration;
+	[SerializeField] float playerDeceleration;
+	[SerializeField] float ascensionSpeed;
 	[SerializeField] float rotationSpeed;
 	[SerializeField] float rotationForwardMultiplier;
 	[SerializeField] CameraController camController;
@@ -97,9 +98,9 @@ public class PlayerController : MonoBehaviour
         
 	    inputVec.x += Input.GetAxis("MoveHorizontal");
 	    inputVec.z += Input.GetAxis("MoveVertical");
-        
+	    
 	    bool dashPressed = Input.GetKey(KeyCode.LeftShift) || Input.GetAxis("Dash") > 0f;
-        
+	    bool ascensionPressed = Input.GetKey(KeyCode.Space);
 
 	    inputVec = inputVec.normalized;
         
@@ -110,6 +111,21 @@ public class PlayerController : MonoBehaviour
 
         if (inputVec != Vector3.zero)
         {
+        	//ascension
+        	Vector3 ascensionVec = Vector3.zero;
+        	if(ascensionPressed)
+        	{
+        		Vector3 camForward = camController.GetCameraForward();
+        		if(camForward.y >= 0f)//GO UP
+        		{
+        			ascensionVec = new Vector3(0f, ascensionSpeed, 0f);
+        		}
+        		else if(camForward.y < 0f)//GO DOWN
+        		{
+        			ascensionVec = new Vector3(0f, -ascensionSpeed, 0f);
+        		}
+        	}
+        	
 	        if (!canDash || !dashPressed || dashPressed && punchAttack.IsAttacking())//MOVEMENT WITHOUT DASH
             {
             	float realMaxSpeed = playerMaxSpeed;
@@ -118,12 +134,28 @@ public class PlayerController : MonoBehaviour
             		realMaxSpeed *= speedWhileAttackingMultiplier;
             	}
 		        
+		        if(ascensionVec != Vector3.zero)
+		        {
+		        	rb.velocity = Vector3.Lerp(rb.velocity, ascensionVec * realMaxSpeed, playerAcceleration * Time.fixedDeltaTime);
+		        }
+		        else
+		        {
+		        	rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * realMaxSpeed, playerAcceleration * Time.fixedDeltaTime);
+		        }
             	
-		        rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * realMaxSpeed, playerAcceleration * Time.fixedDeltaTime);
+		        
             }
 	        else if (canDash && dashPressed && !punchAttack.IsAttacking())//MOVEMENT WITH DASH
-            {
-		        rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * playerDashMaxSpeed, playerDashAcceleration * Time.fixedDeltaTime);
+	        {
+	        	if(ascensionVec != Vector3.zero)
+	        	{
+	        		rb.velocity = Vector3.Lerp(rb.velocity, ascensionVec * playerDashMaxSpeed, playerDashAcceleration * Time.fixedDeltaTime);
+	        	}
+	        	else
+	        	{
+	        		rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * playerDashMaxSpeed, playerDashAcceleration * Time.fixedDeltaTime);
+	        	}
+		        
             }
         }
         else
