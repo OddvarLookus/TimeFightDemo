@@ -189,6 +189,15 @@ public class Attack : MonoBehaviour
 					attacking = false;
 					attackIdx = 0;
 					currentPunchIdx = 0;
+					
+					//ATTACK FINISHED, RESET PUNCHES
+					for(int i = 0; i < punchesGameObjects.Length; i++)
+					{
+						punchesGameObjects[i].transform.position = punchesStartPositions[i].position;
+						punchesGameObjects[i].transform.rotation = punchesStartPositions[i].rotation;
+						punchesGameObjects[i].transform.localScale = new Vector3(initialAttackSize, initialAttackSize, initialAttackSize);
+						punchesColliders[i].enabled = false;
+					}
 					return;
 				}
 				

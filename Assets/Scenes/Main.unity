@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.059737734, g: 0.2583478, b: 0.58102375, a: 1}
+  m_IndirectSpecularColor: {r: 0.05975631, g: 0.25818357, b: 0.5807859, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3499,8 +3499,12 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4999143093157021291, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
-      propertyPath: baseAttackSpeed
+      propertyPath: baseDamage
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999143093157021291, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: baseAttackSpeed
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4999143093157021291, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
       propertyPath: numberOfPunches
@@ -3512,7 +3516,7 @@ PrefabInstance:
       objectReference: {fileID: 1745202265}
     - target: {fileID: 4999143093157021291, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
       propertyPath: attackAnimationTimeMultiplier
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4999143093157021292, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
       propertyPath: maxSuckRadius

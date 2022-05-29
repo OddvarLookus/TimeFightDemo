@@ -79,7 +79,6 @@ public class PlayerShield : MonoBehaviour
 	{
 		GetComponent<PlayerController>().SetMovementEnabled(false);
 		GetComponent<Attack>().SetAttackEnabled(false);
-		GetComponent<RangedAttack>().SetAttackEnabled(false);
 		GetComponent<CapsuleCollider>().enabled = false;
 		
 		playerGraphics.gameObject.SetActive(false);
