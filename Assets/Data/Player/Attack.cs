@@ -13,7 +13,7 @@ public class Attack : MonoBehaviour
 	int attackIdx = 0;
 	[SerializeField] CameraController cameraController;
 	[SerializeField] PlayerController playerController;
-    [SerializeField] float pushForce;
+	[SerializeField] float pushForce;
 	public float baseDamage;
 	float damage;
 	[AssetsOnly] [SerializeField] GameObject punchVFX;
@@ -44,6 +44,7 @@ public class Attack : MonoBehaviour
 	float attackTime;
 	float currentAttackTime = 0f;
 	
+	[SerializeField] int numberOfPunches;
 	[MinValue(0.1f)] [MaxValue(1f)] [SerializeField] float attackAnimationTimeMultiplier;
 	float attackAnimationTime;
 	float currentAttackAnimationTime = 0f;
@@ -112,14 +113,14 @@ public class Attack : MonoBehaviour
             pushVec *= pushForce;
 	        asteroid.Push(pushVec);
 	        
-	        asteroid.TakeDamage(damage, punchesGameObjects[attackIdx].transform.position);
+	        asteroid.TakeDamage(damage, punchesGameObjects[currentPunchIdx].transform.position);
 	        CheckAndSpawnPunchVFX(_col);
         }
         if (_col.TryGetComponent(out Health health))
         {
             if(health.GetAffiliation() == Affiliation.ENEMY)
             {
-	            health.TakeDamage(damage, punchesGameObjects[attackIdx].transform.position);
+	            health.TakeDamage(damage, punchesGameObjects[currentPunchIdx].transform.position);
 	            CheckAndSpawnPunchVFX(_col);
             }
         }
@@ -154,7 +155,7 @@ public class Attack : MonoBehaviour
     
 	
 	
-    
+	int currentPunchIdx = 0;
 	void AttackBehavior()
 	{
 		//bool attackPressed = Input.GetMouseButton(0);
@@ -167,8 +168,6 @@ public class Attack : MonoBehaviour
 				if(true)
 				{
 					attacking = true;
-					
-					punchesColliders[attackIdx].enabled = true;
 				}
 			}
 		}
@@ -177,36 +176,6 @@ public class Attack : MonoBehaviour
 		{
 			if(true)//NORMAL ATTACK
 			{
-				
-				
-				//ATTACK ANIMATION
-				if(currentAttackAnimationTime < attackAnimationTime)
-				{
-					currentAttackAnimationTime += Time.deltaTime;
-				}
-				
-				Vector3 initSize = new Vector3(initialAttackSize, initialAttackSize, initialAttackSize);
-				Vector3 finalSize = new Vector3(finalAttackSize, finalAttackSize, finalAttackSize);
-				
-				if(currentAttackAnimationTime <= attackAnimationTime / 2f)//first part
-				{
-					float t = currentAttackAnimationTime / (attackAnimationTime / 2f);
-					punchesGameObjects[attackIdx].transform.position = Vector3.Lerp(punchesStartPositions[attackIdx].position, GetFrontAttackPosition(), 1f- ( 1f - t * t));
-					punchesGameObjects[attackIdx].transform.localScale = Vector3.Lerp(initSize, finalSize, 1f- ( 1f - t * t));
-				}
-				else if(currentAttackAnimationTime > attackAnimationTime / 2f && currentAttackAnimationTime < attackAnimationTime)//second part
-				{
-					float t = (currentAttackAnimationTime - (attackAnimationTime / 2f)) / (attackAnimationTime / 2f);
-					punchesGameObjects[attackIdx].transform.position = Vector3.Lerp(GetFrontAttackPosition(), punchesStartPositions[attackIdx].position, t * t);
-					punchesGameObjects[attackIdx].transform.localScale = Vector3.Lerp(finalSize, initSize, t * t);
-				}
-				else//attack animation finished
-				{
-					punchesColliders[attackIdx].enabled = false;
-					punchesColliders[attackIdx].transform.position = punchesStartPositions[attackIdx].position;
-					punchesColliders[attackIdx].transform.rotation = punchesStartPositions[attackIdx].rotation;
-					
-				}
 				
 				//ATTACK LOGIC
 				if(currentAttackTime < attackTime)
@@ -218,14 +187,51 @@ public class Attack : MonoBehaviour
 					currentAttackTime = 0f;
 					currentAttackAnimationTime = 0f;
 					attacking = false;
+					attackIdx = 0;
+					currentPunchIdx = 0;
+					return;
+				}
+				
+				//ATTACK ANIMATION
+				if(currentAttackAnimationTime < attackAnimationTime)
+				{
+					currentAttackAnimationTime += Time.deltaTime;
+				}
+				
+				Vector3 initSize = new Vector3(initialAttackSize, initialAttackSize, initialAttackSize);
+				Vector3 finalSize = new Vector3(finalAttackSize, finalAttackSize, finalAttackSize);
+				currentPunchIdx = attackIdx % 2;
+				if(punchesColliders[currentPunchIdx].enabled == false)
+				{
+					punchesColliders[currentPunchIdx].enabled = true;
+				}
+				
+				
+				float cellTime = attackAnimationTime / (float)numberOfPunches;
+				
+				if(currentAttackAnimationTime <= (cellTime / 2f) + (float)attackIdx * cellTime)//first part
+				{
+					float t = (currentAttackAnimationTime - (float)attackIdx * cellTime) / (cellTime / 2f);
+					punchesGameObjects[currentPunchIdx].transform.position = Vector3.Lerp(punchesStartPositions[currentPunchIdx].position, GetFrontAttackPosition(), 1f- ( 1f - t * t));
+					punchesGameObjects[currentPunchIdx].transform.localScale = Vector3.Lerp(initSize, finalSize, 1f- ( 1f - t * t));
+				}
+				else if(currentAttackAnimationTime > (cellTime / 2f) + (float)attackIdx * cellTime && currentAttackAnimationTime < cellTime + (float)attackIdx * cellTime)//second part
+				{
+					float t = (((currentAttackAnimationTime - ((float)attackIdx * cellTime))) - (cellTime / 2f)) / (cellTime / 2f);
+					punchesGameObjects[currentPunchIdx].transform.position = Vector3.Lerp(GetFrontAttackPosition(), punchesStartPositions[currentPunchIdx].position, t * t);
+					punchesGameObjects[currentPunchIdx].transform.localScale = Vector3.Lerp(finalSize, initSize, t * t);
+				}
+				else//attack animation finished
+				{
+					punchesColliders[currentPunchIdx].enabled = false;
+					punchesColliders[currentPunchIdx].transform.position = punchesStartPositions[currentPunchIdx].position;
+					punchesColliders[currentPunchIdx].transform.rotation = punchesStartPositions[currentPunchIdx].rotation;
 					
 					
 					attackIdx += 1;
-					if(attackIdx >= 2)
-					{
-						attackIdx = 0;
-					}
 				}
+				
+
 				
 			}
 
@@ -246,7 +252,7 @@ public class Attack : MonoBehaviour
 		hForward += transform.position;
 		
 		
-		punchesGameObjects[attackIdx].transform.rotation = punchRotation * punchesStartPositions[attackIdx].rotation;
+		punchesGameObjects[currentPunchIdx].transform.rotation = punchRotation * punchesStartPositions[currentPunchIdx].rotation;
 		
 		return hForward;
 	}

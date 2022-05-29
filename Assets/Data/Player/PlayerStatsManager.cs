@@ -10,7 +10,6 @@ public class PlayerStatsManager : MonoBehaviour
 	protected void Awake()
 	{
 		attack = GetComponent<Attack>();
-		rangedAttack = GetComponent<RangedAttack>();
 		RecalculateStats();
 	}
 	
@@ -50,16 +49,6 @@ public class PlayerStatsManager : MonoBehaviour
 		}
 		attack.SetAttackSpeed(atkSpeed);
 		
-		//RANGED ATTACK BULLETS PER TARGET RECALCULATION
-		int bulletsPerTarget = rangedAttack.baseBulletsPerTarget;
-		
-		for(int i = 0; i < items.Count; i++)
-		{
-			
-			bulletsPerTarget = bulletsPerTarget + items[i].projectilesPerTargetBonus;
-			
-		}
-		rangedAttack.SetBulletsPerTarget(bulletsPerTarget);
 	}
     
 }
