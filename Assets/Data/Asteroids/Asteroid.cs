@@ -26,6 +26,7 @@ public class Asteroid : MonoBehaviour
     [SerializeField] float dropsReleaseRadius;
     [SerializeField] Drop[] drops;
 	
+	bool isInvincible = false;
 	
 	
     Rigidbody rb;
@@ -42,8 +43,17 @@ public class Asteroid : MonoBehaviour
         Vector3 initSpeed = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f));
         initSpeed = initSpeed.normalized;
         initSpeed *= Random.Range(minInitSpeed, maxInitSpeed);
-        rb.AddForce(initSpeed, ForceMode.Impulse);
+	    rb.AddForce(initSpeed, ForceMode.Impulse);
+        
+	    isInvincible = true;
+	    StartCoroutine(InvincibilityCoroutine());
     }
+
+	IEnumerator InvincibilityCoroutine()
+	{
+		yield return new WaitForSeconds(10f/60f);//10 frames to wait
+		isInvincible = false;
+	}
 
     public void Push(Vector3 _pushForce)
     {
@@ -53,6 +63,11 @@ public class Asteroid : MonoBehaviour
 	public void TakeDamage(float _damage, Vector3 damagePoint)
 	{
 		//deplete health and die
+		if(isInvincible)
+		{
+			return;
+		}
+		
 		currentHealth -= _damage;
 		
 		DamageNumbersManager.instance.SpawnDamageNumber(_damage, damagePoint);
@@ -67,7 +82,7 @@ public class Asteroid : MonoBehaviour
         	if(_damage > 0f)
         	{
         		Vector3 baseScale = transform.localScale;
-        		Vector3 nwScale = new Vector3(transform.localScale.x - damageScaleChange, transform.localScale.y - damageScaleChange, transform.localScale.z - damageScaleChange);
+        		Vector3 nwScale = new Vector3(transform.localScale.x - damageScaleChange * _damage, transform.localScale.y - damageScaleChange * _damage, transform.localScale.z - damageScaleChange * _damage);
         		LTDescr tw = LeanTween.scale(this.gameObject, nwScale, 0.03f).setEase(LeanTweenType.easeOutQuad).setOnComplete(() => 
         		{
         			LeanTween.scale(this.gameObject, baseScale, 0.05f).setEase(LeanTweenType.easeInQuad);

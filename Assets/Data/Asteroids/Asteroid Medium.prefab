@@ -60,7 +60,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 7a9280bded2fea8479746925e2b49040, type: 3}
     minPitch: 0.9
     maxPitch: 1.3
-  damageScaleChange: 30
+  damageScaleChange: 60
   dropsReleaseSpeed: 0
   dropsReleaseSpeedRandom: 13
   dropsReleaseRadius: 29.11

@@ -109,42 +109,48 @@ public class Attack : MonoBehaviour
 		}
     }
 
+	List<Collider> damagedColliders = new List<Collider>();
     void AttackCollisionEnter(Collider _col)
 	{
-		float dmg = damage;
-		if(isHeavyAttack)
+		if(!damagedColliders.Contains(_col))
 		{
-			dmg *= heavyAttackDamageMultiplier;
-		}
-		float dmgPerc = (damageRandomnessPercentage / 100f) * 2f;
-		float randDamage = Random.Range(0f, dmgPerc);
-		randDamage = randDamage * dmg;
-		dmg = dmg + (randDamage - ((dmgPerc * dmg)/2f));
-		
+			float dmg = damage;
+			if(isHeavyAttack)
+			{
+				dmg *= heavyAttackDamageMultiplier;
+			}
+			float dmgPerc = (damageRandomnessPercentage / 100f) * 2f;
+			float randDamage = Random.Range(0f, dmgPerc);
+			randDamage = randDamage * dmg;
+			dmg = dmg + (randDamage - ((dmgPerc * dmg)/2f));
     	
-        if (_col.TryGetComponent(out Asteroid asteroid))
-        {
-            Vector3 pushVec = (_col.transform.position - transform.position).normalized;
-            pushVec *= pushForce;
-	        asteroid.Push(pushVec);
+			if (_col.TryGetComponent(out Asteroid asteroid))
+			{
+				Vector3 pushVec = (_col.transform.position - transform.position).normalized;
+				pushVec *= pushForce;
+				asteroid.Push(pushVec);
 	        
-	        asteroid.TakeDamage(dmg, punchesGameObjects[currentPunchIdx].transform.position);
-	        CheckAndSpawnPunchVFX(_col);
-        }
-        if (_col.TryGetComponent(out Health health))
-        {
-            if(health.GetAffiliation() == Affiliation.ENEMY)
-            {
-	            health.TakeDamage(dmg, punchesGameObjects[currentPunchIdx].transform.position);
-	            CheckAndSpawnPunchVFX(_col);
-            }
-        }
-        if (_col.TryGetComponent(out Enemy enemy))
-        {
-            Vector3 pushVec = (_col.transform.position - transform.position).normalized;
-            pushVec *= pushForce;
-            enemy.Push(pushVec);
-        }
+				asteroid.TakeDamage(dmg, punchesGameObjects[currentPunchIdx].transform.position);
+				CheckAndSpawnPunchVFX(_col);
+			}
+			if (_col.TryGetComponent(out Health health))
+			{
+				if(health.GetAffiliation() == Affiliation.ENEMY)
+				{
+					health.TakeDamage(dmg, punchesGameObjects[currentPunchIdx].transform.position);
+					CheckAndSpawnPunchVFX(_col);
+				}
+			}
+			if (_col.TryGetComponent(out Enemy enemy))
+			{
+				Vector3 pushVec = (_col.transform.position - transform.position).normalized;
+				pushVec *= pushForce * dmg;
+				enemy.Push(pushVec);
+			}
+			
+			damagedColliders.Add(_col);
+		}
+
     }
     
 	void CheckAndSpawnPunchVFX(Collider hittingCollider)
@@ -247,11 +253,12 @@ public class Attack : MonoBehaviour
 				}
 				else//attack animation finished
 				{
-					punchesColliders[currentPunchIdx].enabled = false;
+					punchesColliders[0].enabled = false;
+					punchesColliders[1].enabled = false;
 					punchesColliders[currentPunchIdx].transform.position = punchesStartPositions[currentPunchIdx].position;
 					punchesColliders[currentPunchIdx].transform.rotation = punchesStartPositions[currentPunchIdx].rotation;
 					
-					
+					damagedColliders.Clear();
 					attackIdx += 1;
 				}
 				
@@ -296,6 +303,11 @@ public class Attack : MonoBehaviour
 				
 				if(currentAttackAnimationTime < heavyAttackAnimTime * 0.7f)//is charging heavy attack
 				{
+					if(punchesColliders[1].enabled == true)
+					{
+						punchesColliders[1].enabled = false;
+					}
+					
 					float t = currentAttackAnimationTime/(heavyAttackAnimTime * 0.7f);
 					punchesGameObjects[1].transform.position = Vector3.Lerp(punchesStartPositions[1].position, GetBackChargeAttackPosition(), t);
 				}
@@ -324,6 +336,8 @@ public class Attack : MonoBehaviour
 					punchesColliders[1].enabled = false;
 					punchesColliders[1].transform.position = punchesStartPositions[1].position;
 					punchesColliders[1].transform.rotation = punchesStartPositions[1].rotation;
+					
+					damagedColliders.Clear();
 				}
 				
 			}
