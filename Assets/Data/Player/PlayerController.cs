@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
 	    rb = GetComponent<Rigidbody>();
+	    enablerDisabler = GetComponent<DisablerUtility>();
 	    
 	    if(punchAttack == null)
 	    {
@@ -213,6 +215,70 @@ public class PlayerController : MonoBehaviour
     {
         return rb.velocity;
     }
+    
+	#region TELEPORT
+	
+	[Header("Teleport")]
+	[SerializeField] GameObject fadeLinesPrefab;
+	[SerializeField] float teleportTime = 0.2f;
+	float currentTeleportTime = 0f;
+	
+	DisablerUtility enablerDisabler;
+	bool isTeleporting = false;
+	public bool IsTeleporting(){return isTeleporting;}
+	
+	Transform targetTeleportTransform;
+	Vector3 targetTeleportOffset;
+	public void StartTeleportTo(Vector3 nTpOffset, Transform nTargetTr)
+	{
+		isTeleporting = true;
+		targetTeleportOffset = nTpOffset;
+		targetTeleportTransform = nTargetTr;
+		enablerDisabler.SetThingsEnabled(false);
+		
+		GameObject nFadeLines = Instantiate(fadeLinesPrefab);
+		Transform fadeLinesTr = nFadeLines.transform;
+		fadeLinesTr.SetParent(null, false);
+		fadeLinesTr.position = transform.position;
+		
+		StartCoroutine(TeleportCoroutine());
+	}
+	
+	bool alreadyInstantiatedLines = false;
+	public Action OnTeleportFinished;
+	IEnumerator TeleportCoroutine()
+	{
+		yield return new WaitForEndOfFrame();
+		
+		if(currentTeleportTime >= teleportTime)//teleport is finished
+		{
+			isTeleporting = false;
+			enablerDisabler.SetThingsEnabled(true);
+			
+			transform.position = targetTeleportTransform.position + targetTeleportOffset;
+			
+			currentTeleportTime = 0f;
+			alreadyInstantiatedLines = false;
+			
+			OnTeleportFinished?.Invoke();
+		}
+		else if(currentTeleportTime < teleportTime)//teleport still ongoing
+		{
+			if(currentTeleportTime >= teleportTime / 2f && alreadyInstantiatedLines == false)
+			{
+				GameObject nFadeLines = Instantiate(fadeLinesPrefab);
+				Transform fadeLinesTr = nFadeLines.transform;
+				fadeLinesTr.SetParent(null, false);
+				fadeLinesTr.position = targetTeleportTransform.position + targetTeleportOffset;
+			}
+			
+			currentTeleportTime += Time.deltaTime;
+			StartCoroutine(TeleportCoroutine());
+		}
+		
+	}
+	
+	#endregion
     
 	// Implement this OnDrawGizmosSelected if you want to draw gizmos only if the object is selected.
 	protected void OnDrawGizmosSelected()

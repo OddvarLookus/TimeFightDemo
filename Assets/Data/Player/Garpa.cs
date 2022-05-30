@@ -141,6 +141,19 @@ public class Garpa : MonoBehaviour
 		}
 	}
 	
+	public Vector3 AdviceTeleportOffset()
+	{
+		float teleportDist = minGarpaAlertDist / 3f;
+		Vector3 enemyToPlayer = playerController.transform.position - camController.GetCurrentlyLockedEnemy().position;
+		enemyToPlayer = enemyToPlayer.normalized * teleportDist;
+		return enemyToPlayer;
+	}
+	
+	public Transform GetLockedEnemy()
+	{
+		return camController.GetCurrentlyLockedEnemy();
+	}
+	
 	
     
 }

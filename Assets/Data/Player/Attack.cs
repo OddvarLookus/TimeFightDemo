@@ -64,6 +64,9 @@ public class Attack : MonoBehaviour
 	[Header("Damage calcs")]
 	[MinValue(0f), MaxValue(100f)] [SerializeField] float damageRandomnessPercentage = 10f;
 	
+	[Header("Teleport Attack")]
+	[SerializeField] Garpa garpa;
+	
 	public void SetDamage(float newDamage)
 	{
 		damage = newDamage;
@@ -187,6 +190,13 @@ public class Attack : MonoBehaviour
 		{
 			attacking = true;
 			isHeavyAttack = false;
+			
+			if(garpa.GetGarpaAlert())
+			{
+				playerController.StartTeleportTo(garpa.AdviceTeleportOffset(), garpa.GetLockedEnemy());
+				playerController.OnTeleportFinished += OnPlayerFinishedTeleport;
+				attackEnabled = false;
+			}
 		}
 		else if(heavyAttackPressed && !attacking)
 		{
@@ -345,6 +355,15 @@ public class Attack : MonoBehaviour
 
 		}
 	}
+	
+	void OnPlayerFinishedTeleport()
+	{
+		attackEnabled = true;
+		
+		
+		playerController.OnTeleportFinished -= OnPlayerFinishedTeleport;
+	}
+	
 	
 	Vector3 GetFrontAttackPosition()
 	{

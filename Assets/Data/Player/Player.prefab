@@ -2370,6 +2370,7 @@ GameObject:
   - component: {fileID: 507034137754007591}
   - component: {fileID: 4999143093157021301}
   - component: {fileID: 4999143093157021289}
+  - component: {fileID: 7114354749953261609}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -2414,13 +2415,15 @@ MonoBehaviour:
   playerAcceleration: 6
   playerDashAcceleration: 6
   playerDeceleration: 5
-  ascensionSpeed: 0
+  ascensionSpeed: 3
   rotationSpeed: 35.65
   rotationForwardMultiplier: 0.5
   camController: {fileID: 0}
   punchAttack: {fileID: 4999143093157021291}
   speedWhileAttackingMultiplier: 0.3
   dashLoopAudio: {fileID: 6767595033505323041}
+  fadeLinesPrefab: {fileID: 8039718971335674987, guid: b5c9886bddb2f994d8f8b0ffdef4eba0, type: 3}
+  teleportTime: 0.2
 --- !u!114 &2031705995051091110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2492,7 +2495,7 @@ MonoBehaviour:
   cameraController: {fileID: 0}
   playerController: {fileID: 4999143093157021290}
   pushForce: 98.28
-  baseDamage: 1
+  baseDamage: 0.2
   punchVFX: {fileID: 2395806566040195163, guid: 9d74a53039b057344a0bb1332d7d23f9, type: 3}
   punchSounds:
     possibleSounds:
@@ -2502,10 +2505,15 @@ MonoBehaviour:
     minPitch: 0.9
     maxPitch: 1.1
   attackDistance: 3.5
-  baseAttackSpeed: 1.5
-  attackAnimationTimeMultiplier: 0.4
+  baseAttackSpeed: 1
+  numberOfPunches: 5
+  attackAnimationTimeMultiplier: 0.6
   initialAttackSize: 3
   finalAttackSize: 5
+  heavyAttackDamageMultiplier: 7.5
+  heavyAttackTimeMultiplier: 1.5
+  damageRandomnessPercentage: 10
+  garpa: {fileID: 0}
 --- !u!114 &4999143093157021292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2518,8 +2526,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8acede5e92dd1d4989fb3c0de39dcf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minSuckRadius: 2.8
-  maxSuckRadius: 30.25
+  minSuckRadius: 25
+  maxSuckRadius: 25
   maxPlayerSpeed: 200
 --- !u!114 &507034137754007591
 MonoBehaviour:
@@ -2563,6 +2571,26 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 2
+--- !u!114 &7114354749953261609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4999143093157021300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b92fb30040e4b594e994d0eec378137f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thingsToDisable:
+  - {fileID: 2028299169132078002}
+  - {fileID: 7773215187605211533}
+  - {fileID: 4767492022521515164}
+  - {fileID: 6968684021975825780}
+  renderersToDisable: []
+  collidersToDisable:
+  - {fileID: 4999143093157021301}
 --- !u!1 &4999143093339949015
 GameObject:
   m_ObjectHideFlags: 0
