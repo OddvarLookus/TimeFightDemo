@@ -52,12 +52,14 @@ public class Attack : MonoBehaviour
 	
 	bool attacking = false;
 	public bool IsAttacking(){return attacking;}
-
-	
 	
 	[SerializeField] float initialAttackSize;
 	[SerializeField] float finalAttackSize;
 	
+	[Header("Heavy Attack Dynamics")]
+	[SerializeField] float heavyAttackDamageMultiplier;
+	[SerializeField] float heavyAttackTimeMultiplier;
+	bool isHeavyAttack = false;
 
 	
 	public void SetDamage(float newDamage)
@@ -106,21 +108,27 @@ public class Attack : MonoBehaviour
     }
 
     void AttackCollisionEnter(Collider _col)
-    {
+	{
+		float dmg = damage;
+		if(isHeavyAttack)
+		{
+			dmg *= heavyAttackDamageMultiplier;
+		}
+    	
         if (_col.TryGetComponent(out Asteroid asteroid))
         {
             Vector3 pushVec = (_col.transform.position - transform.position).normalized;
             pushVec *= pushForce;
 	        asteroid.Push(pushVec);
 	        
-	        asteroid.TakeDamage(damage, punchesGameObjects[currentPunchIdx].transform.position);
+	        asteroid.TakeDamage(dmg, punchesGameObjects[currentPunchIdx].transform.position);
 	        CheckAndSpawnPunchVFX(_col);
         }
         if (_col.TryGetComponent(out Health health))
         {
             if(health.GetAffiliation() == Affiliation.ENEMY)
             {
-	            health.TakeDamage(damage, punchesGameObjects[currentPunchIdx].transform.position);
+	            health.TakeDamage(dmg, punchesGameObjects[currentPunchIdx].transform.position);
 	            CheckAndSpawnPunchVFX(_col);
             }
         }
@@ -160,23 +168,23 @@ public class Attack : MonoBehaviour
 	{
 		//bool attackPressed = Input.GetMouseButton(0);
 		bool attackPressed = Input.GetButton("Punch");
+		bool heavyAttackPressed = Input.GetMouseButton(1);
 		
-		if(attackPressed)
+		if(attackPressed && !attacking)
 		{
-			if(!attacking)
-			{
-				if(true)
-				{
-					attacking = true;
-				}
-			}
+			attacking = true;
+			isHeavyAttack = false;
+		}
+		else if(heavyAttackPressed && !attacking)
+		{
+			attacking = true;
+			isHeavyAttack = true;
 		}
 		
 		if(attacking == true)
 		{
-			if(true)//NORMAL ATTACK
+			if(!isHeavyAttack)//NORMAL ATTACK
 			{
-				
 				//ATTACK LOGIC
 				if(currentAttackTime < attackTime)
 				{
@@ -243,6 +251,75 @@ public class Attack : MonoBehaviour
 
 				
 			}
+			else if(isHeavyAttack)//HEAVY ATTACK
+			{
+				//ATTACK LOGIC
+				if(currentAttackTime < attackTime * heavyAttackTimeMultiplier)
+				{
+					currentAttackTime += Time.deltaTime;
+				}
+				else
+				{
+					currentAttackTime = 0f;
+					currentAttackAnimationTime = 0f;
+					attacking = false;
+					attackIdx = 0;
+					currentPunchIdx = 0;
+					
+					//ATTACK FINISHED, RESET PUNCHES
+					for(int i = 0; i < punchesGameObjects.Length; i++)
+					{
+						punchesGameObjects[i].transform.position = punchesStartPositions[i].position;
+						punchesGameObjects[i].transform.rotation = punchesStartPositions[i].rotation;
+						punchesGameObjects[i].transform.localScale = new Vector3(initialAttackSize, initialAttackSize, initialAttackSize);
+						punchesColliders[i].enabled = false;
+					}
+					return;
+				}
+				
+				//ATTACK ANIMATION
+				float heavyAttackAnimTime = attackTime * heavyAttackTimeMultiplier;
+				if(currentAttackAnimationTime < heavyAttackAnimTime)
+				{
+					currentAttackAnimationTime += Time.deltaTime;
+				}
+				
+				Vector3 initSize = new Vector3(initialAttackSize, initialAttackSize, initialAttackSize);
+				Vector3 finalSize = new Vector3(finalAttackSize, finalAttackSize, finalAttackSize);
+				
+				if(currentAttackAnimationTime < heavyAttackAnimTime * 0.7f)//is charging heavy attack
+				{
+					float t = currentAttackAnimationTime/(heavyAttackAnimTime * 0.7f);
+					punchesGameObjects[1].transform.position = Vector3.Lerp(punchesStartPositions[1].position, GetBackChargeAttackPosition(), t);
+				}
+				else if(currentAttackAnimationTime >= heavyAttackAnimTime * 0.7f && currentAttackAnimationTime < heavyAttackAnimTime * 0.8f)//is punching heavily
+				{
+					if(punchesColliders[1].enabled == false)
+					{
+						punchesColliders[1].enabled = true;
+					}
+					
+					float t = ((heavyAttackAnimTime * 0.7f) - currentAttackAnimationTime)/((heavyAttackAnimTime * 0.7f) - (heavyAttackAnimTime * 0.8f));
+					punchesGameObjects[1].transform.position = Vector3.Lerp(GetBackChargeAttackPosition(), GetFrontAttackPosition(), t);
+				}
+				else if(currentAttackAnimationTime >= heavyAttackAnimTime * 0.8f && currentAttackAnimationTime < heavyAttackAnimTime)//heavy punch is returning
+				{
+					if(punchesColliders[1].enabled == true)
+					{
+						punchesColliders[1].enabled = false;
+					}
+					
+					float t = ((heavyAttackAnimTime * 0.8f) - currentAttackAnimationTime)/((heavyAttackAnimTime * 0.8f) - (heavyAttackAnimTime));
+					punchesGameObjects[1].transform.position = Vector3.Lerp(GetFrontAttackPosition(), punchesStartPositions[1].position, t);
+				}
+				else//heavy punching is finished
+				{
+					punchesColliders[1].enabled = false;
+					punchesColliders[1].transform.position = punchesStartPositions[1].position;
+					punchesColliders[1].transform.rotation = punchesStartPositions[1].rotation;
+				}
+				
+			}
 
 
 		}
@@ -264,6 +341,13 @@ public class Attack : MonoBehaviour
 		punchesGameObjects[currentPunchIdx].transform.rotation = punchRotation * punchesStartPositions[currentPunchIdx].rotation;
 		
 		return hForward;
+	}
+	
+	Vector3 GetBackChargeAttackPosition()
+	{
+		Vector3 hForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
+		Vector3 backChargePos = punchesStartPositions[1].position + (-hForward) + new Vector3(0f, 0.4f, 0f);
+		return backChargePos;
 	}
 
     
