@@ -60,7 +60,9 @@ public class Attack : MonoBehaviour
 	[SerializeField] float heavyAttackDamageMultiplier;
 	[SerializeField] float heavyAttackTimeMultiplier;
 	bool isHeavyAttack = false;
-
+	
+	[Header("Damage calcs")]
+	[MinValue(0f), MaxValue(100f)] [SerializeField] float damageRandomnessPercentage = 10f;
 	
 	public void SetDamage(float newDamage)
 	{
@@ -114,6 +116,11 @@ public class Attack : MonoBehaviour
 		{
 			dmg *= heavyAttackDamageMultiplier;
 		}
+		float dmgPerc = (damageRandomnessPercentage / 100f) * 2f;
+		float randDamage = Random.Range(0f, dmgPerc);
+		randDamage = randDamage * dmg;
+		dmg = dmg + (randDamage - ((dmgPerc * dmg)/2f));
+		
     	
         if (_col.TryGetComponent(out Asteroid asteroid))
         {

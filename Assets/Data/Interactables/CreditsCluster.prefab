@@ -45,6 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDistance: 2
   maxDistance: 8
-  creditsNum: 20
+  creditsNum: 60
   enableDebugLines: 0
   creditPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}

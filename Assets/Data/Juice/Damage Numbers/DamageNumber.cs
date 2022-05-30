@@ -27,7 +27,7 @@ public class DamageNumber : MonoBehaviour
 		transform.position = nPos;
 		cameraTr = nCameraTr;
 		label.gameObject.SetActive(true);
-		label.text = (Mathf.FloorToInt(nNum * 50f)).ToString();
+		label.text = (Mathf.RoundToInt(nNum * 50f)).ToString();
 		
 		Vector3 maxScale = new Vector3(2.3f, 2.3f, 1f);
 		Vector3 initScale = new Vector3(0f, 0f, 1f);
