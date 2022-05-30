@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    enum CameraMode {FREELOOK = 0, ENEMYLOCK = 1}
-    CameraMode cameraMode = CameraMode.FREELOOK;
+	public enum CameraMode {FREELOOK = 0, ENEMYLOCK = 1}
+	CameraMode cameraMode = CameraMode.FREELOOK;
+	public CameraMode GetCameraMode(){return cameraMode;}
 
     [Header("Camera movement configuration")]
     [SerializeField] Transform cameraTransform;
@@ -36,11 +37,6 @@ public class CameraController : MonoBehaviour
     [SerializeField] float maxPlayerSpeed;
 	//disable dash when fast next to the locked enemy
 	[SerializeField] float cameraDashMinDistance;
-	[SerializeField] float enemyLockerSpeed;
-	//garpa size
-	[SerializeField] float garpaSizeAddition;
-	[SerializeField] float minGarpaDistance;
-	[SerializeField] float garpaRotSpeed = 100f;
 	
 
     #region MONOBEHAVIOR
@@ -60,14 +56,12 @@ public class CameraController : MonoBehaviour
 			    CameraLookBehavior();
 			    CameraDistanceBySpeed();
 			    CameraPositionBehavior();
-			    EnemyLockerBehavior();
 			    
 			    //cameraTransform.LookAt(cameraLookTarget, Vector3.up);
 		    }
 		    else if (cameraMode == CameraMode.ENEMYLOCK)
 		    {
 			    CameraLockBehavior();
-			    EnemyLockerBehavior();
 			    CameraPositionBehavior();
 			    
 			    //cameraTransform.LookAt(lockedEnemy, Vector3.up);
@@ -269,7 +263,9 @@ public class CameraController : MonoBehaviour
     [SerializeField] Transform enemyLocker;
 
     List<Transform> lockableEnemies = new List<Transform>();
-    Transform lockedEnemy;
+	Transform lockedEnemy;
+	public Transform GetCurrentlyLockedEnemy(){return lockedEnemy;}
+    
     bool isLocking = false;
 
     //input check
@@ -408,61 +404,7 @@ public class CameraController : MonoBehaviour
         
     }
     
-	Vector3 targetGarpaPos = Vector3.zero;
-	bool garpaNextToPlayer = false;
-	void EnemyLockerBehavior()
-	{
-		if(enemyLocker != null)
-		{
-			if(cameraMode == CameraMode.ENEMYLOCK)
-			{
-				if((enemyLocker.position - lockedEnemy.position).magnitude < 5f)
-				{
-					float garpaMadArea = lockedEnemy.localScale.x + garpaSizeAddition;
-					Vector3 randGarpaPos = new Vector3(Random.Range(-garpaMadArea, garpaMadArea), Random.Range(-garpaMadArea, garpaMadArea), Random.Range(-garpaMadArea, garpaMadArea));
-					randGarpaPos = Vector3.ClampMagnitude(randGarpaPos, garpaMadArea);
-					
-					enemyLocker.position = lockedEnemy.position + randGarpaPos;
-				}
-				else
-				{
-					enemyLocker.position = Vector3.Lerp(enemyLocker.position, lockedEnemy.position, enemyLockerSpeed * Time.deltaTime);
-				}
-				
-			}
-			else if(cameraMode == CameraMode.FREELOOK)
-			{
-				//get nearest position in a radius around the player to position the garpa
-				Vector3 nearestPos = (enemyLocker.position - playerController.transform.position).normalized;
-				nearestPos *= minGarpaDistance;
-				nearestPos += playerController.transform.position;
-				
-				//when garpa is next to the player, rotate around the player
-				float distGarpaToPlayer = (enemyLocker.position - playerController.transform.position).magnitude;
-				if(distGarpaToPlayer <= minGarpaDistance + 0.5f)
-				{
-					if(garpaNextToPlayer == false)
-					{
-						targetGarpaPos = enemyLocker.position - playerController.transform.position;
-						garpaNextToPlayer = true;
-					}
-					
-					targetGarpaPos = targetGarpaPos.normalized * minGarpaDistance;
-					targetGarpaPos = Quaternion.AngleAxis(garpaRotSpeed * Time.deltaTime, Vector3.up) * targetGarpaPos;
-					nearestPos = targetGarpaPos + playerController.transform.position;
-					
-				}
-				else
-				{
-					garpaNextToPlayer = false;
-				}
-				
-				enemyLocker.position = Vector3.Lerp(enemyLocker.position, nearestPos, enemyLockerSpeed * Time.deltaTime);
-			}
-			
-		}
-		
-	}
+
 
     #endregion
 

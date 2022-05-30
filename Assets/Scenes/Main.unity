@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.059746526, g: 0.2581022, b: 0.5809433, a: 1}
+  m_IndirectSpecularColor: {r: 0.059740394, g: 0.2583218, b: 0.58099407, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -700,11 +700,12 @@ GameObject:
   m_Component:
   - component: {fileID: 266377254}
   - component: {fileID: 266377258}
+  - component: {fileID: 266377259}
   - component: {fileID: 266377257}
   - component: {fileID: 266377256}
   - component: {fileID: 266377255}
   m_Layer: 0
-  m_Name: EnemyLocker
+  m_Name: Garpa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -895,6 +896,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 266377253}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &266377259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266377253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b2fcd4c56f0715439ae387de4fa9511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camController: {fileID: 1745202265}
+  playerController: {fileID: 347744498}
+  garpaSpeed: 6
+  garpaRotSpeed: 180
+  garpaSizeAddition: 1
+  minGarpaDistance: 2
+  minGarpaAlertDist: 5
+  maxGarpaAlertDist: 50
+  garpaTeleportNotifierPrefab: {fileID: 1452129796969202365, guid: 8b66ea894456d1b4190f8e714ee160fb, type: 3}
 --- !u!1 &267423276
 GameObject:
   m_ObjectHideFlags: 0
