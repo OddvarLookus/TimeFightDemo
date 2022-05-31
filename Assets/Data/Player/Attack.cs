@@ -221,7 +221,7 @@ public class Attack : MonoBehaviour
 					attacking = false;
 					attackIdx = 0;
 					currentPunchIdx = 0;
-					
+					damagedColliders.Clear();
 					//ATTACK FINISHED, RESET PUNCHES
 					for(int i = 0; i < punchesGameObjects.Length; i++)
 					{
@@ -291,6 +291,7 @@ public class Attack : MonoBehaviour
 					attackIdx = 0;
 					currentPunchIdx = 0;
 					heavyAttackTeleportExecuted = false;
+					damagedColliders.Clear();
 					
 					//ATTACK FINISHED, RESET PUNCHES
 					for(int i = 0; i < punchesGameObjects.Length; i++)
