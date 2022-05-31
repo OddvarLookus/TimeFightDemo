@@ -384,11 +384,14 @@ MonoBehaviour:
     maxPitch: 1.2
   minVoiceTime: 1
   maxVoiceTime: 6
-  minMoveTime: 4.6
-  maxMoveTime: 10.83
-  minMoveForce: 32.9
-  maxMoveForce: 88.8
-  rotationSpeed: 0.4
+  aggroRadius: 20
+  rotationSpeed: 6
+  attackRollTimeInterval: 0.2
+  attackRollProbability: 0.1
+  resetTimeAfterAttack: 1
+  attackDuration: 1
+  maxVibeDistance: 0.4
+  monoVibeTime: 0.05
 --- !u!54 &4323069082867988718
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -1,56 +1,152 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class Ball : Enemy
 {
-
-    [Header("Movement")]
-    [SerializeField] float minMoveTime;
-    [SerializeField] float maxMoveTime;
-    float moveTime;
-    float curMoveTime = 0f;
-    [SerializeField] float minMoveForce;
-    [SerializeField] float maxMoveForce;
-    [SerializeField] float rotationSpeed;
-
+	[SerializeField] float aggroRadius;
+	
+	[Header("AGGRO BEHAVIOR")]
+	[SerializeField] float rotationSpeed;
+	[MinValue(0.01f)] [SerializeField] float attackRollTimeInterval;
+	[MinValue(0f), MaxValue(1f)] [SerializeField] float attackRollProbability;
+	[MinValue(0f)] [SerializeField] float resetTimeAfterAttack;
+	
+	[Header("ATTACK VARIABLES")]
+	[SerializeField] float attackDuration;
+	
+	[SerializeField] float maxVibeDistance;
+	[SerializeField] float monoVibeTime;
+	
+	Transform graphicsTr;
     protected override void OnEnable()
     {
         base.OnEnable();
-        InitializeTime();
     }
 	
 	protected override void Start()
 	{
 		base.Start();
+		graphicsTr = transform.GetChild(0);
+		StartCoroutine(TondoAttackRollCoroutine());
 	}
 
     void FixedUpdate()
-    {
-        if(curMoveTime < moveTime)
-        {
-            curMoveTime += Time.fixedDeltaTime;
-        }
-        else//time to move
-        {
-            Hop();
-            InitializeTime();
-        }
-	    base.RotateTowardsMovement(rotationSpeed);
+	{
+		TondoBehavior();
+    	
+
     }
 
-    void InitializeTime()
-    {
-        moveTime = Random.Range(minMoveTime, maxMoveTime);
-        curMoveTime = 0f;
-    }
-
-    void Hop()
-    {
-        Vector3 force = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
-        force *= Mathf.Lerp(minMoveForce, maxMoveForce, Random.Range(0f, 1f));
-        rb.AddForce(force, ForceMode.Impulse);
-    }
-
+	
+	void TondoBehavior()
+	{
+		AggroCheck();
+		
+		if(aggroState == EnemyAggroState.AGGRO)
+		{
+			//ROTATE TOWARDS TARGET
+			Vector3 vecToTarget = aggroTarget.position - transform.position;
+			Vector3 perpendicular = Vector3.Cross(vecToTarget.normalized, Vector3.up);
+			Vector3 nUp = Vector3.Cross(vecToTarget.normalized, -perpendicular.normalized);
+			
+			Quaternion targetRot = Quaternion.LookRotation(vecToTarget.normalized, nUp.normalized);
+			transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime);
+			
+			
+		}
+		else if(aggroState == EnemyAggroState.NEUTRAL)
+		{
+			//FLOAT LIKE A BUTTERFLY
+			
+		}
+		
+		
+		
+	}
+	
+	Transform aggroTarget;
+	void AggroCheck()
+	{
+		Collider[] aggroColliders = Physics.OverlapSphere(transform.position, aggroRadius, 1<<7, QueryTriggerInteraction.Ignore);
+		for(int i = 0; i < aggroColliders.Length; i++)
+		{
+			if(aggroColliders[i].TryGetComponent(out PlayerController playerController))
+			{
+				aggroTarget = aggroColliders[i].transform;
+				aggroState = EnemyAggroState.AGGRO;
+				return;
+			}
+		}
+		aggroTarget = null;
+		aggroState = EnemyAggroState.NEUTRAL;
+	}
+	
+	bool attacking = false;
+	bool isVibing = false;
+	void TondoAttackRoll()
+	{
+		if(aggroState == EnemyAggroState.AGGRO && !attacking)
+		{
+			bool roll = Random.Range(0f, 1f) <= attackRollProbability;
+			if(roll)//attack
+			{
+				attacking = true;
+				isVibing = true;
+				LeanTween.scale(graphicsTr.gameObject, new Vector3(2.1f, 2.1f, 2.1f), attackDuration * 0.7f).setEase(LeanTweenType.easeOutCubic).setOnComplete(TondoAttackShrink);
+				TondoVibe();
+			}
+		}
+	}
+	
+	void TondoVibe()
+	{
+		if(isVibing)
+		{
+			Vector3 nRandPos = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+			nRandPos *= Random.Range(0f, maxVibeDistance);
+			nRandPos += transform.position;
+			LeanTween.move(graphicsTr.gameObject, nRandPos, monoVibeTime).setEase(LeanTweenType.easeShake).setOnComplete(TondoVibe);
+		}
+		else
+		{
+			graphicsTr.localPosition = Vector3.zero;
+		}
+	}
+	
+	void TondoAttackShrink()
+	{
+		isVibing = false;
+		LeanTween.scale(graphicsTr.gameObject, new Vector3(0.6f, 0.6f, 0.6f), attackDuration * 0.2f).setEase(LeanTweenType.easeOutCubic).setOnComplete(TondoAttack);
+	}
+	
+	void TondoAttack()
+	{
+		LeanTween.scale(graphicsTr.gameObject, new Vector3(1f, 1f, 1f), attackDuration * 0.1f).setEase(LeanTweenType.easeOutCubic);
+		//INSTANTIATE ATTACK HITBOX AND EFFECTS
+		StartCoroutine(ResetAttackingCoroutine());
+		
+	}
+	
+	IEnumerator ResetAttackingCoroutine()
+	{
+		yield return new WaitForSeconds(resetTimeAfterAttack);
+		attacking = false;
+	}
+	
+	
+	IEnumerator TondoAttackRollCoroutine()
+	{
+		yield return new WaitForSeconds(attackRollTimeInterval);
+		TondoAttackRoll();
+		StartCoroutine(TondoAttackRollCoroutine());
+	}
+	
+	protected void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.red;
+		Gizmos.DrawWireSphere(transform.position, aggroRadius);
+	}
 
 }

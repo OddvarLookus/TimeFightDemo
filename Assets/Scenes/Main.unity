@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.059739046, g: 0.2581256, b: 0.58131015, a: 1}
+  m_IndirectSpecularColor: {r: 0.059746727, g: 0.25829363, b: 0.58103865, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2025,7 +2025,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 19.474915}
+  m_AnchoredPosition: {x: 0, y: 19.474854}
   m_SizeDelta: {x: -400, y: -330.95013}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1323628137
@@ -3042,7 +3042,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 19.474915}
+  m_AnchoredPosition: {x: 0, y: 19.474854}
   m_SizeDelta: {x: -400, y: -330.95013}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2074673861
@@ -3449,7 +3449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6124866704305363050, guid: b3e6983bc55d7934b9c82aa436df06f8, type: 3}
       propertyPath: smoothingSpeed
-      value: 60
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6124866704305363050, guid: b3e6983bc55d7934b9c82aa436df06f8, type: 3}
       propertyPath: cameraLookTarget
