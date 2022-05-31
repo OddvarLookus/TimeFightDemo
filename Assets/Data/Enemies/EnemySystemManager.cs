@@ -6,8 +6,12 @@ using UnityEngine.Events;
 public class EnemySystemManager : MonoBehaviour
 {
 	int currentEnemies = 0;
+	public int GetEnemiesNum(){return currentEnemies;}
+	
 	int prevEnemies = 0;
 	[SerializeField] int maxEnemiesToNotify;
+	bool fewEnemiesRemain = false;
+	public bool GetFewEnemiesRemain(){return fewEnemiesRemain;}
 	
 	[SerializeField] UnityEvent onAllEnemiesKilled;
 	bool allEnemiesKilledCalled = false;
@@ -15,9 +19,13 @@ public class EnemySystemManager : MonoBehaviour
 	[SerializeField] AudioSource enemiesToNotifySound;
 	bool enemiesToNotifySoundPlayed = false;
 	
+	public static EnemySystemManager instance;
+	
 	protected void Awake()
 	{
 		StartCoroutine(RefreshEnemiesCoroutine());
+		
+		instance = this;
 	}
 	
 	IEnumerator RefreshEnemiesCoroutine()
@@ -43,14 +51,33 @@ public class EnemySystemManager : MonoBehaviour
 				enemiesToNotifySound.Play();
 				enemiesToNotifySoundPlayed = true;
 			}
+			fewEnemiesRemain = true;
 			
 			GameUIManager.instance.SetEnemiesRemaining(currentEnemies);
 		}
 		else
 		{
+			fewEnemiesRemain = false;
+			
 			GameUIManager.instance.SetEnemiesRemaining(-1);
 		}
 		
 		prevEnemies = currentEnemies;
+	}
+	
+	public Transform GetNearestEnemy(Vector3 centerPos)
+	{
+		float minDist = float.MaxValue;
+		int minIdx = int.MaxValue;
+		for(int i = 0; i < transform.childCount; i++)
+		{
+			float dist = (transform.GetChild(i).position - centerPos).magnitude;
+			if(dist < minDist)
+			{
+				minDist = dist;
+				minIdx = i;
+			}
+		}
+		return transform.GetChild(minIdx);
 	}
 }

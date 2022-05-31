@@ -22,6 +22,10 @@ public class Garpa : MonoBehaviour
     
 	[AssetsOnly] [SerializeField] GameObject garpaTeleportNotifierPrefab;
 	Transform garpaTeleportNotifier;
+	
+	[Header("Garpa Pointer")]
+	[SceneObjectsOnly] [SerializeField] LineRenderer pointerLR;
+	
 	protected void Start()
 	{
 		//INSTANTIATE TELEPORT NOTIFIER
@@ -31,6 +35,8 @@ public class Garpa : MonoBehaviour
 		garpaTeleportNotifier.transform.position = transform.position;
 		garpaTeleportNotifier.transform.localScale = new Vector3(0f, 0f, 1f);
 		
+		//START POINTER
+		StartCoroutine(NearestEnemyRefreshCoroutine());
 	}
     
 	protected void Update()
@@ -39,6 +45,8 @@ public class Garpa : MonoBehaviour
 		
 		ComputeGarpaAlert();
 		GarpaAlertAnimation();
+		
+		RefreshPointer();
 		
 		prevGarpaAlert = garpaAlert;
 	}
@@ -101,6 +109,7 @@ public class Garpa : MonoBehaviour
 		
 	}
 	
+	#region GARPA TELEPORT SUPPORT
 	void ComputeGarpaAlert()
 	{
 		if(camController.GetCameraMode() == CameraController.CameraMode.ENEMYLOCK)
@@ -157,7 +166,74 @@ public class Garpa : MonoBehaviour
 	{
 		return camController.GetCurrentlyLockedEnemy();
 	}
+	#endregion
 	
+	#region GARPA POINTER
+	
+	Transform nearestEnemy;
+	IEnumerator NearestEnemyRefreshCoroutine()
+	{
+		yield return new WaitForSeconds(0.2f);
+		
+		if(camController.GetCameraMode() == CameraController.CameraMode.FREELOOK)
+		{
+			if(EnemySystemManager.instance.GetFewEnemiesRemain() && EnemySystemManager.instance.GetEnemiesNum() > 0)
+			{
+				nearestEnemy = EnemySystemManager.instance.GetNearestEnemy(transform.position);
+			}
+			else
+			{
+				nearestEnemy = null;
+			}
+		}
+		else
+		{
+			nearestEnemy = null;
+		}
+
+		
+		StartCoroutine(NearestEnemyRefreshCoroutine());
+	}
+	
+	void RefreshPointer()
+	{
+		if(nearestEnemy != null)
+		{
+			if(pointerLR.enabled == false)
+			{
+				pointerLR.enabled = true;
+			}
+			
+			//compute the last position
+			Vector3 lastPos;
+			Vector3 rayDir = nearestEnemy.position - transform.position;
+			float rayDist = rayDir.magnitude;
+			rayDir = rayDir.normalized;
+			RaycastHit rhit;
+			bool hit = Physics.Raycast(transform.position, rayDir, out rhit, rayDist, ~0, QueryTriggerInteraction.Ignore);
+			if(hit)
+			{
+				lastPos = rhit.point;
+			}
+			else
+			{
+				lastPos = nearestEnemy.position;
+			}
+			
+			pointerLR.SetPosition(0, transform.position);
+			pointerLR.SetPosition(1, lastPos);
+		}
+		else//nearest enemy is null
+		{
+			if(pointerLR.enabled == true)
+			{
+				pointerLR.enabled = false;
+			}
+			
+		}
+	}
+	
+	#endregion
 	
     
 }
