@@ -44,6 +44,7 @@ public class Condo : Enemy
 	[AssetsOnly] [SerializeField] GameObject shootVFXPrefab;
 	[SceneObjectsOnly] [SerializeField] Transform bulletSpawnPos;
 	[SerializeField] SoundsPack shootSound;
+	Animator animator;
 	
 	protected override void OnEnable()
 	{
@@ -56,6 +57,7 @@ public class Condo : Enemy
 		base.Start();
 		InitializeTimeNeutral();
 		initialPos = transform.position;
+		animator = GetComponent<Animator>();
 	}
 	
 	// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
@@ -163,22 +165,54 @@ public class Condo : Enemy
 		{
 			shotFrequency = Random.Range(minShotFrequency, maxShotFrequency);
 			currentShotStep = 0;
-			//Shooting code
-			
-			GameObject b = Instantiate(bullet);
-			b.transform.SetParent(null);
-			b.transform.position = bulletSpawnPos.position;
-			
-			GameObject bVfx = Instantiate(shootVFXPrefab);
-			bVfx.transform.SetParent(this.transform);
-			bVfx.transform.position = bulletSpawnPos.position;
-			
-			Vector3 shootDir = aggroTarget.position - bulletSpawnPos.position;
-			b.GetComponent<EnemyBullet>().Shoot(shootDir, aggroTarget);
-			
-			StaticAudioStarter.instance.StartAudioEmitter(transform.position, shootSound.GetRandomSound(), shootSound.GetRandomPitch());
+			//Start Animations for shooting
+			animator.Play("Condo Attack Prepare", -1, 0f);
+			StartCoroutine(WaitAttackPrepareCoroutine());
 		}
 	}
+	IEnumerator WaitAttackPrepareCoroutine()
+	{
+		yield return new WaitForEndOfFrame();
+		float animationTime = animator.GetCurrentAnimatorStateInfo(0).length;
+		StartCoroutine(AttackPrepareCoroutine(animationTime));
+	}
+	IEnumerator AttackPrepareCoroutine(float animTime)
+	{
+		yield return new WaitForSeconds(animTime);
+		//FINISHED PREPARE ANIMATION
+		animator.Play("Condo Attack Perform", -1, 0f);
+		StartCoroutine(WaitAttackPerformCoroutine());
+	}
+	IEnumerator WaitAttackPerformCoroutine()
+	{
+		yield return new WaitForEndOfFrame();
+		float animationTime = animator.GetCurrentAnimatorStateInfo(0).length / 3f;
+		StartCoroutine(AttackPerformCoroutine(animationTime));
+	}
+	IEnumerator AttackPerformCoroutine(float animTime)
+	{
+		yield return new WaitForSeconds(animTime);//TIME TO SHOOT
+		Shoot();
+	}
+	
+	
+	
+	void Shoot()
+	{
+		GameObject b = Instantiate(bullet);
+		b.transform.SetParent(null);
+		b.transform.position = bulletSpawnPos.position;
+			
+		GameObject bVfx = Instantiate(shootVFXPrefab);
+		bVfx.transform.SetParent(this.transform);
+		bVfx.transform.position = bulletSpawnPos.position;
+			
+		Vector3 shootDir = aggroTarget.position - bulletSpawnPos.position;
+		b.GetComponent<EnemyBullet>().Shoot(shootDir, aggroTarget);
+			
+		StaticAudioStarter.instance.StartAudioEmitter(transform.position, shootSound.GetRandomSound(), shootSound.GetRandomPitch());
+	}
+	
 	
 	protected void OnDrawGizmosSelected()
 	{
