@@ -180,6 +180,7 @@ public class Attack : MonoBehaviour
 	
 	
 	int currentPunchIdx = 0;
+	bool heavyAttackTeleportExecuted = false;
 	void AttackBehavior()
 	{
 		//bool attackPressed = Input.GetMouseButton(0);
@@ -289,6 +290,7 @@ public class Attack : MonoBehaviour
 					attacking = false;
 					attackIdx = 0;
 					currentPunchIdx = 0;
+					heavyAttackTeleportExecuted = false;
 					
 					//ATTACK FINISHED, RESET PUNCHES
 					for(int i = 0; i < punchesGameObjects.Length; i++)
@@ -326,6 +328,14 @@ public class Attack : MonoBehaviour
 					if(punchesColliders[1].enabled == false)
 					{
 						punchesColliders[1].enabled = true;
+					}
+					
+					if(heavyAttackTeleportExecuted == false && garpa.GetGarpaAlert() == true)//when heavy punch is starting, teleport if garpa is alert
+					{
+						playerController.StartTeleportTo(garpa.AdviceTeleportOffset(), garpa.GetLockedEnemy());
+						playerController.OnTeleportFinished += OnPlayerFinishedTeleport;
+						attackEnabled = false;
+						heavyAttackTeleportExecuted = true;
 					}
 					
 					float t = ((heavyAttackAnimTime * 0.7f) - currentAttackAnimationTime)/((heavyAttackAnimTime * 0.7f) - (heavyAttackAnimTime * 0.8f));

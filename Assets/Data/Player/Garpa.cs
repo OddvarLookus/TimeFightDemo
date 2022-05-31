@@ -51,18 +51,22 @@ public class Garpa : MonoBehaviour
 		if(camController.GetCameraMode() == CameraController.CameraMode.ENEMYLOCK)
 		{
 			Transform lockedEnemy = camController.GetCurrentlyLockedEnemy();
-			if((transform.position - lockedEnemy.position).magnitude < 5f)
+			if(lockedEnemy != null)
 			{
-				float garpaMadArea = lockedEnemy.localScale.x + garpaSizeAddition;
-				Vector3 randGarpaPos = new Vector3(Random.Range(-garpaMadArea, garpaMadArea), Random.Range(-garpaMadArea, garpaMadArea), Random.Range(-garpaMadArea, garpaMadArea));
-				randGarpaPos = Vector3.ClampMagnitude(randGarpaPos, garpaMadArea);
+				if((transform.position - lockedEnemy.position).magnitude < 5f)
+				{
+					float garpaMadArea = lockedEnemy.localScale.x + garpaSizeAddition;
+					Vector3 randGarpaPos = new Vector3(Random.Range(-garpaMadArea, garpaMadArea), Random.Range(-garpaMadArea, garpaMadArea), Random.Range(-garpaMadArea, garpaMadArea));
+					randGarpaPos = Vector3.ClampMagnitude(randGarpaPos, garpaMadArea);
 				
-				transform.position = lockedEnemy.position + randGarpaPos;
+					transform.position = lockedEnemy.position + randGarpaPos;
+				}
+				else
+				{
+					transform.position = Vector3.Lerp(transform.position, lockedEnemy.position, garpaSpeed * Time.deltaTime);
+				}
 			}
-			else
-			{
-				transform.position = Vector3.Lerp(transform.position, lockedEnemy.position, garpaSpeed * Time.deltaTime);
-			}
+
 			
 		}
 		else if(camController.GetCameraMode() == CameraController.CameraMode.FREELOOK)

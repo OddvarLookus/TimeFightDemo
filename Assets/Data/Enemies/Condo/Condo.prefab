@@ -233,15 +233,15 @@ MonoBehaviour:
     maxPitch: 1.2
   minVoiceTime: 0.3
   maxVoiceTime: 0.9
-  minMoveTime: 0.7
-  maxMoveTime: 1.4
+  minMoveTime: 1
+  maxMoveTime: 1.7
   moveDistanceRadius: 9.03
   minMoveForce: 45
   maxMoveForce: 100
   rotationSpeed: 17.4
   aggroRadius: 36
-  minMoveTimeAggro: 0.3
-  maxMoveTimeAggro: 0.7
+  minMoveTimeAggro: 0.8
+  maxMoveTimeAggro: 1.2
   minMoveForceAggro: 130
   maxMoveForceAggro: 160
   moveForceAggroDistanceMultiplier: 2
