@@ -329,6 +329,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   affiliation: 1
   maxHealth: 1
+  feedbackObject: {fileID: 3561386870659939458}
+  feedbackScaleChange: 2
   OnDeath:
     m_PersistentCalls:
       m_Calls:

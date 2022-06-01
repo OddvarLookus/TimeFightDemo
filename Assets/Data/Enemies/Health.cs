@@ -18,6 +18,9 @@ public class Health : MonoBehaviour
 		return currentHealth;
 	}
     
+	[SerializeField] GameObject feedbackObject;
+	[SerializeField] float feedbackScaleChange = 2f;
+    
 	[SerializeField] UnityEvent OnDeath;
 	[SerializeField] GameObject deathPrefab;
 	[SerializeField] SoundsPack deathSound;
@@ -33,6 +36,17 @@ public class Health : MonoBehaviour
 	    currentHealth -= _damage;
         
 	    DamageNumbersManager.instance.SpawnDamageNumber(_damage, damagePoint);
+        
+	    if(_damage > 0f)//feedback
+	    {
+		    Vector3 nextPos = _damage * feedbackScaleChange * (transform.position - damagePoint).normalized;
+		    Vector3 startPos = feedbackObject.transform.position;
+		    LeanTween.move(feedbackObject, startPos + nextPos, 0.1f).setEase(LeanTweenType.easeOutCubic).setOnComplete(() => 
+		    {
+		    	LeanTween.move(feedbackObject, startPos, 0.1f).setEase(LeanTweenType.easeOutCubic);
+		    });
+		    
+	    }
         
         if (currentHealth <= 0f)
         {

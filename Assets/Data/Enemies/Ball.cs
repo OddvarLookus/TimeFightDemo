@@ -123,7 +123,9 @@ public class Ball : Enemy
 			{
 				attacking = true;
 				isVibing = true;
-				LeanTween.scale(graphicsTr.gameObject, new Vector3(2.1f, 2.1f, 2.1f), attackDuration * 0.7f).setEase(LeanTweenType.easeOutCubic).setOnComplete(TondoAttackShrink);
+				//LeanTween.scale(graphicsTr.gameObject, new Vector3(2.1f, 2.1f, 2.1f), attackDuration * 0.7f).setEase(LeanTweenType.easeOutCubic).setOnComplete(TondoAttackShrink);
+				LeanTween.scale(gameObject, new Vector3(2.1f, 2.1f, 2.1f), attackDuration * 0.7f).setEase(LeanTweenType.easeOutCubic).setOnComplete(TondoAttackShrink);
+
 				TondoVibe();
 			}
 		}
@@ -137,6 +139,7 @@ public class Ball : Enemy
 			nRandPos *= Random.Range(0f, maxVibeDistance);
 			nRandPos += transform.position;
 			LeanTween.move(graphicsTr.gameObject, nRandPos, monoVibeTime).setEase(LeanTweenType.easeShake).setOnComplete(TondoVibe);
+			
 		}
 		else
 		{
@@ -147,12 +150,16 @@ public class Ball : Enemy
 	void TondoAttackShrink()
 	{
 		isVibing = false;
-		LeanTween.scale(graphicsTr.gameObject, new Vector3(0.6f, 0.6f, 0.6f), attackDuration * 0.2f).setEase(LeanTweenType.easeOutCubic).setOnComplete(TondoAttack);
+		//LeanTween.scale(graphicsTr.gameObject, new Vector3(0.6f, 0.6f, 0.6f), attackDuration * 0.2f).setEase(LeanTweenType.easeOutCubic).setOnComplete(TondoAttack);
+		LeanTween.scale(gameObject, new Vector3(0.6f, 0.6f, 0.6f), attackDuration * 0.2f).setEase(LeanTweenType.easeOutCubic).setOnComplete(TondoAttack);
+
 	}
 	
 	void TondoAttack()
 	{
-		LeanTween.scale(graphicsTr.gameObject, new Vector3(1f, 1f, 1f), attackDuration * 0.1f).setEase(LeanTweenType.easeOutCubic);
+		//LeanTween.scale(graphicsTr.gameObject, new Vector3(1f, 1f, 1f), attackDuration * 0.1f).setEase(LeanTweenType.easeOutCubic);
+		LeanTween.scale(gameObject, new Vector3(1f, 1f, 1f), attackDuration * 0.1f).setEase(LeanTweenType.easeOutCubic);
+
 		//INSTANTIATE ATTACK HITBOX AND EFFECTS
 		GameObject nVfx = Instantiate(tondoAttackVFX);
 		Transform vfxTr = nVfx.transform;

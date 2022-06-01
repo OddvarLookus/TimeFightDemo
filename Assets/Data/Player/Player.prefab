@@ -2494,7 +2494,7 @@ MonoBehaviour:
   - {fileID: 1549108392579089970}
   cameraController: {fileID: 0}
   playerController: {fileID: 4999143093157021290}
-  pushForce: 98.28
+  pushForce: 6
   baseDamage: 0.2
   punchVFX: {fileID: 2395806566040195163, guid: 9d74a53039b057344a0bb1332d7d23f9, type: 3}
   punchSounds:
