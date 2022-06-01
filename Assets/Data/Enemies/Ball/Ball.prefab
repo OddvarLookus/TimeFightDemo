@@ -389,9 +389,12 @@ MonoBehaviour:
   attackRollTimeInterval: 0.2
   attackRollProbability: 0.1
   resetTimeAfterAttack: 1
+  damage: 1
   attackDuration: 1
   maxVibeDistance: 0.4
   monoVibeTime: 0.05
+  attackRadius: 3.66
+  tondoAttackVFX: {fileID: 660604078598729712, guid: b4cc2a513a658924a8df0c2df7227457, type: 3}
 --- !u!54 &4323069082867988718
 Rigidbody:
   m_ObjectHideFlags: 0

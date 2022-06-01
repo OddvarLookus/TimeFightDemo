@@ -14,10 +14,13 @@ public class Ball : Enemy
 	[MinValue(0f)] [SerializeField] float resetTimeAfterAttack;
 	
 	[Header("ATTACK VARIABLES")]
+	[SerializeField] int damage;
 	[SerializeField] float attackDuration;
 	
 	[SerializeField] float maxVibeDistance;
 	[SerializeField] float monoVibeTime;
+	[SerializeField] float attackRadius;
+	[AssetsOnly] [SerializeField] GameObject tondoAttackVFX;
 	
 	Transform graphicsTr;
     protected override void OnEnable()
@@ -62,6 +65,19 @@ public class Ball : Enemy
 			
 		}
 		
+		if(isPerformingExplosion)
+		{
+			//CHECK THE DAMAGE ON PLAYER FOR EXPLOSION
+			Collider[] hitColliders = Physics.OverlapSphere(transform.position, attackRadius, 1<<7, QueryTriggerInteraction.Ignore);
+			for(int i = 0; i < hitColliders.Length; i++)
+			{
+				if(!damagedObjects.Contains(hitColliders[i].transform) && hitColliders[i].TryGetComponent(out PlayerShield playerShield))
+				{
+					playerShield.TakeDamage(damage);
+					damagedObjects.Add(hitColliders[i].transform);
+				}
+			}
+		}
 		
 		
 	}
@@ -85,6 +101,8 @@ public class Ball : Enemy
 	
 	bool attacking = false;
 	bool isVibing = false;
+	bool isPerformingExplosion = false;
+	List<Transform> damagedObjects = new List<Transform>();
 	void TondoAttackRoll()
 	{
 		if(aggroState == EnemyAggroState.AGGRO && !attacking)
@@ -125,14 +143,31 @@ public class Ball : Enemy
 	{
 		LeanTween.scale(graphicsTr.gameObject, new Vector3(1f, 1f, 1f), attackDuration * 0.1f).setEase(LeanTweenType.easeOutCubic);
 		//INSTANTIATE ATTACK HITBOX AND EFFECTS
+		GameObject nVfx = Instantiate(tondoAttackVFX);
+		Transform vfxTr = nVfx.transform;
+		vfxTr.SetParent(null, false);
+		vfxTr.position = transform.position;
+		
+		
+		damagedObjects.Clear();
+		isPerformingExplosion = true;
+		StartCoroutine(ResetExplosionCoroutine());
 		StartCoroutine(ResetAttackingCoroutine());
 		
+	}
+	
+	IEnumerator ResetExplosionCoroutine()
+	{
+		yield return new WaitForSeconds(0.2f);
+		
+		isPerformingExplosion = false;
 	}
 	
 	IEnumerator ResetAttackingCoroutine()
 	{
 		yield return new WaitForSeconds(resetTimeAfterAttack);
 		attacking = false;
+		
 	}
 	
 	
@@ -147,6 +182,7 @@ public class Ball : Enemy
 	{
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireSphere(transform.position, aggroRadius);
+		Gizmos.DrawWireSphere(transform.position, attackRadius);
 	}
 
 }
