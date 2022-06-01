@@ -385,6 +385,7 @@ MonoBehaviour:
   minVoiceTime: 1
   maxVoiceTime: 6
   aggroRadius: 20
+  floatSpeed: 3
   rotationSpeed: 6
   attackRollTimeInterval: 0.2
   attackRollProbability: 0.1

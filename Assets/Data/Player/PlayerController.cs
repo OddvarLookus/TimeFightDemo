@@ -266,10 +266,15 @@ public class PlayerController : MonoBehaviour
 		{
 			if(currentTeleportTime >= teleportTime / 2f && alreadyInstantiatedLines == false)
 			{
-				GameObject nFadeLines = Instantiate(fadeLinesPrefab);
-				Transform fadeLinesTr = nFadeLines.transform;
-				fadeLinesTr.SetParent(null, false);
-				fadeLinesTr.position = targetTeleportTransform.position + targetTeleportOffset;
+				if(targetTeleportTransform != null)
+				{
+					GameObject nFadeLines = Instantiate(fadeLinesPrefab);
+					Transform fadeLinesTr = nFadeLines.transform;
+					fadeLinesTr.SetParent(null, false);
+					fadeLinesTr.position = targetTeleportTransform.position + targetTeleportOffset;
+					alreadyInstantiatedLines = true;
+				}
+
 			}
 			
 			currentTeleportTime += Time.deltaTime;

@@ -7,6 +7,10 @@ public class Ball : Enemy
 {
 	[SerializeField] float aggroRadius;
 	
+	[Header("NEUTRAL BEHAVIOR")]
+	[MinValue(0f)] [SerializeField] float floatSpeed;
+	float floatRandom;
+	
 	[Header("AGGRO BEHAVIOR")]
 	[SerializeField] float rotationSpeed;
 	[MinValue(0.01f)] [SerializeField] float attackRollTimeInterval;
@@ -32,6 +36,7 @@ public class Ball : Enemy
 	{
 		base.Start();
 		graphicsTr = transform.GetChild(0);
+		floatRandom = Random.Range(0f, 10000f);
 		StartCoroutine(TondoAttackRollCoroutine());
 	}
 
@@ -57,12 +62,18 @@ public class Ball : Enemy
 			Quaternion targetRot = Quaternion.LookRotation(vecToTarget.normalized, nUp.normalized);
 			transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime);
 			
+			if(!isVibing)
+			{
+				graphicsTr.localPosition = Vector3.Lerp(graphicsTr.localPosition, Vector3.zero, Time.fixedDeltaTime);
+			}
 			
 		}
 		else if(aggroState == EnemyAggroState.NEUTRAL)
 		{
 			//FLOAT LIKE A BUTTERFLY
-			
+			Vector3 newPos = graphicsTr.localPosition;
+			newPos = new Vector3(newPos.x, 0.5f * Mathf.Sin(floatRandom + (floatSpeed * Time.time)), newPos.z);
+			graphicsTr.localPosition = newPos;
 		}
 		
 		if(isPerformingExplosion)
