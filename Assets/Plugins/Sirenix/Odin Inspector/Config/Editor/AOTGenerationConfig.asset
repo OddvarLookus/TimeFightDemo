@@ -16,7 +16,7 @@ MonoBehaviour:
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 090000001400000013000000
-  lastScan: 637880848087377557
+  lastScan: 637898003795686214
   supportSerializedTypes:
   - TypeName: System.Collections.Generic.Dictionary`2[[EnemySize, Assembly-CSharp],[EnemyStatsScaler,
       Assembly-CSharp]], mscorlib

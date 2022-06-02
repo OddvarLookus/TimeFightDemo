@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] float rotationForwardMultiplier;
 	[SerializeField] CameraController camController;
 	Rigidbody rb;
+	PlayerShield playerShield;
 	[SerializeField] Attack punchAttack;
 	[SerializeField] float speedWhileAttackingMultiplier;
     
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour
     {
 	    rb = GetComponent<Rigidbody>();
 	    enablerDisabler = GetComponent<DisablerUtility>();
+	    playerShield = GetComponent<PlayerShield>();
 	    
 	    if(punchAttack == null)
 	    {
@@ -235,6 +237,7 @@ public class PlayerController : MonoBehaviour
 		targetTeleportOffset = nTpOffset;
 		targetTeleportTransform = nTargetTr;
 		enablerDisabler.SetThingsEnabled(false);
+		enablerDisabler.SetThingAtIdxEnabled(3, false);
 		
 		GameObject nFadeLines = Instantiate(fadeLinesPrefab);
 		Transform fadeLinesTr = nFadeLines.transform;
@@ -254,6 +257,7 @@ public class PlayerController : MonoBehaviour
 		{
 			isTeleporting = false;
 			enablerDisabler.SetThingsEnabled(true);
+			enablerDisabler.SetThingAtIdxEnabled(3, playerShield.GetCurrentShield() > 1);
 			
 			transform.position = targetTeleportTransform.position + targetTeleportOffset;
 			

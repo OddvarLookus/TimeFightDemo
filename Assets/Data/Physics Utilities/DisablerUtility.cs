@@ -27,5 +27,12 @@ public class DisablerUtility : MonoBehaviour
 			collidersToDisable[i].enabled = nEnabled;
 		}
 	}
+	
+	public void SetThingAtIdxEnabled(int idx, bool nEnabled)
+	{
+		thingsToDisable[idx].SetActive(nEnabled);
+	}
     
 }
+
+

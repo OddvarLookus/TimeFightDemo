@@ -7,6 +7,7 @@ public class PlayerShield : MonoBehaviour
 {
 	[MinValue(0)] [SerializeField] int maxShield;
 	int currentShield = 0;
+	public int GetCurrentShield(){return currentShield;}
 	[HideInInspector] public bool isDead = false;
 	
 	[SerializeField] float maxShieldCharge = 100f;
