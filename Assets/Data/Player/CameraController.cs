@@ -288,7 +288,7 @@ public class CameraController : MonoBehaviour
                 lockedEnemy = null;
                 isLocking = false;
 	            cameraMode = CameraMode.FREELOOK;
-	            playerController.SetCanDash(true);
+	            //playerController.SetCanDash(true);
                 
             }
 
@@ -367,7 +367,7 @@ public class CameraController : MonoBehaviour
     {
         if (lockedEnemy == null)
         {
-        	playerController.SetCanDash(true);
+        	//playerController.SetCanDash(true);
             CheckLockableEnemies();
             isLocking = GetLockedEnemy();
             if (isLocking)
@@ -388,11 +388,11 @@ public class CameraController : MonoBehaviour
 	    //when player is very fast and near to the locked enemy disable dash
         if (vecToLockedEnemy.magnitude <= cameraDashMinDistance)
         {
-	        playerController.SetCanDash(false);
+	        //playerController.SetCanDash(false);
         }
         else
         {
-        	playerController.SetCanDash(true);
+        	//playerController.SetCanDash(true);
         }
 
 

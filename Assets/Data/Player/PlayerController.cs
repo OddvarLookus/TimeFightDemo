@@ -173,25 +173,41 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    Vector3 prevRelativeInput = Vector3.zero;
+	Vector3 prevRelativeInput = Vector3.zero;
+	bool canRotate = true;
+	float preventRotationTime = 0.7f;
+	float currentPreventRotationTime = 0f;
     void RotationBehavior()
 	{
 		float addRot = rb.velocity.magnitude * rotationForwardMultiplier;
 		addRot = Mathf.Clamp(addRot, 0f, 45f);
 		Quaternion addQuat = Quaternion.Euler(addRot, 0f, 0f);
     	
-        if (relativeInput.sqrMagnitude > 0.3f)
-        {
-	        Quaternion targetRot = Quaternion.LookRotation(Vector3.ProjectOnPlane(relativeInput.normalized, Vector3.up), Vector3.up) * addQuat;
-	        rb.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime);
+		if(canRotate)
+		{
+			if (relativeInput.sqrMagnitude > 0.3f)
+			{
+				Quaternion targetRot = Quaternion.LookRotation(Vector3.ProjectOnPlane(relativeInput.normalized, Vector3.up), Vector3.up) * addQuat;
+				rb.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime);
             
-            prevRelativeInput = relativeInput;
-        }
-        else
-        {
-	        Quaternion targetRot = Quaternion.LookRotation(Vector3.ProjectOnPlane(prevRelativeInput.normalized, Vector3.up), Vector3.up) * addQuat;
-	        rb.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime);
-        }
+				prevRelativeInput = relativeInput;
+			}
+			else
+			{
+				Quaternion targetRot = Quaternion.LookRotation(Vector3.ProjectOnPlane(prevRelativeInput.normalized, Vector3.up), Vector3.up) * addQuat;
+				rb.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime);
+			}
+		}
+		else if(!canRotate)
+		{
+			currentPreventRotationTime += Time.fixedDeltaTime;
+			if(currentPreventRotationTime >= preventRotationTime)
+			{
+				canRotate = true;
+				currentPreventRotationTime = 0f;
+			}
+		}
+
         
     }
 	
@@ -259,12 +275,19 @@ public class PlayerController : MonoBehaviour
 			enablerDisabler.SetThingsEnabled(true);
 			enablerDisabler.SetThingAtIdxEnabled(3, playerShield.GetCurrentShield() > 1);
 			
+			Vector3 vecToEnemy = (targetTeleportTransform.position - transform.position).normalized;
+			relativeInput = vecToEnemy;
+			prevRelativeInput = vecToEnemy;
+			rb.rotation = Quaternion.LookRotation(vecToEnemy, Vector3.up);
+			canRotate = false;
+			
 			transform.position = targetTeleportTransform.position + targetTeleportOffset;
 			
 			currentTeleportTime = 0f;
 			alreadyInstantiatedLines = false;
 			
 			OnTeleportFinished?.Invoke();
+			
 		}
 		else if(currentTeleportTime < teleportTime)//teleport still ongoing
 		{
