@@ -15,6 +15,7 @@ public class PlayerShield : MonoBehaviour
 	[SerializeField] float shieldChargeSpeed;
 	
 	[SceneObjectsOnly] [SerializeField] Transform shieldGraphicsTr;
+	[SceneObjectsOnly] [SerializeField] Transform shieldReturnGraphicsTr;
 	[AssetsOnly] [SerializeField] GameObject playerExplosionPrefab;
 	[SceneObjectsOnly] [SerializeField] Transform playerGraphics; 
 	
@@ -22,10 +23,13 @@ public class PlayerShield : MonoBehaviour
 	[SerializeField] SoundsPack shieldDepletedSound;
 	[SerializeField] SoundsPack playerDeadSound;
 	
+	Material shieldMaterial;
 	
 	protected void Awake()
 	{
 		currentShield = maxShield;
+		
+		shieldMaterial = shieldGraphicsTr.GetComponent<Renderer>().material;
 		RefreshShieldGraphics();
 	}
     
@@ -34,6 +38,8 @@ public class PlayerShield : MonoBehaviour
 		ShieldChargeBehavior();
 	}
     
+    
+	int currentBlink = 0;
 	void ShieldChargeBehavior()
 	{
 		if(currentShield > 0 && currentShield < maxShield)//alive and not max shield
@@ -41,12 +47,21 @@ public class PlayerShield : MonoBehaviour
 			if(currentShieldCharge < maxShieldCharge)
 			{
 				currentShieldCharge += Time.fixedDeltaTime;
+				
+				ShieldBlinkAnim();
 			}
 			else//shield is loaded
 			{
 				currentShield += 1;
-				StaticAudioStarter.instance.StartAudioEmitter(transform.position, shieldChargedSound.GetRandomSound());
+				
 				RefreshShieldGraphics();
+				if(currentShield > 1)//shield return anim
+				{
+					ShieldReturnAnim();
+				}
+				
+				StaticAudioStarter.instance.StartAudioEmitter(transform.position, shieldChargedSound.GetRandomSound());
+				
 			}
 		}
 		else
@@ -63,6 +78,7 @@ public class PlayerShield : MonoBehaviour
 		if(dmg != 0)
 		{
 			RefreshShieldGraphics();
+			currentBlink = 0;
 		}
 		
 		if(currentShield <= 0)
@@ -106,7 +122,75 @@ public class PlayerShield : MonoBehaviour
 	//GRAPHICS
 	void RefreshShieldGraphics()
 	{
-		shieldGraphicsTr.gameObject.SetActive(currentShield > 1);
+		if(currentShield > 1)
+		{
+			shieldMaterial.SetFloat("_Alpha", 1f);
+		}
+		else if(currentShield <= 1)
+		{
+			shieldMaterial.SetFloat("_Alpha", 0f);
+		}
 	}
+	
+	void ShieldReturnAnim()
+	{
+		Material shieldReturnMat = shieldReturnGraphicsTr.GetComponent<Renderer>().material;
+		LeanTween.value(shieldReturnGraphicsTr.gameObject, 1f, 0f, 0.2f).setEase(LeanTweenType.easeOutQuad).setOnUpdate((float nval) =>
+		{
+			shieldReturnMat.SetFloat("_Alpha", nval);
+		});
+		
+		shieldReturnGraphicsTr.localScale = new Vector3(7f, 7f, 7f);
+		LeanTween.scale(shieldReturnGraphicsTr.gameObject, new Vector3(3f, 3f, 3f), 0.2f).setEase(LeanTweenType.easeOutQuad);
+	}
+    
+	void ShieldBlinkAnim()
+	{
+		if(currentShieldCharge >= maxShieldCharge - 1.8f && currentBlink == 0)//first blink
+		{
+			LeanTween.cancel(shieldGraphicsTr.gameObject);
+			
+			LTSeq blinkSequence = LeanTween.sequence();
+			blinkSequence.append(LeanTween.value(shieldGraphicsTr.gameObject, 0f, 0.3f, 0.1f).setEase(LeanTweenType.easeOutQuad).setOnUpdate((float nval) =>
+			{
+				shieldMaterial.SetFloat("_Alpha", nval);
+			}));
+			blinkSequence.append(LeanTween.value(shieldGraphicsTr.gameObject, 0.3f, 0f, 0.1f).setEase(LeanTweenType.easeOutQuad).setOnUpdate((float nval) =>
+			{
+				shieldMaterial.SetFloat("_Alpha", nval);
+			}));
+			currentBlink += 1;
+		}
+		
+		if(currentShieldCharge >= maxShieldCharge - 0.9f && currentBlink == 1)//second blink
+		{
+			LeanTween.cancel(shieldGraphicsTr.gameObject);
+			
+			LTSeq blinkSequence = LeanTween.sequence();
+			blinkSequence.append(LeanTween.value(shieldGraphicsTr.gameObject, 0f, 0.3f, 0.1f).setEase(LeanTweenType.easeOutQuad).setOnUpdate((float nval) =>
+			{
+				shieldMaterial.SetFloat("_Alpha", nval);
+			}));
+			blinkSequence.append(LeanTween.value(shieldGraphicsTr.gameObject, 0.3f, 0f, 0.1f).setEase(LeanTweenType.easeOutQuad).setOnUpdate((float nval) =>
+			{
+				shieldMaterial.SetFloat("_Alpha", nval);
+			}));
+			blinkSequence.append(0.2f);
+			blinkSequence.append(LeanTween.value(shieldGraphicsTr.gameObject, 0f, 0.3f, 0.1f).setEase(LeanTweenType.easeOutQuad).setOnUpdate((float nval) =>
+			{
+				shieldMaterial.SetFloat("_Alpha", nval);
+			}));
+			blinkSequence.append(LeanTween.value(shieldGraphicsTr.gameObject, 0.3f, 0f, 0.1f).setEase(LeanTweenType.easeOutQuad).setOnUpdate((float nval) =>
+			{
+				shieldMaterial.SetFloat("_Alpha", nval);
+			}));
+			
+			currentBlink += 1;
+		}
+
+		
+	}
+
+	
     
 }
