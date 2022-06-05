@@ -78,6 +78,12 @@ public class PlayerShield : MonoBehaviour
 		if(dmg != 0)
 		{
 			RefreshShieldGraphics();
+			
+			if(currentShield > 0)//break shield only if not dead
+			{
+				ShieldBreakAnim();
+			}
+			
 			currentBlink = 0;
 		}
 		
@@ -135,13 +141,13 @@ public class PlayerShield : MonoBehaviour
 	void ShieldReturnAnim()
 	{
 		Material shieldReturnMat = shieldReturnGraphicsTr.GetComponent<Renderer>().material;
-		LeanTween.value(shieldReturnGraphicsTr.gameObject, 1f, 0f, 0.2f).setEase(LeanTweenType.easeOutQuad).setOnUpdate((float nval) =>
+		LeanTween.value(shieldReturnGraphicsTr.gameObject, 1f, 0f, 0.5f).setEase(LeanTweenType.easeOutQuad).setOnUpdate((float nval) =>
 		{
 			shieldReturnMat.SetFloat("_Alpha", nval);
 		});
 		
 		shieldReturnGraphicsTr.localScale = new Vector3(7f, 7f, 7f);
-		LeanTween.scale(shieldReturnGraphicsTr.gameObject, new Vector3(3f, 3f, 3f), 0.2f).setEase(LeanTweenType.easeOutQuad);
+		LeanTween.scale(shieldReturnGraphicsTr.gameObject, new Vector3(3f, 3f, 3f), 0.5f).setEase(LeanTweenType.easeOutQuad);
 	}
     
 	void ShieldBlinkAnim()
@@ -187,8 +193,18 @@ public class PlayerShield : MonoBehaviour
 			
 			currentBlink += 1;
 		}
-
+	}
+	
+	void ShieldBreakAnim()
+	{
+		Material shieldReturnMat = shieldReturnGraphicsTr.GetComponent<Renderer>().material;
+		LeanTween.value(shieldReturnGraphicsTr.gameObject, 1f, 0f, 0.5f).setEase(LeanTweenType.easeOutQuad).setOnUpdate((float nval) =>
+		{
+			shieldReturnMat.SetFloat("_Alpha", nval);
+		});
 		
+		shieldReturnGraphicsTr.localScale = new Vector3(3f, 3f, 3f);
+		LeanTween.scale(shieldReturnGraphicsTr.gameObject, new Vector3(10f, 10f, 10f), 0.5f).setEase(LeanTweenType.easeOutQuad);
 	}
 
 	
