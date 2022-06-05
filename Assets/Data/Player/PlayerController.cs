@@ -7,9 +7,7 @@ using System;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float playerMaxSpeed;
-    [SerializeField] float playerDashMaxSpeed;
 	[SerializeField] float playerAcceleration;
-	[SerializeField] float playerDashAcceleration;
 	[SerializeField] float playerDeceleration;
 	[SerializeField] float ascensionSpeed;
 	[SerializeField] float rotationSpeed;
@@ -19,6 +17,17 @@ public class PlayerController : MonoBehaviour
 	PlayerShield playerShield;
 	[SerializeField] Attack punchAttack;
 	[SerializeField] float speedWhileAttackingMultiplier;
+    
+	[Header("Dash")]
+	[SerializeField] float dashPower;
+	[SerializeField] float dashReleaseTime;
+	float currentDashPressedTime = 0f;
+	[SerializeField] float dashDuration;
+	float currentDashTime = 0f;
+	
+	[Header("Speed Dash")]
+	[SerializeField] float speedDashSpeed;
+	[SerializeField] float speedDashAcceleration;
     
 	bool canDash = true;
 	public bool CanDash(){return canDash;}
@@ -63,7 +72,11 @@ public class PlayerController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
         }
-        
+	    if(movementEnabled)
+	    {
+		    InputBehavior();
+		    DashBehavior();
+	    }
 	    
     }
 
@@ -78,41 +91,49 @@ public class PlayerController : MonoBehaviour
 
 	}
     
-
-    Vector3 relativeInput;
+	Vector3 inputVec;
+	Vector3 relativeInput;
+	bool ascensionPressed = false;
+	bool dashJustPressed = false;
+	bool dashPressed = false;
+	bool dashReleased = false;
+	void InputBehavior()
+	{
+		inputVec = Vector3.zero;
+		if (Input.GetKey(KeyCode.W))
+		{
+			inputVec.z += 1f;
+		}
+		if (Input.GetKey(KeyCode.S))
+		{
+			inputVec.z -= 1f;
+		}
+		if (Input.GetKey(KeyCode.A))
+		{
+			inputVec.x -= 1f;
+		}
+		if (Input.GetKey(KeyCode.D))
+		{
+			inputVec.x += 1f;
+		}
+		
+		inputVec.x += Input.GetAxis("MoveHorizontal");
+		inputVec.z += Input.GetAxis("MoveVertical");
+		ascensionPressed = Input.GetKey(KeyCode.Space);
+		
+		inputVec = inputVec.normalized;
+		
+		relativeInput = Quaternion.LookRotation(camController.GetCameraForward(), camController.GetCameraUp()) * inputVec;
+		relativeInput = relativeInput.normalized;
+		
+		dashJustPressed = Input.GetKeyDown(KeyCode.LeftShift) || Input.GetButtonDown("Dash");
+		dashPressed = Input.GetKey(KeyCode.LeftShift) || Input.GetButton("Dash");
+		dashReleased = Input.GetKeyUp(KeyCode.LeftShift) || Input.GetButtonUp("Dash");
+		
+	}
+    
     void Movement()
     {
-        Vector3 inputVec = Vector3.zero;
-        if (Input.GetKey(KeyCode.W))
-        {
-            inputVec.z += 1f;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            inputVec.z -= 1f;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            inputVec.x -= 1f;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            inputVec.x += 1f;
-        }
-        
-	    inputVec.x += Input.GetAxis("MoveHorizontal");
-	    inputVec.z += Input.GetAxis("MoveVertical");
-	    
-	    bool dashPressed = Input.GetKey(KeyCode.LeftShift) || Input.GetAxis("Dash") > 0f;
-	    bool ascensionPressed = Input.GetKey(KeyCode.Space);
-
-	    inputVec = inputVec.normalized;
-        
-	    dashing = dashPressed && inputVec.magnitude > 0.1f;
-
-        relativeInput = Quaternion.LookRotation(camController.GetCameraForward(), camController.GetCameraUp()) * inputVec;
-        relativeInput = relativeInput.normalized;
-
         if (inputVec != Vector3.zero)
         {
         	//ascension
@@ -130,46 +151,64 @@ public class PlayerController : MonoBehaviour
         		}
         	}
         	
-	        if (!canDash || !dashPressed || dashPressed && punchAttack.IsAttacking())//MOVEMENT WITHOUT DASH
-            {
-            	float realMaxSpeed = playerMaxSpeed;
-		        if(punchAttack.IsAttacking())
-            	{
-            		realMaxSpeed *= speedWhileAttackingMultiplier;
-            	}
+        	if(!dashing)
+        	{
+        		if(speedDashing)
+        		{
+	        		float realMaxSpeed = speedDashSpeed;
+	        		if(punchAttack.IsAttacking())
+	        		{
+		        		realMaxSpeed *= speedWhileAttackingMultiplier;
+	        		}
 		        
-		        if(ascensionVec != Vector3.zero)
-		        {
-		        	rb.velocity = Vector3.Lerp(rb.velocity, ascensionVec * realMaxSpeed, playerAcceleration * Time.fixedDeltaTime);
-		        }
-		        else
-		        {
-		        	rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * realMaxSpeed, playerAcceleration * Time.fixedDeltaTime);
-		        }
-            	
+	        		if(ascensionVec != Vector3.zero)
+	        		{
+		        		rb.velocity = Vector3.Lerp(rb.velocity, ascensionVec * realMaxSpeed, playerAcceleration * Time.fixedDeltaTime);
+	        		}
+	        		else
+	        		{
+	        			if(inputVec.magnitude > 0f)//INPUT > 0
+	        			{
+	        				rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * realMaxSpeed, speedDashAcceleration * Time.fixedDeltaTime);
+	        			}
+	        			else//NO INPUT
+	        			{
+		        			Vector3 transformFwXZ = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
+		        			Vector3 perpendicular = Vector3.Cross(transformFwXZ, Vector3.up);
+		        			transformFwXZ = Quaternion.AngleAxis(camController.GetCurrentTilt(), perpendicular) * transformFwXZ;
+		        			transformFwXZ = transformFwXZ.normalized;
+	        				rb.velocity = Vector3.Lerp(rb.velocity, transformFwXZ * realMaxSpeed, speedDashAcceleration * Time.fixedDeltaTime);
+	        			}
+		        		
+	        		}
+        		}
+        		else if(!speedDashing)
+        		{
+	        		float realMaxSpeed = playerMaxSpeed;
+	        		if(punchAttack.IsAttacking())
+	        		{
+		        		realMaxSpeed *= speedWhileAttackingMultiplier;
+	        		}
 		        
-            }
-	        else if (canDash && dashPressed && !punchAttack.IsAttacking())//MOVEMENT WITH DASH
-	        {
-	        	if(ascensionVec != Vector3.zero)
-	        	{
-	        		rb.velocity = Vector3.Lerp(rb.velocity, ascensionVec * playerDashMaxSpeed, playerDashAcceleration * Time.fixedDeltaTime);
-	        	}
-	        	else
-	        	{
-	        		rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * playerDashMaxSpeed, playerDashAcceleration * Time.fixedDeltaTime);
-	        	}
-		        
-            }
+	        		if(ascensionVec != Vector3.zero)
+	        		{
+		        		rb.velocity = Vector3.Lerp(rb.velocity, ascensionVec * realMaxSpeed, playerAcceleration * Time.fixedDeltaTime);
+	        		}
+	        		else
+	        		{
+		        		rb.velocity = Vector3.Lerp(rb.velocity, relativeInput * realMaxSpeed, playerAcceleration * Time.fixedDeltaTime);
+	        		}
+        		}
+
+        	}
+
+            
         }
-        else
+        else if(inputVec == Vector3.zero && !dashing)
         {
 	        rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, playerDeceleration * Time.fixedDeltaTime);
         }
         
-	    ManageDashSounds();
-	    prevDashing = dashing;
-	    speedDashing = rb.velocity.magnitude > 150f;
     }
 
 
@@ -209,7 +248,93 @@ public class PlayerController : MonoBehaviour
 		}
 
         
-    }
+	}
+
+    
+	void DashBehavior()
+	{
+		if(!punchAttack.IsAttacking())
+		{
+			bool shouldDash = false;
+			//CALCULATE DASH TIMES
+			if(!dashing)
+			{
+				if(dashPressed)
+				{
+					currentDashPressedTime += Time.deltaTime;
+			
+					if(currentDashPressedTime > dashReleaseTime && !speedDashing && inputVec.magnitude > 0f)
+					{
+						speedDashing = true;
+					}
+				}
+				if(dashReleased)
+				{
+					if(currentDashPressedTime <= dashReleaseTime)
+					{
+						shouldDash = true;
+					}
+					currentDashPressedTime = 0f;
+					speedDashing = false;
+				}
+			}
+			else//I'M DASHING
+			{
+				currentDashTime += Time.deltaTime;
+				
+				if(currentDashTime >= dashDuration)
+				{
+					dashing = false;
+					currentDashPressedTime = 0f;
+					currentDashTime = 0f;
+					speedDashing = false;
+				}
+			}
+
+		
+		
+			//DO DASH
+			//only do dash while not attacking
+		
+			if(shouldDash && !dashing && !speedDashing)//not dashing
+			{
+				dashing = true;
+				Vector3 dashDir = Vector3.zero;
+				if(inputVec.magnitude > 0)
+				{
+					dashDir = relativeInput.normalized;
+				}
+				else
+				{
+					Vector3 transformFwXZ = Vector3.ProjectOnPlane(transform.forward, Vector3.up).normalized;
+					Vector3 perpendicular = Vector3.Cross(transformFwXZ, Vector3.up);
+					transformFwXZ = Quaternion.AngleAxis(camController.GetCurrentTilt(), perpendicular) * transformFwXZ;
+					dashDir = transformFwXZ.normalized;
+				}
+		
+				//execute dash
+				rb.AddForce(dashDir * dashPower, ForceMode.Impulse);
+			
+			}
+			else if(speedDashing)
+			{
+		
+			}
+		}
+		else//during attack reset dash
+		{
+			dashing = false;
+			currentDashPressedTime = 0f;
+			currentDashTime = 0f;
+			speedDashing = false;
+		}
+
+		
+		prevDashing = dashing;
+	}
+	
+
+	
 	
 	[Header("DASH SOUNDS")]
 	[SerializeField] AudioSource dashLoopAudio;
