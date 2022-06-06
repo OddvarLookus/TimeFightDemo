@@ -19,7 +19,7 @@ public class Enemy : SerializedMonoBehaviour
 	[Header("Stats")]
 	[SerializeField] EnemyStatsSet statsSet;
 	public EnemyStatsSet GetStatsSet(){return statsSet;}
-	[SerializeField] EnemySize currentSize;
+	[SerializeField] protected EnemySize currentSize;
 	public void SetEnemySize(EnemySize nSize)
 	{
 		currentSize = nSize;
@@ -44,21 +44,63 @@ public class Enemy : SerializedMonoBehaviour
         
     }
     
+	protected virtual void OnDisable()
+	{
+		health.OnStaggerStart -= this.OnStaggerStart;
+		health.OnStaggerEnd -= this.OnStaggerEnd;
+		health.OnDeathAction -= this.OnDeath;
+	}
+    
 	protected virtual void Start()
 	{
 		InitializeEnemy();
 		StartSoundTimer();
+		
+		health.OnStaggerStart += this.OnStaggerStart;
+		health.OnStaggerEnd += this.OnStaggerEnd;
+		health.OnDeathAction += this.OnDeath;
 	}
     
 	protected virtual void Update()
 	{
-		
+		if(health.IsStaggered())//while staggered stagger effect follows enemy
+		{
+			currentStaggerVFX.transform.position = transform.position + staggerVFXOffset;
+		}
+	}
+	
+	[Header("Stagger")]
+	[AssetsOnly] [SerializeField] GameObject staggerVFXPrefab;
+	[SerializeField] Vector3 staggerVFXOffset;
+	GameObject currentStaggerVFX;
+	
+	protected virtual void OnStaggerStart()
+	{
+		currentStaggerVFX = Instantiate(staggerVFXPrefab);
+		currentStaggerVFX.transform.SetParent(null);
+		currentStaggerVFX.transform.position = transform.position + staggerVFXOffset;
+	}
+	
+	protected virtual void OnStaggerEnd()
+	{
+		Destroy(currentStaggerVFX);
+	}
+	
+	protected virtual void OnDeath()
+	{
+		if(health.IsStaggered())
+		{
+			Destroy(currentStaggerVFX);
+		}
 	}
 
     void InitializeEnemy()
     {
 	    float mHealth = statsSet.enemyStats[currentSize].maxHealth;
-	    health.Initialize(mHealth);
+	    float staggerPerc = statsSet.enemyStats[currentSize].staggerHealthPercentage;
+	    float staggerDecRate = statsSet.enemyStats[currentSize].staggerDecreaseRate;
+	    float staggerDur = statsSet.enemyStats[currentSize].staggerDuration;
+	    health.Initialize(mHealth, staggerPerc, staggerDecRate, staggerDur);
 	    
 	    float nScale = statsSet.enemyStats[currentSize].scale;
 	    transform.localScale = new Vector3(nScale, nScale, nScale);
@@ -106,16 +148,16 @@ public class Enemy : SerializedMonoBehaviour
 	}
 	
 	
-	
-	
-	
     public void Push(Vector3 _pushForce)
     {
         rb.AddForce(_pushForce, ForceMode.Impulse);
     }
-
-
     
+	protected virtual void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.red;
+		Gizmos.DrawSphere(transform.position + staggerVFXOffset, 0.2f);
+	}
 
 }
 

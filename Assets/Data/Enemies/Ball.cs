@@ -31,6 +31,34 @@ public class Ball : Enemy
     {
         base.OnEnable();
     }
+    
+	protected override void OnDisable()
+	{
+		base.OnDisable();
+	}
+	
+	protected override void OnStaggerStart()
+	{
+		base.OnStaggerStart();
+		//RESTORE SCALE, RESTORE GRAPHICS POSITION, RESTORE TIMINGS FOR BEHAVIOR AND ATTACK
+		float rightScale = GetStatsSet().enemyStats[currentSize].scale;
+		transform.localScale = new Vector3(rightScale, rightScale, rightScale);
+		
+		graphicsTr.localPosition = Vector3.zero;
+		isVibing = false;
+		attacking = false;
+	}
+	
+	protected override void OnStaggerEnd()
+	{
+		base.OnStaggerEnd();
+	}
+	
+	protected override void OnDeath()
+	{
+		base.OnDeath();
+		
+	}
 	
 	protected override void Start()
 	{
@@ -42,9 +70,10 @@ public class Ball : Enemy
 
     void FixedUpdate()
 	{
-		TondoBehavior();
-    	
-
+		if(!health.IsStaggered())
+		{
+			TondoBehavior();
+		}
     }
 
 	
@@ -116,7 +145,7 @@ public class Ball : Enemy
 	List<Transform> damagedObjects = new List<Transform>();
 	void TondoAttackRoll()
 	{
-		if(aggroState == EnemyAggroState.AGGRO && !attacking)
+		if(aggroState == EnemyAggroState.AGGRO && !attacking && !health.IsStaggered())
 		{
 			bool roll = Random.Range(0f, 1f) <= attackRollProbability;
 			if(roll)//attack
@@ -157,21 +186,23 @@ public class Ball : Enemy
 	
 	void TondoAttack()
 	{
-		//LeanTween.scale(graphicsTr.gameObject, new Vector3(1f, 1f, 1f), attackDuration * 0.1f).setEase(LeanTweenType.easeOutCubic);
-		LeanTween.scale(gameObject, new Vector3(1f, 1f, 1f), attackDuration * 0.1f).setEase(LeanTweenType.easeOutCubic);
+		if(!health.IsStaggered())
+		{
+			//LeanTween.scale(graphicsTr.gameObject, new Vector3(1f, 1f, 1f), attackDuration * 0.1f).setEase(LeanTweenType.easeOutCubic);
+			LeanTween.scale(gameObject, new Vector3(1f, 1f, 1f), attackDuration * 0.1f).setEase(LeanTweenType.easeOutCubic);
 
-		//INSTANTIATE ATTACK HITBOX AND EFFECTS
-		GameObject nVfx = Instantiate(tondoAttackVFX);
-		Transform vfxTr = nVfx.transform;
-		vfxTr.SetParent(null, false);
-		vfxTr.position = transform.position;
+			//INSTANTIATE ATTACK HITBOX AND EFFECTS
+			GameObject nVfx = Instantiate(tondoAttackVFX);
+			Transform vfxTr = nVfx.transform;
+			vfxTr.SetParent(null, false);
+			vfxTr.position = transform.position;
 		
 		
-		damagedObjects.Clear();
-		isPerformingExplosion = true;
-		StartCoroutine(ResetExplosionCoroutine());
-		StartCoroutine(ResetAttackingCoroutine());
-		
+			damagedObjects.Clear();
+			isPerformingExplosion = true;
+			StartCoroutine(ResetExplosionCoroutine());
+			StartCoroutine(ResetAttackingCoroutine());
+		}
 	}
 	
 	IEnumerator ResetExplosionCoroutine()
@@ -196,8 +227,9 @@ public class Ball : Enemy
 		StartCoroutine(TondoAttackRollCoroutine());
 	}
 	
-	protected void OnDrawGizmosSelected()
+	protected override void OnDrawGizmosSelected()
 	{
+		base.OnDrawGizmosSelected();
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireSphere(transform.position, aggroRadius);
 		Gizmos.DrawWireSphere(transform.position, attackRadius);

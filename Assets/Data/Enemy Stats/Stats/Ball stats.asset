@@ -59,6 +59,15 @@ MonoBehaviour:
     - Name: difficultyValue
       Entry: 3
       Data: 1
+    - Name: staggerHealthPercentage
+      Entry: 4
+      Data: 0.5
+    - Name: staggerDecreaseRate
+      Entry: 4
+      Data: 0.7
+    - Name: staggerDuration
+      Entry: 4
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -83,6 +92,15 @@ MonoBehaviour:
     - Name: difficultyValue
       Entry: 3
       Data: 2
+    - Name: staggerHealthPercentage
+      Entry: 4
+      Data: 0.01
+    - Name: staggerDecreaseRate
+      Entry: 4
+      Data: 0
+    - Name: staggerDuration
+      Entry: 4
+      Data: 0
     - Name: 
       Entry: 8
       Data: 

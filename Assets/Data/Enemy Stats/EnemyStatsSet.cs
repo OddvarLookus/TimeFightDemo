@@ -23,4 +23,9 @@ public class EnemyStatsScaler
 	public float maxHealth;
 	
 	public int difficultyValue;
+	
+	[TitleGroup("Stagger")] [MinValue(0.01f), MaxValue(1f)] public float staggerHealthPercentage;
+	[TitleGroup("Stagger")] [MinValue(0f)] public float staggerDecreaseRate;
+	[TitleGroup("Stagger")] [MinValue(0f)] public float staggerDuration;
+	
 }
