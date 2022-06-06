@@ -58,12 +58,16 @@ public class Health : MonoBehaviour
 	    if(_damage > 0f)
 	    {
 	    	//CALCULATE STAGGER
-	    	currentStagger += _damage;
-	    	if(currentStagger >= staggerHealth)
+	    	if(!isStaggered && currentHealth > 0f)
 	    	{
-	    		isStaggered = true;
-	    		OnStaggerStart?.Invoke();
+		    	currentStagger += _damage;
+		    	if(currentStagger >= staggerHealth)
+		    	{
+			    	isStaggered = true;
+			    	OnStaggerStart?.Invoke();
+		    	}
 	    	}
+
 	    	
 	    	
 	    	//FEEDBACK	    	
@@ -79,8 +83,8 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0f)
         {
         	Die();
+        	OnDeathAction?.Invoke();
 	        OnDeath?.Invoke();
-	        OnDeathAction?.Invoke();
         }
     }
     
@@ -122,6 +126,7 @@ public class Health : MonoBehaviour
 				isStaggered = false;
 				OnStaggerEnd?.Invoke();
 				currentStaggerTime = 0f;
+				currentStagger = 0f;
 			}
 		}
 	}

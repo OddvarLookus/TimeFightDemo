@@ -90,6 +90,7 @@ public class Enemy : SerializedMonoBehaviour
 	{
 		if(health.IsStaggered())
 		{
+			Debug.Log("DEATH DURING STAGGER");
 			Destroy(currentStaggerVFX);
 		}
 	}

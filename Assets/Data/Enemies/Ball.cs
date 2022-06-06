@@ -67,7 +67,13 @@ public class Ball : Enemy
 		floatRandom = Random.Range(0f, 10000f);
 		StartCoroutine(TondoAttackRollCoroutine());
 	}
-
+	
+	protected override void Update()
+	{
+		base.Update();
+		
+	}
+	
     void FixedUpdate()
 	{
 		if(!health.IsStaggered())

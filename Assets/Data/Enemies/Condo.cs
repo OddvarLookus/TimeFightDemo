@@ -52,12 +52,40 @@ public class Condo : Enemy
 		
 	}
 	
+	protected override void OnDisable()
+	{
+		base.OnDisable();
+	}
+	
+	protected override void OnStaggerStart()
+	{
+		base.OnStaggerStart();
+		
+		base.rb.velocity = Vector3.zero;
+		curMoveTime = 0f;
+	}
+	
+	protected override void OnStaggerEnd()
+	{
+		base.OnStaggerEnd();
+	}
+	
+	protected override void OnDeath()
+	{
+		base.OnDeath();
+	}
+	
 	protected override void Start()
 	{
 		base.Start();
 		InitializeTimeNeutral();
 		initialPos = transform.position;
 		animator = GetComponent<Animator>();
+	}
+	
+	protected override void Update()
+	{
+		base.Update();
 	}
 	
 	// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
@@ -70,7 +98,7 @@ public class Condo : Enemy
 	
 	void CondoBehavior()
 	{
-		if(base.aggroState == EnemyAggroState.NEUTRAL)
+		if(base.aggroState == EnemyAggroState.NEUTRAL && !health.IsStaggered())
 		{
 			if(curMoveTime < moveTime)
 			{
@@ -93,7 +121,7 @@ public class Condo : Enemy
 			}
 			
 		}
-		else if(base.aggroState == EnemyAggroState.AGGRO)
+		else if(base.aggroState == EnemyAggroState.AGGRO && !health.IsStaggered())
 		{
 			transform.LookAt(aggroTarget, Vector3.up);
 			
@@ -214,8 +242,9 @@ public class Condo : Enemy
 	}
 	
 	
-	protected void OnDrawGizmosSelected()
+	protected override void OnDrawGizmosSelected()
 	{
+		base.OnDrawGizmosSelected();
 		Gizmos.color = Color.green;
 		Gizmos.DrawWireSphere(transform.position, moveDistanceRadius);
 		
