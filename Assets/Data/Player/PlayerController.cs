@@ -400,13 +400,17 @@ public class PlayerController : MonoBehaviour
 			enablerDisabler.SetThingsEnabled(true);
 			enablerDisabler.SetThingAtIdxEnabled(3, playerShield.GetCurrentShield() > 1);
 			
-			Vector3 vecToEnemy = (targetTeleportTransform.position - transform.position).normalized;
-			relativeInput = vecToEnemy;
-			prevRelativeInput = vecToEnemy;
-			rb.rotation = Quaternion.LookRotation(vecToEnemy, Vector3.up);
-			canRotate = false;
+			if(targetTeleportTransform != null)
+			{
+				Vector3 vecToEnemy = (targetTeleportTransform.position - transform.position).normalized;
+				relativeInput = vecToEnemy;
+				prevRelativeInput = vecToEnemy;
+				rb.rotation = Quaternion.LookRotation(vecToEnemy, Vector3.up);
+				canRotate = false;
 			
-			transform.position = targetTeleportTransform.position + targetTeleportOffset;
+				transform.position = targetTeleportTransform.position + targetTeleportOffset;
+			}
+
 			
 			currentTeleportTime = 0f;
 			alreadyInstantiatedLines = false;

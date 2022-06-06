@@ -44,6 +44,7 @@ public class Ball : Enemy
 		float rightScale = GetStatsSet().enemyStats[currentSize].scale;
 		transform.localScale = new Vector3(rightScale, rightScale, rightScale);
 		
+		LeanTween.cancel(graphicsTr.gameObject);
 		graphicsTr.localPosition = Vector3.zero;
 		isVibing = false;
 		attacking = false;
@@ -79,6 +80,10 @@ public class Ball : Enemy
 		if(!health.IsStaggered())
 		{
 			TondoBehavior();
+		}
+		else
+		{
+			graphicsTr.localPosition = Vector3.Lerp(graphicsTr.localPosition, Vector3.zero, 3f * Time.fixedDeltaTime);
 		}
     }
 

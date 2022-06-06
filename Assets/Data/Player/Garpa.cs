@@ -41,7 +41,11 @@ public class Garpa : MonoBehaviour
     
 	protected void Update()
 	{
-		GarpaMovementBehavior();
+		if(!GameManager.instance.IsGamePaused())
+		{
+			GarpaMovementBehavior();
+		}
+		
 		
 		ComputeGarpaAlert();
 		GarpaAlertAnimation();

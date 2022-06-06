@@ -79,6 +79,8 @@ public class Enemy : SerializedMonoBehaviour
 		currentStaggerVFX = Instantiate(staggerVFXPrefab);
 		currentStaggerVFX.transform.SetParent(null);
 		currentStaggerVFX.transform.position = transform.position + staggerVFXOffset;
+		
+		//health.StopDamageFeedback();
 	}
 	
 	protected virtual void OnStaggerEnd()

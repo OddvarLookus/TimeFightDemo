@@ -68,8 +68,6 @@ public class Health : MonoBehaviour
 		    	}
 	    	}
 
-	    	
-	    	
 	    	//FEEDBACK	    	
 		    Vector3 nextPos = _damage * feedbackScaleChange * (transform.position - damagePoint).normalized;
 		    Vector3 startPos = feedbackObject.transform.position;
@@ -87,6 +85,11 @@ public class Health : MonoBehaviour
 	        OnDeath?.Invoke();
         }
     }
+    
+	public void StopDamageFeedback()
+	{
+		LeanTween.cancel(feedbackObject);
+	}
     
 	void Die()
 	{
