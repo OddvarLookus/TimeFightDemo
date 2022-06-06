@@ -227,7 +227,7 @@ MonoBehaviour:
   statsSet: {fileID: 11400000, guid: b4aa0be938defe84a8afb9008a7e00a6, type: 2}
   currentSize: 0
   staggerVFXPrefab: {fileID: 3947618777525850376, guid: 1991d1f3541da4b498c4661a923fe73e, type: 3}
-  staggerVFXOffset: {x: 0, y: 3.01, z: 0}
+  staggerVFXOffset: {x: 0, y: 2.17, z: 0}
   enemyVoice:
     possibleSounds:
     - {fileID: 8300000, guid: 61683a3798bb243468ffaa50e420a6bc, type: 3}

@@ -125,7 +125,7 @@ public class Garpa : MonoBehaviour
 			{
 				//Garpa Is Alert
 				garpaAlert = true;
-				garpaTeleportNotifier.position = camController.GetCurrentlyLockedEnemy().position + new Vector3(0f, 2.5f, 0f);
+				garpaTeleportNotifier.position = camController.GetCurrentlyLockedEnemy().position + new Vector3(0f, 4.5f, 0f);
 				garpaTeleportNotifier.LookAt(camController.transform.position, camController.transform.up);
 			}
 			else

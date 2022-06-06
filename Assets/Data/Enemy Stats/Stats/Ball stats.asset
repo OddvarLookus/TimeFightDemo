@@ -55,19 +55,19 @@ MonoBehaviour:
       Data: 1
     - Name: maxHealth
       Entry: 4
-      Data: 2
+      Data: 3
     - Name: difficultyValue
       Entry: 3
       Data: 1
     - Name: staggerHealthPercentage
       Entry: 4
-      Data: 0.8
+      Data: 0.5
     - Name: staggerDecreaseRate
       Entry: 4
       Data: 0.3
     - Name: staggerDuration
       Entry: 4
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
