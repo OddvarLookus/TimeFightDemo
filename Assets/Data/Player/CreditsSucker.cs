@@ -7,6 +7,8 @@ public class CreditsSucker : MonoBehaviour
 {
 	int currentCredits = 0;
 	int maxCredits = 500;
+	int currentLevel = 0;
+	[SerializeField] AnimationCurve LevelUpCurve;
     
     [SerializeField] float minSuckRadius, maxSuckRadius;
     [SerializeField] float maxPlayerSpeed;
@@ -23,7 +25,7 @@ public class CreditsSucker : MonoBehaviour
 	protected void Start()
 	{
 		GameUIManager.instance.SetCreditsLabel(currentCredits);
-		CrupsIndicator.instance.RefreshCrupsIndicator((float)currentCredits / (float)maxCredits);
+		CrupsIndicator.instance.RefreshCrupsIndicator((float)currentCredits / (float)maxCredits, currentLevel);
 	}
 
     // Update is called once per frame
@@ -54,12 +56,35 @@ public class CreditsSucker : MonoBehaviour
 
     public void AddCredits(int _creditsToAdd)
     {
-        currentCredits += _creditsToAdd;
-        currentCredits = Mathf.Clamp(currentCredits, 0, int.MaxValue);
+	    currentCredits += _creditsToAdd * 100;
+	    CalculateLevelUp();
+	    //currentCredits = Mathf.Clamp(currentCredits, 0, int.MaxValue);
 		
-	    CrupsIndicator.instance.RefreshCrupsIndicator((float)currentCredits / (float)maxCredits);
+	    CrupsIndicator.instance.RefreshCrupsIndicator((float)currentCredits / (float)maxCredits, currentLevel);
         GameUIManager.instance.SetCreditsLabel(currentCredits);
     }
+	
+	void CalculateLevelUp()
+	{
+		int creditsExceeding = currentCredits - maxCredits;
+		
+		if(creditsExceeding >= 0)//LEVEL UP
+		{
+			currentLevel += 1;
+			maxCredits = Mathf.FloorToInt(LevelUpCurve.Evaluate((float)currentLevel));
+			currentCredits = creditsExceeding;
+			
+			if(currentCredits >= maxCredits)
+			{
+				CalculateLevelUp();
+			}
+		}
+		else//NO LEVEL UP
+		{
+			
+		}
+		
+	}
 	
 	public bool TryBuy(int cost)
 	{

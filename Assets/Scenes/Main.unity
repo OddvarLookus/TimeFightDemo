@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.059794225, g: 0.25883284, b: 0.58169615, a: 1}
+  m_IndirectSpecularColor: {r: 0.05975247, g: 0.2583589, b: 0.5809133, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3218,6 +3218,54 @@ PrefabInstance:
       propertyPath: cameraController
       value: 
       objectReference: {fileID: 1745202265}
+    - target: {fileID: 4999143093157021292, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: LevelUpCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999143093157021292, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: LevelUpCurve.m_Curve.Array.data[1].time
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999143093157021292, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: LevelUpCurve.m_Curve.Array.data[0].value
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999143093157021292, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: LevelUpCurve.m_Curve.Array.data[1].value
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999143093157021292, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: LevelUpCurve.m_Curve.Array.data[0].inSlope
+      value: 24.296011
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999143093157021292, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: LevelUpCurve.m_Curve.Array.data[1].inSlope
+      value: 259.0391
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999143093157021292, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: LevelUpCurve.m_Curve.Array.data[0].outSlope
+      value: 24.296011
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999143093157021292, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: LevelUpCurve.m_Curve.Array.data[1].inWeight
+      value: 0.019810168
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999143093157021292, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: LevelUpCurve.m_Curve.Array.data[1].outSlope
+      value: 259.0391
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999143093157021292, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: LevelUpCurve.m_Curve.Array.data[0].outWeight
+      value: 0.044882376
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999143093157021292, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: LevelUpCurve.m_Curve.Array.data[0].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999143093157021292, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: LevelUpCurve.m_Curve.Array.data[1].tangentMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4999143093157021300, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
       propertyPath: m_Name
       value: Player

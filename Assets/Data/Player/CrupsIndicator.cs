@@ -17,10 +17,10 @@ public class CrupsIndicator : MonoBehaviour
 		instance = this;
 	}
 	
-	public void RefreshCrupsIndicator(float crupsFactor)
+	public void RefreshCrupsIndicator(float crupsFactor, int lv)
 	{
 		crupsImage.fillAmount = crupsFactor;
-		
+		levelLabel.text = lv.ToString();
 	}
     
 	
