@@ -30,7 +30,8 @@ public class Enemy : SerializedMonoBehaviour
 	}
     
 	protected EnemyAggroState aggroState = EnemyAggroState.NEUTRAL;
-
+	protected int crupsToDrop;
+	[AssetsOnly] [SerializeField] protected GameObject crupPrefab;
     public Renderer GetRenderer()
     {
         return mainRenderer;
@@ -95,6 +96,21 @@ public class Enemy : SerializedMonoBehaviour
 			Debug.Log("DEATH DURING STAGGER");
 			Destroy(currentStaggerVFX);
 		}
+		
+		for(int i = 0; i < crupsToDrop; i++)
+		{
+			GameObject nDrop = Instantiate(crupPrefab);
+			nDrop.transform.SetParent(transform.parent, true);
+			Vector3 relativeSpawnPos = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+			nDrop.transform.position = transform.position + relativeSpawnPos;
+	           
+			if(nDrop.TryGetComponent(out Credit crdt))
+			{
+				Vector3 crdtVelocity = relativeSpawnPos.normalized * (50f + Random.Range(-20f, 20f));
+				crdt.SetVelocity(crdtVelocity);
+			}
+		}
+
 	}
 
     void InitializeEnemy()
@@ -107,6 +123,8 @@ public class Enemy : SerializedMonoBehaviour
 	    
 	    float nScale = statsSet.enemyStats[currentSize].scale;
 	    transform.localScale = new Vector3(nScale, nScale, nScale);
+	    
+	    crupsToDrop = statsSet.enemyStats[currentSize].droppedCrups;
     }
 	
 	protected virtual void RotateTowardsMovement(float rotationSpeed, bool onlyZ = false)

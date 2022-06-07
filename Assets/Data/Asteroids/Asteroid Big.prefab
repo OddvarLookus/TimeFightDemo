@@ -51,7 +51,7 @@ MonoBehaviour:
   minInitSpeed: 0
   maxInitSpeed: 10
   mass: 800
-  maxHealth: 10
+  maxHealth: 15
   asteroidsDestructionSounds:
     possibleSounds:
     - {fileID: 8300000, guid: d716da480381fe947baf5aafa2b5a8ab, type: 3}

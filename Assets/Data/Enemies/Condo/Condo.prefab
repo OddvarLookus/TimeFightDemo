@@ -226,6 +226,7 @@ MonoBehaviour:
   mainRenderer: {fileID: 6072698229917062483}
   statsSet: {fileID: 11400000, guid: b4aa0be938defe84a8afb9008a7e00a6, type: 2}
   currentSize: 0
+  crupPrefab: {fileID: 3031193280246476905, guid: c7dc458a0bd513444afca47bb1063257, type: 3}
   staggerVFXPrefab: {fileID: 3947618777525850376, guid: 1991d1f3541da4b498c4661a923fe73e, type: 3}
   staggerVFXOffset: {x: 0, y: 2.17, z: 0}
   enemyVoice:

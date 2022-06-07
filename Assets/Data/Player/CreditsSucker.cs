@@ -5,7 +5,9 @@ using UnityEngine.Events;
 
 public class CreditsSucker : MonoBehaviour
 {
-    int currentCredits = 0;
+	int currentCredits = 0;
+	int maxCredits = 500;
+    
     [SerializeField] float minSuckRadius, maxSuckRadius;
     [SerializeField] float maxPlayerSpeed;
 
@@ -21,6 +23,7 @@ public class CreditsSucker : MonoBehaviour
 	protected void Start()
 	{
 		GameUIManager.instance.SetCreditsLabel(currentCredits);
+		CrupsIndicator.instance.RefreshCrupsIndicator((float)currentCredits / (float)maxCredits);
 	}
 
     // Update is called once per frame
@@ -53,7 +56,8 @@ public class CreditsSucker : MonoBehaviour
     {
         currentCredits += _creditsToAdd;
         currentCredits = Mathf.Clamp(currentCredits, 0, int.MaxValue);
-
+		
+	    CrupsIndicator.instance.RefreshCrupsIndicator((float)currentCredits / (float)maxCredits);
         GameUIManager.instance.SetCreditsLabel(currentCredits);
     }
 	

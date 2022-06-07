@@ -28,4 +28,6 @@ public class EnemyStatsScaler
 	[TitleGroup("Stagger")] [MinValue(0f)] public float staggerDecreaseRate;
 	[TitleGroup("Stagger")] [MinValue(0f)] public float staggerDuration;
 	
+	[TitleGroup("Crups")] [MinValue(0f)] public int droppedCrups;
+	
 }

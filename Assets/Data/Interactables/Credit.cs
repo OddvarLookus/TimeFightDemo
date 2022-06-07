@@ -9,6 +9,9 @@ public class Credit : MonoBehaviour
 	float totalTime;
     Transform target;
 	bool isBeingSucked = false;
+	[SerializeField] bool immuneToSucking = true;
+	float immunityTime = 0.6f;
+	float currentImmunityTime = 0f;
 	CreditsSucker creditsSucker;
 	
 	Vector3 velocity;
@@ -16,7 +19,6 @@ public class Credit : MonoBehaviour
 	{
 		velocity = nVel;
 	}
-	
 	
 	[SerializeField] float friction;
 
@@ -26,7 +28,7 @@ public class Credit : MonoBehaviour
 
 	public void Attract(Transform _target, CreditsSucker _creditSucker)
     {
-        if (!isBeingSucked)
+	    if (!isBeingSucked && !immuneToSucking)
         {
             target = _target;
 
@@ -45,41 +47,59 @@ public class Credit : MonoBehaviour
     }
 
     void CreditMovement()
-    {
-        if (isBeingSucked)
-        {
-        	float t = suckTime / totalTime;
+	{
+		if(!immuneToSucking)//NOT IMMUNE TO SUCKING
+		{
+			if (isBeingSucked)
+			{
+				float t = suckTime / totalTime;
         	
-        	transform.position = Vector3.Lerp( transform.position, target.position, t * t);
+				transform.position = Vector3.Lerp( transform.position, target.position, t * t);
         	
-        	if(suckTime < totalTime)
-        	{
-        		suckTime += Time.fixedDeltaTime;
-        	}
-        	else if(suckTime >= totalTime)
-        	{
-        		creditsSucker.AddCredits(value);
+				if(suckTime < totalTime)
+				{
+					suckTime += Time.fixedDeltaTime;
+				}
+				else if(suckTime >= totalTime)
+				{
+					creditsSucker.AddCredits(value);
         		
-        		StaticAudioStarter.instance.PlayCrupsSound(transform.position, gatherSound.GetRandomSound(), gatherSound.GetRandomPitch());
+					StaticAudioStarter.instance.PlayCrupsSound(transform.position, gatherSound.GetRandomSound(), gatherSound.GetRandomPitch());
         		
-        		Destroy(this.gameObject);
-        	}
-        }
-        else//Not risucchiato
-        {
-        	if(velocity != Vector3.zero)
-        	{
-	        	transform.position += velocity * Time.fixedDeltaTime;
-	        	if(velocity.sqrMagnitude >= 0.4f)
-	        	{
-		        	velocity = Vector3.Lerp(velocity, Vector3.zero, friction * Time.fixedDeltaTime);
-	        	}
-	        	else
-	        	{
-		        	velocity = Vector3.zero;
-	        	}
-        	}
-        }
+					Destroy(this.gameObject);
+				}
+			}
+			else//Not risucchiato
+			{
+				
+			}
+		}
+		else//I AM IMMUNE TO SUCKING
+		{
+			currentImmunityTime += Time.fixedDeltaTime;
+			if(currentImmunityTime >= immunityTime)
+			{
+				immuneToSucking = false;
+			}
+		}
+		
+		//UPDATE VELOCITY WHEN IMMUNE TO SUCKING OR NOT BEING SUCKED
+		if(immuneToSucking || (!immuneToSucking && !isBeingSucked))
+		{
+			if(velocity != Vector3.zero)
+			{
+				transform.position += velocity * Time.fixedDeltaTime;
+				if(velocity.sqrMagnitude >= 0.4f)
+				{
+					velocity = Vector3.Lerp(velocity, Vector3.zero, friction * Time.fixedDeltaTime);
+				}
+				else
+				{
+					velocity = Vector3.zero;
+				}
+			}
+		}
+
 
     }
 

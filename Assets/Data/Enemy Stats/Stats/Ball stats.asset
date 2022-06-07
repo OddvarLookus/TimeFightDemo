@@ -68,6 +68,9 @@ MonoBehaviour:
     - Name: staggerDuration
       Entry: 4
       Data: 2
+    - Name: droppedCrups
+      Entry: 3
+      Data: 10
     - Name: 
       Entry: 8
       Data: 
@@ -100,6 +103,9 @@ MonoBehaviour:
       Data: 0
     - Name: staggerDuration
       Entry: 4
+      Data: 0
+    - Name: droppedCrups
+      Entry: 3
       Data: 0
     - Name: 
       Entry: 8

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.05972582, g: 0.25829554, b: 0.5810974, a: 1}
+  m_IndirectSpecularColor: {r: 0.059794225, g: 0.25883284, b: 0.58169615, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3218,10 +3218,6 @@ PrefabInstance:
       propertyPath: cameraController
       value: 
       objectReference: {fileID: 1745202265}
-    - target: {fileID: 4999143093157021291, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
-      propertyPath: heavyAttackDamageMultiplier
-      value: 6.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4999143093157021300, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
       propertyPath: m_Name
       value: Player
