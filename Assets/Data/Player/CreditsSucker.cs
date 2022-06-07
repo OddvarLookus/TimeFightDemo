@@ -71,6 +71,8 @@ public class CreditsSucker : MonoBehaviour
 		if(creditsExceeding >= 0)//LEVEL UP
 		{
 			currentLevel += 1;
+			//EXECUTE POWER UP ROUTINE
+			
 			maxCredits = Mathf.FloorToInt(LevelUpCurve.Evaluate((float)currentLevel));
 			currentCredits = creditsExceeding;
 			
