@@ -15,13 +15,15 @@ public class CreditsSucker : MonoBehaviour
 
     float suckRadius;
 
-    PlayerController playerController;
+	PlayerController playerController;
+	PlayerStatsManager playerStatsManager;
     private void Awake()
     {
 	    playerController = GetComponent<PlayerController>();
-	    
+	    playerStatsManager = GetComponent<PlayerStatsManager>();
     }
 
+	
 	protected void Start()
 	{
 		GameUIManager.instance.SetCreditsLabel(currentCredits);
@@ -55,8 +57,9 @@ public class CreditsSucker : MonoBehaviour
     }
 
     public void AddCredits(int _creditsToAdd)
-    {
-	    currentCredits += _creditsToAdd;
+	{
+		Debug.Log("ADDED CREDITS");
+	    currentCredits += _creditsToAdd * 10;
 	    CalculateLevelUp();
 	    //currentCredits = Mathf.Clamp(currentCredits, 0, int.MaxValue);
 		
@@ -64,28 +67,44 @@ public class CreditsSucker : MonoBehaviour
         GameUIManager.instance.SetCreditsLabel(currentCredits);
     }
 	
+	int creditsExceeding = 0;
+	bool choosingUpgrade = false;
 	void CalculateLevelUp()
 	{
-		int creditsExceeding = currentCredits - maxCredits;
-		
-		if(creditsExceeding >= 0)//LEVEL UP
+		if(!choosingUpgrade)
 		{
-			currentLevel += 1;
-			//EXECUTE POWER UP ROUTINE
-			
-			maxCredits = Mathf.FloorToInt(LevelUpCurve.Evaluate((float)currentLevel));
-			currentCredits = creditsExceeding;
-			
-			if(currentCredits >= maxCredits)
+			creditsExceeding = currentCredits - maxCredits;
+		
+			if(creditsExceeding >= 0)//LEVEL UP
 			{
-				CalculateLevelUp();
+				currentLevel += 1;
+				//EXECUTE POWER UP ROUTINE
+				Cursor.lockState = CursorLockMode.None;
+				choosingUpgrade = true;
+				ProgressionLayer.instance.StartUpgradeChoice(OnUpgradeChosen);
+			}
+			else//NO LEVEL UP
+			{
+			
 			}
 		}
-		else//NO LEVEL UP
-		{
-			
-		}
 		
+	}
+	
+	void OnUpgradeChosen(Upgrade chosenUpgrade)
+	{
+		//set the upgraded stats
+		playerStatsManager.AddUpgrade(chosenUpgrade);
+		Cursor.lockState = CursorLockMode.Locked;
+		choosingUpgrade = false;
+		//continue level up logic
+		maxCredits = Mathf.FloorToInt(LevelUpCurve.Evaluate((float)currentLevel));
+		currentCredits = creditsExceeding;
+			
+		if(currentCredits >= maxCredits)
+		{
+			CalculateLevelUp();
+		}
 	}
 	
 	public bool TryBuy(int cost)

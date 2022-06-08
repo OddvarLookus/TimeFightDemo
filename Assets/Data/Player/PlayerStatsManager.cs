@@ -23,6 +23,15 @@ public class PlayerStatsManager : MonoBehaviour
 		RecalculateStats();
 	}
 	
+	List<Upgrade> upgrades = new List<Upgrade>();
+	public void AddUpgrade(Upgrade nUpgrade)
+	{
+		upgrades.Add(nUpgrade);
+		
+		RecalculateStats();
+	}
+	
+	
 	//STATS CALCULATIONS
     
 	void RecalculateStats()
@@ -36,6 +45,12 @@ public class PlayerStatsManager : MonoBehaviour
 			dmg = dmg + items[i].damageBonus;
 			
 		}
+		for(int i = 0; i < upgrades.Count; i++)
+		{
+			
+			dmg = dmg + upgrades[i].statsUpgrade.damageBonus;
+			
+		}
 		attack.SetDamage(dmg);
 		
 		//ATTACK SPEED RECALCULATION
@@ -45,6 +60,12 @@ public class PlayerStatsManager : MonoBehaviour
 		{
 			
 			atkSpeed = atkSpeed + items[i].attackSpeedBonus;
+			
+		}
+		for(int i = 0; i < upgrades.Count; i++)
+		{
+			
+			atkSpeed = atkSpeed + upgrades[i].statsUpgrade.attackSpeedBonus;
 			
 		}
 		attack.SetAttackSpeed(atkSpeed);
