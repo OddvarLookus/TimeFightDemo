@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.059772782, g: 0.25852874, b: 0.5811961, a: 1}
+  m_IndirectSpecularColor: {r: 0.059737325, g: 0.25814256, b: 0.5812049, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2572,24 +2572,10 @@ MonoBehaviour:
       Entry: 6
       Data: 
   allUpgrades:
-  - upgradeName: DAMAGE
-    upgradeSprite: {fileID: 21300000, guid: 8014f0ba0f68ef342985442ad4522af5, type: 3}
-    statsUpgrade:
-      damageBonus: 0.05
-      attackSpeedBonus: 0
-      luckBonus: 0
-  - upgradeName: AGILITY
-    upgradeSprite: {fileID: 21300000, guid: 16cf1e35c2f780447a24281d7039a549, type: 3}
-    statsUpgrade:
-      damageBonus: 0
-      attackSpeedBonus: 0.06
-      luckBonus: 0
-  - upgradeName: LUCK
-    upgradeSprite: {fileID: 21300000, guid: f910f30c159e0d0409301ceda7b6f7f7, type: 3}
-    statsUpgrade:
-      damageBonus: 0
-      attackSpeedBonus: 0
-      luckBonus: 1
+  - id: 0
+  - id: 1
+  - id: 2
+  - id: 3
   cardsParent: {fileID: 1751523302}
   cardsTr:
   - {fileID: 1345755058}
@@ -2599,6 +2585,38 @@ MonoBehaviour:
   - {fileID: 1345755060}
   - {fileID: 2086900973}
   - {fileID: 1172141486}
+  references:
+    version: 1
+    00000000:
+      type: {class: StatsUpgrade, ns: , asm: Assembly-CSharp}
+      data:
+        upgradeName: DAMAGE
+        upgradeSprite: {fileID: 21300000, guid: 8014f0ba0f68ef342985442ad4522af5, type: 3}
+        damageBonus: 0.05
+        attackSpeedBonus: 0
+        luckBonus: 0
+    00000001:
+      type: {class: StatsUpgrade, ns: , asm: Assembly-CSharp}
+      data:
+        upgradeName: AGILITY
+        upgradeSprite: {fileID: 21300000, guid: 16cf1e35c2f780447a24281d7039a549, type: 3}
+        damageBonus: 0
+        attackSpeedBonus: 0.06
+        luckBonus: 0
+    00000002:
+      type: {class: StatsUpgrade, ns: , asm: Assembly-CSharp}
+      data:
+        upgradeName: LUCK
+        upgradeSprite: {fileID: 21300000, guid: f910f30c159e0d0409301ceda7b6f7f7, type: 3}
+        damageBonus: 0
+        attackSpeedBonus: 0
+        luckBonus: 1
+    00000003:
+      type: {class: DemolitionGlovesUpgrade, ns: , asm: Assembly-CSharp}
+      data:
+        upgradeName: Demolition Gloves
+        upgradeSprite: {fileID: 21300000, guid: 2426d0707cb1e1c42a9922f344e85c58, type: 3}
+        damageAgainstAsteroidsBonus: 0.2
 --- !u!1 &1504324623
 GameObject:
   m_ObjectHideFlags: 0

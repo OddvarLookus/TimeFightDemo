@@ -41,52 +41,45 @@ public class PlayerStatsManager : MonoBehaviour
     
 	void RecalculateStats()
 	{
-		//DAMAGE RECALCULATION
 		float dmg = attack.baseDamage;
 		
-		for(int i = 0; i < items.Count; i++)
-		{
-			
-			dmg = dmg + items[i].damageBonus;
-			
-		}
-		for(int i = 0; i < upgrades.Count; i++)
-		{
-			
-			dmg = dmg + upgrades[i].statsUpgrade.damageBonus;
-			
-		}
-		attack.SetDamage(dmg);
-		
-		//ATTACK SPEED RECALCULATION
 		float atkSpeed = attack.baseAttackSpeed;
 		float playerSpeedBonus = 0f;
 		
-		for(int i = 0; i < items.Count; i++)
+		float lck = baseLuck;
+		
+		for(int i = 0; i < upgrades.Count; i++)//get all upgrades
 		{
+			if(upgrades[i] is StatsUpgrade)//it's a stat
+			{
+				StatsUpgrade sUpgrade = upgrades[i] as StatsUpgrade;
+				if(sUpgrade.damageBonus > 0f)
+				{
+					dmg = dmg + sUpgrade.damageBonus;
+				}
+				if(sUpgrade.attackSpeedBonus > 0f)
+				{
+					atkSpeed = atkSpeed + sUpgrade.attackSpeedBonus;
 			
-			atkSpeed = atkSpeed + items[i].attackSpeedBonus;
-			
+					playerSpeedBonus = playerSpeedBonus + (sUpgrade.attackSpeedBonus * 33.333f);
+				}
+				if(sUpgrade.luckBonus > 0f)
+				{
+					baseLuck = baseLuck + sUpgrade.luckBonus;
+				}
+			}
+			if(upgrades[i] is TechniqueUpgrade)//it's a technique
+			{
+				
+			}
 		}
-		for(int i = 0; i < upgrades.Count; i++)
-		{
-			
-			atkSpeed = atkSpeed + upgrades[i].statsUpgrade.attackSpeedBonus;
-			
-			playerSpeedBonus = playerSpeedBonus + (upgrades[i].statsUpgrade.attackSpeedBonus * 33.333f);
-		}
+		
+
+		attack.SetDamage(dmg);
+		
 		attack.SetAttackSpeed(atkSpeed);
 		playerController.agilityBonus = playerSpeedBonus;
 		
-		//LUCK CALCULATIONS
-		float lck = baseLuck;
-		
-		for(int i = 0; i < upgrades.Count; i++)
-		{
-			
-			lck = lck + upgrades[i].statsUpgrade.luckBonus;
-			
-		}
 		luck = lck;
 		
 	}

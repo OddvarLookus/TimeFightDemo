@@ -67,6 +67,14 @@ public class Attack : MonoBehaviour
 	[Header("Teleport Attack")]
 	[SerializeField] Garpa garpa;
 	
+	//ALL THE ATTACK BONUSES
+	float damageBonusAgainstAsteroids = 0f;
+	public void SetDamageBonusAgainstAsteroids(float nDamage)
+	{
+		damageBonusAgainstAsteroids = nDamage;
+	}
+	//
+	
 	public void SetDamage(float newDamage)
 	{
 		damage = newDamage;
@@ -135,7 +143,7 @@ public class Attack : MonoBehaviour
 				pushVec *= pushForce;
 				asteroid.Push(pushVec);
 	        
-				asteroid.TakeDamage(dmg, punchesGameObjects[currentPunchIdx].transform.position);
+				asteroid.TakeDamage(dmg + damageBonusAgainstAsteroids, punchesGameObjects[currentPunchIdx].transform.position);
 				CheckAndSpawnPunchVFX(_col);
 			}
 			if (_col.TryGetComponent(out Health health))

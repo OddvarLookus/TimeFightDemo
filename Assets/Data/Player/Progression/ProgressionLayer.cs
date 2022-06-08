@@ -10,7 +10,7 @@ using System;
 public class ProgressionLayer : SerializedMonoBehaviour
 {
 	[Header("Upgrades Definition")]
-	[SerializeField] List<Upgrade> allUpgrades = new List<Upgrade>();
+	[SerializeReference] List<Upgrade> allUpgrades = new List<Upgrade>();
     
 	[Header("References")]
 	
@@ -118,15 +118,31 @@ public class Upgrade
 {
 	public string upgradeName;
 	public Sprite upgradeSprite;
-	public StatsUpgrade statsUpgrade;
 }
 
 [System.Serializable]
-public class StatsUpgrade
+public class StatsUpgrade : Upgrade
 {
 	[Header("Stats")]
 	public float damageBonus;
 	public float attackSpeedBonus;
 	public float luckBonus;
 }
+
+//ALL THE TECNICHE
+[System.Serializable]
+public class TechniqueUpgrade : Upgrade
+{
+	
+}
+
+[System.Serializable]
+public class DemolitionGlovesUpgrade : TechniqueUpgrade
+{
+	public float damageAgainstAsteroidsBonus;
+}
+
+
+
+
 
