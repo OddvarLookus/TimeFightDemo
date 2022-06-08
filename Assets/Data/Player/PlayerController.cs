@@ -132,6 +132,7 @@ public class PlayerController : MonoBehaviour
 		
 	}
     
+	[HideInInspector] public float agilityBonus = 0f;
     void Movement()
     {
         if (inputVec != Vector3.zero)
@@ -153,9 +154,9 @@ public class PlayerController : MonoBehaviour
         	
         	if(!dashing)
         	{
-        		if(speedDashing)
+        		if(speedDashing)//run
         		{
-	        		float realMaxSpeed = speedDashSpeed;
+	        		float realMaxSpeed = speedDashSpeed + agilityBonus;
 	        		if(punchAttack.IsAttacking())
 	        		{
 		        		realMaxSpeed *= speedWhileAttackingMultiplier;
@@ -184,7 +185,7 @@ public class PlayerController : MonoBehaviour
         		}
         		else if(!speedDashing)
         		{
-	        		float realMaxSpeed = playerMaxSpeed;
+	        		float realMaxSpeed = playerMaxSpeed + agilityBonus;
 	        		if(punchAttack.IsAttacking())
 	        		{
 		        		realMaxSpeed *= speedWhileAttackingMultiplier;

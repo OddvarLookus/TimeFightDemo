@@ -122,10 +122,12 @@ public class Attack : MonoBehaviour
 			{
 				dmg *= heavyAttackDamageMultiplier;
 			}
+			//DAMAGE ROLL
+			float luck = PlayerStatsManager.luck;
 			float dmgPerc = (damageRandomnessPercentage / 100f) * 2f;
-			float randDamage = Random.Range(0f, dmgPerc);
-			randDamage = randDamage * dmg;
-			dmg = dmg + (randDamage - ((dmgPerc * dmg)/2f));
+			float randPerc = Random.Range(0f + (luck / 35f) * dmgPerc, dmgPerc);
+			float randDamageBonus = randPerc * dmg;
+			dmg = dmg + (randDamageBonus - ((dmgPerc * dmg)/2f));
     	
 			if (_col.TryGetComponent(out Asteroid asteroid))
 			{

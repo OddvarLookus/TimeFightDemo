@@ -66,11 +66,14 @@ MonoBehaviour:
   dropsReleaseRadius: 57.19
   drops:
   - dropPrefab: {fileID: 2149751876324552233, guid: 484e7d6a9860859469309e7604dd9590, type: 3}
-    dropsNum: 3
+    minDropsNum: 2
+    maxDropsNum: 3
   - dropPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
-    dropsNum: 5
+    minDropsNum: 2
+    maxDropsNum: 5
   - dropPrefab: {fileID: 3031193280246476905, guid: 9c5b64e602567b7468f7a15e0acb0b6a, type: 3}
-    dropsNum: 130
+    minDropsNum: 100
+    maxDropsNum: 160
 --- !u!33 &3090257454235086981
 MeshFilter:
   m_ObjectHideFlags: 0

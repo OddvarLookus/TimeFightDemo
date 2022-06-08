@@ -26,6 +26,8 @@ public class CreditsSucker : MonoBehaviour
 	
 	protected void Start()
 	{
+		maxCredits = Mathf.FloorToInt(LevelUpCurve.Evaluate((float)currentLevel));
+		
 		GameUIManager.instance.SetCreditsLabel(currentCredits);
 		CrupsIndicator.instance.RefreshCrupsIndicator((float)currentCredits / (float)maxCredits, currentLevel);
 	}
@@ -59,7 +61,7 @@ public class CreditsSucker : MonoBehaviour
     public void AddCredits(int _creditsToAdd)
 	{
 		Debug.Log("ADDED CREDITS");
-	    currentCredits += _creditsToAdd * 10;
+	    currentCredits += _creditsToAdd;
 	    CalculateLevelUp();
 	    //currentCredits = Mathf.Clamp(currentCredits, 0, int.MaxValue);
 		

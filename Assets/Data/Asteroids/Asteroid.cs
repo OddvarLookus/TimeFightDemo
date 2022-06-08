@@ -102,14 +102,18 @@ public class Asteroid : MonoBehaviour
 		
         for (int i = 0; i < drops.Length; i++)
         {
-            for (int n = 0; n < drops[i].dropsNum; n++)
+        	float luckFactor = PlayerStatsManager.luck / 35f;
+        	int minMaxDropDiff = drops[i].maxDropsNum - drops[i].minDropsNum;
+        	int additionalMin = Mathf.RoundToInt((float)minMaxDropDiff * luckFactor);
+        	
+        	int dropsNum = Random.Range(drops[i].minDropsNum + additionalMin, drops[i].maxDropsNum);
+	        for (int n = 0; n < dropsNum; n++)
             {
                 GameObject nDrop = Instantiate(drops[i].dropPrefab);
 	            nDrop.transform.SetParent(transform.parent, true);
 	            Vector3 relativeSpawnPos = GetSpawnPos();
 	            nDrop.transform.position = transform.position + relativeSpawnPos;
 	            
-
 	            //if(nDrop.TryGetComponent(out Credit crdt))
 	            //{
 	            //	Vector3 crdtVelocity = relativeSpawnPos.normalized * (dropsReleaseSpeed * Random.Range(-dropsReleaseSpeedRandom, dropsReleaseSpeedRandom));
@@ -143,7 +147,8 @@ public class Asteroid : MonoBehaviour
 public class Drop
 {
     [SerializeField] public GameObject dropPrefab;
-    [SerializeField] public int dropsNum;
+	[SerializeField] public int minDropsNum;
+	[SerializeField] public int maxDropsNum;
 
     //[SerializeField] int numberOfRolls;
     //[SerializeField] float dropProbability;

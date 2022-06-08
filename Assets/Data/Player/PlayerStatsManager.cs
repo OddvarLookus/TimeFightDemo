@@ -6,10 +6,11 @@ public class PlayerStatsManager : MonoBehaviour
 {
 	//REFERENCES
 	Attack attack;
-	RangedAttack rangedAttack;
+	PlayerController playerController;
 	protected void Awake()
 	{
 		attack = GetComponent<Attack>();
+		playerController = GetComponent<PlayerController>();
 		RecalculateStats();
 	}
 	
@@ -30,6 +31,10 @@ public class PlayerStatsManager : MonoBehaviour
 		
 		RecalculateStats();
 	}
+	
+	//HELD STATS
+	static float baseLuck = 1f;
+	public static float luck = 0f;
 	
 	
 	//STATS CALCULATIONS
@@ -55,6 +60,7 @@ public class PlayerStatsManager : MonoBehaviour
 		
 		//ATTACK SPEED RECALCULATION
 		float atkSpeed = attack.baseAttackSpeed;
+		float playerSpeedBonus = 0f;
 		
 		for(int i = 0; i < items.Count; i++)
 		{
@@ -67,8 +73,21 @@ public class PlayerStatsManager : MonoBehaviour
 			
 			atkSpeed = atkSpeed + upgrades[i].statsUpgrade.attackSpeedBonus;
 			
+			playerSpeedBonus = playerSpeedBonus + (upgrades[i].statsUpgrade.attackSpeedBonus * 33.333f);
 		}
 		attack.SetAttackSpeed(atkSpeed);
+		playerController.agilityBonus = playerSpeedBonus;
+		
+		//LUCK CALCULATIONS
+		float lck = baseLuck;
+		
+		for(int i = 0; i < upgrades.Count; i++)
+		{
+			
+			lck = lck + upgrades[i].statsUpgrade.luckBonus;
+			
+		}
+		luck = lck;
 		
 	}
     
