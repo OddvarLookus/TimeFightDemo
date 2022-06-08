@@ -80,6 +80,7 @@ public class CreditsSucker : MonoBehaviour
 				currentLevel += 1;
 				//EXECUTE POWER UP ROUTINE
 				Cursor.lockState = CursorLockMode.None;
+				GameManager.instance.SetCanPauseGame(false);
 				choosingUpgrade = true;
 				ProgressionLayer.instance.StartUpgradeChoice(OnUpgradeChosen);
 			}
@@ -96,6 +97,7 @@ public class CreditsSucker : MonoBehaviour
 		//set the upgraded stats
 		playerStatsManager.AddUpgrade(chosenUpgrade);
 		Cursor.lockState = CursorLockMode.Locked;
+		GameManager.instance.SetCanPauseGame(true);
 		choosingUpgrade = false;
 		//continue level up logic
 		maxCredits = Mathf.FloorToInt(LevelUpCurve.Evaluate((float)currentLevel));

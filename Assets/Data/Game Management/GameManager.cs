@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
 	[SerializeField] UnityEvent onLevelTimeEnd;
 	bool isTimeFinished = false;
 	
+	bool canPauseGame = true;
+	public bool CanPauseGame(){return canPauseGame;}
+	public void SetCanPauseGame(bool nCanPauseGame){canPauseGame = nCanPauseGame;}
+	
 	bool isGamePaused = false;
 	public bool IsGamePaused(){return isGamePaused;}
 	
@@ -59,7 +63,7 @@ public class GameManager : MonoBehaviour
 	{
 		if(gameState == GameState.GAME)
 		{
-			if(Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
+			if((Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start")) && canPauseGame)
 			{
 				if(isGamePaused)
 				{
