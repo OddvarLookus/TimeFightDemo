@@ -399,7 +399,7 @@ public class PlayerController : MonoBehaviour
 		{
 			isTeleporting = false;
 			enablerDisabler.SetThingsEnabled(true);
-			enablerDisabler.SetThingAtIdxEnabled(3, playerShield.GetCurrentShield() > 1);
+			enablerDisabler.SetThingAtIdxEnabled(3, true);
 			
 			if(targetTeleportTransform != null)
 			{

@@ -5,9 +5,9 @@ using UnityEngine.Events;
 
 public class CreditsSucker : MonoBehaviour
 {
-	int currentCredits = 0;
-	int maxCredits = 500;
-	int currentLevel = 0;
+	static int currentCredits = 0;
+	static int maxCredits = 500;
+	static int currentLevel = 0;
 	[SerializeField] AnimationCurve LevelUpCurve;
     
     [SerializeField] float minSuckRadius, maxSuckRadius;
@@ -22,7 +22,8 @@ public class CreditsSucker : MonoBehaviour
 	    playerController = GetComponent<PlayerController>();
 	    playerStatsManager = GetComponent<PlayerStatsManager>();
     }
-
+	
+	
 	
 	protected void Start()
 	{
@@ -31,7 +32,14 @@ public class CreditsSucker : MonoBehaviour
 		GameUIManager.instance.SetCreditsLabel(currentCredits);
 		CrupsIndicator.instance.RefreshCrupsIndicator((float)currentCredits / (float)maxCredits, currentLevel);
 	}
-
+	
+	public void ResetLevels()
+	{
+		currentCredits = 0;
+		currentLevel = 0;
+		maxCredits = Mathf.FloorToInt(LevelUpCurve.Evaluate((float)currentLevel));
+	}
+	
     // Update is called once per frame
     void Update()
     {

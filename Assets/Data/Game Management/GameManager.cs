@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
 	
 	public static GameManager instance;
 	
+	CreditsSucker playerCreditsSucker;
+	PlayerStatsManager playerStatsManager;
+	
 	protected void Start()
 	{
 		instance = this;
@@ -34,6 +37,10 @@ public class GameManager : MonoBehaviour
 		SetGameOverScreen(false);
 		SetGameWonScreen(false);
 		GameUIManager.instance.StartUISequence();
+		
+		playerCreditsSucker = GameObject.FindObjectOfType<CreditsSucker>();
+		playerStatsManager = GameObject.FindObjectOfType<PlayerStatsManager>();
+		
 		gameState = GameState.GAME;
 	}
 	
@@ -85,6 +92,7 @@ public class GameManager : MonoBehaviour
 			if(!isGamePaused)
 			{
 				canReloadLevel = true;
+				OnDeathResetRoutine();
 				ReloadLevel();
 			}
 		}
@@ -108,6 +116,12 @@ public class GameManager : MonoBehaviour
 		}
 	}
 	
+	public void OnDeathResetRoutine()
+	{
+		//reset levels, reset stats
+		playerCreditsSucker.ResetLevels();
+		playerStatsManager.RemoveAllUpgrades();
+	}
 	
 	public void SetGameOverScreen(bool _active)
 	{

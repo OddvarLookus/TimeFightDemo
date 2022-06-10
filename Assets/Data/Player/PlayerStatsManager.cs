@@ -26,12 +26,17 @@ public class PlayerStatsManager : MonoBehaviour
 		RecalculateStats();
 	}
 	
-	List<Upgrade> upgrades = new List<Upgrade>();
+	static List<Upgrade> upgrades = new List<Upgrade>();
 	public void AddUpgrade(Upgrade nUpgrade)
 	{
 		upgrades.Add(nUpgrade);
 		
 		RecalculateStats();
+	}
+	
+	public void RemoveAllUpgrades()
+	{
+		upgrades.Clear();
 	}
 	
 	//HELD STATS

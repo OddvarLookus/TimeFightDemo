@@ -9,17 +9,17 @@ public class GameUIManager : MonoBehaviour
     public static GameUIManager instance;
     public void Awake()
     {
-        if (instance == null)
+	    if (true)//instance == null)
         {
             instance = this;
-            SetCreditsLabel(0);//start credits label at 0
+		    SetCreditsLabel(0);//start credits label at 0
             timeBarImage = timeBar.GetComponent<Image>();
-            DontDestroyOnLoad(this);
+	        //DontDestroyOnLoad(this);
         }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+        //else
+        //{
+        //    Destroy(this.gameObject);
+        //}
     }
 
 	//CREDITS

@@ -115,6 +115,8 @@ public class PlayerShield : MonoBehaviour
 		GetComponent<PlayerController>().SetMovementEnabled(false);
 		GetComponent<Attack>().SetAttackEnabled(false);
 		GetComponent<CapsuleCollider>().enabled = false;
+		GetComponent<CreditsSucker>().ResetLevels();
+		statsManager.RemoveAllUpgrades();
 		
 		playerGraphics.gameObject.SetActive(false);
 		Explode();

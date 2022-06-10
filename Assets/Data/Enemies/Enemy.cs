@@ -100,7 +100,7 @@ public class Enemy : SerializedMonoBehaviour
 		for(int i = 0; i < crupsToDrop; i++)
 		{
 			GameObject nDrop = Instantiate(crupPrefab);
-			nDrop.transform.SetParent(transform.parent, true);
+			nDrop.transform.SetParent(null, true);
 			Vector3 relativeSpawnPos = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
 			nDrop.transform.position = transform.position + relativeSpawnPos;
 	           
