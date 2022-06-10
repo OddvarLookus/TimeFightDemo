@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.059737325, g: 0.25814256, b: 0.5812049, a: 1}
+  m_IndirectSpecularColor: {r: 0.059731007, g: 0.25819966, b: 0.58125114, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2576,6 +2576,7 @@ MonoBehaviour:
   - id: 1
   - id: 2
   - id: 3
+  - id: 4
   cardsParent: {fileID: 1751523302}
   cardsTr:
   - {fileID: 1345755058}
@@ -2616,7 +2617,13 @@ MonoBehaviour:
       data:
         upgradeName: Demolition Gloves
         upgradeSprite: {fileID: 21300000, guid: 2426d0707cb1e1c42a9922f344e85c58, type: 3}
-        damageAgainstAsteroidsBonus: 0.2
+        damageAgainstAsteroidsBonus: 0.15
+    00000004:
+      type: {class: AgilityMatrixUpgrade, ns: , asm: Assembly-CSharp}
+      data:
+        upgradeName: Agility Matrix
+        upgradeSprite: {fileID: 21300000, guid: bc99f124124b0384ba4574e18d4208c3, type: 3}
+        agilityBonus: 0.12
 --- !u!1 &1504324623
 GameObject:
   m_ObjectHideFlags: 0

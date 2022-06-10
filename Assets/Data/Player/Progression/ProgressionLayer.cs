@@ -142,6 +142,11 @@ public class DemolitionGlovesUpgrade : TechniqueUpgrade
 	public float damageAgainstAsteroidsBonus;
 }
 
+[System.Serializable]
+public class AgilityMatrixUpgrade : TechniqueUpgrade
+{
+	public float agilityBonus;
+}
 
 
 

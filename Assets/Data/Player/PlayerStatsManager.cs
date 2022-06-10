@@ -7,10 +7,12 @@ public class PlayerStatsManager : MonoBehaviour
 	//REFERENCES
 	Attack attack;
 	PlayerController playerController;
+	PlayerShield playerShield;
 	protected void Awake()
 	{
 		attack = GetComponent<Attack>();
 		playerController = GetComponent<PlayerController>();
+		playerShield = GetComponent<PlayerShield>();
 		RecalculateStats();
 	}
 	
@@ -39,14 +41,19 @@ public class PlayerStatsManager : MonoBehaviour
 	
 	//STATS CALCULATIONS
     
-	void RecalculateStats()
+	public void RecalculateStats()
 	{
+		//RAW STATS
 		float dmg = attack.baseDamage;
 		
 		float atkSpeed = attack.baseAttackSpeed;
 		float playerSpeedBonus = 0f;
 		
 		float lck = baseLuck;
+		
+		//TECHNIQUES
+		float bonusDmgAgainstAsteroids = 0f;
+		float agilityMatrixBonus = 0f;
 		
 		for(int i = 0; i < upgrades.Count; i++)//get all upgrades
 		{
@@ -70,17 +77,38 @@ public class PlayerStatsManager : MonoBehaviour
 			}
 			if(upgrades[i] is TechniqueUpgrade)//it's a technique
 			{
-				
+				if(upgrades[i] is DemolitionGlovesUpgrade)
+				{
+					DemolitionGlovesUpgrade dUpgrade = upgrades[i] as DemolitionGlovesUpgrade;
+					bonusDmgAgainstAsteroids = bonusDmgAgainstAsteroids + dUpgrade.damageAgainstAsteroidsBonus;
+				}
+				if(upgrades[i] is AgilityMatrixUpgrade)
+				{
+					AgilityMatrixUpgrade agilityMatrixUpgrade = upgrades[i] as AgilityMatrixUpgrade;
+					if(playerShield.GetCurrentShield() == 1)//no shield
+					{
+						
+					}
+					else if(playerShield.GetCurrentShield() > 1)//yes shield
+					{
+						atkSpeed = atkSpeed + agilityMatrixUpgrade.agilityBonus;
+			
+						playerSpeedBonus = playerSpeedBonus + (agilityMatrixUpgrade.agilityBonus * 33.333f);
+					}
+				}
 			}
 		}
 		
-
+		//SET THE RAW STATS
 		attack.SetDamage(dmg);
 		
 		attack.SetAttackSpeed(atkSpeed);
 		playerController.agilityBonus = playerSpeedBonus;
 		
 		luck = lck;
+		
+		//SET THE TECHNIQUES
+		attack.SetDamageBonusAgainstAsteroids(bonusDmgAgainstAsteroids);
 		
 	}
     

@@ -25,9 +25,13 @@ public class PlayerShield : MonoBehaviour
 	
 	Material shieldMaterial;
 	
+	PlayerStatsManager statsManager;
+	
 	protected void Awake()
 	{
 		currentShield = maxShield;
+		
+		statsManager = GetComponent<PlayerStatsManager>();
 		
 		shieldMaterial = shieldGraphicsTr.GetComponent<Renderer>().material;
 		RefreshShieldGraphics();
@@ -59,6 +63,10 @@ public class PlayerShield : MonoBehaviour
 				{
 					ShieldReturnAnim();
 				}
+				if(currentShield == 2)
+				{
+					OnShieldRecharged();
+				}
 				
 				StaticAudioStarter.instance.StartAudioEmitter(transform.position, shieldChargedSound.GetRandomSound());
 				
@@ -82,6 +90,10 @@ public class PlayerShield : MonoBehaviour
 			if(currentShield > 0)//break shield only if not dead
 			{
 				ShieldBreakAnim();
+			}
+			if(currentShield == 1)
+			{
+				OnShieldDepleted();
 			}
 			
 			currentBlink = 0;
@@ -123,6 +135,15 @@ public class PlayerShield : MonoBehaviour
 		bombTr.position = transform.position;
 		StaticAudioStarter.instance.StartAudioEmitter(transform.position, playerDeadSound.GetRandomSound());
 		
+	}
+	
+	void OnShieldDepleted()
+	{
+		statsManager.RecalculateStats();
+	}
+	void OnShieldRecharged()
+	{
+		statsManager.RecalculateStats();
 	}
 	
 	//GRAPHICS
