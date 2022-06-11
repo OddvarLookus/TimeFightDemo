@@ -16,8 +16,11 @@ MonoBehaviour:
   deleteDllAfterBuilds: 1
   AutomateForAllAOTPlatforms: 1
   automateForPlatforms: 090000001400000013000000
-  lastScan: 637898191003122428
+  lastScan: 637905079965978991
   supportSerializedTypes:
+  - TypeName: System.Action`1[[Upgrade, Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
   - TypeName: System.Collections.Generic.Dictionary`2[[EnemySize, Assembly-CSharp],[EnemyStatsScaler,
       Assembly-CSharp]], mscorlib
     IsCustom: 0
@@ -40,5 +43,18 @@ MonoBehaviour:
     IsCustom: 0
     Emit: 1
   - TypeName: System.Int32, mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Level, Assembly-CSharp
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.List`1[[Level, Assembly-CSharp]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: System.Collections.Generic.List`1[[System.Collections.Generic.List`1[[Level,
+      Assembly-CSharp]], mscorlib]], mscorlib
+    IsCustom: 0
+    Emit: 1
+  - TypeName: Upgrade, Assembly-CSharp
     IsCustom: 0
     Emit: 1

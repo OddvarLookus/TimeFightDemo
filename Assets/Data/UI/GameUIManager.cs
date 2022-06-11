@@ -71,6 +71,13 @@ public class GameUIManager : MonoBehaviour
 		gameWonPanel.gameObject.SetActive(_active);
 	}
 	
+	//STAGE WON
+	[SerializeField] RectTransform stageWonPanel;
+	public void SetStageWonScreen(bool _active)
+	{
+		stageWonPanel.gameObject.SetActive(_active);
+	}
+	
 	//GAME START
 	[SerializeField] Animator gameStartPanelAnimator;
 	public void StartUISequence()

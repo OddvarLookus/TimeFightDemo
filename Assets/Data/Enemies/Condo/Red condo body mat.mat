@@ -7,10 +7,10 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Asteroid Big Mat
-  m_Shader: {fileID: 4800000, guid: 5a9d3cb982a21bb4b89736ced8c1d404, type: 3}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 4
+  m_Name: Red condo body mat
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _EMISSION
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -19,10 +19,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Albedo:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -59,14 +55,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _TextureSample0:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _texcoord:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
@@ -85,38 +73,7 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - __dirty: 0
-    - _ambientOcclusionMultiplier: 15
-    - _ambientOcclusionThreshold: 0.718
-    - _breakValue: 1
-    - _colorMultiplier: 11.9
-    - _dotMagicNumber0: 1
-    - _dotMagicNumber1: 1
-    - _dotMagicNumber2: 1
-    - _magicNumber0: -0.401
-    - _magicNumber1: 0.045
-    - _magicNumber2: 0.302
-    - _magicNumber3: -0.088
-    - _magicNumber4: 0.022
-    - _magicNumber5: 0.017
-    - _maxBrokenValue: 0.639
-    - _noiseMultiplier: 1
-    - _noisePower: 1
-    - _noiseScale: 117.5
-    - _normalStrength: 0.6
-    - _positionNormalBlending: 0
-    - _sampleLerp: 0.76
-    - _triplanarBlending: 0
-    - _voronoiAngle: 27.3
-    - _voronoiMultiplier: 6.2
-    - _voronoiPow: 0.62
-    - _voronoiScale: 645.6
     m_Colors:
-    - _Color: {r: 0.703, g: 0.56359243, b: 0.17856202, a: 1}
-    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _cracksColor: {r: 0.2341046, g: 0.88669264, b: 0.9056604, a: 1}
-    - _magicNumber0: {r: 0, g: 0, b: 0, a: 0}
-    - _magicNumber1: {r: 0, g: 0, b: 0, a: 0}
-    - _magicNumber2: {r: 0, g: 0, b: 0, a: 0}
-    - _voronoiOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _Color: {r: 1, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 2.270603, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []

@@ -10,6 +10,8 @@ public class Level : SerializedScriptableObject
 	//ENEMIES
 	public int difficultyValue;
     
+	[AssetsOnly] public List<MandatoryEnemy> mandatoryEnemies = new List<MandatoryEnemy>();
+    
 	[OnInspectorGUI("RecalculateProbabilities")]public List<EnemyRoller> enemies = new List<EnemyRoller>();
 	void RecalculateProbabilities()
 	{
@@ -97,6 +99,13 @@ public class EnemyRoller
 	[Range(0f, 1f)] public float probability;
 	public List<EnemySizeRoller> sizesRollers;
 	
+}
+
+[System.Serializable]
+public class MandatoryEnemy
+{
+	[AssetsOnly] public GameObject enemyPrefab;
+	public EnemySize size;
 }
 
 //ASTEROIDS

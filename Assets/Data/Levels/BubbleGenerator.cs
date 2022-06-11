@@ -15,14 +15,15 @@ public class BubbleGenerator : MonoBehaviour
 	[TitleGroup("References")] [SerializeField] [SceneObjectsOnly] Transform interactablesParent;
 	
 	
-	
-	[TitleGroup("Generation")] [SerializeField] [AssetsOnly] Level currentLevel;
+	[TitleGroup("Generation")] [SerializeField] [AssetsOnly] LevelsProgression levelsProgression;
+	public int GetNumberOfLevels(){return levelsProgression.runLevels.Count;}
+	Level currentLevel;
 	
 	[TitleGroup("Generation")]
 	[Button("GENERATE LEVEL")]
 	public void GenerateLevelEditor()
 	{
-		GenerateLevel();
+		GenerateLevel(0);
 	}
 	[TitleGroup("Generation")]
 	[Button("PURGE LEVEL")]
@@ -44,16 +45,18 @@ public class BubbleGenerator : MonoBehaviour
 	
 	protected void Start()
 	{
-		GenerateLevel();
+		//GenerateLevel();
 	}
     
-	public void GenerateLevel()
+	public void GenerateLevel(int idx)
 	{
+		currentLevel = levelsProgression.GetLevelAt(idx);
 		//INSTANTIATE ASTEROIDS
 		GenerateAsteroids();
 
 		
 		//INSTANTIATE ENEMIES
+		GenerateMandatoryEnemies();
 		GenerateEnemies();
 		
 		//for(int i = 0; i < numberOfEnemies; i++)
@@ -92,10 +95,33 @@ public class BubbleGenerator : MonoBehaviour
 	
 	#endregion
 	#region ENEMY_GENERATION
+	
+	int currentDifficulty;
+	Level thisLevel;
+	void GenerateMandatoryEnemies()
+	{
+		currentDifficulty = currentLevel.difficultyValue;
+		thisLevel = Instantiate(currentLevel);
+		for(int i = 0; i < thisLevel.mandatoryEnemies.Count; i++)
+		{
+			GameObject nEnemy = Instantiate(thisLevel.mandatoryEnemies[i].enemyPrefab);
+			Transform nEnemyTr = nEnemy.transform;
+			nEnemyTr.SetParent(enemiesParent);
+			nEnemyTr.position = GetRandomPointInSphere();
+			Enemy nEnemyEnemy = nEnemy.GetComponent<Enemy>();
+			EnemySize desiredSize = thisLevel.mandatoryEnemies[i].size;
+			nEnemyEnemy.SetEnemySize(desiredSize);
+			
+			int diffToLower = nEnemyEnemy.GetStatsSet().enemyStats[desiredSize].difficultyValue;
+			currentDifficulty -= diffToLower;
+		}
+		
+	}
+	
 	void GenerateEnemies()
 	{
-		int currentDifficulty = currentLevel.difficultyValue;
-		Level thisLevel = Instantiate(currentLevel);
+		currentDifficulty = currentLevel.difficultyValue;
+		thisLevel = Instantiate(currentLevel);
 		List<EnemyRoller> enemiesGenList = thisLevel.enemies;
 		
 		while(currentDifficulty > 0)

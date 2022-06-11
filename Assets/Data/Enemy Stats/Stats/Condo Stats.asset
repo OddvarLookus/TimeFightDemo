@@ -52,10 +52,10 @@ MonoBehaviour:
       Data: 2|EnemyStatsScaler, Assembly-CSharp
     - Name: scale
       Entry: 4
-      Data: 1
+      Data: 3
     - Name: maxHealth
       Entry: 4
-      Data: 3.5
+      Data: 4
     - Name: difficultyValue
       Entry: 3
       Data: 3

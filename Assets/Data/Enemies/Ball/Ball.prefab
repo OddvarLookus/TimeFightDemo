@@ -309,7 +309,7 @@ Transform:
   m_GameObject: {fileID: 8488491456709531852}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.613}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 6169148063215554280}
   m_Father: {fileID: 0}
@@ -389,7 +389,7 @@ MonoBehaviour:
     maxPitch: 1.2
   minVoiceTime: 1
   maxVoiceTime: 6
-  aggroRadius: 20
+  aggroRadius: 20.1
   floatSpeed: 3
   rotationSpeed: 6
   attackRollTimeInterval: 0.2
@@ -399,7 +399,7 @@ MonoBehaviour:
   attackDuration: 1
   maxVibeDistance: 0.4
   monoVibeTime: 0.05
-  attackRadius: 3.66
+  attackRadius: 6.86
   tondoAttackVFX: {fileID: 660604078598729712, guid: b4cc2a513a658924a8df0c2df7227457, type: 3}
 --- !u!54 &4323069082867988718
 Rigidbody:

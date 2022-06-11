@@ -68,7 +68,6 @@ public class CreditsSucker : MonoBehaviour
 
     public void AddCredits(int _creditsToAdd)
 	{
-		Debug.Log("ADDED CREDITS");
 	    currentCredits += _creditsToAdd;
 	    CalculateLevelUp();
 	    //currentCredits = Mathf.Clamp(currentCredits, 0, int.MaxValue);

@@ -65,6 +65,17 @@ public class EnemySystemManager : MonoBehaviour
 		prevEnemies = currentEnemies;
 	}
 	
+	public void OnLevelStart()
+	{
+		allEnemiesKilledCalled = false;
+	}
+	
+	protected void OnDisable()
+	{
+		
+	}
+	
+	
 	public Transform GetNearestEnemy(Vector3 centerPos)
 	{
 		float minDist = float.MaxValue;

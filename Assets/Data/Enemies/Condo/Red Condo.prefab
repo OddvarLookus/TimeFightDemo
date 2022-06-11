@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 5113938375352458976}
   - component: {fileID: 3293257031021204314}
   m_Layer: 6
-  m_Name: Condo
+  m_Name: Red Condo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -224,7 +224,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   mainRenderer: {fileID: 6072698229917062483}
-  statsSet: {fileID: 11400000, guid: b4aa0be938defe84a8afb9008a7e00a6, type: 2}
+  statsSet: {fileID: 11400000, guid: 0ac44ed8006123144833b9e6d8e8da60, type: 2}
   currentSize: 0
   crupPrefab: {fileID: 3031193280246476905, guid: c7dc458a0bd513444afca47bb1063257, type: 3}
   staggerVFXPrefab: {fileID: 3947618777525850376, guid: 1991d1f3541da4b498c4661a923fe73e, type: 3}
@@ -359,7 +359,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c5d316a2b4e1fd64aac5b4f0d1bed843, type: 2}
+  - {fileID: 2100000, guid: 523e94e528f347d44994949f835c5c0a, type: 2}
   - {fileID: 7241200883323281562, guid: 9e932a634b539404087318ea0905e3b5, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
