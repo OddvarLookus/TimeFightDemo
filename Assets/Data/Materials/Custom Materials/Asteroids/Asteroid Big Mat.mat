@@ -88,7 +88,7 @@ Material:
     - __dirty: 0
     - _ambientOcclusionMultiplier: 15
     - _ambientOcclusionThreshold: 0.718
-    - _breakValue: 1
+    - _breakValue: 0
     - _colorMultiplier: 11.9
     - _dotMagicNumber0: 1
     - _dotMagicNumber1: 1
@@ -112,7 +112,7 @@ Material:
     - _voronoiPow: 0.62
     - _voronoiScale: 645.6
     m_Colors:
-    - _Color: {r: 0.703, g: 0.56359243, b: 0.17856202, a: 1}
+    - _Color: {r: 0.395, g: 0.34217712, b: 0.18723002, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _cracksColor: {r: 0.2341046, g: 0.88669264, b: 0.9056604, a: 1}
     - _magicNumber0: {r: 0, g: 0, b: 0, a: 0}

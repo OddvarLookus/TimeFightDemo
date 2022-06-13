@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: DAMAGE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4bfbc9ca2b294d745834761ff2ec6534, type: 2}
-  m_sharedMaterial: {fileID: -3746020697378666117, guid: 4bfbc9ca2b294d745834761ff2ec6534, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 19c19edc22e525e42a7291cfb9f181a9, type: 2}
+  m_sharedMaterial: {fileID: -982774757758315336, guid: 19c19edc22e525e42a7291cfb9f181a9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &6842220637924813553
 MonoBehaviour:
   m_ObjectHideFlags: 0

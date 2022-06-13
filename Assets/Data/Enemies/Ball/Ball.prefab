@@ -378,7 +378,7 @@ MonoBehaviour:
   currentSize: 0
   crupPrefab: {fileID: 3031193280246476905, guid: c7dc458a0bd513444afca47bb1063257, type: 3}
   staggerVFXPrefab: {fileID: 3947618777525850376, guid: 1991d1f3541da4b498c4661a923fe73e, type: 3}
-  staggerVFXOffset: {x: 0, y: 2.1, z: 0}
+  staggerVFXOffset: {x: 0, y: 4.26, z: 0}
   enemyVoice:
     possibleSounds:
     - {fileID: 8300000, guid: 3e63663f0ac8c68409fe969e23778321, type: 3}
@@ -399,7 +399,7 @@ MonoBehaviour:
   attackDuration: 1
   maxVibeDistance: 0.4
   monoVibeTime: 0.05
-  attackRadius: 6.86
+  attackRadius: 9.34
   tondoAttackVFX: {fileID: 660604078598729712, guid: b4cc2a513a658924a8df0c2df7227457, type: 3}
 --- !u!54 &4323069082867988718
 Rigidbody:

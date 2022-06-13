@@ -158,7 +158,7 @@ public class Garpa : MonoBehaviour
 	
 	public Vector3 AdviceTeleportOffset()
 	{
-		float teleportDist = minGarpaAlertDist / 3f;
+		float teleportDist = minGarpaAlertDist / 7f;
 		Vector3 enemyToPlayer = playerController.transform.position - camController.GetCurrentlyLockedEnemy().position;
 		enemyToPlayer = enemyToPlayer.normalized * teleportDist;
 		return enemyToPlayer;
@@ -236,6 +236,13 @@ public class Garpa : MonoBehaviour
 	}
 	
 	#endregion
+	
+	protected void OnDrawGizmosSelected()
+	{
+		Gizmos.color = Color.white;
+		Gizmos.DrawWireSphere(playerController.transform.position, minGarpaAlertDist);
+		Gizmos.DrawWireSphere(playerController.transform.position, maxGarpaAlertDist);
+	}
 	
     
 }

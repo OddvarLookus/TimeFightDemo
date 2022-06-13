@@ -45,6 +45,8 @@ public class Asteroid : MonoBehaviour
         initSpeed *= Random.Range(minInitSpeed, maxInitSpeed);
 	    rb.AddForce(initSpeed, ForceMode.Impulse);
         
+	    rb.rotation = Quaternion.Euler(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
+        
 	    isInvincible = true;
 	    StartCoroutine(InvincibilityCoroutine());
     }

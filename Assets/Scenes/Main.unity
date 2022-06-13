@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.059759453, g: 0.25844318, b: 0.5810679, a: 1}
+  m_IndirectSpecularColor: {r: 0.059761986, g: 0.25818524, b: 0.5812863, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1685,7 +1685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b258dc3bac57004797c237b52cc7fac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stayTime: 2.5
+  stayTime: 2
   label: {fileID: 1022684658}
 --- !u!114 &1094052067
 MonoBehaviour:
@@ -3474,7 +3474,7 @@ Transform:
   m_Children:
   - {fileID: 2656599663881517917}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2074673859
 GameObject:
@@ -3657,7 +3657,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4354544655706948530, guid: 7596b84ab751f844bba3cf8ee5a15d59, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4354544655706948530, guid: 7596b84ab751f844bba3cf8ee5a15d59, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3828,6 +3828,14 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 347744498}
+    - target: {fileID: 3600650568312518623, guid: aae89a274b0c5674bbdf9c071ed895a6, type: 3}
+      propertyPath: maxGarpaAlertDist
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600650568312518623, guid: aae89a274b0c5674bbdf9c071ed895a6, type: 3}
+      propertyPath: minGarpaAlertDist
+      value: 35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aae89a274b0c5674bbdf9c071ed895a6, type: 3}
 --- !u!23 &3788951759767699506

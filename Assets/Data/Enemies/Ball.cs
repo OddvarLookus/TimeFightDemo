@@ -41,10 +41,12 @@ public class Ball : Enemy
 	{
 		base.OnStaggerStart();
 		//RESTORE SCALE, RESTORE GRAPHICS POSITION, RESTORE TIMINGS FOR BEHAVIOR AND ATTACK
+		LeanTween.cancel(graphicsTr.gameObject);
+		LeanTween.cancel(gameObject);
 		float rightScale = GetStatsSet().enemyStats[currentSize].scale;
 		transform.localScale = new Vector3(rightScale, rightScale, rightScale);
 		
-		LeanTween.cancel(graphicsTr.gameObject);
+		
 		graphicsTr.localPosition = Vector3.zero;
 		isVibing = false;
 		attacking = false;
@@ -163,8 +165,11 @@ public class Ball : Enemy
 			{
 				attacking = true;
 				isVibing = true;
+				
 				//LeanTween.scale(graphicsTr.gameObject, new Vector3(2.1f, 2.1f, 2.1f), attackDuration * 0.7f).setEase(LeanTweenType.easeOutCubic).setOnComplete(TondoAttackShrink);
-				LeanTween.scale(gameObject, new Vector3(2.1f, 2.1f, 2.1f), attackDuration * 0.7f).setEase(LeanTweenType.easeOutCubic).setOnComplete(TondoAttackShrink);
+				float scaleVal = GetStatsSet().enemyStats[currentSize].scale;
+				Vector3 inflatedScale = new Vector3(scaleVal, scaleVal, scaleVal) * 2f;
+				LeanTween.scale(gameObject, inflatedScale, attackDuration * 0.7f).setEase(LeanTweenType.easeOutCubic).setOnComplete(TondoAttackShrink);
 
 				TondoVibe();
 			}
@@ -191,6 +196,7 @@ public class Ball : Enemy
 	{
 		isVibing = false;
 		//LeanTween.scale(graphicsTr.gameObject, new Vector3(0.6f, 0.6f, 0.6f), attackDuration * 0.2f).setEase(LeanTweenType.easeOutCubic).setOnComplete(TondoAttack);
+
 		LeanTween.scale(gameObject, new Vector3(0.6f, 0.6f, 0.6f), attackDuration * 0.2f).setEase(LeanTweenType.easeOutCubic).setOnComplete(TondoAttack);
 
 	}
@@ -200,7 +206,9 @@ public class Ball : Enemy
 		if(!health.IsStaggered())
 		{
 			//LeanTween.scale(graphicsTr.gameObject, new Vector3(1f, 1f, 1f), attackDuration * 0.1f).setEase(LeanTweenType.easeOutCubic);
-			LeanTween.scale(gameObject, new Vector3(1f, 1f, 1f), attackDuration * 0.1f).setEase(LeanTweenType.easeOutCubic);
+			float scaleVal = GetStatsSet().enemyStats[currentSize].scale;
+			Vector3 endScale = new Vector3(scaleVal, scaleVal, scaleVal);
+			LeanTween.scale(gameObject, endScale, attackDuration * 0.1f).setEase(LeanTweenType.easeOutCubic);
 
 			//INSTANTIATE ATTACK HITBOX AND EFFECTS
 			GameObject nVfx = Instantiate(tondoAttackVFX);

@@ -22,7 +22,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   levelName: STAGE 1
-  difficultyValue: 1
+  difficultyValue: 20
   mandatoryEnemies: []
   enemies:
   - enemyPrefab: {fileID: 8488491456709531852, guid: 5b0e9f0bf0d93b8418232dfdb59b16a2, type: 3}
@@ -37,7 +37,7 @@ MonoBehaviour:
     sizesRollers:
     - size: 0
       probability: 1
-  asteroidsCount: 100
+  asteroidsCount: 50
   asteroids:
   - asteroidPrefab: {fileID: 7746315143709470959, guid: e70396ff214e52545b85b3bd15a9217c, type: 3}
     probability: 0.436
