@@ -79,10 +79,10 @@ public class GameUIManager : MonoBehaviour
 	}
 	
 	//GAME START
-	[SerializeField] Animator gameStartPanelAnimator;
-	public void StartUISequence()
+	[SerializeField] StageNameViewer stageNameViewer;
+	public void ShowStageName(string stageName = "Undefined Stage Name")
 	{
-		gameStartPanelAnimator.Play("GameStartUIEnter", -1, 0f);
+		stageNameViewer.StartStageView(stageName);
 	}
 	
 	//PAUSE

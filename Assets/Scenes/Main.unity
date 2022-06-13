@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.05976469, g: 0.2582476, b: 0.58123034, a: 1}
+  m_IndirectSpecularColor: {r: 0.059759453, g: 0.25844318, b: 0.5810679, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab6f7fe4c0dc624aac0eecf6dfc07b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelTime: 200
+  levelTime: 120
   onLevelTimeEnd:
     m_PersistentCalls:
       m_Calls:
@@ -1517,7 +1517,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1022684659
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1557,7 +1557,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: KILL ALL ENEMIES
+  m_text: STAGE NAME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4bfbc9ca2b294d745834761ff2ec6534, type: 2}
   m_sharedMaterial: {fileID: -3746020697378666117, guid: 4bfbc9ca2b294d745834761ff2ec6534, type: 2}
@@ -1644,10 +1644,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1094052065}
   - component: {fileID: 1094052068}
-  - component: {fileID: 1094052067}
   - component: {fileID: 1094052066}
+  - component: {fileID: 1094052067}
   m_Layer: 5
-  m_Name: GameStartPanel
+  m_Name: GameStartPanel STAGE NAME VIEWER
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1671,27 +1671,22 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -600, y: -260.4}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &1094052066
-Animator:
-  serializedVersion: 3
+--- !u!114 &1094052066
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1094052064}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c51186e1e095316448d6d11e59d3bebb, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b258dc3bac57004797c237b52cc7fac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stayTime: 2.5
+  label: {fileID: 1022684658}
 --- !u!114 &1094052067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2877,7 +2872,7 @@ MonoBehaviour:
   gameOverPanel: {fileID: 2074673860}
   gameWonPanel: {fileID: 1323628136}
   stageWonPanel: {fileID: 105762781}
-  gameStartPanelAnimator: {fileID: 1094052066}
+  stageNameViewer: {fileID: 1094052066}
   pausePanel: {fileID: 1401576981}
   enemiesRemainingLabel: {fileID: 863240844}
 --- !u!1 &1717301704

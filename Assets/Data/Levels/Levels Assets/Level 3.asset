@@ -21,6 +21,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
+  levelName: STAGE 3
   difficultyValue: 0
   mandatoryEnemies:
   - enemyPrefab: {fileID: 5113938375352459004, guid: f3fd7dac7cd4b814d942c3393ed27b0c, type: 3}

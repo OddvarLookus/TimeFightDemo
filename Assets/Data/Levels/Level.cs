@@ -7,6 +7,7 @@ using Sirenix.OdinInspector;
 [CreateAssetMenu(menuName = "LEVEL")]
 public class Level : SerializedScriptableObject
 {
+	public string levelName = "Undefined";
 	//ENEMIES
 	public int difficultyValue;
     

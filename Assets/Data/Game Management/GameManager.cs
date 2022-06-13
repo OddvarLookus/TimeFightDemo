@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
 	CreditsSucker playerCreditsSucker;
 	PlayerStatsManager playerStatsManager;
 	EnemySystemManager enemySystemManager;
+	PlayerController playerController;
 	
 	protected void Start()
 	{
@@ -38,12 +39,13 @@ public class GameManager : MonoBehaviour
 		SetGameOverScreen(false);
 		SetGameWonScreen(false);
 		SetStageWonScreen(false);
-		GameUIManager.instance.StartUISequence();
 		
 		bubbleGenerator.GenerateLevel(currentLevel);
+		GameUIManager.instance.ShowStageName(bubbleGenerator.GetCurrentLevel().levelName);
 		
 		playerCreditsSucker = GameObject.FindObjectOfType<CreditsSucker>();
 		playerStatsManager = GameObject.FindObjectOfType<PlayerStatsManager>();
+		playerController = GameObject.FindObjectOfType<PlayerController>();
 		enemySystemManager = GameObject.FindObjectOfType<EnemySystemManager>();
 		
 		gameState = GameState.GAME;
@@ -228,9 +230,12 @@ public class GameManager : MonoBehaviour
 			
 			currentLevelTime = 0f;
 			bubbleGenerator.PurgeLevel();
+			canReloadLevel = false;
 			bubbleGenerator.GenerateLevel(currentLevel);
+			GameUIManager.instance.ShowStageName(bubbleGenerator.GetCurrentLevel().levelName);
 			SetStageWonScreen(false);
 			enemySystemManager.OnLevelStart();
+			playerController.ResetPlayerPosition();
 			gameState = GameState.GAME;
 			UnpauseGame();
 		}

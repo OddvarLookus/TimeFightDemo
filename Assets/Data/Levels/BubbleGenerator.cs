@@ -18,6 +18,10 @@ public class BubbleGenerator : MonoBehaviour
 	[TitleGroup("Generation")] [SerializeField] [AssetsOnly] LevelsProgression levelsProgression;
 	public int GetNumberOfLevels(){return levelsProgression.runLevels.Count;}
 	Level currentLevel;
+	public Level GetCurrentLevel()
+	{
+		return currentLevel;
+	}
 	
 	[TitleGroup("Generation")]
 	[Button("GENERATE LEVEL")]

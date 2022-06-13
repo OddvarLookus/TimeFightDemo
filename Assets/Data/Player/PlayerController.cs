@@ -360,6 +360,11 @@ public class PlayerController : MonoBehaviour
         return rb.velocity;
     }
     
+	public void ResetPlayerPosition()
+	{
+		transform.position = Vector3.zero;
+	}
+    
 	#region TELEPORT
 	
 	[Header("Teleport")]

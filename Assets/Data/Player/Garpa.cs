@@ -137,8 +137,6 @@ public class Garpa : MonoBehaviour
 		{
 			garpaAlert = false;
 		}
-		
-		
 	}
 	
 	void GarpaAlertAnimation()

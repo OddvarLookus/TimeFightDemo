@@ -6,7 +6,11 @@ using UnityEngine.Events;
 public class EnemySystemManager : MonoBehaviour
 {
 	int currentEnemies = 0;
-	public int GetEnemiesNum(){return currentEnemies;}
+	public int GetEnemiesNum()
+	{
+		RefreshEnemies();
+		return currentEnemies;
+	}
 	
 	int prevEnemies = 0;
 	[SerializeField] int maxEnemiesToNotify;
@@ -68,6 +72,8 @@ public class EnemySystemManager : MonoBehaviour
 	public void OnLevelStart()
 	{
 		allEnemiesKilledCalled = false;
+		StopAllCoroutines();
+		StartCoroutine(RefreshEnemiesCoroutine());
 	}
 	
 	protected void OnDisable()
@@ -86,7 +92,7 @@ public class EnemySystemManager : MonoBehaviour
 			if(dist < minDist)
 			{
 				minDist = dist;
-				minIdx = i;
+				minIdx = transform.GetChild(i).GetSiblingIndex();
 			}
 		}
 		return transform.GetChild(minIdx);
