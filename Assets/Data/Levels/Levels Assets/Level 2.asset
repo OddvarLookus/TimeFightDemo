@@ -22,7 +22,7 @@ MonoBehaviour:
     PrefabModifications: []
     SerializationNodes: []
   levelName: STAGE 2
-  difficultyValue: 25
+  difficultyValue: 20
   mandatoryEnemies:
   - enemyPrefab: {fileID: 5113938375352459004, guid: f3fd7dac7cd4b814d942c3393ed27b0c, type: 3}
     size: 0

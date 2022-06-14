@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.059761986, g: 0.25818524, b: 0.5812863, a: 1}
+  m_IndirectSpecularColor: {r: 0.05974751, g: 0.25831473, b: 0.5811186, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1584,8 +1584,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 118.16
+  m_fontSizeBase: 118.16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1687,6 +1687,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stayTime: 2
   label: {fileID: 1022684658}
+  appearEasing: 2
+  disappearEasing: 9
 --- !u!114 &1094052067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3936,9 +3938,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4999143093157021290, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: dashDuration
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999143093157021290, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
       propertyPath: camController
       value: 
       objectReference: {fileID: 1745202265}
+    - target: {fileID: 4999143093157021290, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
+      propertyPath: dashReleaseTime
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 4999143093157021291, guid: 75364853ac270df488ac2baf76eedc54, type: 3}
       propertyPath: garpa
       value: 

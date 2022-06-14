@@ -258,18 +258,21 @@ public class PlayerController : MonoBehaviour
 		{
 			bool shouldDash = false;
 			//CALCULATE DASH TIMES
+			if(dashPressed)
+			{
+				currentDashPressedTime += Time.deltaTime;
+			
+				if(currentDashPressedTime > dashReleaseTime && !speedDashing && inputVec.magnitude > 0f)
+				{
+					speedDashing = true;
+					dashing = false;
+				}
+			}
+			
 			if(!dashing)
 			{
-				if(dashPressed)
-				{
-					currentDashPressedTime += Time.deltaTime;
-			
-					if(currentDashPressedTime > dashReleaseTime && !speedDashing && inputVec.magnitude > 0f)
-					{
-						speedDashing = true;
-					}
-				}
-				if(dashReleased)
+
+				if(dashJustPressed)
 				{
 					if(currentDashPressedTime <= dashReleaseTime)
 					{
@@ -277,6 +280,12 @@ public class PlayerController : MonoBehaviour
 					}
 					currentDashPressedTime = 0f;
 					speedDashing = false;
+				}
+				if(dashReleased)
+				{
+					currentDashPressedTime = 0f;
+					speedDashing = false;
+					dashing = false;
 				}
 			}
 			else//I'M DASHING
