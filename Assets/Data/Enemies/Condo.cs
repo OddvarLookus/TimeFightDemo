@@ -34,6 +34,19 @@ public class Condo : Enemy
 	[SerializeField] float desiredDistanceAggro;
 	[MinValue(0f)] [SerializeField] float moveRandomnessAggro;
 	
+	[Space]
+	[MinValue(0f)] [SerializeField] float meleeAggroDistance;
+	bool meleeAggro;
+	[MinValue(0f)] [SerializeField] float minHeadbuttWaitTime;
+	[MinValue(0f)] [SerializeField] float maxHeadbuttWaitTime;
+	float headbuttWaitTime = 0f;
+	float currentHeadbuttWaitTime = 0f;
+	[MinValue(0f)] [SerializeField] float meleeAggroRotationSpeed;
+	
+	[MinValue(0f)] [SerializeField] float meleeAttackRadius;
+	[MinValue(0f)] [SerializeField] float meleeAttackOffset;
+	bool headbutting = false;
+	
 	[Header("Shooting")]
 	[MinValue(1)] [SerializeField] int minShotFrequency;
 	[MinValue(1)] [SerializeField] int maxShotFrequency;
@@ -123,21 +136,54 @@ public class Condo : Enemy
 		}
 		else if(base.aggroState == EnemyAggroState.AGGRO && !health.IsStaggered())
 		{
-			transform.LookAt(aggroTarget, Vector3.up);
 			
-			if(curMoveTime < moveTime)
+			if(meleeAggro == false)
 			{
-				curMoveTime += Time.deltaTime;
+				Vector3 vecToTarget = aggroTarget.position - transform.position;
+				if(vecToTarget.magnitude <= meleeAggroDistance)//ENTER MELEE AGGRO
+				{
+					meleeAggro = true;
+					curMoveTime = 0f;
+					InitializeMeleeAggroTime();
+					return;
+				}
+				
+				transform.LookAt(aggroTarget, Vector3.up);
+			
+				if(curMoveTime < moveTime)
+				{
+					curMoveTime += Time.deltaTime;
+				}
+				else
+				{
+					InitializeTimeAggro();
+					MoveToNextPosAggro();
+				}
 			}
-			else
+			else//IN MELEE AGGRO
 			{
-				InitializeTimeAggro();
-				MoveToNextPosAggro();
+				Vector3 vecToTarget = aggroTarget.position - transform.position;
+				Vector3 perp = Vector3.Cross(vecToTarget.normalized, Vector3.up);
+				Vector3 realUp = Vector3.Cross(vecToTarget.normalized, -perp.normalized);
+				Quaternion finalRot = Quaternion.LookRotation(vecToTarget, realUp);
+				transform.rotation = Quaternion.Slerp(transform.rotation, finalRot, meleeAggroRotationSpeed * Time.fixedDeltaTime);
+				
+				if(!headbutting && currentHeadbuttWaitTime < headbuttWaitTime)
+				{
+					currentHeadbuttWaitTime += Time.fixedDeltaTime;
+				}
+				else if(!headbutting && currentHeadbuttWaitTime >= headbuttWaitTime)//HEADBUTT
+				{
+					StartPerformHeadbutt();
+					headbutting = true;
+					
+				}
+				
 			}
-			
-			
+
 		}
 	}
+	
 	//NEUTRAL
 	void MoveToNextPosNeutral()
 	{
@@ -224,7 +270,6 @@ public class Condo : Enemy
 	}
 	
 	
-	
 	void Shoot()
 	{
 		GameObject b = Instantiate(bullet);
@@ -241,6 +286,57 @@ public class Condo : Enemy
 		StaticAudioStarter.instance.StartAudioEmitter(transform.position, shootSound.GetRandomSound(), shootSound.GetRandomPitch());
 	}
 	
+	//MELEE AGGRO
+	
+	void InitializeMeleeAggroTime()
+	{
+		headbuttWaitTime = Random.Range(minHeadbuttWaitTime, maxHeadbuttWaitTime);
+		currentHeadbuttWaitTime = 0f;
+	}
+	Coroutine headbuttCrt;
+	void StartPerformHeadbutt()
+	{
+		animator.Play("Condo Attack Prepare Melee", -1, 0f);
+		headbuttCrt = StartCoroutine(WaitHeadbuttPrepareCoroutine());
+	}
+	IEnumerator WaitHeadbuttPrepareCoroutine()
+	{
+		yield return new WaitForEndOfFrame();
+		float animationTime = animator.GetCurrentAnimatorStateInfo(0).length;
+		headbuttCrt = StartCoroutine(HeadbuttPrepareCoroutine(animationTime));
+	}
+	IEnumerator HeadbuttPrepareCoroutine(float animTime)
+	{
+		yield return new WaitForSeconds(animTime);
+		//FINISHED PREPARE ANIMATION
+		animator.Play("Condo Attack Perform Melee", -1, 0f);
+		headbuttCrt = StartCoroutine(WaitHeadbuttPerformCoroutine());
+	}
+	IEnumerator WaitHeadbuttPerformCoroutine()
+	{
+		yield return new WaitForEndOfFrame();
+		float animationTime = animator.GetCurrentAnimatorStateInfo(0).length / 3f;
+		headbuttCrt = StartCoroutine(HeadbuttPerformCoroutine(animationTime));
+	}
+	IEnumerator HeadbuttPerformCoroutine(float animTime)
+	{
+		yield return new WaitForSeconds(animTime);//TIME TO SHOOT
+		HeadbuttDamage();
+		headbutting = false;
+		InitializeMeleeAggroTime();
+	}
+	void HeadbuttDamage()
+	{
+		Vector3 damagePos = transform.position + transform.forward * meleeAttackOffset;
+		Collider[] hitColliders = Physics.OverlapSphere(damagePos, meleeAttackRadius * transform.localScale.x, ~0, QueryTriggerInteraction.Ignore);
+		for(int i = 0; i < hitColliders.Length; i++)
+		{
+			if(hitColliders[i].TryGetComponent(out PlayerShield shield))
+			{
+				shield.TakeDamage(1);
+			}
+		}
+	}
 	
 	protected override void OnDrawGizmosSelected()
 	{
@@ -253,6 +349,12 @@ public class Condo : Enemy
 		
 		Gizmos.color = Color.cyan;
 		Gizmos.DrawWireSphere(transform.position, desiredDistanceAggro);
+		
+		Gizmos.color = Color.white;
+		Gizmos.DrawWireSphere(transform.position, meleeAggroDistance);
+		Gizmos.DrawWireSphere(transform.position + transform.forward * meleeAttackOffset, meleeAttackRadius * transform.localScale.x);
+		
+		
 	}
 	
 }

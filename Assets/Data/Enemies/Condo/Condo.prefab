@@ -241,7 +241,7 @@ MonoBehaviour:
   maxVoiceTime: 0.9
   minMoveTime: 1
   maxMoveTime: 1.7
-  moveDistanceRadius: 9.03
+  moveDistanceRadius: 150
   minMoveForce: 45
   maxMoveForce: 100
   rotationSpeed: 17.4
@@ -253,6 +253,12 @@ MonoBehaviour:
   moveForceAggroDistanceMultiplier: 2
   desiredDistanceAggro: 34.1
   moveRandomnessAggro: 38
+  meleeAggroDistance: 5.69
+  minHeadbuttWaitTime: 0.1
+  maxHeadbuttWaitTime: 0.4
+  meleeAggroRotationSpeed: 7
+  meleeAttackRadius: 1.2
+  meleeAttackOffset: 5.62
   minShotFrequency: 1
   maxShotFrequency: 1
   bullet: {fileID: 7183555598376989203, guid: ce075138d905bbd478979b02ab15b036, type: 3}
@@ -273,7 +279,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 7.48
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.71
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
