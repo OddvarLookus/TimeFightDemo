@@ -51,7 +51,8 @@ public class Attack : MonoBehaviour
 	
 	
 	bool attacking = false;
-	public bool IsAttacking(){return attacking;}
+	bool attackingSlow = false;
+	public bool IsAttacking(){return attackingSlow;}
 	
 	[SerializeField] float initialAttackSize;
 	[SerializeField] float finalAttackSize;
@@ -218,6 +219,7 @@ public class Attack : MonoBehaviour
 		if(attackPressed && !attacking)
 		{
 			attacking = true;
+			attackingSlow = true;
 			isHeavyAttack = false;
 			
 			if(garpa.GetGarpaAlert())
@@ -230,6 +232,7 @@ public class Attack : MonoBehaviour
 		else if(heavyAttackPressed && !attacking)
 		{
 			attacking = true;
+			attackingSlow = true;
 			isHeavyAttack = true;
 		}
 		
@@ -241,6 +244,12 @@ public class Attack : MonoBehaviour
 				if(currentAttackTime < attackTime)
 				{
 					currentAttackTime += Time.deltaTime;
+					
+					if(attackingSlow && currentAttackTime >= attackAnimationTime)
+					{
+						attackingSlow = false;
+					}
+					
 				}
 				else
 				{
@@ -316,6 +325,7 @@ public class Attack : MonoBehaviour
 					currentAttackTime = 0f;
 					currentAttackAnimationTime = 0f;
 					attacking = false;
+					attackingSlow = false;
 					attackIdx = 0;
 					currentPunchIdx = 0;
 					heavyAttackTeleportExecuted = false;

@@ -389,17 +389,20 @@ MonoBehaviour:
     maxPitch: 1.2
   minVoiceTime: 1
   maxVoiceTime: 6
-  aggroRadius: 20.1
+  aggroRadius: 30.46
   floatSpeed: 3
   rotationSpeed: 6
   attackRollTimeInterval: 0.2
   attackRollProbability: 0.1
-  resetTimeAfterAttack: 1
+  resetTimeAfterAttack: 0.5
+  chaseSpeed: 60
+  maxChaseSpeed: 100
+  chaseMinDistance: 5.82
   damage: 1
   attackDuration: 1
-  maxVibeDistance: 0.4
+  maxVibeDistance: 0.3
   monoVibeTime: 0.05
-  attackRadius: 9.34
+  attackRadius: 11
   tondoAttackVFX: {fileID: 660604078598729712, guid: b4cc2a513a658924a8df0c2df7227457, type: 3}
 --- !u!54 &4323069082867988718
 Rigidbody:

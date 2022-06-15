@@ -61,10 +61,10 @@ MonoBehaviour:
       Data: 1
     - Name: staggerHealthPercentage
       Entry: 4
-      Data: 0.3
+      Data: 0.55
     - Name: staggerDecreaseRate
       Entry: 4
-      Data: 0.3
+      Data: 0.5
     - Name: staggerDuration
       Entry: 4
       Data: 2

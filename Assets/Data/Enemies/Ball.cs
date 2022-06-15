@@ -16,7 +16,9 @@ public class Ball : Enemy
 	[MinValue(0.01f)] [SerializeField] float attackRollTimeInterval;
 	[MinValue(0f), MaxValue(1f)] [SerializeField] float attackRollProbability;
 	[MinValue(0f)] [SerializeField] float resetTimeAfterAttack;
-	
+	[MinValue(0f)] [SerializeField] float chaseSpeed;
+	[MinValue(0f)] [SerializeField] float maxChaseSpeed;
+	[MinValue(0f)] [SerializeField] float chaseMinDistance;
 	[Header("ATTACK VARIABLES")]
 	[SerializeField] int damage;
 	[SerializeField] float attackDuration;
@@ -104,9 +106,26 @@ public class Ball : Enemy
 			Quaternion targetRot = Quaternion.LookRotation(vecToTarget.normalized, nUp.normalized);
 			transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.fixedDeltaTime);
 			
+			if(!attacking && vecToTarget.magnitude > chaseMinDistance)
+			{
+				//FLOAT LIKE A BUTTERFLY
+				if(!isVibing)
+				{
+					Vector3 newPos = graphicsTr.localPosition;
+					newPos = new Vector3(newPos.x, 0.5f * Mathf.Sin(floatRandom + (floatSpeed * 4f * Time.time)), newPos.z);
+					graphicsTr.localPosition = newPos;
+				}
+
+				rb.AddForce(vecToTarget.normalized * chaseSpeed, ForceMode.Acceleration);
+			}
+			if(rb.velocity.magnitude > maxChaseSpeed)
+			{
+				rb.velocity = rb.velocity.normalized * maxChaseSpeed;
+			}
+			
 			if(!isVibing)
 			{
-				graphicsTr.localPosition = Vector3.Lerp(graphicsTr.localPosition, Vector3.zero, Time.fixedDeltaTime);
+				graphicsTr.localPosition = Vector3.Lerp(graphicsTr.localPosition, Vector3.zero, 4f * Time.fixedDeltaTime);
 			}
 			
 		}
@@ -138,6 +157,11 @@ public class Ball : Enemy
 	Transform aggroTarget;
 	void AggroCheck()
 	{
+		if(aggroState == EnemyAggroState.AGGRO)
+		{
+			return;
+		}
+		
 		Collider[] aggroColliders = Physics.OverlapSphere(transform.position, aggroRadius, 1<<7, QueryTriggerInteraction.Ignore);
 		for(int i = 0; i < aggroColliders.Length; i++)
 		{
@@ -252,6 +276,8 @@ public class Ball : Enemy
 		Gizmos.color = Color.red;
 		Gizmos.DrawWireSphere(transform.position, aggroRadius);
 		Gizmos.DrawWireSphere(transform.position, attackRadius);
+		Gizmos.color = Color.green;
+		Gizmos.DrawWireSphere(transform.position, chaseMinDistance);
 	}
 
 }
