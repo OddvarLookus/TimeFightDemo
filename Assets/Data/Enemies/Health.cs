@@ -49,11 +49,12 @@ public class Health : MonoBehaviour
 	    staggerDuration = nStaggerDuration;
     }
 
-	public void TakeDamage(float _damage, Vector3 damagePoint)
+	public void TakeDamage(float _damage, Vector3 damagePoint, NumberTypes numType)
     {
 	    currentHealth -= _damage;
         
-	    DamageNumbersManager.instance.SpawnDamageNumber(_damage, damagePoint);
+	    
+	    DamageNumbersManager.instance.SpawnDamageNumber(_damage, damagePoint, numType);
         
 	    if(_damage > 0f)
 	    {

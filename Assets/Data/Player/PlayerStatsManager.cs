@@ -43,6 +43,9 @@ public class PlayerStatsManager : MonoBehaviour
 	static float baseLuck = 1f;
 	public static float luck = 0f;
 	
+	public static float nukeKnucklesProbability = 0f;
+	public static float nukeKnucklesDamage = 0f;
+	
 	
 	//STATS CALCULATIONS
     
@@ -59,6 +62,10 @@ public class PlayerStatsManager : MonoBehaviour
 		//TECHNIQUES
 		float bonusDmgAgainstAsteroids = 0f;
 		float agilityMatrixBonus = 0f;
+		
+		nukeKnucklesProbability = 0f;
+		nukeKnucklesDamage = 0f;
+		
 		
 		for(int i = 0; i < upgrades.Count; i++)//get all upgrades
 		{
@@ -101,6 +108,14 @@ public class PlayerStatsManager : MonoBehaviour
 						playerSpeedBonus = playerSpeedBonus + (agilityMatrixUpgrade.agilityBonus * 33.333f);
 					}
 				}
+				if(upgrades[i] is NukeKnucklesUpgrade)
+				{
+					NukeKnucklesUpgrade nukeKnucklesUpgrade = upgrades[i] as NukeKnucklesUpgrade;
+					
+					nukeKnucklesProbability += nukeKnucklesUpgrade.explosionProbability;
+					nukeKnucklesDamage += nukeKnucklesUpgrade.damageBonus;
+					
+				}
 			}
 		}
 		
@@ -114,6 +129,7 @@ public class PlayerStatsManager : MonoBehaviour
 		
 		//SET THE TECHNIQUES
 		attack.SetDamageBonusAgainstAsteroids(bonusDmgAgainstAsteroids);
+		
 		
 	}
     

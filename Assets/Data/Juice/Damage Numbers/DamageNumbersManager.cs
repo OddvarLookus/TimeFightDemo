@@ -33,12 +33,30 @@ public class DamageNumbersManager : MonoBehaviour
 		}
 	}
 	
-	public void SpawnDamageNumber(float nNum, Vector3 numberPos)
+	public void SpawnDamageNumber(float nNum, Vector3 numberPos, NumberTypes numberType = NumberTypes.NORMAL)
 	{
 		DamageNumber nDamageNumber = damageNumbers.Dequeue();
-		nDamageNumber.SetNumber(nNum, numberPos, cameraTr);
+		
+		if(numberType == NumberTypes.NORMAL)
+		{
+			nDamageNumber.SetNumber(nNum, numberPos, cameraTr, true, numberType);
+		}
+		else if(numberType == NumberTypes.EXPLOSION_DAMAGE)
+		{
+			nDamageNumber.SetNumber(nNum, numberPos, cameraTr, true, numberType, 6f);
+		}
+		
 		damageNumbers.Enqueue(nDamageNumber);
 	}
 	
     
 }
+
+[System.Serializable]
+public enum NumberTypes
+{
+	NORMAL = 0,
+	EXPLOSION_DAMAGE = 1
+}
+
+

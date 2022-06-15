@@ -17,19 +17,37 @@ public class DamageNumber : MonoBehaviour
 	Transform cameraTr;
 	Vector3 randomMovementVec = Vector3.zero;
 	//LTDescr scaleTween0, scaleTween1;
-	public void SetNumber(float nNum, Vector3 nPos, Transform nCameraTr, bool randomMovement = true)
+	public void SetNumber(float nNum, Vector3 nPos, Transform nCameraTr, bool randomMovement = true, NumberTypes numType = NumberTypes.NORMAL, float finalScale = 2.3f)
 	{
 		if(randomMovement)
 		{
-			randomMovementVec = new Vector3(Random.Range(-3f, 3f), Random.Range(3f, 8f), Random.Range(-3f, 3f));
+			if(numType == NumberTypes.NORMAL)
+			{
+				randomMovementVec = new Vector3(Random.Range(-3f, 3f), Random.Range(3f, 8f), Random.Range(-3f, 3f));
+			}
+			else if(numType == NumberTypes.EXPLOSION_DAMAGE)
+			{
+				randomMovementVec = new Vector3(Random.Range(-3f, 3f), Random.Range(10f, 15f), Random.Range(-3f, 3f));
+			}
 		}
 		
 		transform.position = nPos;
 		cameraTr = nCameraTr;
 		label.gameObject.SetActive(true);
 		label.text = (Mathf.RoundToInt(nNum * 50f)).ToString();
+		//ASSIGN COLO TO THE NUMBER
+		if(numType == NumberTypes.NORMAL)
+		{
+			label.color = Color.white;
+		}
+		else if(numType == NumberTypes.EXPLOSION_DAMAGE)
+		{
+			label.color = new Color(196f/256f, 23f/256f, 14f/256f, 1f);
+		}
 		
-		Vector3 maxScale = new Vector3(2.3f, 2.3f, 1f);
+		
+		
+		Vector3 maxScale = new Vector3(finalScale, finalScale, 1f);
 		Vector3 initScale = new Vector3(0f, 0f, 1f);
 		
 		if(animSequence != null)

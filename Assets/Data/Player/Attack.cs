@@ -136,21 +136,24 @@ public class Attack : MonoBehaviour
 			float randPerc = Random.Range(0f + (luck / 35f) * dmgPerc, dmgPerc);
 			float randDamageBonus = randPerc * dmg;
 			dmg = dmg + (randDamageBonus - ((dmgPerc * dmg)/2f));
-    	
+    		
+			bool punchConnected = false;
+    		
 			if (_col.TryGetComponent(out Asteroid asteroid))
 			{
 				Vector3 pushVec = (_col.transform.position - transform.position).normalized;
 				pushVec *= pushForce;
 				asteroid.Push(pushVec);
-	        
-				asteroid.TakeDamage(dmg + damageBonusAgainstAsteroids, punchesGameObjects[currentPunchIdx].transform.position);
+				punchConnected = true;
+				asteroid.TakeDamage(dmg + damageBonusAgainstAsteroids, punchesGameObjects[currentPunchIdx].transform.position, NumberTypes.NORMAL);
 				CheckAndSpawnPunchVFX(_col);
 			}
 			if (_col.TryGetComponent(out Health health))
 			{
 				if(health.GetAffiliation() == Affiliation.ENEMY)
 				{
-					health.TakeDamage(dmg, punchesGameObjects[currentPunchIdx].transform.position);
+					punchConnected = true;
+					health.TakeDamage(dmg, punchesGameObjects[currentPunchIdx].transform.position, NumberTypes.NORMAL);
 					CheckAndSpawnPunchVFX(_col);
 				}
 			}
@@ -162,6 +165,21 @@ public class Attack : MonoBehaviour
 			}
 			
 			damagedColliders.Add(_col);
+			
+			//CALCULATE ADDITIVE PUNCH ROLLS
+			if(punchConnected)
+			{
+				if(PlayerStatsManager.nukeKnucklesProbability > 0f)
+				{
+					float roll = Random.Range(0f, 1f);
+					roll += (PlayerStatsManager.luck - 1f) / 100f;
+					if(roll <= PlayerStatsManager.nukeKnucklesProbability)
+					{
+						StaticExplosionsManager.instance.RequestExplosionAt(punchesGameObjects[currentPunchIdx].transform.position, 2f, PlayerStatsManager.nukeKnucklesDamage, ~(1<<7));
+					}
+				}
+			}
+			
 		}
 
     }

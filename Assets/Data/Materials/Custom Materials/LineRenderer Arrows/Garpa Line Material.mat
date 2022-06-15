@@ -30,7 +30,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _ArrowRotation: 0
-    - _ScrollingSpeed: 40
+    - _ScrollingSpeed: 32
     - __dirty: 0
     m_Colors:
     - _ArrowsColor: {r: 1, g: 0.95121765, b: 0.12641507, a: 1}

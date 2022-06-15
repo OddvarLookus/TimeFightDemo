@@ -62,7 +62,7 @@ public class Asteroid : MonoBehaviour
         rb.AddForce(_pushForce, ForceMode.Impulse);
     }
 
-	public void TakeDamage(float _damage, Vector3 damagePoint)
+	public void TakeDamage(float _damage, Vector3 damagePoint, NumberTypes numType)
 	{
 		//deplete health and die
 		if(isInvincible)
@@ -72,7 +72,7 @@ public class Asteroid : MonoBehaviour
 		
 		currentHealth -= _damage;
 		
-		DamageNumbersManager.instance.SpawnDamageNumber(_damage, damagePoint);
+		DamageNumbersManager.instance.SpawnDamageNumber(_damage, damagePoint, numType);
 		
         if (currentHealth <= 0f)
         {

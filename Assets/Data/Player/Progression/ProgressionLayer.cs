@@ -148,6 +148,12 @@ public class AgilityMatrixUpgrade : TechniqueUpgrade
 	public float agilityBonus;
 }
 
+[System.Serializable]
+public class NukeKnucklesUpgrade : TechniqueUpgrade
+{
+	public float explosionProbability;
+	public float damageBonus;
+}
 
 
 

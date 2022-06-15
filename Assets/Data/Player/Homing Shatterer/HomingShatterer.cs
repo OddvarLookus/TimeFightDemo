@@ -69,7 +69,7 @@ public class HomingShatterer : MonoBehaviour
         {
             if(health.GetAffiliation() == Affiliation.ENEMY)
             {
-	            health.TakeDamage(damage, transform.position);
+	            health.TakeDamage(damage, transform.position, NumberTypes.NORMAL);
             }
         }
 		
