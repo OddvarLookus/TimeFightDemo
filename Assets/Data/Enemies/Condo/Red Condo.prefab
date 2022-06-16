@@ -241,18 +241,27 @@ MonoBehaviour:
   maxVoiceTime: 0.9
   minMoveTime: 1
   maxMoveTime: 1.7
-  moveDistanceRadius: 9.03
+  moveDistanceRadius: 7.8
   minMoveForce: 45
   maxMoveForce: 100
   rotationSpeed: 17.4
-  aggroRadius: 36
+  aggroRadius: 44.4
   minMoveTimeAggro: 0.8
   maxMoveTimeAggro: 1.2
   minMoveForceAggro: 130
   maxMoveForceAggro: 160
   moveForceAggroDistanceMultiplier: 2
-  desiredDistanceAggro: 34.1
+  desiredDistanceAggro: 35.09
   moveRandomnessAggro: 38
+  meleeAggroDistance: 3.26
+  minHeadbuttWaitTime: 0.4
+  maxHeadbuttWaitTime: 1
+  meleeAggroRotationSpeed: 4
+  meleeAttackRadius: 1.34
+  meleeAttackOffset: 6.83
+  hasAggroMeleeExitShotgun: 1
+  shotgunBullets: 20
+  shotgunBulletRandomRotation: 110
   minShotFrequency: 1
   maxShotFrequency: 1
   bullet: {fileID: 7183555598376989203, guid: ce075138d905bbd478979b02ab15b036, type: 3}

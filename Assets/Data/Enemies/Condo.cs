@@ -47,6 +47,11 @@ public class Condo : Enemy
 	[MinValue(0f)] [SerializeField] float meleeAttackOffset;
 	bool headbutting = false;
 	
+	[Header("Aggro Melee Exit")]
+	[SerializeField] bool hasAggroMeleeExitShotgun = false;
+	[ShowIf("@hasAggroMeleeExitShotgun")] [SerializeField] int shotgunBullets;
+	[ShowIf("@hasAggroMeleeExitShotgun")] [MinValue(0f)] [SerializeField] float shotgunBulletRandomRotation;
+	
 	[Header("Shooting")]
 	[MinValue(1)] [SerializeField] int minShotFrequency;
 	[MinValue(1)] [SerializeField] int maxShotFrequency;
@@ -125,7 +130,7 @@ public class Condo : Enemy
 			
 			base.RotateTowardsMovement(rotationSpeed, true);
 			
-			Collider[] collidersInArea = Physics.OverlapSphere(transform.position, aggroRadius, 1<<7, QueryTriggerInteraction.Ignore);
+			Collider[] collidersInArea = Physics.OverlapSphere(transform.position, aggroRadius * transform.localScale.x, 1<<7, QueryTriggerInteraction.Ignore);
 			if(collidersInArea.Length > 0)
 			{
 				aggroTarget = collidersInArea[0].transform;
@@ -140,7 +145,7 @@ public class Condo : Enemy
 			if(meleeAggro == false)
 			{
 				Vector3 vecToTarget = aggroTarget.position - transform.position;
-				if(vecToTarget.magnitude <= meleeAggroDistance)//ENTER MELEE AGGRO
+				if(vecToTarget.magnitude <= meleeAggroDistance * transform.localScale.x)//ENTER MELEE AGGRO
 				{
 					meleeAggro = true;
 					curMoveTime = 0f;
@@ -167,6 +172,19 @@ public class Condo : Enemy
 				Vector3 realUp = Vector3.Cross(vecToTarget.normalized, -perp.normalized);
 				Quaternion finalRot = Quaternion.LookRotation(vecToTarget, realUp);
 				transform.rotation = Quaternion.Slerp(transform.rotation, finalRot, meleeAggroRotationSpeed * Time.fixedDeltaTime);
+				
+				if(vecToTarget.magnitude > meleeAggroDistance * transform.localScale.x)//LEFT MELEE AGGRO
+				{
+					if(hasAggroMeleeExitShotgun)
+					{
+						Shoot(shotgunBullets, shotgunBulletRandomRotation);
+					}
+					
+					meleeAggro = false;
+					curMoveTime = 0f;
+					InitializeTimeAggro();
+					return;
+				}
 				
 				if(!headbutting && currentHeadbuttWaitTime < headbuttWaitTime)
 				{
@@ -270,18 +288,23 @@ public class Condo : Enemy
 	}
 	
 	
-	void Shoot()
+	void Shoot(int numShots = 1, float randomRot = 0f)
 	{
-		GameObject b = Instantiate(bullet);
-		b.transform.SetParent(null);
-		b.transform.position = bulletSpawnPos.position;
+		for(int i = 0; i < numShots; i++)
+		{
+			GameObject b = Instantiate(bullet);
+			b.transform.SetParent(null);
+			b.transform.position = bulletSpawnPos.position;
 			
-		GameObject bVfx = Instantiate(shootVFXPrefab);
-		bVfx.transform.SetParent(this.transform);
-		bVfx.transform.position = bulletSpawnPos.position;
+			GameObject bVfx = Instantiate(shootVFXPrefab);
+			bVfx.transform.SetParent(this.transform);
+			bVfx.transform.position = bulletSpawnPos.position;
 			
-		Vector3 shootDir = aggroTarget.position - bulletSpawnPos.position;
-		b.GetComponent<EnemyBullet>().Shoot(shootDir, aggroTarget);
+			Quaternion randRot = Quaternion.Euler(Random.Range(-randomRot, randomRot), Random.Range(-randomRot, randomRot), Random.Range(-randomRot, randomRot));
+			Vector3 shootDir = aggroTarget.position - bulletSpawnPos.position;
+			shootDir = randRot * shootDir;
+			b.GetComponent<EnemyBullet>().Shoot(shootDir, aggroTarget);
+		}
 			
 		StaticAudioStarter.instance.StartAudioEmitter(transform.position, shootSound.GetRandomSound(), shootSound.GetRandomPitch());
 	}
@@ -345,13 +368,13 @@ public class Condo : Enemy
 		Gizmos.DrawWireSphere(transform.position, moveDistanceRadius);
 		
 		Gizmos.color = Color.red;
-		Gizmos.DrawWireSphere(transform.position, aggroRadius);
+		Gizmos.DrawWireSphere(transform.position, aggroRadius * transform.localScale.x);
 		
 		Gizmos.color = Color.cyan;
 		Gizmos.DrawWireSphere(transform.position, desiredDistanceAggro);
 		
 		Gizmos.color = Color.white;
-		Gizmos.DrawWireSphere(transform.position, meleeAggroDistance);
+		Gizmos.DrawWireSphere(transform.position, meleeAggroDistance * transform.localScale.x);
 		Gizmos.DrawWireSphere(transform.position + transform.forward * meleeAttackOffset, meleeAttackRadius * transform.localScale.x);
 		
 		
