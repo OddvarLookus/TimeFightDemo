@@ -2578,8 +2578,8 @@ MonoBehaviour:
   punchAttack: {fileID: 4999143093157021291}
   speedWhileAttackingMultiplier: 0.3
   dashPower: 115
-  dashReleaseTime: 0.2
-  dashDuration: 0.3
+  dashReleaseTime: 0.15
+  dashDuration: 0.2
   speedDashSpeed: 300
   speedDashAcceleration: 4
   agilityBonus: 0
@@ -2691,13 +2691,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelUpCurve:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 100
+      inSlope: 24.296011
+      outSlope: 24.296011
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.044882376
+    - serializedVersion: 3
+      time: 30
+      value: 3000
+      inSlope: 259.0391
+      outSlope: 259.0391
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.019810168
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
   minSuckRadius: 25
   maxSuckRadius: 25
   maxPlayerSpeed: 200
+  levelUpSound:
+    possibleSounds: []
+    minPitch: 1
+    maxPitch: 1
 --- !u!114 &507034137754007591
 MonoBehaviour:
   m_ObjectHideFlags: 0

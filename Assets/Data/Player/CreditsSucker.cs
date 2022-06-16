@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Sirenix.OdinInspector;
 
 public class CreditsSucker : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class CreditsSucker : MonoBehaviour
     [SerializeField] float minSuckRadius, maxSuckRadius;
     [SerializeField] float maxPlayerSpeed;
 
+	[SerializeField] SoundsPack levelUpSound;
+	
     float suckRadius;
 
 	PlayerController playerController;
@@ -87,6 +90,7 @@ public class CreditsSucker : MonoBehaviour
 			if(creditsExceeding >= 0)//LEVEL UP
 			{
 				currentLevel += 1;
+				StaticAudioStarter.instance.StartAudioEmitter(transform.position, levelUpSound.GetRandomSound(), levelUpSound.GetRandomPitch());
 				//EXECUTE POWER UP ROUTINE
 				Cursor.lockState = CursorLockMode.None;
 				GameManager.instance.SetCanPauseGame(false);

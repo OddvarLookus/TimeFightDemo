@@ -202,7 +202,7 @@ MonoBehaviour:
   garpaSizeAddition: 1
   minGarpaDistance: 2
   minGarpaAlertDist: 35
-  maxGarpaAlertDist: 80
+  maxGarpaAlertDist: 86
   garpaTeleportNotifierPrefab: {fileID: 1452129796969202365, guid: 8b66ea894456d1b4190f8e714ee160fb, type: 3}
   pointerLR: {fileID: 7234974992894769670}
 --- !u!23 &3600650568312518621
