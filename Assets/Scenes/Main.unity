@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.05976396, g: 0.25839528, b: 0.5810022, a: 1}
+  m_IndirectSpecularColor: {r: 0.059734873, g: 0.2582149, b: 0.58080316, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2751,7 +2751,7 @@ MonoBehaviour:
         upgradeName: Nuke Knuckles
         upgradeSprite: {fileID: 21300000, guid: 99c73cc36a939c84baee02e0f6779e39, type: 3}
         explosionProbability: 0.02
-        damageBonus: 0.5
+        damageBonus: 0.7
 --- !u!1 &1504324623
 GameObject:
   m_ObjectHideFlags: 0

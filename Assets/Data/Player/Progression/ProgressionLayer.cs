@@ -42,12 +42,14 @@ public class ProgressionLayer : SerializedMonoBehaviour
 	[HideInInspector] public Action<Upgrade> OnUpgradeChosen;
 	List<Upgrade> upgradesYouCanChoose = new List<Upgrade>();
 	bool choosingUpgrade = false;
+	bool justActive = false;
 	Transform hooveredCard = null;
 	public void StartUpgradeChoice(Action<Upgrade> nOnUpgradeChosen)
 	{
 		Debug.Log("UPGRADE CHOICE STARTED");
 		OnUpgradeChosen = nOnUpgradeChosen;
 		
+		justActive = true;
 		cardsParent.SetActive(true);
 		Time.timeScale = 0f;
 		
@@ -63,15 +65,26 @@ public class ProgressionLayer : SerializedMonoBehaviour
 			cardsImages[i].sprite = upgradeRolls[roll].upgradeSprite;
 			upgradesYouCanChoose.Add(upgradeRolls[roll]);
 			upgradeRolls.RemoveAt(roll);
+			
+			//CARD APPEAR ANIMATION
+			cardsTr[i].localScale = new Vector3(0.2f, 0.2f, 1f);
+			LeanTween.scale(cardsTr[i].gameObject, new Vector3(1f, 1f, 1f), 0.2f).setIgnoreTimeScale(true);
 		}
 		
+		StartCoroutine(WaitUpgradesSafeTime());
 		choosingUpgrade = true;
 		
 	}
 	
+	IEnumerator WaitUpgradesSafeTime()
+	{
+		yield return new WaitForSecondsRealtime(0.5f);
+		justActive = false;
+	}
+	
 	void UpgradeChooseBehavior()
 	{
-		if(choosingUpgrade)
+		if(choosingUpgrade && !justActive)
 		{
 			PointerEventData pEvData = new PointerEventData(evSystem);
 			pEvData.position = Input.mousePosition;
@@ -99,6 +112,33 @@ public class ProgressionLayer : SerializedMonoBehaviour
 						
 						OnUpgradeChosen(upgradesYouCanChoose[clickedCardIdx]);
 					}
+				}
+				else//no mouse input
+				{
+					int hoveredCardIdx = int.MaxValue;
+					for(int i = 0; i < cardsTr.Length; i++)
+					{
+						if(uiRaycastResults[0].gameObject.transform == cardsTr[i])
+						{
+							hoveredCardIdx = i;
+						}
+					}
+					
+					for(int i = 0; i < cardsTr.Length; i++)
+					{
+						float scale = 0f;
+						if(i == hoveredCardIdx)
+						{
+							scale = Mathf.Lerp(cardsTr[i].localScale.x, 1.2f, 8f * Time.unscaledDeltaTime);
+						}
+						else
+						{
+							scale = Mathf.Lerp(cardsTr[i].localScale.x, 1f, 16f * Time.unscaledDeltaTime);
+						}
+						
+						cardsTr[i].localScale = new Vector3(scale, scale, scale);
+					}
+					
 				}
 			}
 		}
